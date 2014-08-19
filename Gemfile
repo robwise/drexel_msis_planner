@@ -13,7 +13,7 @@ gem 'bootstrap-sass'
 gem 'devise'
 gem 'haml-rails'
 gem 'pg'
-gem 'pundit'
+gem 'pundit', :git => 'https://github.com/elabs/pundit.git'
 gem 'simple_form'
 group :development do
   gem 'better_errors'
