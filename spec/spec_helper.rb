@@ -50,7 +50,7 @@ RSpec.configure do |config|
   # Setting this allows you to use `--seed` to deterministically reproduce
   # test failures related to randomization by passing the same `--seed` value
   # as the one that triggered the failure.
-  # Kernel.srand config.seed
+  Kernel.srand config.seed
 
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
