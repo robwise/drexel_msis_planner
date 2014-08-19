@@ -31,6 +31,7 @@ end
 group :development, :test do
   gem 'factory_girl_rails'
   gem 'rspec-rails'
+  gem 'spring-commands-rspec'
 end
 group :production do
   gem 'unicorn'

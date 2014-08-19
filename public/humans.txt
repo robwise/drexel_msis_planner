@@ -3,10 +3,10 @@
 
 
 /* TEAM */
-  <your title>: <your name>
+  Founder: Rob Wise
   Site:
-  Twitter:
-  Location:
+  Twitter: @robawise
+  Location: USA
 
 /* THANKS */
   Daniel Kehoe (@rails_apps) for the RailsApps project
