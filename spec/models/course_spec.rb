@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe Course, :type => :model do
   it { should respond_to(:department) }
   it { should respond_to(:level) }
