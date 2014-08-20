@@ -1,13 +1,12 @@
 class CreateCourses < ActiveRecord::Migration
   def up
     create_table :courses do |t|
-      t.string :department
-      t.integer :level
+      t.string :department, null: false
+      t.integer :level, null: false
       t.string :title
       t.text :description
 
       t.timestamps
-      add_index :department, :level
     end
   end
   def down
