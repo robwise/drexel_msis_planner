@@ -1,5 +1,24 @@
 require 'rails_helper'
 
 RSpec.describe Course, :type => :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it { should respond_to(:department) }
+  it { should respond_to(:level) }
+  it { should respond_to(:title) }
+  it { should respond_to(:description) }
+  context "with acceptable attributes" do
+      let!(:course) { FactoryGirl.build(:course) }
+      subject { course }
+
+      it { should be_valid }
+    end
+
+  describe "validation" do
+    let!(:course) { FactoryGirl.build(:course) }
+    subject { course }
+
+    it { should validate_presence_of(:department) }
+    it { should validate_presence_of(:level) }
+    it { should validate_numericality_of(:level).is_greater_than(0) }
+    it { should validate_numericality_of(:level).is_less_than(2000) }
+  end
 end

@@ -2,9 +2,9 @@
 
 FactoryGirl.define do
   factory :course do
-    department "MyString"
-    level 1
-    title "MyString"
-    description "MyText"
+    department "INFO"
+    level 530
+    title "Foundations of Information Systems"
+    description "Some text describing the course."
   end
 end
