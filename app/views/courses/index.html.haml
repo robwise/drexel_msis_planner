@@ -1,0 +1,8 @@
+.container
+  .row
+    .h1 Courses
+    .column
+      %table.table
+        %tbody
+          -@courses.each do |course|
+            %tr.course= render course
