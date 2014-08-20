@@ -6,5 +6,6 @@ FactoryGirl.define do
     level 530
     title "Foundations of Information Systems"
     description "Some text describing the course."
+    degree_requirement "free_elective"
   end
 end
