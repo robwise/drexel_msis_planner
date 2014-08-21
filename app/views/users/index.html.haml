@@ -1,0 +1,10 @@
+-content_for :title, 'Users'
+-content_for :description, 'Listing of all users'
+.container
+  .row
+    %h3 Users
+    .column
+      %table.table
+        %tbody
+        -@users.each do |user|
+          %tr=render user
