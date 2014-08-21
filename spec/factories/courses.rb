@@ -12,7 +12,7 @@ FactoryGirl.define do
     trait :required do
       degree_requirement :required_course
     end
-    trait :free_elective
+    trait :free_elective do
       degree_requirement :free_elective
     end
   end
