@@ -7,6 +7,7 @@ describe Course do
   it { should validate_presence_of(:department) }
   it { should validate_presence_of(:level) }
   it { should validate_presence_of(:degree_requirement) }
+  it { should validate_presence_of(:description) }
   it { should validate_numericality_of(:level).is_greater_than(0) }
   it { should validate_numericality_of(:level).is_less_than(2000) }
 
