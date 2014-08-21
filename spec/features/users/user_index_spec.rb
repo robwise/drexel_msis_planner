@@ -2,8 +2,8 @@ include Warden::Test::Helpers
 Warden.test_mode!
 
 feature 'User index page', :devise do
+  let(:user) { FactoryGirl.create(:user, :admin) }
   before do
-    user = FactoryGirl.create(:user, :admin)
     login_as(user, scope: :user)
     visit users_path
   end
