@@ -79,5 +79,5 @@ pickle-email-*.html
 .powenv
 
 # Sublime Text artifacts
-.sublime-project
-.sublime-workspace
+*.sublime-project
+*.sublime-workspace

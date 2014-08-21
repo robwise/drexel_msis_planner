@@ -1,0 +1,9 @@
+-content_for :title, @course.full_id
+-content_for :description, "A detailed view of #{@course.full_id}"
+.container
+  .row
+    .column
+      %h1.course-full-id= @course.full_id
+      %h2.course-title= @course.title
+      .course-description= @course.description
+      .course-degree-requirement= @course.degree_requirement.humanize.titleize
