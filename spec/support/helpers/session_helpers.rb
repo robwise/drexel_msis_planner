@@ -14,5 +14,13 @@ module Features
       fill_in 'Password', with: password
       click_button 'Sign in'
     end
+
+    def full_title(partial_title)
+      if partial_title.blank?
+        "Drexel MSIS Planner"
+      else
+        "#{partial_title} | Drexel MSIS Planner"
+      end
+    end
   end
 end
