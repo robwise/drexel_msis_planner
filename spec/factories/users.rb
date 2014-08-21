@@ -1,8 +1,8 @@
 FactoryGirl.define do
   factory :user do
     confirmed_at Time.now
-    name "Test User"
-    email "test@example.com"
+    sequence(:name) { |n| "user#{n}" }
+    sequence(:email) { |n| "user#{n}@example.com" }
     password "please123"
 
     trait :admin do
