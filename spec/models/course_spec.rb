@@ -1,4 +1,4 @@
-RSpec.describe Course, :type => :model do
+describe Course do
   it { should respond_to(:department) }
   it { should respond_to(:level) }
   it { should respond_to(:title) }
