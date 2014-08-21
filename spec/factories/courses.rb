@@ -8,5 +8,12 @@ FactoryGirl.define do
     title Faker::Lorem.words(4).to_s.titleize
     description Faker::Lorem.paragraph
     degree_requirement "free_elective"
+
+    trait :required do
+      degree_requirement :required_course
+    end
+    trait :free_elective
+      degree_requirement :free_elective
+    end
   end
 end
