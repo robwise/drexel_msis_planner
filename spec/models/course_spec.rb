@@ -16,4 +16,13 @@ describe Course do
 
     it { should be_valid }
   end
+  context "with bad format title" do
+    let!(:course) { FactoryGirl.create(:course, title: 'wEirD caPitalization') }
+    # subject { course }
+
+    # its(:title) { should be "Weird Capitalization" }
+    it "should have proper title" do
+      expect(course.title).to eq("Weird Capitalization")
+    end
+  end
 end
