@@ -1,5 +1,6 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
 # include ActiveSupport
+require 'faker'
 
 FactoryGirl.define do
   factory :course do
