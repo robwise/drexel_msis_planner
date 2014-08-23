@@ -7,6 +7,7 @@ class Course < ActiveRecord::Base
                     numericality: { greater_than: 0, less_than: 2000 }
   validates :degree_requirement, presence: true
   validates :description, presence: true
+  validates :title, presence: true
 
   def full_id
     "#{department} #{level}"

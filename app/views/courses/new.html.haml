@@ -2,23 +2,7 @@
 -content_for :description, 'Add a course to the course list.'
 .container
   .row
-  .column
-  %h1 Add a Course
-  .authform
-    =form_for @course do |f|
-      .form-group
-        =f.label :department
-        =f.text_field :department, :autofocus => true, :class => 'form-control'
-      .form-group
-        =f.label :level
-        =f.text_field :level, :class => 'form-control'
-      .form-group
-        = f.label :title
-        = f.text_field :title, :class => 'form-control'
-      .form-group
-        = f.label :description
-        = f.text_field :description, :class => 'form-control'
-      .form-group
-        = f.label :degree_requirement
-        = f.select :degree_requirement, :class => 'form-control'
-      =f.submit 'Add Course', :class => 'button right'
+    .column
+      .authform
+        %h3 Add a Course
+        =render 'courses/form'

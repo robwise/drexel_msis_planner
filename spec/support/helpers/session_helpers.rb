@@ -27,14 +27,13 @@ module Features
       end
     end
 
-    def add_course(course)
-      visit new_course_path
+    def fill_course_form(course)
       fill_in 'Department', with: course.department
       fill_in 'Level', with: course.level
       fill_in 'Title', with: course.title
-      select 'Degree Requirement',
-        selection: course.degree_requirement.to_s.humanize.titleize
       fill_in 'Description', with: course.description
+      select course.degree_requirement.to_s.humanize, from: 'Degree requirement'
+      click_button 'Submit'
     end
   end
 end

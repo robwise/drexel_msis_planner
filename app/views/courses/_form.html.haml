@@ -1,0 +1,20 @@
+= form_for @course do |f|
+  .form-group
+    =f.label :department
+    =f.text_field :department, :class => 'form-control',
+      :autofocus => true
+  .form-group
+    =f.label :level
+    =f.text_field :level, :class => 'form-control'
+  .form-group
+    = f.label :title
+    = f.text_field :title, :class => 'form-control'
+  .form-group
+    = f.label :description
+    = f.text_field :description, :class => 'form-control'
+  .form-group
+    = f.label :degree_requirement
+    = f.select :degree_requirement,
+      options_for_select(requirements, :selected => @course.degree_requirement),
+      :class => 'form-control'
+  =f.submit 'Submit', :class => 'button right'

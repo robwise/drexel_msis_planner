@@ -1,4 +1,7 @@
 %td
-  .h2= link_to "#{course.department} #{course.level}", course
+  .h2
+    =link_to "#{course.department} #{course.level}", course
+    =link_to 'edit', edit_course_path(course)
   .h3= course.title
+
   %p.course-description= course.description

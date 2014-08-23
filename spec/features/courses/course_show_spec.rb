@@ -1,11 +1,15 @@
 feature 'Visiting a course show page' do
-  let(:course) { FactoryGirl.create(:course) }
-  before { visit course_path(course) }
+  let(:course) { create(:course) }
+  let(:admin)  { create(:user, :admin)}
+  before do
+    signin_user admin
+    visit course_path(course)
+  end
 
-  scenario "user sees the proper title" do
+  scenario "page has proper title" do
     expect(page).to have_title(full_title(course.full_id))
   end
-  scenario "user sees the course details" do
+  scenario "page has course details" do
     expect(page).to have_content(course.description)
     expect(page).to have_content(course.title)
     expect(page).to have_content(course.degree_requirement.humanize.titleize)

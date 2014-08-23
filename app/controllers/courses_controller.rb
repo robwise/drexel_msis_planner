@@ -1,4 +1,7 @@
 class CoursesController < ApplicationController
+  before_filter :authenticate_user!, except: [:index, :show]
+  after_action :verify_authorized, except: [:index, :show]
+
   def index
     @courses = Course.all
   end
@@ -9,5 +12,54 @@ class CoursesController < ApplicationController
 
   def new
     @course = Course.new
+    authorize @course
   end
+
+  def create
+    @course = Course.new(secure_params)
+    authorize @course
+    if @course.save
+      redirect_to @course, notice: 'Course sucessfully created.'
+    else
+      redirect_to new_course_path, :alert => "Unable to create course."
+    end
+  end
+
+  def edit
+    @course = Course.find(params[:id])
+    authorize @course
+  end
+
+  def update
+    @course = Course.find(params[:id])
+    authorize @course
+    if @course.update_attributes(secure_params)
+      redirect_to @course, notice: 'Course updated.'
+    else
+      redirect_to users_path, alert: 'Error updating course.'
+    end
+  end
+
+  def destroy
+    authorize
+    course = Course.find(params[:id])
+
+    authorize course
+    if course.destroy
+      redirect_to courses_path, notice: 'Course successfully deleted.'
+    else
+      flash![:error] = "Error deleting course."
+    end
+  end
+
+  private
+
+    def secure_params
+      params.require(:course).permit(:id,
+                                     :department,
+                                     :level,
+                                     :title,
+                                     :description,
+                                     :degree_requirement)
+    end
 end

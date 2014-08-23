@@ -3,6 +3,10 @@
 .container
   .row
     .column
+      .breadcrumb
+        =link_to 'Courses', courses_path
+        &#47
+        =@course.full_id
       %h1.course-full-id= @course.full_id
       %h2.course-title= @course.title
       .course-description= @course.description

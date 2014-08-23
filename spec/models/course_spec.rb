@@ -6,8 +6,9 @@ describe Course do
   it { should respond_to(:degree_requirement) }
   it { should validate_presence_of(:department) }
   it { should validate_presence_of(:level) }
-  it { should validate_presence_of(:degree_requirement) }
+  it { should validate_presence_of(:title) }
   it { should validate_presence_of(:description) }
+  it { should validate_presence_of(:degree_requirement) }
   it { should validate_numericality_of(:level).is_greater_than(0) }
   it { should validate_numericality_of(:level).is_less_than(2000) }
 
@@ -17,12 +18,9 @@ describe Course do
 
     it { should be_valid }
   end
-  context "with bad format title" do
+  context "using a bad format title" do
     let!(:course) { FactoryGirl.create(:course, title: 'wEirD caPitalization') }
-    # subject { course }
-
-    # its(:title) { should be "Weird Capitalization" }
-    it "should have proper title" do
+    it "should fix it" do
       expect(course.title).to eq("Weird Capitalization")
     end
   end
