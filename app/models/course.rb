@@ -8,6 +8,7 @@ class Course < ActiveRecord::Base
   validates :degree_requirement, presence: true
   validates :description, presence: true
   validates :title, presence: true
+  has_many :enrolled_ins
 
   def full_id
     "#{department} #{level}"

@@ -6,7 +6,7 @@ FactoryGirl.define do
   factory :course do
     department "INFO"
     sequence(:level) { |n| n + 529 }
-    title Faker::Lorem.words(4).to_s.titleize
+    title Faker::Lorem.words(4).join.titleize
     description Faker::Lorem.paragraph
     degree_requirement "free_elective"
 

@@ -4,6 +4,7 @@ describe Course do
   it { should respond_to(:title) }
   it { should respond_to(:description) }
   it { should respond_to(:degree_requirement) }
+  it { should respond_to(:enrolled_ins) }
   it { should validate_presence_of(:department) }
   it { should validate_presence_of(:level) }
   it { should validate_presence_of(:title) }
@@ -24,4 +25,5 @@ describe Course do
       expect(course.title).to eq("Weird Capitalization")
     end
   end
+
 end

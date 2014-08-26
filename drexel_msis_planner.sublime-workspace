@@ -4,12 +4,28 @@
 		"selected_items":
 		[
 			[
-				"degree",
-				"degree_requirements"
+				"enrolled",
+				"enrolled_in_path"
+			],
+			[
+				"enro",
+				"enrolled_in"
+			],
+			[
+				"course",
+				"course_id"
 			],
 			[
 				"user",
-				"user_with_same_email"
+				"user_id"
+			],
+			[
+				"e",
+				"except"
+			],
+			[
+				"degree",
+				"degree_requirements"
 			],
 			[
 				"do",
@@ -90,10 +106,6 @@
 			[
 				"c",
 				"cla	Create controller class"
-			],
-			[
-				"e",
-				"e	expect().to"
 			],
 			[
 				"td",
@@ -229,77 +241,34 @@
 			]
 		]
 	},
-	"buffers":
-	[
-		{
-			"file": "spec/support/helpers/session_helpers.rb",
-			"settings":
-			{
-				"buffer_size": 1069,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "spec/features/courses/course_create_spec.rb",
-			"settings":
-			{
-				"buffer_size": 737,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/views/courses/new.html.haml",
-			"settings":
-			{
-				"buffer_size": 1034,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"contents": "      .form-group\n        =f.label :department\n        =f.text_field :department, :autofocus => true, :class => 'form-control'\n      .form-group\n        =f.label :level\n        =f.text_field :level, :class => 'form-control'\n      .form-group\n        = f.label :title\n        = f.text_field :title, :class => 'form-control'\n      .form-group\n        = f.label :description\n        = f.text_field :description, :class => 'form-control'\n      .form-group\n        = f.label :degree_requirement\n        = f.select :degree_requirement, :class => 'form-control'\n      =f.submit 'Add Course', :class => 'button right'",
-			"settings":
-			{
-				"buffer_size": 609,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/models/course.rb",
-			"settings":
-			{
-				"buffer_size": 592,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/controllers/courses_controller.rb",
-			"settings":
-			{
-				"buffer_size": 523,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/controllers/users_controller.rb",
-			"settings":
-			{
-				"buffer_size": 744,
-				"line_ending": "Unix"
-			}
-		}
-	],
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 374.0,
+		"height": 101.0,
 		"selected_items":
 		[
 			[
-				"rsp",
+				"shell",
+				"Set Syntax: Shell Script (Bash)"
+			],
+			[
+				"rspe",
+				"Set Syntax: RSpec"
+			],
+			[
+				"rspc",
 				"Set Syntax: RSpec"
 			],
 			[
 				"rspec",
+				"Set Syntax: RSpec"
+			],
+			[
+				"hell",
+				"Set Syntax: Haskell"
+			],
+			[
+				"rsp",
 				"Set Syntax: RSpec"
 			],
 			[
@@ -332,10 +301,6 @@
 			],
 			[
 				"shel",
-				"Set Syntax: Shell Script (Bash)"
-			],
-			[
-				"shell",
 				"Set Syntax: Shell Script (Bash)"
 			],
 			[
@@ -459,7 +424,7 @@
 				"Package Control: Install Package"
 			]
 		],
-		"width": 403.0
+		"width": 471.0
 	},
 	"console":
 	{
@@ -476,54 +441,82 @@
 	},
 	"file_history":
 	[
-		"/Users/Rob/Sites/drexel_msis_planner/app/controllers/visitors_controller.rb",
-		"/Users/Rob/Sites/drexel_msis_planner/app/views/devise/registrations/new.html.erb",
+		"/Users/Rob/Library/Application Support/Sublime Text 2/Packages/RubyTest/TestConsole.hidden-tmTheme",
+		"/Users/Rob/.extra",
+		"/Users/Rob/Library/Application Support/Sublime Text 2/Packages/User/scenario.sublime-snippet",
+		"/Users/Rob/Library/Application Support/Sublime Text 2/Packages/User/permissions.sublime-snippet",
+		"/Users/Rob/Library/Application Support/Sublime Text 2/Packages/User/permissions.sublime_snippet",
+		"/Users/Rob/Library/Application Support/Sublime Text 2/Packages/User/Preferences.sublime-settings",
+		"/Users/Rob/Library/Application Support/Sublime Text 2/Packages/User/XML.sublime-settings",
+		"/Users/Rob/Sites/drexel_msis_planner/spec/policies/user_policy_spec.rb",
+		"/Users/Rob/Sites/drexel_msis_planner/app/views/users/_user.html.erb",
+		"/Users/Rob/Sites/drexel_msis_planner/app/views/users/show.html.erb",
+		"/Users/Rob/Sites/drexel_msis_planner/config/routes.rb",
+		"/Users/Rob/Sites/drexel_msis_planner/spec/features/enrolled_ins/enrolled_in_delete_spec.rb",
 		"/Users/Rob/Sites/drexel_msis_planner/app/controllers/users_controller.rb",
-		"/Users/Rob/Sites/drexel_msis_planner/app/controllers/courses_controller.rb",
-		"/Users/Rob/Sites/drexel_msis_planner/app/models/course.rb",
-		"/Users/Rob/Sites/drexel_msis_planner/spec/models/course_spec.rb",
+		"/Users/Rob/Sites/drexel_msis_planner/app/views/users/index.html.haml",
 		"/Users/Rob/Sites/drexel_msis_planner/spec/factories/users.rb",
-		"/Users/Rob/Sites/drexel_msis_planner/spec/factories/courses.rb",
-		"/Users/Rob/Sites/drexel_msis_planner/db/seeds.rb",
-		"/Users/Rob/Sites/drexel_msis_planner/app/models/user.rb",
+		"/Users/Rob/Sites/drexel_msis_planner/app/views/enrolled_ins/new.html.haml",
 		"/Users/Rob/Sites/drexel_msis_planner/app/views/courses/_course.html.haml",
 		"/Users/Rob/Sites/drexel_msis_planner/app/views/courses/show.html.haml",
-		"/Users/Rob/Sites/drexel_msis_planner/app/views/courses/index.html.haml",
-		"/Users/Rob/Sites/drexel_msis_planner/spec/features/courses/course_show_spec.rb",
+		"/Users/Rob/Sites/drexel_msis_planner/app/models/enrolled_in.rb",
+		"/Users/Rob/Sites/drexel_msis_planner/spec/models/enrolled_in_spec.rb",
+		"/Users/Rob/Sites/drexel_msis_planner/spec/models/user_spec.rb",
+		"/Users/Rob/Sites/drexel_msis_planner/app/models/user.rb",
+		"/Users/Rob/Sites/drexel_msis_planner/spec/factories/enrolled_ins.rb",
+		"/Users/Rob/Sites/drexel_msis_planner/app/controllers/enrolled_ins_controller.rb",
+		"/Users/Rob/Sites/drexel_msis_planner/spec/features/users/user_index_spec.rb",
+		"/Users/Rob/Sites/drexel_msis_planner/spec/models/course_spec.rb",
+		"/Users/Rob/Sites/drexel_msis_planner/app/models/course.rb",
+		"/Users/Rob/Sites/drexel_msis_planner/spec/features/users/user_show_spec.rb",
+		"/Users/Rob/Sites/drexel_msis_planner/app/views/courses/_form.html.haml",
+		"/Users/Rob/Sites/drexel_msis_planner/app/helpers/enrolled_ins_helper.rb",
+		"/Users/Rob/Sites/drexel_msis_planner/app/helpers/courses_helper.rb",
+		"/Users/Rob/Sites/drexel_msis_planner/app/views/courses/new.html.haml",
+		"/Users/Rob/Sites/drexel_msis_planner/app/views/devise/registrations/new.html.erb",
 		"/Users/Rob/Sites/drexel_msis_planner/spec/features/courses/course_create_spec.rb",
+		"/Users/Rob/Sites/drexel_msis_planner/spec/factories/courses.rb",
+		"/Users/Rob/Sites/drexel_msis_planner/db/migrate/20140823041223_create_enrolled_ins.rb",
+		"/Users/Rob/Sites/drexel_msis_planner/app/views/courses/index.html.haml",
+		"/Users/Rob/Sites/drexel_msis_planner/app/controllers/courses_controller.rb",
+		"/Users/Rob/Sites/drexel_msis_planner/spec/features/visitors/sign_up_spec.rb",
+		"/Users/Rob/Sites/drexel_msis_planner/app/controllers/enrolled_in_controller.rb",
+		"/Users/Rob/Sites/drexel_msis_planner/drexel_msis_planner.sublime-project",
+		"/Users/Rob/Sites/drexel_msis_planner/Guardfile",
+		"/Users/Rob/Sites/drexel_msis_planner/spec/features/courses/course_edit_spec.rb",
+		"/Users/Rob/Sites/drexel_msis_planner/spec/support/helpers/session_helpers.rb",
+		"/Users/Rob/Sites/drexel_msis_planner/app/policies/course_policy.rb",
+		"/Users/Rob/Sites/drexel_msis_planner/Gemfile",
+		"/Users/Rob/Sites/rails-devise-pundit/Gemfile",
+		"/Users/Rob/Sites/drexel_msis_planner/app/policies/user_policy.rb",
+		"/Users/Rob/Sites/drexel_msis_planner/spec/policies/course_policy_spec.rb",
+		"/Users/Rob/Sites/drexel_msis_planner/spec/features/courses/course_show_spec.rb",
+		"/Users/Rob/Sites/drexel_msis_planner/app/views/courses/edit.html.haml",
+		"/Users/Rob/Sites/drexel_msis_planner/spec/features/courses/_form.html.haml",
+		"/Users/Rob/Sites/drexel_msis_planner/app/views/layouts/_navigation.html.haml",
+		"/Users/Rob/Sites/drexel_msis_planner/app/views/layouts/_navigation_links.html.erb",
+		"/Users/Rob/Sites/drexel_msis_planner/app/controllers/visitors_controller.rb",
+		"/Users/Rob/Sites/drexel_msis_planner/db/seeds.rb",
 		"/Users/Rob/Sites/drexel_msis_planner/spec/features/users/sign_in_spec.rb",
 		"/Users/Rob/Sites/drexel_msis_planner/.gitignore",
 		"/Users/Rob/.gitignore_global",
 		"/Users/Rob/.gitignore",
 		"/Users/Rob/Sites/drexel_msis_planner/spec/features/courses/course_index_spec.rb",
-		"/Users/Rob/Sites/drexel_msis_planner/spec/models/user_spec.rb",
 		"/Users/Rob/Sites/drexel_msis_planner/app/services/create_course_service.rb",
 		"/Users/Rob/Sites/drexel_msis_planner/app/services/create_admin_service.rb",
-		"/Users/Rob/Sites/drexel_msis_planner/app/policies/user_policy.rb",
-		"/Users/Rob/Sites/drexel_msis_planner/spec/policies/user_policy_spec.rb",
-		"/Users/Rob/Sites/drexel_msis_planner/Gemfile",
 		"/Users/Rob/Sites/drexel_msis_planner/spec/support/factory_girl.rb",
-		"/Users/Rob/Sites/drexel_msis_planner/spec/features/users/user_show_spec.rb",
-		"/Users/Rob/Library/Application Support/Sublime Text 2/Packages/User/scenario.sublime-snippet",
 		"/Users/Rob/Library/Application Support/Sublime Text 2/Packages/User/feature.sublime-snipppet",
-		"/Users/Rob/Sites/drexel_msis_planner/spec/features/users/user_index_spec.rb",
-		"/Users/Rob/Sites/drexel_msis_planner/app/views/users/index.html.haml",
 		"/Users/Rob/Sites/drexel_msis_planner/app/controllers/application_controller.rb",
 		"/Users/Rob/Sites/drexel_msis_planner/config/initializers/pundit.rb",
 		"/Users/Rob/Sites/drexel_msis_planner/spec/support/pundit.rb",
 		"/Users/Rob/Sites/drexel_msis_planner/index.html.haml",
 		"/Users/Rob/Sites/drexel_msis_planner/app/views/users/index.html.erb",
 		"/Users/Rob/Sites/drexel_msis_planner/app/views/layouts/application.html.haml",
-		"/Users/Rob/Sites/drexel_msis_planner/spec/support/helpers/session_helpers.rb",
 		"/Users/Rob/Sites/drexel_msis_planner/spec/support/helpers.rb",
-		"/Users/Rob/Sites/drexel_msis_planner/app/views/users/_user.html.erb",
-		"/Users/Rob/Sites/drexel_msis_planner/config/routes.rb",
-		"/Users/Rob/Library/Application Support/Sublime Text 2/Packages/User/Preferences.sublime-settings",
 		"/Users/Rob/Library/Application Support/Sublime Text 2/Packages/User/Markdown Extended.sublime-settings",
 		"/Users/Rob/Library/Application Support/Sublime Text 2/Packages/User/Default (OSX).sublime-keymap",
 		"/Users/Rob/Sites/drexel_msis_planner/README.md",
 		"/Users/Rob/Library/Application Support/Sublime Text 2/Packages/User/Ruby Haml.sublime-settings",
-		"/Users/Rob/Sites/drexel_msis_planner/app/views/layouts/_navigation.html.haml",
 		"/Users/Rob/Sites/drexel_msis_planner/app/views/courses/index.html.haml.erb",
 		"/Users/Rob/Sites/drexel_msis_planner/db/migrate/20140820054617_add_degree_requirement_column_to_courses.rb",
 		"/Users/Rob/Sites/drexel_msis_planner/spec/rails_helper.rb",
@@ -531,9 +524,7 @@
 		"/Users/Rob/Sites/drexel_msis_planner/db/migrate/20140819232639_create_courses.rb",
 		"/Users/Rob/Sites/drexel_msis_planner/db/migrate/20140820043920_add_index_to_courses.rb",
 		"/Users/Rob/Sites/drexel_msis_planner/config/secrets.yml",
-		"/Users/Rob/.extra",
 		"/Users/Rob/Sites/drexel_msis_planner/.env",
-		"/Users/Rob/Sites/drexel_msis_planner/Guardfile",
 		"/Users/Rob/Sites/drexel_msis_planner/spec/features/users/user_delete_spec.rb",
 		"/Users/Rob/dev/rails_composer_ideas.txt",
 		"/Users/Rob/Sites/rails_apps_composer/CONTRIBUTING.textile",
@@ -551,7 +542,6 @@
 		"/Users/Rob/Sites/drexel_msis_planner/spec/support/utilities.rb",
 		"/Users/Rob/Sites/drexel_msis_planner/db/migrate/20140816031841_devise_create_users.rb",
 		"/Users/Rob/Sites/drexel_msis_planner/spec/features/homepage_spec.rb",
-		"/Users/Rob/Sites/drexel_msis_planner/drexel_msis_planner.sublime-project",
 		"/Users/Rob/Sites/drexel_msis_planner/app/views/home/index.html.erb",
 		"/Users/Rob/Sites/drexel_msis_planner/app/views/layouts/application.html.erb",
 		"/Users/Rob/Sites/drexel_msis_planner/README.rdoc",
@@ -578,32 +568,7 @@
 		"/Users/Rob/Sites/rails_tutorial/sample_app/app/helpers/application_helper.rb",
 		"/Users/Rob/Sites/rails_tutorial/sample_app/app/views/layouts/_shim.html.erb",
 		"/Users/Rob/Sites/drexel_msis_planner/app/controllers/home_controller_controller.rb",
-		"/Users/Rob/.gitconfig",
-		"/Users/Rob/Sites/rails_tutorial/sample_app/Gemfile",
-		"/Users/Rob/Sites/drexel_msis_planner/app/assets/stylesheets/application.css.scss",
-		"/Users/Rob/Sites/drexel_msis_planner/app/assets/javascripts/application.js",
-		"/Users/Rob/Sites/drexel_msis_planner/app/assets/stylesheets/application.css",
-		"/Users/Rob/.guardrc",
-		"/Users/Rob/Sites/drexel_msis_planner/public/robots.txt",
-		"/Users/Rob/.bash_profile",
-		"/Users/Rob/Documents/INFO 646 Week 8 Response.md",
-		"/Users/Rob/.bash_proofile",
-		"/Users/Rob/Sites/drexel_msis_planner/spec/controllers/user_controller_spec.rb",
-		"/Users/Rob/Library/Application Support/Sublime Text 2/Packages/RubyTest/README.md",
-		"/Users/Rob/Sites/drexel_msis_planner/db/migrate/20140814041028_add_email_to_users.rb",
-		"/Users/Rob/Sites/drexel_msis_planner/.sample.env",
-		"/Users/Rob/Sites/drexel_msis_planner/config/newrelic.yml",
-		"/Users/Rob/Library/Application Support/Sublime Text 2/Packages/Default/Preferences.sublime-settings",
-		"/Users/Rob/Library/Application Support/Sublime Text 2/Packages/User/Markdown.sublime-settings",
-		"/Users/Rob/Sites/drexel_msis_planner/bin/setup",
-		"/Users/Rob/Sites/drexel_msis_planner/.git/config",
-		"/Users/Rob/Library/Application Support/Sublime Text 2/Packages/Emmet/Default (OSX).sublime-keymap",
-		"/Users/Rob/projects/ruby-bank/tellers.rb",
-		"/Users/Rob/projects/ruby-bank/clock.rb",
-		"/Users/Rob/Sites/degree_planner/config/database.yml",
-		"/Users/Rob/Sites/degree_planner/Gemfile",
-		"/Users/Rob/Sites/degree_planner/config/unicorn.rb",
-		"/Users/Rob/Sites/degree_planner/.bundle/config"
+		"/Users/Rob/.gitconfig"
 	],
 	"find":
 	{
@@ -621,6 +586,20 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"UserPolicy",
+			"User",
+			"user",
+			"User",
+			"user",
+			"requirement",
+			"enrollment",
+			"assword",
+			"password_confirmation",
+			"save",
+			"grade",
+			"quarter",
+			"course_id",
+			"user_id",
 			"control",
 			"password_confirmation",
 			"password",
@@ -679,6 +658,7 @@
 		"regex": false,
 		"replace_history":
 		[
+			"EnrolledInPolicy",
 			"course",
 			".",
 			".\n	gem 'rspec-rails', '2.13.1'\n	gem 'guard-rspec', '2.5.0'\n	gem 'spork-rails', '4.0.0'\n	gem 'guard-spork', '1.5.0'\n	gem 'childprocess', '0.3.6'",
@@ -691,542 +671,6 @@
 		"whole_word": false,
 		"wrap": true
 	},
-	"groups":
-	[
-		{
-			"selected": 1,
-			"sheets":
-			[
-				{
-					"buffer": 0,
-					"file": "spec/support/helpers/session_helpers.rb",
-					"settings":
-					{
-						"buffer_size": 1069,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1039,
-								1039
-							]
-						],
-						"settings":
-						{
-							"BracketHighlighterBusy": false,
-							"bh_regions":
-							[
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close"
-							],
-							"syntax": "Packages/Rails/Ruby on Rails.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 148.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "spec/features/courses/course_create_spec.rb",
-					"settings":
-					{
-						"buffer_size": 737,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								626,
-								626
-							]
-						],
-						"settings":
-						{
-							"BracketHighlighterBusy": false,
-							"bh_regions":
-							[
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close"
-							],
-							"syntax": "Packages/User/RSpec.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				}
-			]
-		},
-		{
-			"selected": 3,
-			"sheets":
-			[
-				{
-					"buffer": 2,
-					"file": "app/views/courses/new.html.haml",
-					"settings":
-					{
-						"buffer_size": 1034,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								139,
-								139
-							]
-						],
-						"settings":
-						{
-							"BracketHighlighterBusy": false,
-							"bh_regions":
-							[
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close"
-							],
-							"syntax": "Packages/Rails/Ruby Haml.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"settings":
-					{
-						"buffer_size": 609,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								609,
-								609
-							]
-						],
-						"settings":
-						{
-							"BracketHighlighterBusy": false,
-							"bh_regions":
-							[
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close"
-							],
-							"syntax": "Packages/Rails/Ruby Haml.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "app/models/course.rb",
-					"settings":
-					{
-						"buffer_size": 592,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								503,
-								503
-							]
-						],
-						"settings":
-						{
-							"BracketHighlighterBusy": false,
-							"bh_regions":
-							[
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close"
-							],
-							"syntax": "Packages/Rails/Ruby on Rails.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "app/controllers/courses_controller.rb",
-					"settings":
-					{
-						"buffer_size": 523,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								372,
-								372
-							]
-						],
-						"settings":
-						{
-							"BracketHighlighterBusy": false,
-							"bh_regions":
-							[
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close"
-							],
-							"syntax": "Packages/Rails/Ruby on Rails.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "app/controllers/users_controller.rb",
-					"settings":
-					{
-						"buffer_size": 744,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								738,
-								657
-							]
-						],
-						"settings":
-						{
-							"BracketHighlighterBusy": false,
-							"bh_regions":
-							[
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close"
-							],
-							"syntax": "Packages/Rails/Ruby on Rails.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 127.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				}
-			]
-		}
-	],
 	"incremental_find":
 	{
 		"height": 36.0
@@ -1267,7 +711,7 @@
 	"menu_visible": true,
 	"output.exec":
 	{
-		"height": 102.0
+		"height": 208.0
 	},
 	"replace":
 	{
@@ -1279,6 +723,222 @@
 		"height": 0.0,
 		"selected_items":
 		[
+			[
+				"polic",
+				"spec/policies/enrolled_in_policy_spec.rb"
+			],
+			[
+				"courses",
+				"app/controllers/courses_controller.rb"
+			],
+			[
+				"",
+				"spec/policies/enrolled_in_policy_spec.rb"
+			],
+			[
+				"users_",
+				"app/controllers/users_controller.rb"
+			],
+			[
+				"users_con",
+				"app/controllers/users_controller.rb"
+			],
+			[
+				"_user",
+				"app/views/users/_user.html.erb"
+			],
+			[
+				"users/inde",
+				"app/views/users/index.html.haml"
+			],
+			[
+				"user",
+				"spec/factories/users.rb"
+			],
+			[
+				"users/show",
+				"app/views/users/show.html.erb"
+			],
+			[
+				"routes",
+				"config/routes.rb"
+			],
+			[
+				"enroll",
+				"app/controllers/enrolled_ins_controller.rb"
+			],
+			[
+				"enrolled_in_s",
+				"spec/models/enrolled_in_spec.rb"
+			],
+			[
+				"enrolled",
+				"spec/factories/enrolled_ins.rb"
+			],
+			[
+				"enrolled_in",
+				"spec/models/enrolled_in_spec.rb"
+			],
+			[
+				"user.rb",
+				"app/models/user.rb"
+			],
+			[
+				"show",
+				"app/views/courses/show.html.haml"
+			],
+			[
+				"courses/",
+				"app/views/courses/_course.html.haml"
+			],
+			[
+				"users",
+				"spec/features/users/user_index_spec.rb"
+			],
+			[
+				"course_sp",
+				"spec/models/course_spec.rb"
+			],
+			[
+				"course.rb",
+				"app/models/course.rb"
+			],
+			[
+				"user_show",
+				"spec/features/users/user_show_spec.rb"
+			],
+			[
+				"courses/f",
+				"app/views/courses/_form.html.haml"
+			],
+			[
+				"courses/new",
+				"app/views/courses/new.html.haml"
+			],
+			[
+				"enroll_ins_he",
+				"app/helpers/enrolled_ins_helper.rb"
+			],
+			[
+				"helper",
+				"app/helpers/courses_helper.rb"
+			],
+			[
+				"new",
+				"app/views/enrolled_ins/new.html.haml"
+			],
+			[
+				"spec/",
+				"spec/features/courses/course_create_spec.rb"
+			],
+			[
+				"factor",
+				"spec/factories/courses.rb"
+			],
+			[
+				"migrate",
+				"db/migrate/20140823041223_create_enrolled_ins.rb"
+			],
+			[
+				"registra",
+				"app/views/devise/registrations/new.html.erb"
+			],
+			[
+				"_course",
+				"app/views/courses/_course.html.haml"
+			],
+			[
+				"index",
+				"app/views/courses/index.html.haml"
+			],
+			[
+				"course_con",
+				"app/controllers/courses_controller.rb"
+			],
+			[
+				"regist",
+				"app/views/devise/registrations/new.html.erb"
+			],
+			[
+				"sign",
+				"spec/features/visitors/sign_up_spec.rb"
+			],
+			[
+				"enrol",
+				"app/controllers/enrolled_ins_controller.rb"
+			],
+			[
+				"enrolle",
+				"app/controllers/enrolled_in_controller.rb"
+			],
+			[
+				"cou",
+				"app/models/course.rb"
+			],
+			[
+				"course_s",
+				"spec/models/course_spec.rb"
+			],
+			[
+				"user_sp",
+				"spec/models/user_spec.rb"
+			],
+			[
+				"dr",
+				"drexel_msis_planner.sublime-project"
+			],
+			[
+				"gemf",
+				"Gemfile"
+			],
+			[
+				"fac",
+				"spec/factories/users.rb"
+			],
+			[
+				"gur",
+				"Guardfile"
+			],
+			[
+				"gem",
+				"Gemfile"
+			],
+			[
+				"edi_c",
+				"spec/features/courses/course_edit_spec.rb"
+			],
+			[
+				"sessi",
+				"spec/support/helpers/session_helpers.rb"
+			],
+			[
+				"coursespec",
+				"spec/features/courses/course_edit_spec.rb"
+			],
+			[
+				"course_show",
+				"spec/features/courses/course_show_spec.rb"
+			],
+			[
+				"user_pol",
+				"app/policies/user_policy.rb"
+			],
+			[
+				"userspec",
+				"spec/features/users/user_index_spec.rb"
+			],
+			[
+				"courses.html",
+				"app/views/courses/index.html.haml"
+			],
+			[
+				"navi",
+				"app/views/layouts/_navigation.html.haml"
+			],
+			[
+				"link",
+				"app/views/layouts/_navigation_links.html.erb"
+			],
 			[
 				"controller",
 				"app/controllers/users_controller.rb"
@@ -1292,20 +952,8 @@
 				"app/views/devise/registrations/new.html.erb"
 			],
 			[
-				"users",
-				"app/controllers/users_controller.rb"
-			],
-			[
 				"course",
 				"app/controllers/courses_controller.rb"
-			],
-			[
-				"course.rb",
-				"app/models/course.rb"
-			],
-			[
-				"courses",
-				"spec/factories/courses.rb"
 			],
 			[
 				"registration",
@@ -1316,20 +964,8 @@
 				"spec/features/courses/course_create_spec.rb"
 			],
 			[
-				"sign",
-				"spec/features/users/sign_in_spec.rb"
-			],
-			[
 				"help",
 				"spec/support/helpers/session_helpers.rb"
-			],
-			[
-				"user",
-				"spec/factories/users.rb"
-			],
-			[
-				"coursespec",
-				"spec/models/course_spec.rb"
 			],
 			[
 				".git",
@@ -1350,14 +986,6 @@
 			[
 				"user_poli",
 				"spec/policies/user_policy_spec.rb"
-			],
-			[
-				"polic",
-				"app/policies/user_policy.rb"
-			],
-			[
-				"gem",
-				"Gemfile"
 			],
 			[
 				"seed",
@@ -1400,28 +1028,12 @@
 				"spec/features/users/user_index_spec.rb"
 			],
 			[
-				"user_show",
-				"spec/features/users/user_show_spec.rb"
-			],
-			[
-				"index",
-				"app/views/users/index.html.haml"
-			],
-			[
-				"helper",
-				"spec/support/helpers.rb"
-			],
-			[
 				"userhtml",
 				"app/views/users/index.html.erb"
 			],
 			[
 				"read",
 				"README.md"
-			],
-			[
-				"_user",
-				"app/views/users/_user.html.erb"
 			],
 			[
 				"route",
@@ -1440,16 +1052,8 @@
 				"spec/rails_helper.rb"
 			],
 			[
-				"gemf",
-				"Gemfile"
-			],
-			[
 				"factory",
 				"spec/support/factory_girl.rb"
-			],
-			[
-				"course_s",
-				"spec/models/course_spec.rb"
 			],
 			[
 				"cour",
@@ -1524,10 +1128,6 @@
 				"config/environments/test.rb"
 			],
 			[
-				"regist",
-				"app/controllers/registrations_controller.rb"
-			],
-			[
 				"utilit",
 				"spec/support/utilities.rb"
 			],
@@ -1564,10 +1164,6 @@
 				"app/views/home/index.html.erb"
 			],
 			[
-				"routes",
-				"config/routes.rb"
-			],
-			[
 				"utili",
 				"spec/support/utilities.rb"
 			],
@@ -1594,10 +1190,6 @@
 			[
 				"home",
 				"app/controllers/home_controller.rb"
-			],
-			[
-				"",
-				"spec/rails_helper.rb"
 			],
 			[
 				"application",
@@ -1636,160 +1228,12 @@
 				"bin/rspec"
 			],
 			[
-				"fac",
-				"spec/factories/users.rb"
-			],
-			[
 				"gemfile",
 				"Gemfile"
 			],
 			[
 				"rea",
 				"README.md"
-			],
-			[
-				"setup",
-				"bin/setup"
-			],
-			[
-				"pr",
-				"Procfile"
-			],
-			[
-				"sche",
-				"db/schema.rb"
-			],
-			[
-				"pro",
-				"Procfile"
-			],
-			[
-				"micrpost",
-				"app/views/shared/_micropost_form.html.erb"
-			],
-			[
-				"micropost",
-				"app/assets/javascripts/micropost_form.js"
-			],
-			[
-				"css",
-				"app/assets/stylesheets/custom.css.scss"
-			],
-			[
-				"java",
-				"app/assets/javascripts/micropost_form.js"
-			],
-			[
-				"micropo",
-				"app/views/shared/_micropost_form.html.erb"
-			],
-			[
-				"pages_spec",
-				"spec/requests/user_pages_spec.rb"
-			],
-			[
-				"micr",
-				"app/views/microposts/_micropost.html.erb"
-			],
-			[
-				"stat",
-				"spec/requests/static_pages_spec.rb"
-			],
-			[
-				"mi",
-				"spec/requests/micropost_pages_spec.rb"
-			],
-			[
-				"users_",
-				"app/controllers/users_controller.rb"
-			],
-			[
-				"relation",
-				"spec/models/relationship_spec.rb"
-			],
-			[
-				"migratie",
-				"db/migrate/20140801022634_add_in_reply_to_column_to_microposts.rb"
-			],
-			[
-				"sam",
-				"lib/tasks/sample_data.rake"
-			],
-			[
-				"migrate",
-				"db/migrate/20140729043803_create_relationships.rb"
-			],
-			[
-				"uti",
-				"spec/support/utilities.rb"
-			],
-			[
-				"user_pages",
-				"spec/requests/user_pages_spec.rb"
-			],
-			[
-				"user_spec",
-				"spec/models/user_spec.rb"
-			],
-			[
-				"user.rb",
-				"app/models/user.rb"
-			],
-			[
-				"micro",
-				"spec/models/micropost_spec.rb"
-			],
-			[
-				"relat",
-				"db/migrate/20140729043803_create_relationships.rb"
-			],
-			[
-				"util",
-				"spec/support/utilities.rb"
-			],
-			[
-				"fields",
-				"app/views/users/_fields.html.erb"
-			],
-			[
-				"new",
-				"app/views/users/new.html.erb"
-			],
-			[
-				"sample",
-				"lib/tasks/sample_data.rake"
-			],
-			[
-				"models/",
-				"app/models/relationship.rb"
-			],
-			[
-				"mic",
-				"app/models/micropost.rb"
-			],
-			[
-				"stats",
-				"app/views/shared/_stats.html.erb"
-			],
-			[
-				"static",
-				"spec/requests/static_pages_spec.rb"
-			],
-			[
-				"feed",
-				"app/views/shared/_feed_item.html.erb"
-			],
-			[
-				"sharedfeed",
-				"app/views/shared/_feed.html.erb"
-			],
-			[
-				"homesi",
-				"app/views/static_pages/_home_signed_in.html.erb"
-			],
-			[
-				"usershow",
-				"app/views/users/show.html.erb"
 			]
 		],
 		"width": 0.0
@@ -1800,15 +1244,23 @@
 		"selected_items":
 		[
 			[
+				"",
+				"/Users/Rob/Sites/rails_tutorial/sample_app/sample_app.sublime-project"
+			],
+			[
+				"s",
+				"/Users/Rob/Sites/rails_tutorial/sample_app/sample_app.sublime-project"
+			],
+			[
 				"sa",
 				"/Users/Rob/Sites/rails_tutorial/sample_app/sample_app.sublime-project"
 			],
 			[
-				"sam",
+				"a",
 				"/Users/Rob/Sites/rails_tutorial/sample_app/sample_app.sublime-project"
 			],
 			[
-				"",
+				"sam",
 				"/Users/Rob/Sites/rails_tutorial/sample_app/sample_app.sublime-project"
 			]
 		],
@@ -1817,7 +1269,7 @@
 	"show_minimap": false,
 	"show_open_files": false,
 	"show_tabs": true,
-	"side_bar_visible": true,
+	"side_bar_visible": false,
 	"side_bar_width": 172.0,
 	"status_bar_visible": true
 }

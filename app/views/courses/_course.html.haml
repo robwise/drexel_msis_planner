@@ -5,3 +5,5 @@
   .h3= course.title
 
   %p.course-description= course.description
+  -unless EnrolledIn.already_enrolled?(current_user, course)
+    .took-this=link_to 'I Took This', new_enrolled_in_path(course_id: course.id)

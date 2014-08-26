@@ -1,0 +1,17 @@
+-content_for :title, 'Add Enrollment'
+-content_for :description, 'Record having enrolled in a class.'
+.authform
+  =form_for @enrolled_in do |f|
+    %h3 Add Course Taken
+    / =devise_error_messages!
+    .hidden
+      =f.hidden_field :course_id
+    .hidden
+      =f.hidden_field :user_id
+    .form-group
+      =f.label :quarter
+      =f.text_field :quarter, :autofocus => true, class: 'form-control'
+    .form-group
+      =f.label :grade
+      =f.collection_select(:grade, EnrolledIn.grades.collect, :first, :first, prompt: true)
+    =f.submit 'Add', :class => 'button right'

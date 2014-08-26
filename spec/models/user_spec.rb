@@ -1,6 +1,7 @@
 describe User do
   it { should respond_to(:email) }
   it { should respond_to(:role) }
+  it { should respond_to(:enrolled_ins) }
 
   context "with acceptable attributes" do
     let!(:user) { FactoryGirl.build(:user) }
