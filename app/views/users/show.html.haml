@@ -7,8 +7,8 @@
     %h4 Taken Courses:
     %table.table
       %tbody
-        - @user.enrolled_ins.each do |enrolled_in|
-          - course = Course.find(enrolled_in.course_id)
+        - @user.taken_courses.each do |taken_course|
+          - course = Course.find(taken_course.course_id)
           %tr
             %td= render course
-            %td= link_to('remove', enrolled_in_path(enrolled_in), data: { confirm: 'Are you sure?' }, method: :delete, class: 'button-xs')
+            %td= link_to('remove', taken_course_path(taken_course), data: { confirm: 'Are you sure?' }, method: :delete, class: 'button-xs')

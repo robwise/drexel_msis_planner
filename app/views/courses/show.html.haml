@@ -11,6 +11,6 @@
       %h2.course-title= @course.title
       .course-description= @course.description
       .course-degree-requirement= @course.degree_requirement.humanize.titleize
-      - unless EnrolledIn.already_enrolled?(current_user, @course)
+      - unless TakenCourse.already_taken?(current_user, @course)
         .took-this
-          = link_to 'I Took This', new_enrolled_in_path(course_id: @course.id)
+          = link_to 'I Took This', new_taken_course_path(course_id: @course.id)
