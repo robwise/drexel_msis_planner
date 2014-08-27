@@ -1,0 +1,15 @@
+- content_for :title, 'Profile'
+- content_for :description, "User details."
+.container
+  .row
+    %h3= @user.email
+    %h4 Degree Status:
+    %h4 THIS IS A TEST 2
+    %h4 Taken Courses:
+    %table.table
+      %tbody
+        - @user.enrolled_ins.each do |enrolled_in|
+          - course = Course.find(enrolled_in.course_id)
+          %tr
+            %td= render course
+            %td= link_to('remove', enrolled_in_path(enrolled_in), data: { confirm: 'Are you sure?' }, method: :delete, class: 'button-xs')

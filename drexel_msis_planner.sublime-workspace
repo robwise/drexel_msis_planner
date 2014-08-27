@@ -241,6 +241,9 @@
 			]
 		]
 	},
+	"buffers":
+	[
+	],
 	"build_system": "",
 	"command_palette":
 	{
@@ -441,6 +444,27 @@
 	},
 	"file_history":
 	[
+		"/Users/Rob/Sites/drexel_msis_planner/app/views/users/show.html.haml",
+		"/Users/Rob/Sites/drexel_msis_planner/app/views/users/index.html.haml",
+		"/Users/Rob/Sites/drexel_msis_planner/app/views/devise/registrations/new.html.erb",
+		"/Users/Rob/Sites/drexel_msis_planner/app/views/layouts/_navigation_links.html.erb",
+		"/Users/Rob/Sites/drexel_msis_planner/app/views/visitors/index.html.erb",
+		"/Users/Rob/Sites/drexel_msis_planner/app/views/courses/_course.html.haml",
+		"/Users/Rob/Sites/drexel_msis_planner/app/views/users/_user.html.erb",
+		"/Users/Rob/Sites/drexel_msis_planner/app/controllers/users_controller.rb",
+		"/Users/Rob/Sites/drexel_msis_planner/app/controllers/visitors_controller.rb",
+		"/Users/Rob/Sites/drexel_msis_planner/config/routes.rb",
+		"/Users/Rob/Sites/drexel_msis_planner/spec/features/visitors/home_page_spec.rb",
+		"/Users/Rob/Sites/drexel_msis_planner/app/views/courses/index.html.haml",
+		"/Users/Rob/Sites/drexel_msis_planner/app/views/users/show.html.erb",
+		"/Users/Rob/Sites/drexel_msis_planner/app/views/devise/registrations/edit.html.erb",
+		"/Users/Rob/Sites/drexel_msis_planner/app/models/user.rb",
+		"/Users/Rob/Sites/drexel_msis_planner/db/migrate/20140819054827_devise_create_users.rb",
+		"/Users/Rob/Sites/drexel_msis_planner/app/models/enrolled_in.rb",
+		"/Users/Rob/Sites/drexel_msis_planner/spec/models/enrolled_in_spec.rb",
+		"/Users/Rob/Sites/drexel_msis_planner/db/migrate/20140823041223_create_enrolled_ins.rb",
+		"/Users/Rob/Sites/drexel_msis_planner/db/migrate/20140826055053_add_uniqueness_constraint_to_enrolled_ins.rb",
+		"/Users/Rob/Sites/drexel_msis_planner/drexel_msis_planner.sublime-workspace",
 		"/Users/Rob/Library/Application Support/Sublime Text 2/Packages/RubyTest/TestConsole.hidden-tmTheme",
 		"/Users/Rob/.extra",
 		"/Users/Rob/Library/Application Support/Sublime Text 2/Packages/User/scenario.sublime-snippet",
@@ -449,20 +473,11 @@
 		"/Users/Rob/Library/Application Support/Sublime Text 2/Packages/User/Preferences.sublime-settings",
 		"/Users/Rob/Library/Application Support/Sublime Text 2/Packages/User/XML.sublime-settings",
 		"/Users/Rob/Sites/drexel_msis_planner/spec/policies/user_policy_spec.rb",
-		"/Users/Rob/Sites/drexel_msis_planner/app/views/users/_user.html.erb",
-		"/Users/Rob/Sites/drexel_msis_planner/app/views/users/show.html.erb",
-		"/Users/Rob/Sites/drexel_msis_planner/config/routes.rb",
 		"/Users/Rob/Sites/drexel_msis_planner/spec/features/enrolled_ins/enrolled_in_delete_spec.rb",
-		"/Users/Rob/Sites/drexel_msis_planner/app/controllers/users_controller.rb",
-		"/Users/Rob/Sites/drexel_msis_planner/app/views/users/index.html.haml",
 		"/Users/Rob/Sites/drexel_msis_planner/spec/factories/users.rb",
 		"/Users/Rob/Sites/drexel_msis_planner/app/views/enrolled_ins/new.html.haml",
-		"/Users/Rob/Sites/drexel_msis_planner/app/views/courses/_course.html.haml",
 		"/Users/Rob/Sites/drexel_msis_planner/app/views/courses/show.html.haml",
-		"/Users/Rob/Sites/drexel_msis_planner/app/models/enrolled_in.rb",
-		"/Users/Rob/Sites/drexel_msis_planner/spec/models/enrolled_in_spec.rb",
 		"/Users/Rob/Sites/drexel_msis_planner/spec/models/user_spec.rb",
-		"/Users/Rob/Sites/drexel_msis_planner/app/models/user.rb",
 		"/Users/Rob/Sites/drexel_msis_planner/spec/factories/enrolled_ins.rb",
 		"/Users/Rob/Sites/drexel_msis_planner/app/controllers/enrolled_ins_controller.rb",
 		"/Users/Rob/Sites/drexel_msis_planner/spec/features/users/user_index_spec.rb",
@@ -473,11 +488,8 @@
 		"/Users/Rob/Sites/drexel_msis_planner/app/helpers/enrolled_ins_helper.rb",
 		"/Users/Rob/Sites/drexel_msis_planner/app/helpers/courses_helper.rb",
 		"/Users/Rob/Sites/drexel_msis_planner/app/views/courses/new.html.haml",
-		"/Users/Rob/Sites/drexel_msis_planner/app/views/devise/registrations/new.html.erb",
 		"/Users/Rob/Sites/drexel_msis_planner/spec/features/courses/course_create_spec.rb",
 		"/Users/Rob/Sites/drexel_msis_planner/spec/factories/courses.rb",
-		"/Users/Rob/Sites/drexel_msis_planner/db/migrate/20140823041223_create_enrolled_ins.rb",
-		"/Users/Rob/Sites/drexel_msis_planner/app/views/courses/index.html.haml",
 		"/Users/Rob/Sites/drexel_msis_planner/app/controllers/courses_controller.rb",
 		"/Users/Rob/Sites/drexel_msis_planner/spec/features/visitors/sign_up_spec.rb",
 		"/Users/Rob/Sites/drexel_msis_planner/app/controllers/enrolled_in_controller.rb",
@@ -494,8 +506,6 @@
 		"/Users/Rob/Sites/drexel_msis_planner/app/views/courses/edit.html.haml",
 		"/Users/Rob/Sites/drexel_msis_planner/spec/features/courses/_form.html.haml",
 		"/Users/Rob/Sites/drexel_msis_planner/app/views/layouts/_navigation.html.haml",
-		"/Users/Rob/Sites/drexel_msis_planner/app/views/layouts/_navigation_links.html.erb",
-		"/Users/Rob/Sites/drexel_msis_planner/app/controllers/visitors_controller.rb",
 		"/Users/Rob/Sites/drexel_msis_planner/db/seeds.rb",
 		"/Users/Rob/Sites/drexel_msis_planner/spec/features/users/sign_in_spec.rb",
 		"/Users/Rob/Sites/drexel_msis_planner/.gitignore",
@@ -561,14 +571,7 @@
 		"/Users/Rob/Sites/rails_tutorial/sample_app/app/controllers/static_pages_controller.rb",
 		"/Users/Rob/Sites/rails_tutorial/sample_app/app/views/static_pages/home.html.erb",
 		"/Users/Rob/Sites/rails_tutorial/sample_app/app/views/layouts/application.html.erb",
-		"/Users/Rob/Library/Application Support/Sublime Text 2/Packages/Default/Default (OSX).sublime-keymap",
-		"/Users/Rob/Sites/rails_tutorial/sample_app/app/views/static_pages/_home_signed_out.html.erb",
-		"/Users/Rob/Sites/drexel_msis_planner/app/views/layouts/_footer.html.erb",
-		"/Users/Rob/Sites/drexel_msis_planner/app/views/layouts/_header.html.erb",
-		"/Users/Rob/Sites/rails_tutorial/sample_app/app/helpers/application_helper.rb",
-		"/Users/Rob/Sites/rails_tutorial/sample_app/app/views/layouts/_shim.html.erb",
-		"/Users/Rob/Sites/drexel_msis_planner/app/controllers/home_controller_controller.rb",
-		"/Users/Rob/.gitconfig"
+		"/Users/Rob/Library/Application Support/Sublime Text 2/Packages/Default/Default (OSX).sublime-keymap"
 	],
 	"find":
 	{
@@ -671,6 +674,19 @@
 		"whole_word": false,
 		"wrap": true
 	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		},
+		{
+			"sheets":
+			[
+			]
+		}
+	],
 	"incremental_find":
 	{
 		"height": 36.0
@@ -724,6 +740,90 @@
 		"selected_items":
 		[
 			[
+				"show",
+				"app/views/users/show.html.haml"
+			],
+			[
+				"rout",
+				"config/routes.rb"
+			],
+			[
+				"_na",
+				"app/views/layouts/_navigation_links.html.erb"
+			],
+			[
+				"controller",
+				"app/controllers/users_controller.rb"
+			],
+			[
+				"visito",
+				"app/controllers/visitors_controller.rb"
+			],
+			[
+				"users/inde",
+				"app/views/users/index.html.haml"
+			],
+			[
+				"visitors/",
+				"app/views/visitors/index.html.erb"
+			],
+			[
+				"home",
+				"spec/features/visitors/home_page_spec.rb"
+			],
+			[
+				"inde",
+				"app/views/courses/index.html.haml"
+			],
+			[
+				"_course",
+				"app/views/courses/_course.html.haml"
+			],
+			[
+				"_user",
+				"app/views/users/_user.html.erb"
+			],
+			[
+				"edit",
+				"app/views/devise/registrations/edit.html.erb"
+			],
+			[
+				"regist",
+				"app/views/devise/registrations/new.html.erb"
+			],
+			[
+				"migrate",
+				"db/migrate/20140819054827_devise_create_users.rb"
+			],
+			[
+				"user.rb",
+				"app/models/user.rb"
+			],
+			[
+				"users/sh",
+				"app/views/users/show.html.erb"
+			],
+			[
+				"users/ind",
+				"app/views/users/index.html.haml"
+			],
+			[
+				"migrr",
+				"db/migrate/20140826055053_add_uniqueness_constraint_to_enrolled_ins.rb"
+			],
+			[
+				"enrolled_in_sp",
+				"spec/models/enrolled_in_spec.rb"
+			],
+			[
+				"enroll",
+				"app/models/enrolled_in.rb"
+			],
+			[
+				"",
+				"drexel_msis_planner.sublime-workspace"
+			],
+			[
 				"polic",
 				"spec/policies/enrolled_in_policy_spec.rb"
 			],
@@ -732,24 +832,12 @@
 				"app/controllers/courses_controller.rb"
 			],
 			[
-				"",
-				"spec/policies/enrolled_in_policy_spec.rb"
-			],
-			[
 				"users_",
 				"app/controllers/users_controller.rb"
 			],
 			[
 				"users_con",
 				"app/controllers/users_controller.rb"
-			],
-			[
-				"_user",
-				"app/views/users/_user.html.erb"
-			],
-			[
-				"users/inde",
-				"app/views/users/index.html.haml"
 			],
 			[
 				"user",
@@ -764,10 +852,6 @@
 				"config/routes.rb"
 			],
 			[
-				"enroll",
-				"app/controllers/enrolled_ins_controller.rb"
-			],
-			[
 				"enrolled_in_s",
 				"spec/models/enrolled_in_spec.rb"
 			],
@@ -778,14 +862,6 @@
 			[
 				"enrolled_in",
 				"spec/models/enrolled_in_spec.rb"
-			],
-			[
-				"user.rb",
-				"app/models/user.rb"
-			],
-			[
-				"show",
-				"app/views/courses/show.html.haml"
 			],
 			[
 				"courses/",
@@ -836,16 +912,8 @@
 				"spec/factories/courses.rb"
 			],
 			[
-				"migrate",
-				"db/migrate/20140823041223_create_enrolled_ins.rb"
-			],
-			[
 				"registra",
 				"app/views/devise/registrations/new.html.erb"
-			],
-			[
-				"_course",
-				"app/views/courses/_course.html.haml"
 			],
 			[
 				"index",
@@ -854,10 +922,6 @@
 			[
 				"course_con",
 				"app/controllers/courses_controller.rb"
-			],
-			[
-				"regist",
-				"app/views/devise/registrations/new.html.erb"
 			],
 			[
 				"sign",
@@ -938,10 +1002,6 @@
 			[
 				"link",
 				"app/views/layouts/_navigation_links.html.erb"
-			],
-			[
-				"controller",
-				"app/controllers/users_controller.rb"
 			],
 			[
 				"visi",
@@ -1188,52 +1248,8 @@
 				"app/views/layouts/application.html.erb"
 			],
 			[
-				"home",
-				"app/controllers/home_controller.rb"
-			],
-			[
 				"application",
 				"app/assets/stylesheets/application.css.scss"
-			],
-			[
-				"application.css",
-				"app/assets/stylesheets/application.css"
-			],
-			[
-				"gu",
-				"Guardfile"
-			],
-			[
-				"user_con",
-				"spec/controllers/user_controller_spec.rb"
-			],
-			[
-				"user_",
-				"spec/features/user_pages_spec.rb"
-			],
-			[
-				"user_c",
-				"app/controllers/user_controller.rb"
-			],
-			[
-				"add",
-				"db/migrate/20140814041028_add_email_to_users.rb"
-			],
-			[
-				"fact",
-				"spec/support/factory_girl.rb"
-			],
-			[
-				"rspec",
-				"bin/rspec"
-			],
-			[
-				"gemfile",
-				"Gemfile"
-			],
-			[
-				"rea",
-				"README.md"
 			]
 		],
 		"width": 0.0

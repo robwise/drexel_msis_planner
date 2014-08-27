@@ -1,9 +1,9 @@
 %td
   .h2
     =link_to "#{course.department} #{course.level}", course
-    =link_to 'edit', edit_course_path(course)
+    = link_to('edit', edit_course_path(course), class: 'button-xs')
+    -unless EnrolledIn.already_enrolled?(current_user, course)
+      = link_to('I Took This', new_enrolled_in_path(course_id: course.id), class: 'button-xs')
   .h3= course.title
 
   %p.course-description= course.description
-  -unless EnrolledIn.already_enrolled?(current_user, course)
-    .took-this=link_to 'I Took This', new_enrolled_in_path(course_id: course.id)

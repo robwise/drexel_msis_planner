@@ -6,15 +6,16 @@ class EnrolledIn < ActiveRecord::Base
   validates :grade, presence: true
   validates :quarter, presence: true
   validate :quarter_code_validator, unless: "quarter.nil?" # nil caught elsewhere
+  validate :is_unique_validator
   belongs_to :user
   belongs_to :course
-  validate :is_unique_validator
 
   def self.already_enrolled?(user, course)
     EnrolledIn.find_by(user_id: user.id, course_id: course.id).nil? ? false : true
   end
 
   private
+
     def is_unique_validator
       already_exists = EnrolledIn.find_by(user_id: user_id,
                                           course_id: course_id)
