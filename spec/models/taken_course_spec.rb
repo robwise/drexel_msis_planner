@@ -1,7 +1,7 @@
-describe EnrolledIn do
+describe TakenCourse do
   let(:user) { create(:user) }
   let(:course) { create(:course) }
-  subject(:enrollment) { build(:enrolled_in, user_id: user.id,
+  subject(:taken_course) { build(:taken_course, user_id: user.id,
                                              course_id: course.id) }
 
   it { should respond_to(:user_id) }
@@ -24,26 +24,26 @@ describe EnrolledIn do
       bad_dates = [190015, 201416, 20145, 2014159, 201460, 2014,
                    201400, nil, ' ']
       bad_dates.each do |bad_date|
-        enrollment.quarter = bad_date
-        expect(enrollment).not_to be_valid
+        taken_course.quarter = bad_date
+        expect(taken_course).not_to be_valid
       end
     end
   end
   describe "associations" do
-    before { enrollment.save }
+    before { taken_course.save }
 
     it "should be able retrieve its user" do
-      expect(enrollment.user).to eq(user)
+      expect(taken_course.user).to eq(user)
     end
     it "should be able retrieve its course" do
-      expect(enrollment.course).to eq(course)
+      expect(taken_course.course).to eq(course)
     end
   end
 
-  describe "#self.already_enrolled?" do
-    before { enrollment.save }
-    it "should find the matching enrollment" do
-      expect(EnrolledIn.already_enrolled?(user, course)).to eq(true)
+  describe "#self.already_taken?" do
+    before { taken_course.save }
+    it "should find the matching taken_course" do
+      expect(TakenCourse.already_taken?(user, course)).to eq(true)
     end
   end
 
