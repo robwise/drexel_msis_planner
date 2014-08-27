@@ -1,2 +1,0 @@
-module EnrolledInsHelper
-end
