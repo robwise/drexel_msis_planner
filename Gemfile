@@ -14,7 +14,7 @@ gem 'bootstrap-sass'
 gem 'devise'
 gem 'haml-rails'
 gem 'pg'
-gem 'pundit' #, :git => 'https://github.com/elabs/pundit.git'
+gem 'pundit'
 gem 'simple_form'
 group :development do
   gem 'better_errors'
