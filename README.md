@@ -1,24 +1,24 @@
-Drexel Msis Planner
-================
+# Drexel MSIS Planner
+This is my first Ruby on Rails project. I am attempting to learn more about Rails development and heard from many places that it's important to get your hands dirty early on and just start coding. I've already learned a lot doing it this way.
 
-This application was generated with the [rails_apps_composer](https://github.com/RailsApps/rails_apps_composer) gem
-provided by the [RailsApps Project](http://railsapps.github.io/).
+The point of the project is to develop a website that allows MSIS students at Drexel University's College of Computing and Informatics (CCI) to plan the courses they want to take in order to complete their degree. Drexel has a very complex ruleset for prerequisite and corequisite courses and does not offer courses every quarter. Therefore, without the aid of a tool such as this, it can be difficult to plan one's degree ahead of time.
 
-Rails Composer is open source and supported by subscribers. Please join RailsApps to support development of Rails Composer.
+## Feature List
+The website shall:
+- Allow users to register and manage their accounts
+- Allow users to view available courses
+- Allow users to enter the courses they have already taken
+- Allow users to see the status of their degree (% complete, GPA, number of course credits in each degree requirement category)
+- Allow users to create course plans
+- Allow users to add planned courses to course plans
+- Validate that the plan does not violate any course prerequisite or corequisite requirements
 
-Problems? Issues?
------------
+Future features:
+- Scrape course offering data from the Drexel Term Master Schedule
+- Display when each course was historically offered (by quarter and year)
+- Validate that the plan does not include any courses that are planned for quarters in which they are unlikely to be offered based on historical data
 
-Need help? Ask on Stack Overflow with the tag 'railsapps.'
-
-Your application contains diagnostics in the README file. Please provide a copy of the README file when reporting any issues.
-
-If the application doesn’t work as expected, please [report an issue](https://github.com/RailsApps/rails_apps_composer/issues)
-and include the diagnostics.
-
-Ruby on Rails
--------------
-
+## Getting Started
 This application requires:
 
 - Ruby 2.1.2
@@ -26,23 +26,17 @@ This application requires:
 
 Learn more about [Installing Rails](http://railsapps.github.io/installing-rails.html).
 
-Getting Started
----------------
+<!-- ## Documentation and Support -->
 
-Documentation and Support
--------------------------
+<!-- ## Issues -->
 
-Issues
--------------
+<!-- ## Similar Projects -->
 
-Similar Projects
-----------------
+## Contributing
+I doubt anyone will really be interested in helping me with this. That's okay, I'm just trying to learn. If you do happen to be interested, feel free to contact me!
 
-Contributing
-------------
+## Credits
 
-Credits
--------
+- __Rails Apps:__ This application was generated with the [rails_apps_composer](https://github.com/RailsApps/rails_apps_composer) gem provided by the [RailsApps Project](http://railsapps.github.io/).
 
-License
--------
+<!-- ## License -->
