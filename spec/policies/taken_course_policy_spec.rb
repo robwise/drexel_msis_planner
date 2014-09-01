@@ -6,10 +6,14 @@ describe TakenCoursePolicy do
   let (:admin)       { FactoryGirl.build_stubbed :user, :admin }
   let (:taken_course) { FactoryGirl.build_stubbed :taken_course,
                                                  user_id: current_user.id }
+  let(:visitor) { nil }
 
   permissions :new? do
     it "allows access to signed in users" do
       expect(subject).to permit(current_user, taken_course)
+    end
+    it "raises error if not signed in" do
+      expect { TakenCoursePolicy.new(visitor, TakenCourse).new? }.to raise_error(Pundit::NotAuthorizedError)
     end
   end
 

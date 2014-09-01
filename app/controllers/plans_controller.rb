@@ -1,11 +1,14 @@
 class PlansController < ApplicationController
-
+  before_filter :authenticate_user!
   before_action :set_plan, only: [:show, :edit, :update, :destroy]
+  after_action :verify_authorized
+  after_action :verify_policy_scoped, only: :index
 
   # GET /plans
   # GET /plans.json
   def index
-    @plans = current_user.plans
+    @plans = policy_scope(Plan)
+    authorize @plans
   end
 
   # GET /plans/1
@@ -17,6 +20,7 @@ class PlansController < ApplicationController
   def new
     @plan = Plan.new
     @plan.user = current_user
+    authorize @plan
   end
 
   # GET /plans/1/edit
@@ -27,6 +31,7 @@ class PlansController < ApplicationController
   # POST /plans.json
   def create
     @plan = Plan.new(plan_params)
+    authorize @plan
 
     respond_to do |format|
       if @plan.save
@@ -67,6 +72,7 @@ class PlansController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_plan
       @plan = Plan.find(params[:id])
+      authorize @plan
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
