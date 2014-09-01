@@ -37,4 +37,5 @@ class TakenCourse < ActiveRecord::Base
         errors.add(:quarter, 'is not a valid quarter code')
       end
     end
+
 end

@@ -1,10 +1,8 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
 FactoryGirl.define do
-  factory :taken_course do
+  factory :plan do
     user
-    course
-    grade 'A'
-    quarter 201415
+    sequence(:name) { |n| "TestPlan#{n}" }
   end
 end

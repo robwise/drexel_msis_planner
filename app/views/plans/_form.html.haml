@@ -1,0 +1,9 @@
+= simple_form_for(@plan) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.hidden_field :user_id
+    = f.input :name
+
+  .form-actions
+    = f.button :submit
