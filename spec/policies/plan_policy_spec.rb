@@ -1,13 +1,12 @@
 describe PlanPolicy do
   subject { PlanPolicy }
 
-  let (:current_user){ FactoryGirl.build :user }
-  let (:other_user)  { FactoryGirl.build :user }
-  let (:admin)       { FactoryGirl.build :user, :admin }
-  let(:other_users_plan) { FactoryGirl.build :plan, user: other_user }
-  let(:current_users_plan) { FactoryGirl.build :plan, user: current_user }
-  let(:visitor) { nil }
-
+  let (:visitor)            { nil }
+  let (:current_user)       { FactoryGirl.build :user }
+  let (:other_user)         { FactoryGirl.build :user }
+  let (:admin)              { FactoryGirl.build :user, :admin }
+  let (:other_users_plan)   { FactoryGirl.build :plan, user: other_user }
+  let (:current_users_plan) { FactoryGirl.build :plan, user: current_user }
 
   permissions ".scope" do
     before do
@@ -17,11 +16,13 @@ describe PlanPolicy do
       current_users_plan.save
     end
 
-    specify "returns plans in scope that belong to the current user" do
-      expect(PlanPolicy::Scope.new(current_user, Plan.all).resolve).to include(current_users_plan)
+    specify "returns plans that belong to current user" do
+      expect(PlanPolicy::Scope.new(current_user, Plan.all).resolve)
+        .to include(current_users_plan)
     end
-    specify "does not return plans in scope that do not belong to the current user" do
-      expect(PlanPolicy::Scope.new(current_user, Plan.all).resolve).not_to include(other_users_plan)
+    specify "does not return plans that do not belong to current user" do
+      expect(PlanPolicy::Scope.new(current_user, Plan.all).resolve)
+        .not_to include(other_users_plan)
     end
   end
 
@@ -42,7 +43,8 @@ describe PlanPolicy do
       expect(subject).to permit(current_user)
     end
     it "raises error if not signed in" do
-      expect { PlanPolicy.new(visitor, Plan).new? }.to raise_error(Pundit::NotAuthorizedError)
+      expect { PlanPolicy.new(visitor, Plan).new? }
+        .to raise_error(Pundit::NotAuthorizedError)
     end
   end
 
