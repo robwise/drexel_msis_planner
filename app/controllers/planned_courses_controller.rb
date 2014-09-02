@@ -1,16 +1,7 @@
 class PlannedCoursesController < ApplicationController
+  before_filter :authenticate_user!
   before_action :set_planned_course, only: [:show, :edit, :update, :destroy]
-
-  # GET /planned_courses
-  # GET /planned_courses.json
-  def index
-    @planned_courses = PlannedCourse.all
-  end
-
-  # GET /planned_courses/1
-  # GET /planned_courses/1.json
-  def show
-  end
+  # after_action :verify_authorized
 
   # GET /planned_courses/new
   def new

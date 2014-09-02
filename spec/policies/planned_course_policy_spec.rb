@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe PlannedCoursePolicy do
 
   let(:user) { User.new }
