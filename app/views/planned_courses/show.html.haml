@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Plan:
+  = @planned_course.plan_id
+%p
+  %b Course:
+  = @planned_course.course_id
+%p
+  %b Quarter:
+  = @planned_course.quarter
+
+= link_to 'Edit', edit_planned_course_path(@planned_course)
+\|
+= link_to 'Back', planned_courses_path

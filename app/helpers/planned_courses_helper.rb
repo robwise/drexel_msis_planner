@@ -1,0 +1,2 @@
+module PlannedCoursesHelper
+end

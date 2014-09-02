@@ -1,8 +1,9 @@
 class Plan < ActiveRecord::Base
-  belongs_to :user
   validates :user, presence: true
   validates :name, presence: true, length: { minimum: 1, maximum: 35 }
   validate :user_has_no_plans_by_same_name, unless: "user.nil?"
+  belongs_to :user
+  has_many :planned_courses, dependent: :destroy
 
   private
 

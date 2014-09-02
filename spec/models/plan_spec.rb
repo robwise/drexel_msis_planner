@@ -9,6 +9,7 @@ describe Plan do
   it { should validate_presence_of(:name) }
   it { should ensure_length_of(:name).is_at_least(1) }
   it { should ensure_length_of(:name).is_at_most(35) }
+  it { should respond_to(:planned_courses) }
 
   describe "with taken name" do
     let(:other_plan) { build(:plan, name: plan.name, user: user) }

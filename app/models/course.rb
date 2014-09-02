@@ -9,6 +9,7 @@ class Course < ActiveRecord::Base
   validates :description, presence: true
   validates :title, presence: true
   has_many :taken_courses
+  has_many :planned_courses, dependent: :destroy
 
   def full_id
     "#{department} #{level}"

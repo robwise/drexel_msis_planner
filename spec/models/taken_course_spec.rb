@@ -1,3 +1,4 @@
+require_relative './shared/shared_examples_for_quarter_validator'
 describe TakenCourse do
   let(:user) { create(:user) }
   let(:course) { create(:course) }
@@ -15,19 +16,11 @@ describe TakenCourse do
   it { should validate_presence_of(:grade) }
   it { should validate_presence_of(:quarter) }
 
-
   context "with acceptable attributes" do
     it { should be_valid }
   end
-  context "with bad quarter" do
-    it "should be invalid" do
-      bad_dates = [190015, 201416, 20145, 2014159, 201460, 2014,
-                   201400, nil, ' ']
-      bad_dates.each do |bad_date|
-        taken_course.quarter = bad_date
-        expect(taken_course).not_to be_valid
-      end
-    end
+  it_should_behave_like 'an object with a quarter code'do
+    let(:model_with_quarter) { build(:planned_course) }
   end
   describe "associations" do
     before { taken_course.save }

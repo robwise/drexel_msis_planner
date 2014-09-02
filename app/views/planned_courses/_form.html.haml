@@ -1,0 +1,10 @@
+= simple_form_for(@planned_course) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :plan_id
+    = f.input :course_id
+    = f.input :quarter
+
+  .form-actions
+    = f.button :submit
