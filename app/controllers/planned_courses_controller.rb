@@ -3,7 +3,7 @@ class PlannedCoursesController < ApplicationController
   before_action :set_planned_course, only: [:show, :edit, :update, :destroy]
   # after_action :verify_authorized
 
-  # GET /planned_courses/new
+  # GET plans/:plan_id/planned_courses/new
   def new
     @planned_course = PlannedCourse.new
   end
@@ -12,8 +12,8 @@ class PlannedCoursesController < ApplicationController
   def edit
   end
 
-  # POST /planned_courses
-  # POST /planned_courses.json
+  # POST /plans/:plan_id/planned_courses
+  # POST /plans/:plan_id/planned_courses.json
   def create
     @planned_course = PlannedCourse.new(planned_course_params)
 

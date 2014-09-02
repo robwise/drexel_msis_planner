@@ -4,8 +4,8 @@ class PlansController < ApplicationController
   after_action :verify_authorized
   after_action :verify_policy_scoped, only: :index
 
-  # GET /plans
-  # GET /plans.json
+  # GET /users/:user_id/plans
+  # GET /users/:user_id/plans.json
   def index
     @plans = policy_scope(Plan)
     authorize @plans
@@ -16,10 +16,10 @@ class PlansController < ApplicationController
   def show
   end
 
-  # GET /plans/new
+  # GET users/:user_id/plans/new
   def new
     @plan = Plan.new
-    @plan.user = current_user
+    @plan.user = params[:user_id]
     authorize @plan
   end
 
@@ -27,8 +27,8 @@ class PlansController < ApplicationController
   def edit
   end
 
-  # POST /plans
-  # POST /plans.json
+  # POST /users/:user_id/plans
+  # POST /users/:user_id/plans.json
   def create
     @plan = Plan.new(plan_params)
     authorize @plan
