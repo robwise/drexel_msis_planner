@@ -269,12 +269,118 @@
 			]
 		]
 	},
+	"buffers":
+	[
+		{
+			"file": "app/policies/application_policy.rb",
+			"settings":
+			{
+				"buffer_size": 657,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "spec/policies/planned_course_policy_spec.rb",
+			"settings":
+			{
+				"buffer_size": 557,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "spec/features/taken_courses/new_taken_course_spec.rb",
+			"settings":
+			{
+				"buffer_size": 964,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/policies/planned_course_policy.rb",
+			"settings":
+			{
+				"buffer_size": 115,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/controllers/planned_courses_controller.rb",
+			"settings":
+			{
+				"buffer_size": 2072,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "config/routes.rb",
+			"settings":
+			{
+				"buffer_size": 261,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/views/courses/show.html.haml",
+			"settings":
+			{
+				"buffer_size": 593,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "-content_for :title, 'Add Taken Course'\n-content_for :description, 'Record having taken a class.'\n.authform\n/ form_for(current_user.microposts.build(in_reply_to: original_post.id))\n  =form_for(current_user.taken_courses.build(course_id: )) do |f|\n    %h3 Add Taken Course\n    / =devise_error_messages!\n    .hidden\n      =f.hidden_field :course_id\n    .hidden\n      =f.hidden_field :user_id\n    .form-group\n      =f.label :quarter\n      =f.text_field :quarter, :autofocus => true, class: 'form-control'\n    .form-group\n      =f.label :grade\n      =f.collection_select(:grade, TakenCourse.grades.collect, :first, :first, prompt: true)\n    =f.submit 'Add', :class => 'button right'",
+			"file": "app/views/taken_courses/new.html.haml",
+			"file_size": 665,
+			"file_write_time": 1409680915000000,
+			"settings":
+			{
+				"buffer_size": 678,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/controllers/taken_courses_controller.rb",
+			"settings":
+			{
+				"buffer_size": 1559,
+				"line_ending": "Unix"
+			}
+		}
+	],
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 374.0,
+		"height": 343.0,
 		"selected_items":
 		[
+			[
+				"mark",
+				"Set Syntax: Markdown Extended"
+			],
+			[
+				"readm",
+				"ReadmePlease"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"in",
+				"Package Control: Install Package"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
 			[
 				"defa",
 				"Preferences: Settings - Default"
@@ -290,10 +396,6 @@
 			[
 				"align",
 				"Preferences: Alignment File Settings – Default"
-			],
-			[
-				"mark",
-				"Set Syntax: Markdown Extended"
 			],
 			[
 				"read",
@@ -360,10 +462,6 @@
 				"Set Syntax: Shell Script (Bash)"
 			],
 			[
-				"install",
-				"Package Control: Install Package"
-			],
-			[
 				"key",
 				"Preferences: Key Bindings - User"
 			],
@@ -384,20 +482,8 @@
 				"FindKeyConflicts: All Conflicts"
 			],
 			[
-				"in",
-				"Package Control: Install Package"
-			],
-			[
-				"ins",
-				"Package Control: Install Package"
-			],
-			[
 				"snippet: col",
 				"Snippet: color"
-			],
-			[
-				"instal",
-				"Package Control: Install Package"
 			],
 			[
 				"snipp",
@@ -460,14 +546,6 @@
 				"ReadmePlease"
 			],
 			[
-				"inst",
-				"Package Control: Install Package"
-			],
-			[
-				"readm",
-				"ReadmePlease"
-			],
-			[
 				"Package Control: ins",
 				"Package Control: Install Package"
 			],
@@ -476,7 +554,7 @@
 				"Package Control: Install Package"
 			]
 		],
-		"width": 403.0
+		"width": 472.0
 	},
 	"console":
 	{
@@ -493,6 +571,10 @@
 	},
 	"file_history":
 	[
+		"/Users/Rob/Sites/drexel_msis_planner/app/views/taken_courses/new.html.haml",
+		"/Users/Rob/Library/Application Support/Sublime Text 2/Packages/Ruby Hash Converter/readme.creole",
+		"/Users/Rob/Library/Application Support/Sublime Text 2/Packages/ApplySyntax/readme.md",
+		"/Users/Rob/Sites/drexel_msis_planner/app/controllers/courses_controller.rb",
 		"/Users/Rob/Sites/drexel_msis_planner/spec/policies/plan_policy_spec.rb",
 		"/Users/Rob/Sites/drexel_msis_planner/app/policies/plan_policy.rb",
 		"/Users/Rob/Sites/drexel_msis_planner/app/policies/taken_course_policy.rb",
@@ -566,7 +648,6 @@
 		"/Users/Rob/Sites/drexel_msis_planner/app/views/courses/_course.html.haml",
 		"/Users/Rob/Sites/drexel_msis_planner/app/views/users/show.html.haml",
 		"/Users/Rob/Sites/drexel_msis_planner/app/views/courses/show.html.haml",
-		"/Users/Rob/Sites/drexel_msis_planner/app/views/taken_courses/new.html.haml",
 		"/Users/Rob/Sites/drexel_msis_planner/spec/models/course_spec.rb",
 		"/Users/Rob/Sites/drexel_msis_planner/spec/features/taken_courses/taken_course_delete_spec.rb",
 		"/Users/Rob/Sites/drexel_msis_planner/spec/features/courses/course_create_spec.rb",
@@ -613,14 +694,11 @@
 		"/Users/Rob/Sites/drexel_msis_planner/app/helpers/enrolled_ins_helper.rb",
 		"/Users/Rob/Sites/drexel_msis_planner/app/views/courses/new.html.haml",
 		"/Users/Rob/Sites/drexel_msis_planner/spec/factories/courses.rb",
-		"/Users/Rob/Sites/drexel_msis_planner/app/controllers/courses_controller.rb",
 		"/Users/Rob/Sites/drexel_msis_planner/spec/features/visitors/sign_up_spec.rb",
 		"/Users/Rob/Sites/drexel_msis_planner/app/controllers/enrolled_in_controller.rb",
 		"/Users/Rob/Sites/drexel_msis_planner/app/policies/course_policy.rb",
 		"/Users/Rob/Sites/rails-devise-pundit/Gemfile",
-		"/Users/Rob/Sites/drexel_msis_planner/spec/policies/course_policy_spec.rb",
-		"/Users/Rob/Sites/drexel_msis_planner/app/views/courses/edit.html.haml",
-		"/Users/Rob/Sites/drexel_msis_planner/spec/features/courses/_form.html.haml"
+		"/Users/Rob/Sites/drexel_msis_planner/spec/policies/course_policy_spec.rb"
 	],
 	"find":
 	{
@@ -638,6 +716,9 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"course",
+			"record",
+			"user",
 			"current_user",
 			"user",
 			"model",
@@ -741,6 +822,7 @@
 		"regex": false,
 		"replace_history":
 		[
+			"model",
 			"current_user",
 			"record",
 			"user",
@@ -768,6 +850,691 @@
 		"whole_word": false,
 		"wrap": true
 	},
+	"groups":
+	[
+		{
+			"selected": 2,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "app/policies/application_policy.rb",
+					"settings":
+					{
+						"buffer_size": 657,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								170,
+								170
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close"
+							],
+							"syntax": "Packages/Rails/Ruby on Rails.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "spec/policies/planned_course_policy_spec.rb",
+					"settings":
+					{
+						"buffer_size": 557,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								271,
+								271
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close"
+							],
+							"syntax": "Packages/User/RSpec.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "spec/features/taken_courses/new_taken_course_spec.rb",
+					"settings":
+					{
+						"buffer_size": 964,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								567,
+								567
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close"
+							],
+							"syntax": "Packages/User/RSpec.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 4,
+			"sheets":
+			[
+				{
+					"buffer": 3,
+					"file": "app/policies/planned_course_policy.rb",
+					"settings":
+					{
+						"buffer_size": 115,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								115,
+								115
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close"
+							],
+							"syntax": "Packages/Rails/Ruby on Rails.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "app/controllers/planned_courses_controller.rb",
+					"settings":
+					{
+						"buffer_size": 2072,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								203,
+								203
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close"
+							],
+							"syntax": "Packages/Rails/Ruby on Rails.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "config/routes.rb",
+					"settings":
+					{
+						"buffer_size": 261,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								215,
+								215
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close"
+							],
+							"syntax": "Packages/Rails/Ruby on Rails.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "app/views/courses/show.html.haml",
+					"settings":
+					{
+						"buffer_size": 593,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								592,
+								592
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close"
+							],
+							"syntax": "Packages/Rails/Ruby Haml.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "app/views/taken_courses/new.html.haml",
+					"settings":
+					{
+						"buffer_size": 678,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								111,
+								111
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close"
+							],
+							"syntax": "Packages/Rails/Ruby Haml.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "app/controllers/taken_courses_controller.rb",
+					"settings":
+					{
+						"buffer_size": 1559,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								133,
+								133
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close"
+							],
+							"syntax": "Packages/Rails/Ruby on Rails.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
 	"incremental_find":
 	{
 		"height": 36.0
@@ -821,6 +1588,50 @@
 		"selected_items":
 		[
 			[
+				"tacoco",
+				"app/controllers/taken_courses_controller.rb"
+			],
+			[
+				"taconew",
+				"app/views/taken_courses/new.html.haml"
+			],
+			[
+				"show",
+				"app/views/courses/show.html.haml"
+			],
+			[
+				"n",
+				"app/views/taken_courses/new.html.haml"
+			],
+			[
+				"netaco",
+				"spec/features/taken_courses/new_taken_course_spec.rb"
+			],
+			[
+				"rout",
+				"config/routes.rb"
+			],
+			[
+				"control",
+				"app/controllers/courses_controller.rb"
+			],
+			[
+				"plannedcon",
+				"app/controllers/planned_courses_controller.rb"
+			],
+			[
+				"plannecopo",
+				"app/policies/planned_course_policy.rb"
+			],
+			[
+				"plannedcopo",
+				"spec/policies/planned_course_policy_spec.rb"
+			],
+			[
+				"app",
+				"app/policies/application_policy.rb"
+			],
+			[
 				"planpo",
 				"app/policies/plan_policy.rb"
 			],
@@ -847,10 +1658,6 @@
 			[
 				"taken_coursec",
 				"app/controllers/taken_courses_controller.rb"
-			],
-			[
-				"app",
-				"app/policies/application_policy.rb"
 			],
 			[
 				"taken_course_pol",
@@ -1081,10 +1888,6 @@
 				"app/views/taken_courses/new.html.haml"
 			],
 			[
-				"show",
-				"app/views/courses/show.html.haml"
-			],
-			[
 				"new_tak",
 				"spec/features/taken_courses/new_taken_course_spec.rb"
 			],
@@ -1151,10 +1954,6 @@
 			[
 				"config/devel",
 				"config/environments/development.rb"
-			],
-			[
-				"rout",
-				"config/routes.rb"
 			],
 			[
 				"_na",
@@ -1299,38 +2098,6 @@
 			[
 				"enrolle",
 				"app/controllers/enrolled_in_controller.rb"
-			],
-			[
-				"cou",
-				"app/models/course.rb"
-			],
-			[
-				"course_s",
-				"spec/models/course_spec.rb"
-			],
-			[
-				"user_sp",
-				"spec/models/user_spec.rb"
-			],
-			[
-				"dr",
-				"drexel_msis_planner.sublime-project"
-			],
-			[
-				"gemf",
-				"Gemfile"
-			],
-			[
-				"fac",
-				"spec/factories/users.rb"
-			],
-			[
-				"edi_c",
-				"spec/features/courses/course_edit_spec.rb"
-			],
-			[
-				"sessi",
-				"spec/support/helpers/session_helpers.rb"
 			]
 		],
 		"width": 0.0
@@ -1341,11 +2108,19 @@
 		"selected_items":
 		[
 			[
-				"",
+				"sa",
 				"/Users/Rob/Sites/rails_tutorial/sample_app/sample_app.sublime-project"
 			],
 			[
-				"sa",
+				"sam",
+				"/Users/Rob/Sites/rails_tutorial/sample_app/sample_app.sublime-project"
+			],
+			[
+				"dre",
+				"/Users/Rob/Sites/drexel_msis_planner/drexel_msis_planner.sublime-project"
+			],
+			[
+				"",
 				"/Users/Rob/Sites/rails_tutorial/sample_app/sample_app.sublime-project"
 			],
 			[
@@ -1358,10 +2133,6 @@
 			],
 			[
 				"a",
-				"/Users/Rob/Sites/rails_tutorial/sample_app/sample_app.sublime-project"
-			],
-			[
-				"sam",
 				"/Users/Rob/Sites/rails_tutorial/sample_app/sample_app.sublime-project"
 			]
 		],

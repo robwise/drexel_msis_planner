@@ -4,7 +4,7 @@ class TakenCoursesController < ApplicationController
 
   def new
     @taken_course = TakenCourse.new
-    @taken_course.user_id = current_user.id
+    @taken_course.user_id = params[:user_id]
     authorize @taken_course
     @taken_course.course_id = params[:course_id]
   end
@@ -13,12 +13,12 @@ class TakenCoursesController < ApplicationController
     @taken_course = TakenCourse.new(secure_params)
     authorize @taken_course
     if TakenCourse.find_by(course_id: @taken_course.course_id,
-                          user_id: @taken_course.user_id)
-      redirect_to courses_path,
+                           user_id: @taken_course.user_id)
+      redirect_to courses_path(@taken_course.course),
                            alert: 'Already considered having taken this course!'
     else
       @taken_course.save
-      redirect_to course_path(@taken_course.course_id)
+      redirect_to course_path(id: @taken_course.course_id), notice: 'Added course to list of taken courses.'
     end
   end
 

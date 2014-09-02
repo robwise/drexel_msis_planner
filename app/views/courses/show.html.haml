@@ -13,4 +13,4 @@
       .course-degree-requirement= @course.degree_requirement.humanize.titleize
       - unless TakenCourse.already_taken?(current_user, @course)
         .took-this
-          = link_to 'I Took This', new_taken_course_path(course_id: @course.id)
+          = link_to 'I Took This', new_user_taken_course_path(course_id: @course.id, user_id: current_user.id)
