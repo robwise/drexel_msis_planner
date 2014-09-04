@@ -8,24 +8,6 @@ describe PlanPolicy do
   let (:other_users_plan)   { FactoryGirl.build :plan, user: other_user }
   let (:current_users_plan) { FactoryGirl.build :plan, user: current_user }
 
-  permissions ".scope" do
-    before do
-      current_user.save
-      other_user.save
-      other_users_plan.save
-      current_users_plan.save
-    end
-
-    specify "returns plans that belong to current user" do
-      expect(PlanPolicy::Scope.new(current_user, Plan.all).resolve)
-        .to include(current_users_plan)
-    end
-    specify "does not return plans that do not belong to current user" do
-      expect(PlanPolicy::Scope.new(current_user, Plan.all).resolve)
-        .not_to include(other_users_plan)
-    end
-  end
-
   permissions :show? do
     it "denies access if not belonging to current user" do
       expect(subject).not_to permit(current_user, other_users_plan)

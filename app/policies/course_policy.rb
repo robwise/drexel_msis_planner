@@ -15,27 +15,29 @@ class CoursePolicy
   end
 
   def new?
-    raise Pundit::NotAuthorizedError, "must be logged in" unless @current_user
-    @current_user.admin?
+    is_logged_in_and_admin
   end
 
   def create?
-    raise Pundit::NotAuthorizedError, "must be logged in" unless @current_user
-    @current_user.admin?
+    is_logged_in_and_admin
   end
 
   def edit?
-    raise Pundit::NotAuthorizedError, "must be logged in" unless @current_user
-    @current_user.admin?
+    is_logged_in_and_admin
   end
 
   def update?
-    raise Pundit::NotAuthorizedError, "must be logged in" unless @current_user
-    @current_user.admin?
+    is_logged_in_and_admin
   end
 
   def destroy?
-    raise Pundit::NotAuthorizedError, "must be logged in" unless @current_user
-    @current_user.admin?
+    is_logged_in_and_admin
   end
+
+  private
+
+    def is_logged_in_and_admin
+      raise Pundit::NotAuthorizedError, "must be logged in" unless @current_user
+      @current_user.admin?
+    end
 end

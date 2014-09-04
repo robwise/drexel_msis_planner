@@ -4,5 +4,6 @@ FactoryGirl.define do
   factory :plan do
     user
     sequence(:name) { |n| "TestPlan#{n}" }
+    active false
   end
 end

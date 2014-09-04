@@ -1,5 +1,5 @@
 class PlanPolicy
-  attr_reader :current_user, :model
+  attr_reader :current_user, :plan
 
   def initialize(current_user, model)
     raise Pundit::NotAuthorizedError, "must be logged in" unless current_user
@@ -35,9 +35,4 @@ class PlanPolicy
     @plan.user == @current_user || @current_user.admin?
   end
 
-  class Scope < Struct.new(:current_user, :model)
-    def resolve
-      model.where(user_id: current_user.id)
-    end
-  end
 end

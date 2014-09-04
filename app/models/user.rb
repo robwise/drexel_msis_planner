@@ -5,11 +5,16 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   enum role: [:user, :vip, :admin]
   after_initialize :set_default_role, :if => :new_record?
-  has_many :taken_courses
-  has_many :plans
+  has_many :taken_courses, dependent: :destroy
+  has_many :plans, dependent: :destroy
+
+  def active_plan
+    plans.where(active: true).take
+  end
 
   private
     def set_default_role
       self.role ||= :user
     end
+
 end

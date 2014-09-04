@@ -1,14 +1,13 @@
 class PlansController < ApplicationController
   before_filter :authenticate_user!
   before_action :set_plan, only: [:show, :edit, :update, :destroy]
-  after_action :verify_authorized
-  after_action :verify_policy_scoped, only: :index
+  after_action  :verify_authorized
 
   # GET /users/:user_id/plans
   # GET /users/:user_id/plans.json
   def index
-    @plans = policy_scope(Plan)
-    authorize @plans
+    @user = User.find(params[:user_id])
+    authorize @user.plans
   end
 
   # GET /plans/1
@@ -19,7 +18,7 @@ class PlansController < ApplicationController
   # GET users/:user_id/plans/new
   def new
     @plan = Plan.new
-    @plan.user = params[:user_id]
+    @plan.user_id = params[:user_id]
     authorize @plan
   end
 

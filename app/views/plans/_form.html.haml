@@ -1,4 +1,6 @@
-= simple_form_for(@plan) do |f|
+- content_for :title, 'New Plan'
+- content_for :description, 'Form for creating a new plan.'
+= simple_form_for([@plan.user, @plan]) do |f|
   = f.error_notification
 
   .form-inputs
