@@ -20,8 +20,9 @@ feature 'User delete', :devise, :js do
     user = FactoryGirl.create(:user)
     login_as(user, :scope => :user)
     visit edit_user_registration_path(user)
-    click_button 'Cancel my account'
-    page.driver.browser.switch_to.alert.accept
+    accept_confirm do
+      click_button 'Cancel my account'
+    end
     expect(page).to have_content 'Bye! Your account has been successfully cancelled. We hope to see you again soon.'
   end
 

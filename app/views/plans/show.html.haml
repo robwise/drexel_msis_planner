@@ -1,3 +1,5 @@
+- content_for :title, @plan.name
+- content_for :description, "User #{@plan.user.email}'s #{@plan.name} degree plan."
 %p#notice= notice
 
 %p

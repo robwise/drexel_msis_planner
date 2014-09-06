@@ -1,27 +1,22 @@
 - content_for :title, 'Plans'
 - content_for :description, "A list of the user's degree plans."
-%h1 Listing plans
-
-%table
-  %tr
-    %th User
-    %th Name
-    %th
-    %th
-    %th
-
-  - @user.plans.each do |plan|
-    %tr
-      %td= plan.user_id
-      %td= plan.name
-      %td= link_to 'Show', plan
-      %td= link_to 'Edit', edit_plan_path(plan)
-      %td= link_to 'Destroy', plan, :method => :delete, :data => { :confirm => 'Are you sure?' }
-      %td
-        - if plan.active
-          (Active Plan)
-        - else
-          = link_to 'set_active', plan.update(active: true)
-%br
-
-= link_to 'New Plan', new_user_plan_path(@user)
+.container
+  .row
+    %h3 Your Plans
+    .column
+      %table.table
+        %tbody
+        - @user.plans.each do |plan|
+          %tr
+            %td= plan.user_id
+            %td= plan.name
+            %td= link_to 'Show', plan
+            %td= link_to 'Edit', edit_plan_path(plan)
+            %td= link_to 'Destroy', plan, :method => :delete, :data => { :confirm => 'Are you sure?' }
+            %td
+              - if plan.active
+                (Active Plan)
+              - else
+                = link_to 'set_active', plan.update(active: true)
+      %br
+      = link_to 'New Plan', new_user_plan_path(@user)

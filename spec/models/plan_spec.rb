@@ -31,9 +31,9 @@ describe Plan do
 
   describe "#active = true" do
 
-    context "when user has no plans" do
+    context "when user has no other plans" do
       it "should set a new plan to active" do
-        expect{ plan.save }.to change(plan, :active).from(false).to(true)
+        expect{ plan.save }.to change(plan, :active).to(true)
       end
       it "should make user#active_plan return it" do
         expect { plan.save }.to change(user, :active_plan).from(nil).to(plan)

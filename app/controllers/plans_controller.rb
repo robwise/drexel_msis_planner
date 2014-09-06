@@ -44,16 +44,11 @@ class PlansController < ApplicationController
   end
 
   # PATCH/PUT /plans/1
-  # PATCH/PUT /plans/1.json
   def update
-    respond_to do |format|
-      if @plan.update(plan_params)
-        format.html { redirect_to @plan, notice: 'Plan was successfully updated.' }
-        format.json { render :show, status: :ok, location: @plan }
-      else
-        format.html { render :edit }
-        format.json { render json: @plan.errors, status: :unprocessable_entity }
-      end
+    if @plan.update(plan_params)
+      redirect_to @plan, notice: 'Plan was successfully updated.'
+    else
+      flash![:alert] = "Error updating plan."
     end
   end
 
@@ -62,7 +57,7 @@ class PlansController < ApplicationController
   def destroy
     @plan.destroy
     respond_to do |format|
-      format.html { redirect_to plans_url, notice: 'Plan was successfully destroyed.' }
+      format.html { redirect_to user_plans_url(@plan.user), notice: 'Plan was successfully deleted.' }
       format.json { head :no_content }
     end
   end
