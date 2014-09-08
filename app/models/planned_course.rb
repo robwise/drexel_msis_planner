@@ -5,7 +5,10 @@ class PlannedCourse < ActiveRecord::Base
   belongs_to :plan
   belongs_to :course
 
-  private
+  def assigned?
+    not quarter.nil?
+  end
 
+  private
 
 end

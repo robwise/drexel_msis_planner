@@ -7,6 +7,7 @@ describe PlannedCourse do
   it { should respond_to(:plan) }
   it { should respond_to(:plan_id) }
   it { should respond_to(:quarter) }
+  it { should respond_to(:assigned?) }
   it { should validate_presence_of(:plan) }
   it { should validate_presence_of(:course) }
   it_should_behave_like "an object with a quarter code" do

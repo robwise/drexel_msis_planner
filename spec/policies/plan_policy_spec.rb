@@ -21,12 +21,12 @@ describe PlanPolicy do
   end
 
   permissions :new? do
-    it "allows access to signed in users" do
-      expect(subject).to permit(current_user)
-    end
     it "raises error if not signed in" do
       expect { PlanPolicy.new(visitor, Plan).new? }
         .to raise_error(Pundit::NotAuthorizedError)
+    end
+    it "allows access to signed in users" do
+      expect(subject).to permit(current_user)
     end
   end
 
@@ -77,4 +77,5 @@ describe PlanPolicy do
       expect(subject).to permit(admin, other_users_plan)
     end
   end
+
 end
