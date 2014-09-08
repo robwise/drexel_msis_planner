@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   enum role: [:user, :vip, :admin]
   after_initialize :set_default_role, :if => :new_record?
   has_many :taken_courses, dependent: :destroy
-  has_many :plans, inverse_of: :user, dependent: :destroy
+  has_many :plans, -> { order "name ASC" }, inverse_of: :user, dependent: :destroy
 
   def active_plan
     plans(true).where(active: true).take

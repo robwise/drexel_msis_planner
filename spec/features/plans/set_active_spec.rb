@@ -3,8 +3,8 @@ feature "Set a Plan as Active" do
   let!(:plan1) { create :plan, user: user }
   let!(:plan2) { create :plan, user: user }
 
-  scenario "as a normal user" do
-    signin_user(user)
+  scenario "as a normal user", :js, :slow do
+    js_signin_user(user)
     visit user_plans_path(user)
     expect(page).to have_content(plan1.name)
     expect(page).to have_content(plan2.name)
@@ -12,7 +12,8 @@ feature "Set a Plan as Active" do
     expect(have_set_active_button_for(plan1)).to eq true
     expect(is_active?(plan2)).to eq true
     expect(have_set_active_button_for(plan2)).to eq false
-    click_on 'set active'
+    click_button 'set active'
+    expect(page).to have_content('Plan was successfully updated.')
     expect(is_active?(plan1)).to eq true
     expect(have_set_active_button_for(plan1)).to eq false
     expect(is_active?(plan2)).to eq false

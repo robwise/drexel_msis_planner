@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"have",
+				"have_set_active_button_for"
+			],
+			[
+				"act",
+				"active_status_for"
+			],
+			[
 				"ensu",
 				"ensure_active_if_user_has_no_other_plans"
 			],
@@ -292,10 +300,6 @@
 				"admin_user"
 			],
 			[
-				"have",
-				"have_title"
-			],
-			[
 				"pass",
 				"password_confirmation"
 			],
@@ -359,18 +363,23 @@
 			"file": "spec/features/plans/set_active_spec.rb",
 			"settings":
 			{
-				"buffer_size": 461,
+				"buffer_size": 1122,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"contents": "- content_for :title, 'Plans'\n- content_for :description, \"A list of the user's degree plans.\"\n.container\n  .row\n    %h3 Your Plans\n    .column\n      %table.table\n        %tbody\n        - @user.plans.each do |plan|\n          %tr\n            %td= plan.user_id\n            %td= plan.name\n            %td= link_to 'Show', plan\n            %td= link_to 'Edit', edit_plan_path(plan)\n            %td= link_to 'Destroy', plan, method: :delete, data: { confirm: 'Are you sure?' }\n            %td\n              - if plan.active\n                (Active Plan)\n              - else\n                = link_to 'set_active', plan, method: :patch, active: true, notice: 'Plan updated.'\n      %br\n      = link_to 'New Plan', new_user_plan_path(@user)\n",
 			"file": "app/views/plans/index.html.haml",
-			"file_size": 734,
-			"file_write_time": 1410058423000000,
 			"settings":
 			{
-				"buffer_size": 734,
+				"buffer_size": 804,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/Rob/Library/Application Support/Sublime Text 2/Packages/User/Default (OSX).sublime-keymap",
+			"settings":
+			{
+				"buffer_size": 2838,
 				"line_ending": "Unix"
 			}
 		},
@@ -378,7 +387,7 @@
 			"file": "app/controllers/plans_controller.rb",
 			"settings":
 			{
-				"buffer_size": 1565,
+				"buffer_size": 1609,
 				"line_ending": "Unix"
 			}
 		}
@@ -386,9 +395,17 @@
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 167.0,
+		"height": 211.0,
 		"selected_items":
 		[
+			[
+				"user",
+				"Preferences: Key Bindings - User"
+			],
+			[
+				"switc",
+				"RubyTest: Switch between code and test"
+			],
 			[
 				"hash",
 				"Convert Hashes"
@@ -546,10 +563,6 @@
 				"Preferences: Alignment File Settings – Syntax Specific – User"
 			],
 			[
-				"user",
-				"Preferences: Key Bindings - User"
-			],
-			[
 				"syntax mark",
 				"Set Syntax: Markdown Extended"
 			],
@@ -663,13 +676,15 @@
 	},
 	"file_history":
 	[
-		"/Users/Rob/Sites/drexel_msis_planner/spec/features/plans/plans_delete_spec.rb",
 		"/Users/Rob/Sites/drexel_msis_planner/app/views/planned_courses/index.html.haml",
+		"/Users/Rob/Sites/drexel_msis_planner/spec/features/users/user_show_spec.rb",
+		"/Users/Rob/Sites/drexel_msis_planner/spec/features/plans/plans_delete_spec.rb",
+		"/Users/Rob/Sites/drexel_msis_planner/app/controllers/plans_controller.rb",
 		"/Users/Rob/Sites/drexel_msis_planner/spec/features/plans/set_active_spec.rb",
+		"/Users/Rob/Sites/drexel_msis_planner/app/models/plan.rb",
 		"/Users/Rob/Sites/drexel_msis_planner/app/views/plans/index.html.haml",
 		"/Users/Rob/Sites/drexel_msis_planner/app/models/user.rb",
 		"/Users/Rob/Sites/drexel_msis_planner/spec/models/plan_spec.rb",
-		"/Users/Rob/Sites/drexel_msis_planner/app/models/plan.rb",
 		"/Users/Rob/Sites/drexel_msis_planner/spec/factories/plans.rb",
 		"/Users/Rob/Sites/drexel_msis_planner/spec/factories/courses.rb",
 		"/Users/Rob/Sites/drexel_msis_planner/config/application.rb",
@@ -679,7 +694,6 @@
 		"/Users/Rob/Sites/drexel_msis_planner/bin/rspec",
 		"/Users/Rob/Sites/drexel_msis_planner/spec/spec_helper.rb",
 		"/Users/Rob/Sites/drexel_msis_planner/spec/rails_helper.rb",
-		"/Users/Rob/Sites/drexel_msis_planner/app/controllers/plans_controller.rb",
 		"/Users/Rob/Sites/drexel_msis_planner/spec/features/plans/create_plan_spec.rb",
 		"/Users/Rob/Sites/drexel_msis_planner/app/views/devise/sessions/new.html.haml",
 		"/Users/Rob/Sites/drexel_msis_planner/app/views/plans/new.html.haml",
@@ -789,8 +803,7 @@
 		"/Users/Rob/Sites/drexel_msis_planner/spec/features/taken_courses/taken_course_delete_spec.rb",
 		"/Users/Rob/Sites/drexel_msis_planner/spec/features/courses/course_show_spec.rb",
 		"/Users/Rob/Sites/drexel_msis_planner/spec/features/taken_courses/enrolled_in_delete_spec.rb",
-		"/Users/Rob/Sites/drexel_msis_planner/app/controllers/enrolled_ins_controller.rb",
-		"/Users/Rob/Sites/drexel_msis_planner/app/policies/enrolled_in_policy.rb"
+		"/Users/Rob/Sites/drexel_msis_planner/app/controllers/enrolled_ins_controller.rb"
 	],
 	"find":
 	{
@@ -808,6 +821,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"true",
+			"page",
 			"ens",
 			"users_active_plan_is_not_this_plan",
 			"users_active_plan_is_this_plan",
@@ -970,7 +985,7 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 0,
 			"sheets":
 			[
 				{
@@ -978,15 +993,15 @@
 					"file": "spec/features/plans/set_active_spec.rb",
 					"settings":
 					{
-						"buffer_size": 461,
+						"buffer_size": 1122,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								451,
-								451
+								555,
+								555
 							]
 						],
 						"settings":
@@ -1052,15 +1067,15 @@
 					"file": "app/views/plans/index.html.haml",
 					"settings":
 					{
-						"buffer_size": 734,
+						"buffer_size": 804,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								632,
-								632
+								767,
+								767
 							]
 						],
 						"settings":
@@ -1118,25 +1133,101 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 10.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 2,
-					"file": "app/controllers/plans_controller.rb",
+					"file": "/Users/Rob/Library/Application Support/Sublime Text 2/Packages/User/Default (OSX).sublime-keymap",
 					"settings":
 					{
-						"buffer_size": 1565,
+						"buffer_size": 2838,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1551,
-								1551
+								1932,
+								1932
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close"
+							],
+							"syntax": "Packages/JavaScript/JSON.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1087.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "app/controllers/plans_controller.rb",
+					"settings":
+					{
+						"buffer_size": 1609,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1053,
+								1053
 							]
 						],
 						"settings":
@@ -1192,7 +1283,7 @@
 							"syntax": "Packages/Rails/Ruby on Rails.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 1117.0,
+						"translation.y": 130.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -1250,12 +1341,32 @@
 				"app/controllers/plans_controller.rb"
 			],
 			[
-				"seta",
+				"plans/ind",
+				"app/views/plans/index.html.haml"
+			],
+			[
+				"pli",
+				"app/views/planned_courses/index.html.haml"
+			],
+			[
+				"usshsp",
+				"spec/features/users/user_show_spec.rb"
+			],
+			[
+				"seac",
 				"spec/features/plans/set_active_spec.rb"
 			],
 			[
-				"plans/ind",
-				"app/views/plans/index.html.haml"
+				"plans_dele",
+				"spec/features/plans/plans_delete_spec.rb"
+			],
+			[
+				"plan.rb",
+				"app/models/plan.rb"
+			],
+			[
+				"seta",
+				"spec/features/plans/set_active_spec.rb"
 			],
 			[
 				"pin",
@@ -1292,10 +1403,6 @@
 			[
 				"plsp",
 				"spec/models/plan_spec.rb"
-			],
-			[
-				"plan.rb",
-				"app/models/plan.rb"
 			],
 			[
 				"planscon",
@@ -1740,22 +1847,6 @@
 			[
 				"qua",
 				"spec/models/shared/quarter_validator.rb"
-			],
-			[
-				"helper",
-				"spec/support/helpers.rb"
-			],
-			[
-				"take",
-				"spec/models/taken_course_spec.rb"
-			],
-			[
-				"course.",
-				"app/models/taken_course.rb"
-			],
-			[
-				"course.rb",
-				"app/models/course.rb"
 			]
 		],
 		"width": 0.0
@@ -1766,12 +1857,12 @@
 		"selected_items":
 		[
 			[
-				"",
+				"sa",
 				"/Users/Rob/Sites/rails_tutorial/sample_app/sample_app.sublime-project"
 			],
 			[
-				"sa",
-				"/Users/Rob/Sites/rails_tutorial/sample_app/sample_app.sublime-project"
+				"",
+				"/Users/Rob/Sites/drexel_msis_planner/drexel_msis_planner.sublime-project"
 			],
 			[
 				"sam",

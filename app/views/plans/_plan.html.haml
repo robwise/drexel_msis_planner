@@ -1,0 +1,13 @@
+%tr{ class: "plan", id: "#{plan.name}" }
+  %td= link_to plan.name, plan
+  %td= link_to 'edit', edit_plan_path(plan)
+  %td
+    = link_to 'delete', plan, method: :delete,
+       data: { confirm: 'Are you sure?' }
+  %td.active-status
+    - if plan.active
+      (Active Plan)
+    - else
+      = form_for(plan, remote: true) do |f|
+        = f.hidden_field :active, value: true
+        = f.submit 'set active', class: 'btn btn-xs btn-primary'

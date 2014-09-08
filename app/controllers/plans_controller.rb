@@ -38,11 +38,14 @@ class PlansController < ApplicationController
 
   # PATCH/PUT /plans/1
   def update
-    if @plan.update(plan_params)
-      redirect_to user_plans_path(@plan.user), notice: 'Plan was successfully updated.'
-    else
-      redirect_to user_plans_path(@plan.user)
-      flash[:alert] = "Error updating plan."
+    user = @plan.user
+    respond_to do |format|
+      if @plan.update(plan_params)
+        format.html { render action: "index", params: { user: user }, notice: 'Plan was successfully updated.' }
+        format.js   { flash.now[:notice] = 'Plan was successfully updated.' }
+      else
+        format.html { render action: "index", params: { user: user } ; flash[:alert] = 'Error updating plan.' }
+      end
     end
   end
 

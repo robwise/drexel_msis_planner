@@ -4,22 +4,8 @@
   .row
     %h3 Your Plans
     .column
-      %table.table
-        %tbody
-        - @user.plans.each do |plan; i|
-          %tr{ class: "plan", id: "#{plan.name}" }
-            %td= link_to plan.name, plan
-            %td= link_to 'edit', edit_plan_path(plan)
-            %td
-              = link_to 'delete', plan, method: :delete,
-                 data: { confirm: 'Are you sure?' }
-            %td.active-status
-              - if plan.active
-                (Active Plan)
-              - else
-                = form_for(plan) do |f|
-                  = f.hidden_field :active, value: true
-                  = f.submit 'set active'
+      %table.table#plans-table
+        = render @user.plans
 
       %br
       = link_to 'New Plan', new_user_plan_path(@user)
