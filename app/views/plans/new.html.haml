@@ -1,5 +1,7 @@
-%h1 New plan
-
-= render 'form'
-
-= link_to 'Back', user_plans_path(current_user)
+- content_for :title, 'New Plan'
+- content_for :description, 'Form for creating a new plan.'
+.container
+  .row
+    .column
+      = render 'form'
+      = link_to 'Back', user_plans_path(current_user)

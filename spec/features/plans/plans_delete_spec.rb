@@ -24,11 +24,11 @@ feature "Delete Plan", :devise, :js do
   def successful_deletion
     expect do
       accept_confirm do
-        click_on 'Destroy'
+        click_on 'delete'
       end
     end.to change(Plan, :count).from(1).to(0)
-    expect(user.plans.size).to equal 0
-    expect(Plan.count).to equal 0
+    expect(user.plans(true).size).to eq(0)
+    expect(Plan.count).to eq(0)
     expect(page).to have_content('Plan was successfully deleted.')
     expect(page).to have_title(full_title('Plans'))
   end

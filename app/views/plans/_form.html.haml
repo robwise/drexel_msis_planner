@@ -1,11 +1,12 @@
-- content_for :title, 'New Plan'
-- content_for :description, 'Form for creating a new plan.'
-= simple_form_for([@plan.user, @plan]) do |f|
-  = f.error_notification
+.authform
+  = simple_form_for [@plan.user, @plan] do |f|
+    %h3 New Plan
+    = f.error_notification
+    .form-inputs
+      .form-group
+        = f.hidden_field :user_id
+        = f.input :name, autofocus: true, class: 'form-control'
+        .checkbox= f.input :active
 
-  .form-inputs
-    = f.hidden_field :user_id
-    = f.input :name
-
-  .form-actions
-    = f.button :submit
+    .form-actions
+      = f.button :submit, class: 'button'

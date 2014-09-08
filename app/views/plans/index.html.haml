@@ -6,17 +6,20 @@
     .column
       %table.table
         %tbody
-        - @user.plans.each do |plan|
-          %tr
-            %td= plan.user_id
-            %td= plan.name
-            %td= link_to 'Show', plan
-            %td= link_to 'Edit', edit_plan_path(plan)
-            %td= link_to 'Destroy', plan, :method => :delete, :data => { :confirm => 'Are you sure?' }
+        - @user.plans.each do |plan; i|
+          %tr{ class: "plan", id: "#{plan.name}" }
+            %td= link_to plan.name, plan
+            %td= link_to 'edit', edit_plan_path(plan)
             %td
+              = link_to 'delete', plan, method: :delete,
+                 data: { confirm: 'Are you sure?' }
+            %td.active-status
               - if plan.active
                 (Active Plan)
               - else
-                = link_to 'set_active', plan.update(active: true)
+                = form_for(plan) do |f|
+                  = f.hidden_field :active, value: true
+                  = f.submit 'set active'
+
       %br
       = link_to 'New Plan', new_user_plan_path(@user)
