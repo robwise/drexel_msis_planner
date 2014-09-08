@@ -8,7 +8,7 @@ class PlannedCoursesController < ApplicationController
     @planned_course = PlannedCourse.new(planned_course_params)
     authorize @planned_course
     if @planned_course.save
-      redirect_to plan, notice: "#{@planned_course.name} added to plan." }
+      redirect_to plan, notice: "#{@planned_course.name} added to plan."
     else
       flash[:alert] = "Error adding course to plan."
       render :new
