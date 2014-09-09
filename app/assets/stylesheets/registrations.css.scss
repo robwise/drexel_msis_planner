@@ -1,17 +1,12 @@
-// Place all the styles related to the Plans controller here.
+// Place all the styles related to the Registrations controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
 // import the CSS framework
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-#plans-table {
-    @extend .table-hover;
-}
-input.btn-xs {
-    padding-top: 0;
+form.delete-user {
+    @extend .text-center;
     padding-bottom: 0;
-}
-form.edit_plan {
-    height: $line-height-computed;
 }
