@@ -7,7 +7,7 @@ class Course < ActiveRecord::Base
                     numericality: { greater_than: 0, less_than: 2000 }
   validates :degree_requirement, presence: true
   validates :description, presence: true
-  validates :title, presence: true
+  validates :title, presence: true, uniqueness: { case_sensitive: false }
   has_many :taken_courses
   has_many :planned_courses, dependent: :destroy
 
@@ -16,7 +16,9 @@ class Course < ActiveRecord::Base
   end
 
   private
+
     def titleize_title
       self.title = title.downcase.titleize
     end
+
 end

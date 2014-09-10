@@ -1,4 +1,8 @@
 describe Course do
+  subject { course }
+
+  let!(:course) { build(:course) }
+
   it { should respond_to(:department) }
   it { should respond_to(:level) }
   it { should respond_to(:title) }
@@ -13,15 +17,21 @@ describe Course do
   it { should validate_numericality_of(:level).is_greater_than(0) }
   it { should validate_numericality_of(:level).is_less_than(2000) }
 
-  context "with acceptable attributes" do
-    let!(:course) { FactoryGirl.build(:course) }
-    subject { course }
+  describe "uniqeness validations" do
+    before { course.save }
 
+    it { should validate_uniqueness_of(:title).case_insensitive }
+  end
+
+  context "with acceptable attributes" do
     it { should be_valid }
   end
+
   context "using a bad format title" do
-    let!(:course) { FactoryGirl.create(:course, title: 'wEirD caPitalization') }
+    before { course.title = 'wEirD caPitalization' }
+
     it "should fix it" do
+      course.save
       expect(course.title).to eq("Weird Capitalization")
     end
   end

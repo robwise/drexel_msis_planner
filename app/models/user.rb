@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   end
 
   def has_taken?(course)
-    taken_courses(true).where(course_id: course.id).size > 0
+    TakenCourse.where(course_id: course.id, user_id: id).exists?
   end
 
   private
