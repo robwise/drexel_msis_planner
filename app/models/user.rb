@@ -12,6 +12,10 @@ class User < ActiveRecord::Base
     plans(true).where(active: true).take
   end
 
+  def has_taken?(course)
+    taken_courses(true).where(course_id: course.id).size > 0
+  end
+
   private
     def set_default_role
       self.role ||= :user
