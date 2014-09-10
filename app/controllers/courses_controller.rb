@@ -41,7 +41,6 @@ class CoursesController < ApplicationController
   end
 
   def destroy
-    authorize
     course = Course.find(params[:id])
 
     authorize course
