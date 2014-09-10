@@ -1,22 +1,16 @@
-include Warden::Test::Helpers
-Warden.test_mode!
-
-feature "Delete Plan", :devise, :js do
+feature "Delete Plan", :js do
   let!(:plan) { create(:plan, user: user) }
   let(:user)  { create(:user) }
   let(:admin) { create(:user, :admin) }
   let(:other_user) { create(:user) }
-  after(:each) do
-    Warden.test_reset!
-  end
 
   scenario "as a user" do
-    login_as user
+    js_signin_user(user)
     visit user_plans_path(user)
     successful_deletion
   end
   scenario "as an admin" do
-    login_as admin
+    js_signin_user(admin)
     visit user_plans_path(user)
     successful_deletion
   end
