@@ -6,9 +6,5 @@
     %h4 Degree Status:
     %h4 Taken Courses:
     %table.table
-      %tbody
-        - @user.taken_courses.each do |taken_course|
-          - course = Course.find(taken_course.course_id)
-          %tr
-            %td= render course
-            %td= link_to('remove', taken_course_path(taken_course), data: { confirm: 'Are you sure?' }, method: :delete, class: 'button-xs')
+      %tbody.taken-courses
+        = render @user.taken_courses

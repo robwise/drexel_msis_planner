@@ -21,7 +21,7 @@ class TakenCoursesController < ApplicationController
                            alert: 'Already took this course!'
     else
       @taken_course.save
-      redirect_to course_path(id: @taken_course.course_id),
+      redirect_to course_path(@taken_course.course),
                               notice: 'Added course to your course history.'
     end
   end
