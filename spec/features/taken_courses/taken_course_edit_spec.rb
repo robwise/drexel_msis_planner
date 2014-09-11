@@ -4,11 +4,10 @@ feature "Editing a taken course", :js, :slow do
   let!(:taken_course) { create(:taken_course,
                                course_id: course.id,
                                user_id: user.id,
-                               quarter: '201515')
-                              }
+                               quarter: '201515')    }
 
-  scenario "changing when a course was taken" do
-    signin_user user
+  xscenario "changing when a course was taken" do
+    js_signin_user user
     visit user_path(user)
     expect(page).to have_content(taken_course.course.title)
     click_on 'edit'

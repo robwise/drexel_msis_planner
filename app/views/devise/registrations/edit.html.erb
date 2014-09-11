@@ -30,11 +30,11 @@
     <%= f.submit 'Update', class: 'button right' %>
   <% end %>
 </div>
-<div class="authform">
+<section>
   <h3>Cancel Account</h3>
-  <form id="cancel-account">
+  <div id="cancel-user">
     <p>Unhappy? We'll be sad to see you go.</p>
-      <%= button_to 'Cancel my account', destroy_user_path(resource), method: 'delete', data: { confirm: 'Are you sure?', disable_with: 'loading...', type: 'button' }, class: 'button-block' %>
+      <%= button_to 'Cancel my account', destroy_user_path(resource), method: 'delete', class: 'button-block', data: { confirm: 'Are you sure?', disable_with: 'loading...' } %>
     </button>
-  </form>
-</div>
+  </div>
+</section>
