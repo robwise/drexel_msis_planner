@@ -1,0 +1,6 @@
+Style/LineLength:
+  Description: 'Limit lines to 80 characters.'
+  Max: 80
+
+CoffeeScript:
+  Enabled: true
