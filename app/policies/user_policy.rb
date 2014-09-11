@@ -19,8 +19,17 @@ class UserPolicy
   end
 
   def destroy?
-    return false if @current_user == @user
-    @current_user.admin?
+    not (admin_deleting_himself? or normal_user_deleting_other_user?)
   end
+
+  private
+
+    def admin_deleting_himself?
+      @current_user.admin? && (@user == @current_user)
+    end
+
+    def normal_user_deleting_other_user?
+      (not @current_user.admin?) && (@user != current_user)
+    end
 
 end

@@ -25,8 +25,16 @@ class UsersController < ApplicationController
   def destroy
     user = User.find(params[:id])
     authorize user
-    user.destroy
-    redirect_to users_path, :notice => "User deleted."
+    if user.destroy
+      if current_user.admin?
+        redirect_to users_path, :notice => "User deleted."
+      else
+        redirect_to root_url, notice: "Bye! Your account has been successfully
+        cancelled. We hope to see you again soon."
+      end
+    else
+      flash.now![:alert] = "Error deleting user."
+    end
   end
 
   private

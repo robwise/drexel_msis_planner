@@ -68,6 +68,9 @@ section {
 .authform fieldset {
   @extend .well;
 }
+.authform #cancel-account {
+  padding-bottom: 10px;
+}
 #error_explanation {
   @extend .alert;
   @extend .alert-danger;
@@ -79,4 +82,9 @@ section {
   @extend .btn;
   @extend .btn-primary;
   @extend .btn-xs;
+}
+.button-block {
+  @extend .btn;
+  @extend .btn-primary;
+  @extend .btn-block
 }

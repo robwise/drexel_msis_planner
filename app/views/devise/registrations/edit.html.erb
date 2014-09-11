@@ -32,10 +32,9 @@
 </div>
 <div class="authform">
   <h3>Cancel Account</h3>
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :destroy, role: 'form', class: 'delete-user' }) do |f| %>
+  <form id="cancel-account">
     <p>Unhappy? We'll be sad to see you go.</p>
-    <div class="form-group block-center">
-      <%= f.submit 'Cancel my account', class: 'button', data: { confirm: "Are you sure?" } %>
-    </div>
-  <% end %>
+      <%= button_to 'Cancel my account', destroy_user_path(resource), method: 'delete', data: { confirm: 'Are you sure?', disable_with: 'loading...', type: 'button' }, class: 'button-block' %>
+    </button>
+  </form>
 </div>

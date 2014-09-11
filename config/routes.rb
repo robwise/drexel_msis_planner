@@ -11,5 +11,6 @@ Rails.application.routes.draw do
       end
     end
   end
+  match 'users/:id' => 'users#destroy', via: :delete, as: :destroy_user
 
 end
