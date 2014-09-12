@@ -1,0 +1,11 @@
+.modal-cancel-button {
+    @extend .btn;
+    @extend .btn-default;
+}
+.modal-accept-button {
+    @extend .btn;
+    @extend .btn-primary;
+}
+.modal-form {
+    @extend .form-horizontal;
+}

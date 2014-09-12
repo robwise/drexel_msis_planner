@@ -8,7 +8,7 @@ class TakenCoursePolicy
   end
 
   def new?
-    true
+    @current_user.admin? || (@current_user.id == @taken_course.user_id)
   end
 
   def create?

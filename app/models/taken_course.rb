@@ -10,7 +10,7 @@ class TakenCourse < ActiveRecord::Base
   belongs_to :course
 
   def self.already_taken?(user, course)
-    TakenCourse.find_by(user_id: user.id, course_id: course.id).nil? ? false : true
+    TakenCourse.find_by(user_id: user.id, course_id: course.id).present?
   end
 
   private

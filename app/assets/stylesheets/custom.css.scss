@@ -1,0 +1,40 @@
+// THESE ARE EXAMPLES YOU CAN MODIFY
+// create your own classes
+// to make views framework-neutral
+
+// override for the 'Home' navigation link
+.navbar-brand {
+  font-size: inherit;
+  }
+.column {
+  @extend .col-md-6;
+  @extend .text-center;
+  }
+#error_explanation {
+  @extend .alert;
+  @extend .alert-danger;
+}
+#error_explanation h2 {
+  font-size: 16px;
+}
+.button-block {
+  @extend .btn;
+  @extend .btn-default;
+  @extend .btn-block;
+}
+.button-primary-block {
+  @extend .btn;
+  @extend .btn-primary;
+  @extend .btn-block;
+}
+#cancel-user {
+    @extend .well;
+    max-width: 320px;
+}
+section {
+    max-width: 320px;
+    margin: 0 auto;
+}
+.authform #cancel-account {
+  padding-bottom: 10px;
+}

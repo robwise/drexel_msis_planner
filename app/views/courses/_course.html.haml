@@ -1,38 +1,15 @@
-/ Modal
-#myModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", role: "dialog", tabindex: "-1"}
-  .modal-dialog
-    .modal-content
-      .modal-header
-        %button.close{"data-dismiss" => "modal", type: "button"}
-          %span{"aria-hidden" => "true"} &#215;
-          %span.sr-only Close
-        %h4#myModalLabel.modal-title= course.title
-      .modal-body
-        / .authform
-        = form_for([current_user, current_user.taken_courses.build(course: course)]) do |f|
-          .hidden
-            = f.hidden_field :course_id
-          .hidden
-            = f.hidden_field :user_id
-          .form-group
-            = f.label :quarter
-            = f.text_field :quarter, autofocus: true, class: 'form-control'
-          .form-group
-            = f.label :grade
-            = f.collection_select :grade, TakenCourse.grades.collect, :first, :first, prompt: true, class: 'form-control'
-          .modal-footer
-            %button.btn.btn-default{"data-dismiss" => "modal", type: "button"} Cancel
-            = f.submit 'Add', class: 'btn btn-primary', html: { type: "button" }
 %td
   %h2
     = link_to "#{course.department} #{course.level}", course
-    = link_to('edit', edit_course_path(course), class: 'button-xs')
-    - unless TakenCourse.already_taken?(current_user, course)
-      / Button trigger modal
-      %button.button-xs{"data-target" => "#myModal", "data-toggle" => "modal"}
-        took this
+    - unless current_user.has_taken?(course)
+      = link_to 'took this',
+        new_user_taken_course_path(current_user, course_id: course.id),
+        remote: true, class: 'button-xs',
+        'data-toggle' =>  "modal", 'data-target' => '#took-this-modal'
     - if current_user.admin?
-      = link_to('Delete', course_path(course), method: :delete, class: 'button-xs', data: { confirm: "Are you sure you want to delete course: #{course.title}?" })
+      = link_to 'edit', edit_course_path(course), class: 'button-xs'
+      = link_to 'delete', course_path(course), method: :delete,
+        class: 'button-xs',
+        data: { confirm: "Are you sure you want to delete course: #{course.title}?" }
   %h3= course.title
-
   %p.course-description= course.description

@@ -3,26 +3,24 @@ class TakenCoursesController < ApplicationController
   before_action :set_taken_course, only: [:show, :edit, :update, :destroy]
   after_action :verify_authorized
 
-  # GET /users/:user_id/taken_courses/new
   def new
-    @taken_course = TakenCourse.new
-    @taken_course.user_id = params[:user_id]
-    @taken_course.course_id = params[:course_id]
+    @taken_course = User.find(params[:user_id]).taken_courses.build(course_id: params[:course_id])
     authorize @taken_course
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # POST /users/:user_id/taken_courses
   def create
     @taken_course = TakenCourse.new(secure_params)
     authorize @taken_course
-    if TakenCourse.find_by(course_id: @taken_course.course_id,
-                           user_id: @taken_course.user_id)
-      redirect_to courses_path(@taken_course.course),
-                           alert: 'Already took this course!'
+    if @taken_course.save
+      redirect_to courses_path, notice: 'Added course to your course history.'
     else
-      @taken_course.save
-      redirect_to course_path(@taken_course.course),
-                              notice: 'Added course to your course history.'
+      redirect_to courses_path
+      flash[:alert] = "#{@taken_course.errors.full_messages.join('; ')}"
     end
   end
 

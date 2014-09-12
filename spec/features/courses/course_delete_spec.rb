@@ -7,7 +7,7 @@ feature "Delete Plan", :js, :slow do
   scenario "not possible as a user" do
     js_signin_user user
     visit courses_path
-    expect(page).not_to have_link('Delete')
+    expect(page).not_to have_link('delete')
   end
   scenario "as an admin" do
     js_signin_user admin
@@ -18,7 +18,7 @@ feature "Delete Plan", :js, :slow do
   def successful_deletion
     expect do
       accept_confirm do
-        click_on 'Delete'
+        click_on 'delete'
       end
     end.to change(Course, :count).from(1).to(0)
     expect(page).to have_content('Course successfully deleted.')

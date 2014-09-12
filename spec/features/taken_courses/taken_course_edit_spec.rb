@@ -1,24 +1,24 @@
-feature "Editing a taken course", :js, speed: 'slow' do
-  let!(:user)         { create(:user) }
+feature "Editing an existing taken course" do
   let!(:course)       { create(:course) }
-  # let!(:taken_course) { create(:taken_course,
-  #                              course_id: course.id,
-  #                              user_id: user.id,
-  #                              quarter: '201515')    }
+  let!(:user)         { create(:user) }
+  let!(:taken_course) { create(:taken_course, course: course, user: user, quarter: '201415')  }
 
-  xscenario "as a user" do
-    js_signin_user user
+  before do
+    signin_user user
+  end
+
+  scenario "the 'took this' link does not appear" do
     visit courses_path
-    click_on 'took this'
-    fill_in 'Quarter', with: '201315'
-    select 'A+', from: 'Grade'
-    click_on 'Add'
-    visit user_path(user)
-    expect(page).to have_content(taken_course.course.title)
+    expect(page).not_to have_content('took this')
+  end
+  scenario "the edit link appears on the user dashboard" do
+    visit root_path
+    expect(page).to have_link('edit')
+  end
+  scenario "happy day scenario" do
     click_on 'edit'
-    expect(page).to have_title()
-    fill_in :quarter, with: '201525'
+    fill_in 'Quarter', with: 201425
     click_on 'save'
-    expect(find('quarter').text).to eq('201525')
+    expect(page).to have_text('Quarter: 201425')
   end
 end

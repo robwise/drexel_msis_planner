@@ -9,12 +9,18 @@ describe TakenCoursePolicy do
                                                     user_id: current_user.id }
 
   permissions :new? do
-    it "allows access to signed in users" do
-      expect(subject).to permit(current_user, taken_course)
-    end
     it "raises error if not signed in" do
       expect { TakenCoursePolicy.new(visitor, TakenCourse).new? }
         .to raise_error(Pundit::NotAuthorizedError)
+    end
+    it "allows access to signed in users" do
+      expect(subject).to permit(current_user, taken_course)
+    end
+    it "allows access to admin for other user's course" do
+      expect(subject).to permit(admin, taken_course)
+    end
+    it "allows denies access to other user's course if not admin" do
+      expect(subject).not_to permit(other_user, taken_course)
     end
   end
 
