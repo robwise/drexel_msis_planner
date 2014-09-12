@@ -1,14 +1,52 @@
+require "csv"
+
 class CreateCourseService
   def call
-    Course.find_or_create_by!(department: "INFO", level: "530") do |course|
-      course.title = "Foundations of Information Systems"
-      course.description = "Some descriptive text about the course."
-      course.degree_requirement = :required_course
+    course_data = parse_course_data_into_array
+    counter = 0
+    course_data.each do |course_row|
+      course = Course.find_or_create_by(attributes_from(course_row))
+      puts "CREATED COURSE: #{ course.full_id }"
+      counter = counter + 1
     end
-    Course.find_or_create_by!(department: "INFO", level: "532") do |course|
-      course.title = "Software Development"
-      course.description = "Some descriptive text about the course."
-      course.degree_requirement = :required_course
-    end
+    return counter
   end
+
+  private
+
+    def parse_course_data_into_array
+      body = File.read("lib/assets/tbl_Course.csv")
+      CSV::Converters[:blank_to_nil] = lambda do |field|
+        field && field.empty? ? nil : field
+      end
+      csv = CSV.new(body, headers: true, header_converters: :symbol,
+        converters: [:all, :blank_to_nil])
+      csv.to_a.map {|row| row.to_hash }
+    end
+
+    def degree_requirement_converter(old_value)
+      case old_value
+      when "Required Courses"
+        0
+      when "Distribution Requirements"
+        1
+      when "Free Electives"
+        2
+      else
+        raise ArgumentError.new("Couldn't find a match for CSV degree
+                                requirement value")
+      end
+    end
+
+    def attributes_from(course_row)
+      a = {}
+      a[:department] = course_row[:department]
+      a[:level] = course_row[:level]
+      a[:title] = course_row[:title]
+      a[:description] = course_row[:description]
+      deg_req = degree_requirement_converter(course_row[:degree_requirement])
+      a[:degree_requirement] = deg_req
+      return a
+    end
+
 end

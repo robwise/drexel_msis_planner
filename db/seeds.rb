@@ -7,5 +7,5 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 user = CreateAdminService.new.call
 puts "CREATED ADMIN USER: #{user.email}"
-course = CreateCourseService.new.call
-puts "CREATED COURSE: #{course.department} #{course.level}"
+course_count = CreateCourseService.new.call
+puts "CREATED #{ course_count } #{ 'COURSE'.pluralize(course_count).upcase }"
