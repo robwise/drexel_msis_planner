@@ -5,7 +5,7 @@ class TakenCourse < ActiveRecord::Base
   validates :course_id, presence: true
   validates :grade, presence: true
   validates :quarter, presence: true, quarter: true
-  validate :is_unique_validator
+  validate :is_unique_validator, on: :create
   belongs_to :user
   belongs_to :course
 

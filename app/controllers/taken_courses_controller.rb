@@ -19,8 +19,7 @@ class TakenCoursesController < ApplicationController
     if @taken_course.save
       redirect_to courses_path, notice: 'Added course to your course history.'
     else
-      redirect_to courses_path
-      flash[:alert] = "#{@taken_course.errors.full_messages.join('; ')}"
+      redirect_to courses_path, alert: 'Error adding course to your history.'
     end
   end
 
@@ -34,11 +33,11 @@ class TakenCoursesController < ApplicationController
 
   def update
     authorize @taken_course
-    if @taken_course.update_attributes(secure_params)
+    if @taken_course.update(secure_params)
       redirect_to user_path(current_user), :notice => "Course history updated."
     else
-      redirect_to user_path(current_user),
-                                    :alert => "Unable to update taken course."
+      redirect_to user_path(current_user), alert: @taken_course.errors.full_messages.join
+        # :alert => "Unable to update taken course."
     end
   end
 

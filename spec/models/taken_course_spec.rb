@@ -40,4 +40,27 @@ describe TakenCourse do
     end
   end
 
+  describe "updating" do
+    before do
+      taken_course.quarter = 201415
+      taken_course.save
+    end
+    context "with new quarter of '201815'" do
+      it "should return '201815' as its quarter" do
+        expect do
+          taken_course.update(quarter: 201425)
+          taken_course.reload
+        end.to change(taken_course, :quarter)
+      end
+    end
+    context "with new grade of 'C'" do
+      it "should return 'C' as its grade" do
+        expect do
+          taken_course.update(grade: 'C')
+          taken_course.reload
+        end.to change(taken_course, :grade)
+      end
+    end
+  end
+
 end
