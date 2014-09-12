@@ -19,8 +19,23 @@ describe Course do
 
   describe "uniqeness validations" do
     before { course.save }
-
+    # This needs to go down here because of the way the 'shoulda' uniqueness
+    # matcher works.
     it { should validate_uniqueness_of(:title).case_insensitive }
+    it do
+      should validate_uniqueness_of(:level)
+        .scoped_to(:department)
+        .with_message("duplicate level for that department")
+    end
+  end
+
+  context "when a course with the same department and level already exists" do
+    before do
+      create :course, department: course.department, level: course.level
+    end
+    it "should not be valid" do
+      expect(subject).to be_invalid
+    end
   end
 
   context "with acceptable attributes" do
