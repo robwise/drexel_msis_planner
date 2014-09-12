@@ -5,7 +5,13 @@ class CreateCourseService
     course_data = parse_course_data_into_array
     counter = 0
     course_data.each do |course_row|
-      course = Course.find_or_create_by!(attributes_from(course_row))
+      attributes = attributes_from(course_row)
+      course = Course.find_or_create_by!(department: attributes[:department],
+                                         level: attributes[:level]) do |course|
+        course.title = attributes[:title]
+        course.description = attributes[:description]
+        course.degree_requirement = attributes[:degree_requirement]
+      end
       puts "CREATED COURSE: #{ course.full_id }"
       counter = counter + 1
     end
