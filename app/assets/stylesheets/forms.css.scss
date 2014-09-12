@@ -33,8 +33,6 @@
   @extend .btn-primary;
   @extend .btn-lg;
 }
-.button-xs {
-  @extend .btn;
-  @extend .btn-primary;
-  @extend .btn-xs;
+.authform #cancel-account {
+  padding-bottom: 10px;
 }

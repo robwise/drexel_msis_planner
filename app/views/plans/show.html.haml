@@ -1,13 +1,8 @@
 - content_for :title, @plan.name
 - content_for :description, "User #{@plan.user.email}'s #{@plan.name} degree plan."
-%p#notice= notice
-
-%p
-  %b User:
-  = @plan.user_id
-%p
-  %b Name:
-  = @plan.name
+%h2= "\"#{@plan.name}\""
+- @plan.user.taken_quarters.each do |quarter|
+  = render 'quarter', quarter: quarter, user: @plan.user
 
 = link_to 'Edit', edit_plan_path(@plan)
 \|

@@ -16,6 +16,15 @@ class User < ActiveRecord::Base
     TakenCourse.where(course_id: course.id, user_id: id).exists?
   end
 
+  def taken_quarters
+    quarters = taken_courses.map { |e| e.quarter }
+    quarters.uniq.sort
+  end
+
+  def taken_courses_in(quarter)
+    TakenCourse.where(user_id: id, quarter: quarter)
+  end
+
   private
     def set_default_role
       self.role ||= :user

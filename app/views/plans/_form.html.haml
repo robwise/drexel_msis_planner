@@ -1,12 +1,6 @@
-.authform
-  = simple_form_for [@plan.user, @plan] do |f|
-    %h3 New Plan
-    = f.error_notification
-    .form-inputs
-      .form-group
-        = f.hidden_field :user_id
-        = f.input :name, autofocus: true, class: 'form-control'
-        .checkbox= f.input :active
-
-    .form-actions
-      = f.button :submit, class: 'button'
+= form_for object, html: { role: 'form' } do |f|
+  = f.hidden_field :user_id, class: 'hidden'
+  .form-group
+    = f.label :name
+    = f.text_field :name, autofocus: true, class: 'form-control'
+  = f.submit form_button_text_for(object), class: 'button right'
