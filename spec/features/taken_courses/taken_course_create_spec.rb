@@ -20,7 +20,7 @@ feature "Adding courses taken", :js, speed: 'slow' do
     click_on 'took this'
     fill_in 'Quarter', with: '201415'
     select 'A+', from: 'Grade'
-    expect { click_button 'Add' }.to change(TakenCourse, :count).from(0).to(1)
+    click_button 'Add'
     expect(page).to have_content('Added course to your course history.')
     visit user_path(given_user)
     expect(page).to have_content(course.title)
