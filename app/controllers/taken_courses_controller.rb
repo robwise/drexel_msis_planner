@@ -26,6 +26,10 @@ class TakenCoursesController < ApplicationController
 
   def edit
     authorize @taken_course
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def update

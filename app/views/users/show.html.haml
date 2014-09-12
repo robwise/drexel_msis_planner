@@ -1,5 +1,7 @@
 - content_for :title, 'Profile'
 - content_for :description, "User details."
+.modal.fade#took-this-modal{ tabindex: "-1", role: "dialog",
+  'aria-labelledby' => "took-this-modal-Label", 'aria-hidden' => "true" }
 .container
   .row
     %h3= @user.email
