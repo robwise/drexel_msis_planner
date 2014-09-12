@@ -1,7 +1,9 @@
 <div class="modal-dialog">
   <div class="modal-content">
-    <%= render 'taken_courses/modal_header' %>
-    <%= render 'taken_courses/modal_body'   %>
-    <%= render 'taken_courses/modal_footer' %>
+    <%= form_for([@taken_course.user, @taken_course], html: { class: 'modal-form', role: 'form' }) do |f| %>
+      <%= render 'taken_courses/modal_header', f: f %>
+      <%= render 'taken_courses/modal_body',   f: f %>
+      <%= render 'taken_courses/modal_footer', f: f %>
+    <% end %>
   </div>
 </div>
