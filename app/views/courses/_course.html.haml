@@ -1,9 +1,9 @@
 / Modal
-#myModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+#myModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", role: "dialog", tabindex: "-1"}
   .modal-dialog
     .modal-content
       .modal-header
-        %button.close{"data-dismiss" => "modal", :type => "button"}
+        %button.close{"data-dismiss" => "modal", type: "button"}
           %span{"aria-hidden" => "true"} &#215;
           %span.sr-only Close
         %h4#myModalLabel.modal-title= course.title
@@ -21,7 +21,7 @@
             = f.label :grade
             = f.collection_select :grade, TakenCourse.grades.collect, :first, :first, prompt: true, class: 'form-control'
           .modal-footer
-            %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Cancel
+            %button.btn.btn-default{"data-dismiss" => "modal", type: "button"} Cancel
             = f.submit 'Add', class: 'btn btn-primary', html: { type: "button" }
 %td
   %h2
