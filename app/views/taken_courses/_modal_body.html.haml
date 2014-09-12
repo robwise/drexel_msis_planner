@@ -1,9 +1,6 @@
 .modal-body
   .authform
-    - if @taken_course.errors.any?
-      %ul.error-explanation
-        - @taken_course.errors.full_messages.each do |msg|
-          %li= msg
+    = render 'shared/errors', model: taken_course
     = f.hidden_field :course_id, class: 'hidden'
     = f.hidden_field :user_id, class: 'hidden'
     .form-group

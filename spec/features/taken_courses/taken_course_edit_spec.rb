@@ -1,7 +1,9 @@
 feature "Editing an existing taken course" do
   let!(:course)       { create(:course) }
   let!(:user)         { create(:user) }
-  let!(:taken_course) { create(:taken_course, course: course, user: user, quarter: '201415')  }
+  let!(:taken_course) do
+    create :taken_course, course: course, user: user, quarter: '201415'
+  end
 
   scenario "the 'took this' link does not appear" do
     signin_user user
