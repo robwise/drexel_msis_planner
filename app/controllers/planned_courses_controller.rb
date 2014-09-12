@@ -10,8 +10,7 @@ class PlannedCoursesController < ApplicationController
     if @planned_course.save
       redirect_to plan, notice: "#{@planned_course.name} added to plan."
     else
-      flash[:alert] = "Error adding course to plan."
-      render :new
+      render :new, alert: 'Error adding course to plan.'
     end
   end
 
@@ -20,7 +19,7 @@ class PlannedCoursesController < ApplicationController
     if @planned_course.update(planned_course_params)
       redirect_to @plan, notice: 'Plan successfully updated.'
     else
-      redirect_to @plan, notice: 'Error updating plan.'
+      redirect_to @plan, alert: 'Error updating plan.'
     end
   end
 
@@ -38,7 +37,8 @@ class PlannedCoursesController < ApplicationController
       authorize @planned_course
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
+    # Never trust parameters from the scary internet, only allow the white list
+    # through.
     def planned_course_params
       params.require(:planned_course).permit(:plan_id, :course_id, :quarter)
     end
