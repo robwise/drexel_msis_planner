@@ -42,13 +42,4 @@ describe Course do
     it { should be_valid }
   end
 
-  context "using a bad format title" do
-    before { course.title = 'wEirD caPitalization' }
-
-    it "should fix it" do
-      course.save
-      expect(course.title).to eq("Weird Capitalization")
-    end
-  end
-
 end
