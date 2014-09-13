@@ -1,3 +1,4 @@
+# Deprecated....
 class QuarterValidator < ActiveModel::EachValidator
   @@valid_seasons = [15,25,35,45]
 

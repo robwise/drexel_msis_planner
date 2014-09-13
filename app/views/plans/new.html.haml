@@ -3,5 +3,5 @@
 .container
   .row
     .column
-      = render 'form', [@plan.user, @plan]
+      = render 'form', object: [@plan.user, @plan]
       = link_to 'Back', user_plans_path(current_user)
