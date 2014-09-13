@@ -9,7 +9,7 @@ class Course < ActiveRecord::Base
   validates :degree_requirement, presence: true
   validates :description, presence: true
   validates :title, presence: true, uniqueness: { case_sensitive: false }
-  has_many :taken_courses
+  has_many :taken_courses, dependent: :destroy
   has_many :planned_courses, dependent: :destroy
 
   def self.default_scope

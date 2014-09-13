@@ -42,4 +42,16 @@ describe Course do
     it { should be_valid }
   end
 
+  describe "#destroy" do
+    before { course.save }
+    it "should also destroy associated taken_courses" do
+      create :taken_course, course: course
+      expect { course.destroy }.to change(TakenCourse, :count).by(-1)
+    end
+    it "should also destroy associated planned_courses" do
+      create :planned_course, course: course
+      expect { course.destroy }.to change(PlannedCourse, :count).by(-1)
+    end
+  end
+
 end
