@@ -1,8 +1,6 @@
 class Quarter
   include Comparable
-
-  @@valid_seasons = [15,25,35,45]
-
+  @@valid_seasons = { fall: 15, winter: 25, spring: 35, summer: 45 }
   attr_accessor :code
 
   def initialize(code)
@@ -17,20 +15,46 @@ class Quarter
     code <=> other_quarter.code
   end
 
+  def humanize
+    "#{season.titleize} #{year}"
+  end
+
+  def season_code
+    code % 100
+  end
+
+  def season
+    @@valid_seasons.key(season_code).to_s
+  end
+
+  def season=(new_season)
+    season_symbol = new_season.downcase.to_sym
+    unless @@valid_seasons.include?(season_symbol)
+      raise ArgumentError.new("Season: '#{season_symbol}' is not valid")
+    end
+    @code = (year.to_s + @@valid_seasons[season_symbol].to_s).to_i
+  end
+
+  def year
+    code / 100
+  end
+
+  def year=(new_year)
+    @code = (new_year.to_s + season.to_s).to_i
+  end
+
   private
 
     def bad_length?
-      @code.to_s.length != 6
+      code.to_s.length != 6
     end
 
     def bad_year?
-      year = @code / 100
       (year > (Time.now.year + 10)) || year < 1980
     end
 
     def bad_season?
-      season = @code % 100
-      not @@valid_seasons.include?(season)
+      not @@valid_seasons.values.include?(season_code)
     end
 
 end

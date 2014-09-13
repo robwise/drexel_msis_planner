@@ -8,6 +8,10 @@ describe Quarter do
   it { should respond_to(:valid?) }
   it { should respond_to(:code) }
   it { should respond_to(:between?) }
+  it { should respond_to(:humanize) }
+  it { should respond_to(:season) }
+  it { should respond_to(:season_code) }
+  it { should respond_to(:year) }
 
   describe "valid examples" do
     it "should be valid" do
@@ -45,6 +49,35 @@ describe Quarter do
     end
     it "should be between two quarters with large and small codes" do
       expect(quarter.between?(earlier_quarter, later_quarter)).to eq(true)
+    end
+  end
+  describe "#season" do
+    it "should return the season" do
+      expect(quarter.season).to eq("fall")
+    end
+  end
+  describe "#season=(new_season)" do
+    context "with a valid season" do
+      it "should properly update the quarter code" do
+        quarter.season = "fall"
+        expect(quarter.season).to eq("fall")
+      end
+    end
+    context "with an invalid season" do
+      it "should raise an ArgumentError" do
+        expect { quarter.season = "nonsense" }
+          .to raise_error(ArgumentError, "Season: 'nonsense' is not valid")
+      end
+    end
+  end
+  describe "#season_code" do
+    it "should return the code" do
+      expect(quarter.season_code).to eq(15)
+    end
+  end
+  describe "#humanize" do
+    it "should return the humanized form of the code" do
+      expect(quarter.humanize).to eq("Fall 2014")
     end
   end
 end
