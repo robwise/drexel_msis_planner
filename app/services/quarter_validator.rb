@@ -26,7 +26,7 @@ class QuarterValidator < ActiveModel::EachValidator
     end
 
     def bad_year?(year)
-      (year > (Time.now.year + 1)) || year < 1980
+      (year > (Time.now.year + 10)) || year < 1980
     end
 
     def bad_season?(season)
