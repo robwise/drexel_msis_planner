@@ -3,7 +3,7 @@ describe TakenCourse do
   let(:user) { create(:user) }
   let(:course) { create(:course) }
   subject(:taken_course) { build(:taken_course, user_id: user.id,
-                                             course_id: course.id) }
+                                                course_id: course.id) }
 
   it { should respond_to(:user_id) }
   it { should respond_to(:course_id) }
@@ -19,8 +19,25 @@ describe TakenCourse do
   context "with acceptable attributes" do
     it { should be_valid }
   end
-  it_should_behave_like 'an object with a quarter code'do
-    let(:model_with_quarter) { build(:planned_course) }
+  describe "quarter code validation" do
+    context "with valid codes" do
+      it "should cause it to be valid" do
+        good_quarters = [201415, 201425, 201435, 201445, 199015]
+        good_quarters.each do |good_quarter|
+          subject.quarter = good_quarter
+          expect(subject).to be_valid
+        end
+      end
+    end
+    context "with invalid codes" do
+      it "should be cause it to be invalid" do
+        bad_quarters = [190015, 201416, 20145, 201520, 201460, 2014, 201400]
+        bad_quarters.each do |bad_quarter|
+          subject.quarter = bad_quarter
+          expect(subject).not_to be_valid
+        end
+      end
+    end
   end
   describe "associations" do
     before { taken_course.save }

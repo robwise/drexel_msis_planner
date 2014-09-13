@@ -1,7 +1,9 @@
 class PlannedCourse < ActiveRecord::Base
   validates :plan, presence: true
   validates :course, presence: true
-  validate :valid_quarter, unless: Proc.new { quarter.nil? }
+  validate :quarter_code_validator,
+    unless: Proc.new { quarter.nil? },
+    on: [:create, :update]
   belongs_to :plan
   belongs_to :course
 
@@ -12,15 +14,21 @@ class PlannedCourse < ActiveRecord::Base
   private
 
     # In Progress...
-    def valid_quarter
-      quarter_model = Quarter.new(quarter)
-      if quarter_model.valid?
-        if quarter.between(Quarter.new())
-
+    def quarter_code_validator
+      if quarter.nil?
+        errors.add(:quarter, "cannot be nil")
+        return false
+      end
+      quarter_object = Quarter.new(quarter)
+      if quarter_object.valid?
+        if quarter_object.to_date > Time.now
+          return true
+        else
+          errors.add(:quarter, "cannot be in the past.")
+          return false
         end
-        return true
       else
-        errors.add(:quarter, 'is not a valid code.')
+        errors.add(:quarter, "is not a valid quarter code")
         return false
       end
     end

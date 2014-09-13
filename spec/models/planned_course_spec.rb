@@ -1,5 +1,9 @@
 require_relative './shared/shared_examples_for_quarter_validator'
 describe PlannedCourse do
+  subject { planned_course }
+
+  let!(:planned_course) { create :planned_course }
+
   it { should respond_to(:created_at) }
   it { should respond_to(:updated_at) }
   it { should respond_to(:course) }
@@ -10,7 +14,27 @@ describe PlannedCourse do
   it { should respond_to(:assigned?) }
   it { should validate_presence_of(:plan) }
   it { should validate_presence_of(:course) }
-  it_should_behave_like "an object with a quarter code" do
-    let(:model_with_quarter) { build(:planned_course) }
+  it { should be_valid }
+
+  describe "quarter code validation" do
+    context "with valid codes" do
+      it "should cause it to be valid" do
+        good_quarters = [201515, 201525, 201535, 201545, 202415]
+        good_quarters.each do |good_quarter|
+          subject.quarter = good_quarter
+          expect(subject).to be_valid
+        end
+      end
+    end
+    context "with invalid codes" do
+      it "should be cause it to be invalid" do
+        bad_quarters = [190015, 201416, 20145, 2014159, 201460, 2014, 201400]
+        bad_quarters.each do |bad_quarter|
+          subject.quarter = bad_quarter
+          expect(subject).not_to be_valid
+        end
+      end
+    end
   end
+
 end
