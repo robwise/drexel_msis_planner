@@ -13,23 +13,12 @@ class PlannedCourse < ActiveRecord::Base
 
   private
 
-    # In Progress...
     def quarter_code_validator
-      if quarter.nil?
-        errors.add(:quarter, "cannot be nil")
-        return false
-      end
       quarter_object = Quarter.new(quarter)
-      if quarter_object.valid?
-        if quarter_object.to_date > Time.now
-          return true
-        else
-          errors.add(:quarter, "cannot be in the past.")
-          return false
-        end
-      else
+      if (not quarter_object.valid?)
         errors.add(:quarter, "is not a valid quarter code")
-        return false
+      elsif quarter_object.to_date < Time.now
+          errors.add(:quarter, "cannot be in the past.")
       end
     end
 
