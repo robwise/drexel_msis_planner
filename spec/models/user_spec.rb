@@ -71,4 +71,21 @@ describe User do
     end
   end
 
+  describe "#destroy" do
+    before { user.save }
+    it "should also destroy the user's plans" do
+      create :plan, user: user
+      expect { user.destroy }.to change(Plan, :count).by(-1)
+    end
+    it "should also destroy the user's planned courses" do
+      plan = create :plan, user: user
+      create :planned_course, plan: plan
+      expect { user.destroy }.to change(PlannedCourse, :count).by(-1)
+    end
+    it "should also destroy the user's taken courses" do
+      create :taken_course, user: user
+      expect { user.destroy }.to change(TakenCourse, :count).by(-1)
+    end
+  end
+
 end
