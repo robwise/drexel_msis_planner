@@ -1,4 +1,3 @@
-require_relative './shared/shared_examples_for_quarter_validator'
 describe TakenCourse do
   let(:user) { create(:user) }
   let(:course) { create(:course) }

@@ -1,4 +1,3 @@
-require_relative './shared/shared_examples_for_quarter_validator'
 describe PlannedCourse do
   subject { planned_course }
 
