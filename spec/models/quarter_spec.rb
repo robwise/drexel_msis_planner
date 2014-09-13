@@ -12,6 +12,7 @@ describe Quarter do
   it { should respond_to(:season) }
   it { should respond_to(:season_code) }
   it { should respond_to(:year) }
+  it { should respond_to(:to_date) }
 
   describe "valid examples" do
     it "should be valid" do
@@ -53,14 +54,14 @@ describe Quarter do
   end
   describe "#season" do
     it "should return the season" do
-      expect(quarter.season).to eq("fall")
+      expect(quarter.season).to eq(:fall)
     end
   end
   describe "#season=(new_season)" do
     context "with a valid season" do
       it "should properly update the quarter code" do
         quarter.season = "fall"
-        expect(quarter.season).to eq("fall")
+        expect(quarter.season).to eq(:fall)
       end
     end
     context "with an invalid season" do
@@ -80,4 +81,10 @@ describe Quarter do
       expect(quarter.humanize).to eq("Fall 2014")
     end
   end
+  describe "#to_date" do
+    it "should return a date within the season and year of the quarter" do
+      expect(quarter.to_date).to eq(Date.new(2014, 9))
+    end
+  end
+
 end

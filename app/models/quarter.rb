@@ -1,6 +1,7 @@
 class Quarter
   include Comparable
   @@valid_seasons = { fall: 15, winter: 25, spring: 35, summer: 45 }
+  @@months = { fall: 9..12, winter: 1..3, spring: 4..6, summer: 6..8 }
   attr_accessor :code
 
   def initialize(code)
@@ -16,7 +17,7 @@ class Quarter
   end
 
   def humanize
-    "#{season.titleize} #{year}"
+    "#{season.to_s.titleize} #{year}"
   end
 
   def season_code
@@ -24,7 +25,7 @@ class Quarter
   end
 
   def season
-    @@valid_seasons.key(season_code).to_s
+    @@valid_seasons.key(season_code)
   end
 
   def season=(new_season)
@@ -43,6 +44,11 @@ class Quarter
     @code = (new_year.to_s + season.to_s).to_i
   end
 
+  def to_date
+    month = @@months[season].first
+    Date.new(year, month)
+  end
+
   private
 
     def bad_length?
@@ -55,6 +61,17 @@ class Quarter
 
     def bad_season?
       not @@valid_seasons.values.include?(season_code)
+    end
+
+    def self.get_date_from(object)
+      if object.class? == String
+       return Date.parse(date)
+      elsif object.class? == Date && object.valid_date?
+        return object
+      else
+        raise ArgumentError.new("'#{object}' is invalid. Must be a valid date
+                                string or object")
+      end
     end
 
 end
