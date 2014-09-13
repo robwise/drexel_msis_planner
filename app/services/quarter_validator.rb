@@ -23,20 +23,4 @@ class QuarterValidator < ActiveModel::EachValidator
     end
   end
 
-  private
-
-    def bad_length?(quarter)
-      quarter.to_s.length != 6
-    end
-
-    def bad_year?(quarter)
-      year = quarter / 100
-      (year > (Time.now.year + 10)) || year < 1980
-    end
-
-    def bad_season?(quarter)
-      season = quarter % 100
-      not @@valid_seasons.include?(season)
-    end
-
 end
