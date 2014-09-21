@@ -1,6 +1,6 @@
 .modal-body
   .authform
-    = render 'shared/errors', model: taken_course
+    = render 'shared/errors', object: taken_course
     = f.hidden_field :course_id, class: 'hidden'
     = f.hidden_field :user_id, class: 'hidden'
     .form-group
