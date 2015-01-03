@@ -1,6 +1,0 @@
-%tbody
-  %h3= quarter
-  %table
-    - user.taken_courses_in(quarter).each do |taken_course|
-      %td= taken_course.course.title
-      %td= taken_course.grade
