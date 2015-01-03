@@ -18,7 +18,7 @@ describe PlannedCourse do
   describe "quarter code validation" do
     context "with valid codes" do
       it "should cause it to be valid" do
-        good_quarters = [201515, 201525, 201535, 201545, 202415]
+        good_quarters = [201535, 201545, 201615, 202015]
         good_quarters.each do |good_quarter|
           subject.quarter = good_quarter
           expect(subject).to be_valid
@@ -35,5 +35,4 @@ describe PlannedCourse do
       end
     end
   end
-
 end

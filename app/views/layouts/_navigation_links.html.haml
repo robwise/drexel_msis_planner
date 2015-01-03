@@ -2,7 +2,11 @@
 - if user_signed_in? && current_user.admin?
   %li= link_to 'Users', users_path
 - if user_signed_in?
-  %li= link_to 'Planning', plan_path(current_user.active_plan)
+  - if current_user.active_plan
+    %li= link_to 'Planning', plan_path(current_user.active_plan)
+  - else
+    %li= link_to 'Planning', user_plans_path(current_user)
+- if user_signed_in?
   %li= link_to 'Edit account', edit_user_registration_path
   %li= link_to 'Sign out', destroy_user_session_path, :method=>'delete'
 - else
