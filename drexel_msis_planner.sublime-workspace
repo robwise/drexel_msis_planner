@@ -4,8 +4,84 @@
 		"selected_items":
 		[
 			[
+				"taken",
+				"TakenCourse"
+			],
+			[
+				"res",
+				"rest	respond_to"
+			],
+			[
+				"course",
+				"course_appears_under_users_taken_courses"
+			],
+			[
+				"have",
+				"have_success_message"
+			],
+			[
+				"fill",
+				"fill_taken_course_modal"
+			],
+			[
+				"i",
+				"i	it { }"
+			],
+			[
 				"quarter",
-				"quarter_input"
+				"quarter_validator"
+			],
+			[
+				"quart",
+				"quarter_object"
+			],
+			[
+				"raise",
+				"raise_error"
+			],
+			[
+				"string",
+				"string_date"
+			],
+			[
+				"e",
+				"e	expect().to"
+			],
+			[
+				"Ar",
+				"ArgumentError"
+			],
+			[
+				"season",
+				"season_symbol"
+			],
+			[
+				"valid",
+				"valid_seasons"
+			],
+			[
+				"earl",
+				"earlier_quarter"
+			],
+			[
+				"b",
+				"b	before { }"
+			],
+			[
+				"create",
+				"create_planned_courses"
+			],
+			[
+				"degree",
+				"degree_requirement"
+			],
+			[
+				"do",
+				"dob	Insert do |variable| … end"
+			],
+			[
+				"con",
+				"con	context \"description\" do … end"
 			],
 			[
 				"errorms",
@@ -14,10 +90,6 @@
 			[
 				"happ",
 				"happy_day_scenario_for"
-			],
-			[
-				"taken",
-				"taken_course"
 			],
 			[
 				"user",
@@ -38,14 +110,6 @@
 			[
 				"case",
 				"case_insensitive"
-			],
-			[
-				"b",
-				"b	before { }"
-			],
-			[
-				"course",
-				"course"
 			],
 			[
 				"pl",
@@ -74,10 +138,6 @@
 			[
 				"click",
 				"click_element"
-			],
-			[
-				"have",
-				"have_set_active_button_for"
 			],
 			[
 				"act",
@@ -144,10 +204,6 @@
 				"wrap_with"
 			],
 			[
-				"i",
-				"it	it \"should description\" do … end"
-			],
-			[
 				"successul",
 				"successful_deletion"
 			],
@@ -210,18 +266,6 @@
 			[
 				"enro",
 				"enrolled_in"
-			],
-			[
-				"e",
-				"except"
-			],
-			[
-				"degree",
-				"degree_requirements"
-			],
-			[
-				"do",
-				"do"
 			],
 			[
 				"replying",
@@ -356,10 +400,6 @@
 				"edit_user_path"
 			],
 			[
-				"valid",
-				"valid_signin"
-			],
-			[
 				"signed",
 				"signed_in_user"
 			],
@@ -400,12 +440,48 @@
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 374.0,
+		"height": 101.0,
 		"selected_items":
 		[
 			[
+				"swap",
+				"BracketHighlighter: Swap Quotes"
+			],
+			[
+				"hash",
+				"Convert Hashes"
+			],
+			[
+				"bs3",
+				"Snippet: bs3-alert-danger"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"sort",
+				"Sort Lines"
+			],
+			[
+				"conv",
+				"Convert Hashes"
+			],
+			[
+				"bra",
+				"BracketHighlighter: Swap Quotes"
+			],
+			[
+				"rspec",
+				"Set Syntax: RSpec"
+			],
+			[
 				"ren",
 				"ANF: Rename File"
+			],
+			[
+				"HASH",
+				"Convert Hashes"
 			],
 			[
 				"haml",
@@ -420,10 +496,6 @@
 				"Preferences: Settings - Default"
 			],
 			[
-				"hash",
-				"Convert Hashes"
-			],
-			[
 				"package",
 				"Package Control: Remove Package"
 			],
@@ -436,16 +508,8 @@
 				"ANF: Rename File"
 			],
 			[
-				"ins",
-				"Package Control: Install Package"
-			],
-			[
 				"ham",
 				"HTML2Haml: Convert selection"
-			],
-			[
-				"rspec",
-				"Set Syntax: RSpec"
 			],
 			[
 				"ha",
@@ -705,35 +769,85 @@
 	},
 	"file_history":
 	[
-		"/Users/Rob/Sites/drexel_msis_planner/app/views/taken_courses/_modal_header.html.erb",
-		"/Users/Rob/Sites/drexel_msis_planner/app/views/taken_courses/_modal_footer.html.erb",
-		"/Users/Rob/Sites/drexel_msis_planner/spec/features/taken_courses/taken_course_edit_spec.rb",
+		"/Users/Rob/Sites/drexel_msis_planner/spec/models/user_spec.rb",
+		"/Users/Rob/Sites/drexel_msis_planner/app/models/taken_course.rb",
 		"/Users/Rob/Sites/drexel_msis_planner/spec/features/taken_courses/taken_course_create_spec.rb",
+		"/Users/Rob/Sites/drexel_msis_planner/spec/models/taken_course_spec.rb",
+		"/Users/Rob/Sites/drexel_msis_planner/app/views/courses/index.html.haml",
+		"/Users/Rob/Sites/drexel_msis_planner/app/views/taken_courses/_modal_errors.js.erb",
+		"/Users/Rob/Sites/drexel_msis_planner/Gemfile",
+		"/Users/Rob/Sites/drexel_msis_planner/config/initializers/simple_form.rb",
+		"/Users/Rob/Sites/drexel_msis_planner/config/initializers/simple_form_bootstrap.rb",
+		"/Users/Rob/Sites/drexel_msis_planner/app/views/taken_courses/new.js.erb",
+		"/Users/Rob/Sites/drexel_msis_planner/app/views/taken_courses/_edit_modal.html.erb",
+		"/Users/Rob/Sites/drexel_msis_planner/.hound.yml",
+		"/Users/Rob/Sites/drexel_msis_planner/spec/support/helpers/session_helpers.rb",
+		"/Users/Rob/Sites/drexel_msis_planner/spec/features/plans/plan_delete_spec.rb",
+		"/Users/Rob/Sites/drexel_msis_planner/spec/features/planned_courses/planned_course_create_spec.rb",
+		"/Users/Rob/Sites/drexel_msis_planner/app/models/user.rb",
+		"/Users/Rob/Sites/drexel_msis_planner/app/models/quarter.rb",
+		"/Users/Rob/Sites/drexel_msis_planner/app/models/planned_course.rb",
+		"/Users/Rob/Sites/drexel_msis_planner/spec/models/planned_course_spec.rb",
+		"/Users/Rob/Sites/drexel_msis_planner/spec/models/shared/shared_examples_for_quarter_validator.rb",
+		"/Users/Rob/Sites/drexel_msis_planner/spec/factories/planned_courses.rb",
+		"/Users/Rob/Library/Application Support/Sublime Text 2/Packages/User/Preferences.sublime-settings",
+		"/Users/Rob/Sites/drexel_msis_planner/app/views/plans/new.html.haml",
+		"/Users/Rob/Sites/drexel_msis_planner/app/views/plans/_form.html.haml",
+		"/Users/Rob/Sites/drexel_msis_planner/app/helpers/plans_helper.rb",
+		"/Users/Rob/Sites/drexel_msis_planner/spec/features/plans/plan_create_spec.rb",
+		"/Users/Rob/Sites/drexel_msis_planner/app/services/quarter_validator.rb",
+		"/Users/Rob/Sites/drexel_msis_planner/spec/models/quarter_spec.rb",
+		"/Users/Rob/Sites/drexel_msis_planner/app/models/plan.rb",
+		"/Users/Rob/Sites/drexel_msis_planner/app/controllers/plans_controller.rb",
+		"/Users/Rob/Sites/drexel_msis_planner/db/seeds.rb",
+		"/Users/Rob/Sites/drexel_msis_planner/lib/assets/tbl_Course.csv",
+		"/Users/Rob/Sites/drexel_msis_planner/app/services/create_course_service.rb",
+		"/Users/Rob/Sites/drexel_msis_planner/app/services/create_user_service.rb",
+		"/Users/Rob/Sites/drexel_msis_planner/app/models/course.rb",
+		"/Users/Rob/Sites/drexel_msis_planner/spec/models/course_spec.rb",
+		"/Users/Rob/Sites/drexel_msis_planner/app/services/create_admin_service.rb",
+		"/Users/Rob/Sites/drexel_msis_planner/app/services/CreateUserService.rb",
+		"/Users/Rob/Sites/drexel_msis_planner/config/initializers/inflections.rb",
+		"/Users/Rob/Sites/drexel_msis_planner/config/environment.rb",
+		"/Users/Rob/Sites/drexel_msis_planner/config/environments/development.rb",
+		"/Users/Rob/Sites/drexel_msis_planner/spec/factories/users.rb",
+		"/Users/Rob/Sites/drexel_msis_planner/app/controllers/courses_controller.rb",
+		"/Users/Rob/Sites/drexel_msis_planner/lib/assets/course_inserts.SQL",
+		"/Users/Rob/Sites/hound/.gitignore",
+		"/Users/Rob/Sites/hound/.env",
+		"/Users/Rob/Sites/drexel_msis_planner/app/views/plans/_quarter.html.haml",
+		"/Users/Rob/Sites/drexel_msis_planner/app/views/plans/show.html.haml",
+		"/Users/Rob/Sites/drexel_msis_planner/app/views/plans/index.html.haml",
+		"/Users/Rob/Sites/drexel_msis_planner/app/views/plans/edit.html.haml",
+		"/Users/Rob/Sites/drexel_msis_planner/app/assets/stylesheets/custom.css.scss",
+		"/Users/Rob/Sites/drexel_msis_planner/app/assets/stylesheets/forms.css.scss",
+		"/Users/Rob/Sites/drexel_msis_planner/app/assets/stylesheets/framework_and_overrides.css.scss",
+		"/Users/Rob/Sites/drexel_msis_planner/app/views/plans/_plan.html.haml",
+		"/Users/Rob/Sites/drexel_msis_planner/app/controllers/planned_courses_controller.rb",
+		"/Users/Rob/Sites/drexel_msis_planner/app/views/taken_courses/_modal_body.html.haml",
+		"/Users/Rob/Sites/drexel_msis_planner/spec/features/taken_courses/taken_course_edit_spec.rb",
+		"/Users/Rob/Sites/drexel_msis_planner/app/views/shared/_errors.html.erb",
+		"/Users/Rob/Sites/drexel_msis_planner/app/views/taken_courses/_new_modal.html.erb",
+		"/Users/Rob/Sites/drexel_msis_planner/app/views/taken_courses/_modal_header.html.erb",
+		"/Users/Rob/Sites/drexel_msis_planner/app/helpers/courses_helper.rb",
+		"/Users/Rob/Sites/drexel_msis_planner/app/helpers/taken_courses_helper.rb",
+		"/Users/Rob/Sites/drexel_msis_planner/app/views/taken_courses/_modal_footer.html.erb",
+		"/Users/Rob/Sites/drexel_msis_planner/app/assets/stylesheets/modals.css.scss",
+		"/Users/Rob/Sites/drexel_msis_planner/app/views/shared/_errors.html.haml",
 		"/Users/Rob/Sites/drexel_msis_planner/app/controllers/taken_courses_controller.rb",
 		"/Users/Rob/Sites/drexel_msis_planner/app/views/taken_courses/_taken_course.html.haml",
 		"/Users/Rob/Sites/drexel_msis_planner/app/views/users/show.html.haml",
-		"/Users/Rob/Sites/drexel_msis_planner/app/views/courses/index.html.haml",
-		"/Users/Rob/Sites/drexel_msis_planner/app/views/taken_courses/_edit_modal.html.erb",
 		"/Users/Rob/Sites/drexel_msis_planner/app/views/courses/_course.html.haml",
-		"/Users/Rob/Sites/drexel_msis_planner/app/views/taken_courses/new.js.erb",
 		"/Users/Rob/Sites/drexel_msis_planner/app/views/taken_courses/edit.js.erb",
-		"/Users/Rob/Sites/drexel_msis_planner/app/views/taken_courses/_new_modal.html.erb",
 		"/Users/Rob/Sites/drexel_msis_planner/app/views/taken_courses/_modal.html.erb",
 		"/Users/Rob/Sites/drexel_msis_planner/app/views/users/_user.html.erb",
-		"/Users/Rob/Sites/drexel_msis_planner/app/views/taken_courses/_modal_body.html.haml",
 		"/Users/Rob/Sites/drexel_msis_planner/app/views/taken_courses/modal_header.html.erb",
 		"/Users/Rob/Sites/drexel_msis_planner/app/views/taken_courses/_modal_body.html.erb",
-		"/Users/Rob/Sites/drexel_msis_planner/app/helpers/taken_courses_helper.rb",
-		"/Users/Rob/Sites/drexel_msis_planner/app/assets/stylesheets/custom.css.scss",
-		"/Users/Rob/Sites/drexel_msis_planner/app/assets/stylesheets/framework_and_overrides.css.scss",
 		"/Users/Rob/Sites/drexel_msis_planner/app/helpers/application_helper.rb",
 		"/Users/Rob/Sites/drexel_msis_planner/app/views/taken_courses/modal.html.erb",
 		"/Users/Rob/Sites/drexel_msis_planner/app/views/layouts/application.html.haml",
-		"/Users/Rob/Library/Application Support/Sublime Text 2/Packages/User/Preferences.sublime-settings",
 		"/Users/Rob/Library/Application Support/Sublime Text 2/Packages/Default/Preferences.sublime-settings",
 		"/Users/Rob/Sites/drexel_msis_planner/app/views/taken_courses/new.html.haml",
-		"/Users/Rob/Sites/drexel_msis_planner/app/controllers/plans_controller.rb",
-		"/Users/Rob/Sites/drexel_msis_planner/app/models/taken_course.rb",
 		"/Users/Rob/Sites/drexel_msis_planner/config/routes.rb",
 		"/Users/Rob/Sites/drexel_msis_planner/app/views/courses/_took_this_modal.html.erb",
 		"/Users/Rob/Sites/drexel_msis_planner/spec/policies/taken_course_policy_spec.rb",
@@ -741,98 +855,48 @@
 		"/Users/Rob/Sites/drexel_msis_planner/app/views/devise/registrations/edit.html.erb",
 		"/Users/Rob/Sites/drexel_msis_planner/db/migrate/20140819054827_devise_create_users.rb",
 		"/Users/Rob/Sites/drexel_msis_planner/spec/features/courses/course_index_spec.rb",
-		"/Users/Rob/Sites/drexel_msis_planner/app/helpers/courses_helper.rb",
 		"/Users/Rob/Sites/drexel_msis_planner/spec/features/courses/course_delete_spec.rb",
-		"/Users/Rob/Sites/drexel_msis_planner/app/assets/stylesheets/forms.css.scss",
 		"/Users/Rob/Sites/drexel_msis_planner/app/views/devise/registrations/_form.html.erb",
 		"/Users/Rob/Sites/drexel_msis_planner/app/assets/stylesheets/registrations.css.scss",
-		"/Users/Rob/Sites/drexel_msis_planner/app/models/user.rb",
-		"/Users/Rob/Sites/drexel_msis_planner/app/assets/stylesheets/modals.css.scss",
 		"/Users/Rob/Sites/drexel_msis_planner/app/assets/stylesheets/courses.css.scss",
 		"/Users/Rob/Sites/drexel_msis_planner/app/assets/stylesheets/plans.css.scss",
 		"/Users/Rob/Sites/drexel_msis_planner/app/assets/stylesheets/taken_courses.css.scss",
 		"/Users/Rob/Sites/drexel_msis_planner/app/views/courses/_took_this_modal.html.haml",
 		"/Users/Rob/Sites/drexel_msis_planner/spec/features/users/user_show_spec.rb",
-		"/Users/Rob/Sites/drexel_msis_planner/spec/models/taken_course_spec.rb",
 		"/Users/Rob/Sites/drexel_msis_planner/spec/features/courses/course_create_spec.rb",
 		"/Users/Rob/Sites/drexel_msis_planner/spec/features/users/user_delete_spec.rb",
-		"/Users/Rob/Sites/drexel_msis_planner/spec/features/planned_courses/planned_course_create_spec.rb",
 		"/Users/Rob/Sites/drexel_msis_planner/app/controllers/users_controller.rb",
 		"/Users/Rob/Sites/drexel_msis_planner/spec/features/users/user_edit_spec.rb",
 		"/Users/Rob/Sites/drexel_msis_planner/spec/factories/courses.rb",
-		"/Users/Rob/Sites/drexel_msis_planner/spec/models/user_spec.rb",
 		"/Users/Rob/Sites/drexel_msis_planner/app/policies/user_policy.rb",
 		"/Users/Rob/Sites/drexel_msis_planner/spec/policies/user_policy_spec.rb",
-		"/Users/Rob/Sites/drexel_msis_planner/Gemfile",
 		"/Users/Rob/Sites/drexel_msis_planner/spec/features/taken_courses/taken_course_delete_spec.rb",
-		"/Users/Rob/Sites/drexel_msis_planner/.hound.yml",
 		"/Users/Rob/Sites/drexel_msis_planner/.gitignore",
 		"/Users/Rob/Sites/drexel_msis_planner/app/views/plans/show.json.jbuilder",
 		"/Users/Rob/Sites/drexel_msis_planner/spec/taken_courses/taken_course_edit_spec.rb",
 		"/Users/Rob/Sites/drexel_msis_planner/spec/features/courses/course_show_spec.rb",
-		"/Users/Rob/Sites/drexel_msis_planner/app/controllers/courses_controller.rb",
 		"/Users/Rob/Sites/drexel_msis_planner/app/policies/course_policy.rb",
 		"/Users/Rob/Sites/drexel_msis_planner/spec/policies/plan_policy_spec.rb",
 		"/Users/Rob/Sites/drexel_msis_planner/app/views/courses/show.html.haml",
-		"/Users/Rob/Sites/drexel_msis_planner/spec/features/plans/plan_delete_spec.rb",
-		"/Users/Rob/Sites/drexel_msis_planner/app/models/planned_course.rb",
 		"/Users/Rob/Sites/drexel_msis_planner/app/views/planned_courses/show.html.haml",
 		"/Users/Rob/Sites/drexel_msis_planner/app/views/planned_courses/edit.html.haml",
-		"/Users/Rob/Sites/drexel_msis_planner/app/controllers/planned_courses_controller.rb",
-		"/Users/Rob/Sites/drexel_msis_planner/app/models/course.rb",
 		"/Users/Rob/Sites/drexel_msis_planner/spec/factories/taken_courses.rb",
-		"/Users/Rob/Sites/drexel_msis_planner/spec/models/course_spec.rb",
 		"/Users/Rob/Sites/drexel_msis_planner/spec/models/plan_spec.rb",
 		"/Users/Rob/Sites/drexel_msis_planner/spec/factories/plans.rb",
 		"/Users/Rob/Sites/drexel_msis_planner/app/views/planned_courses/new.html.haml",
 		"/Users/Rob/Sites/drexel_msis_planner/app/views/planned_courses/index.html.haml",
-		"/Users/Rob/Sites/drexel_msis_planner/spec/models/planned_course_spec.rb",
 		"/Users/Rob/Sites/drexel_msis_planner/app/assets/stylesheets/application.css.scss",
-		"/Users/Rob/Sites/drexel_msis_planner/app/views/plans/index.html.haml",
-		"/Users/Rob/Sites/drexel_msis_planner/app/views/plans/_plan.html.haml",
 		"/Users/Rob/Sites/drexel_msis_planner/config/unicorn.rb",
 		"/Users/Rob/Sites/drexel_msis_planner/Procfile",
 		"/Users/Rob/Sites/drexel_msis_planner/app/policies/planned_course_policy.rb",
 		"/Users/Rob/Sites/drexel_msis_planner/app/policies/plan_policy.rb",
 		"/Users/Rob/Sites/drexel_msis_planner/spec/policies/planned_course_policy_spec.rb",
-		"/Users/Rob/Sites/drexel_msis_planner/spec/models/shared/shared_examples_for_quarter_validator.rb",
-		"/Users/Rob/Sites/drexel_msis_planner/app/services/quarter_validator.rb",
 		"/Users/Rob/Sites/drexel_msis_planner/bin/spring",
 		"/Users/Rob/Sites/drexel_msis_planner/app/views/plans/update.js.erb",
 		"/Users/Rob/Sites/drexel_msis_planner/spec/features/plans/set_active_spec.rb",
 		"/Users/Rob/Sites/drexel_msis_planner/app/views/devise/sessions/new.html.haml",
-		"/Users/Rob/Sites/drexel_msis_planner/config/initializers/simple_form_bootstrap.rb",
 		"/Users/Rob/Sites/drexel_msis_planner/app/views/layouts/_messages.html.haml",
-		"/Users/Rob/Sites/drexel_msis_planner/spec/support/helpers/session_helpers.rb",
-		"/Users/Rob/Sites/drexel_msis_planner/spec/features/users/sign_in_spec.rb",
-		"/Users/Rob/Library/Application Support/Sublime Text 2/Packages/User/Default (OSX).sublime-keymap",
-		"/Users/Rob/Sites/drexel_msis_planner/spec/features/plans/plans_delete_spec.rb",
-		"/Users/Rob/Sites/drexel_msis_planner/app/models/plan.rb",
-		"/Users/Rob/Sites/drexel_msis_planner/config/application.rb",
-		"/Users/Rob/Sites/drexel_msis_planner/config/initializers/backtrace_silencers.rb",
-		"/Users/Rob/Sites/drexel_msis_planner/config/environments/test.rb",
-		"/Users/Rob/Sites/drexel_msis_planner/config/environments/development.rb",
-		"/Users/Rob/Sites/drexel_msis_planner/bin/rspec",
-		"/Users/Rob/Sites/drexel_msis_planner/spec/spec_helper.rb",
-		"/Users/Rob/Sites/drexel_msis_planner/spec/rails_helper.rb",
-		"/Users/Rob/Sites/drexel_msis_planner/spec/features/plans/create_plan_spec.rb",
-		"/Users/Rob/Sites/drexel_msis_planner/app/views/plans/new.html.haml",
-		"/Users/Rob/Sites/drexel_msis_planner/app/views/plans/_form.html.haml",
-		"/Users/Rob/Sites/drexel_msis_planner/app/views/layouts/_navigation_links.html.haml",
-		"/Users/Rob/Sites/drexel_msis_planner/spec/features/visitors/navigation_spec.rb",
-		"/Users/Rob/Sites/drexel_msis_planner/app/views/layouts/_navigation_links.html.erb",
-		"/Users/Rob/Sites/drexel_msis_planner/config/initializers/simple_form.rb",
-		"/Users/Rob/Sites/drexel_msis_planner/app/views/users/index.html.haml",
-		"/Users/Rob/.extra",
-		"/Users/Rob/Sites/drexel_msis_planner/spec/support/capybara.rb",
-		"/Users/Rob/Sites/drexel_msis_planner/spec/features/courses/course_edit_spec.rb",
-		"/Users/Rob/Sites/drexel_msis_planner/spec/features/visitors/home_page_spec.rb",
-		"/Users/Rob/Sites/drexel_msis_planner/spec/support/devise.rb",
-		"/Users/Rob/Sites/drexel_msis_planner/spec/features/users/sign_out_spec.rb",
-		"/Users/Rob/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/capybara-webkit-1.3.0/bin/webkit_server",
-		"/Users/Rob/Sites/drexel_msis_planner/config/environment.rb",
-		"/Users/Rob/Sites/drexel_msis_planner/new.html.haml",
-		"/Users/Rob/Sites/drexel_msis_planner/app/views/devise/sessions/new.html.erb"
+		"/Users/Rob/Sites/drexel_msis_planner/spec/features/users/sign_in_spec.rb"
 	],
 	"find":
 	{
@@ -850,6 +914,28 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"}\n",
+			"wants",
+			"given_user",
+			"value",
+			"season_code",
+			"quarter",
+			"good_quarter",
+			"bad_quarter",
+			"bad_quarters",
+			"good_quarters",
+			"find_or_create_by",
+			"user",
+			"USER",
+			"user",
+			"USER",
+			"user",
+			"USER",
+			"user",
+			"description",
+			"title",
+			"'",
+			"taken_quarters",
 			"    <%=",
 			"%>\n",
 			"//",
@@ -955,29 +1041,7 @@
 			"admin",
 			"Admin",
 			"email",
-			"∂∂",
-			"tab_size",
-			"convert_tabs_to_spaces",
-			"user",
-			"users",
-			"Users",
-			"\">",
-			"<div class=",
-			"is_greater_than",
-			"department",
-			"ADMIN_NAME",
-			"com",
-			"spring",
-			"a",
-			"end",
-			"scenario",
-			"ctrl+d",
-			"delete",
-			"ctrl d",
-			"charge",
-			":handle",
-			"handle",
-			"valid_signup"
+			"∂∂"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -985,6 +1049,8 @@
 		"regex": false,
 		"replace_history":
 		[
+			"find_or_create_by!",
+			"\"",
 			"model",
 			"current_user",
 			"record",
@@ -1059,20 +1125,256 @@
 		"selected_items":
 		[
 			[
-				"tacoed",
-				"spec/features/taken_courses/taken_course_edit_spec.rb"
+				"aplayout",
+				"app/views/layouts/application.html.haml"
+			],
+			[
+				"ussp",
+				"spec/models/user_spec.rb"
+			],
+			[
+				"taco",
+				"app/models/taken_course.rb"
+			],
+			[
+				"cosp",
+				"spec/models/course_spec.rb"
+			],
+			[
+				"tacosp",
+				"spec/models/taken_course_spec.rb"
+			],
+			[
+				"co",
+				"app/models/course.rb"
+			],
+			[
+				"coin",
+				"app/views/courses/index.html.haml"
+			],
+			[
+				"sehe",
+				"spec/support/helpers/session_helpers.rb"
+			],
+			[
+				"gem",
+				"Gemfile"
+			],
+			[
+				"sim",
+				"config/initializers/simple_form.rb"
+			],
+			[
+				"sifo",
+				"config/initializers/simple_form_bootstrap.rb"
+			],
+			[
+				"tacoco",
+				"app/controllers/taken_courses_controller.rb"
+			],
+			[
+				"_modal",
+				"app/views/taken_courses/_new_modal.html.erb"
+			],
+			[
+				"error",
+				"app/views/shared/_errors.html.erb"
+			],
+			[
+				"edit_",
+				"app/views/taken_courses/_edit_modal.html.erb"
+			],
+			[
+				"modal",
+				"app/views/taken_courses/_modal_body.html.haml"
+			],
+			[
+				"houn",
+				".hound.yml"
+			],
+			[
+				"plde",
+				"spec/features/plans/plan_delete_spec.rb"
+			],
+			[
+				"plcode",
+				"spec/features/planned_courses/planned_course_create_spec.rb"
+			],
+			[
+				"session",
+				"spec/support/helpers/session_helpers.rb"
 			],
 			[
 				"tacocrsp",
 				"spec/features/taken_courses/taken_course_create_spec.rb"
 			],
 			[
-				"_modal_foo",
+				"plcosp",
+				"spec/models/planned_course_spec.rb"
+			],
+			[
+				"faplco",
+				"spec/factories/planned_courses.rb"
+			],
+			[
+				"sh",
+				"spec/models/shared/shared_examples_for_quarter_validator.rb"
+			],
+			[
+				"qu",
+				"app/models/quarter.rb"
+			],
+			[
+				"plco",
+				"app/models/planned_course.rb"
+			],
+			[
+				"plans/_for",
+				"app/views/plans/_form.html.haml"
+			],
+			[
+				"plhel",
+				"app/helpers/plans_helper.rb"
+			],
+			[
+				"plhe",
+				"app/helpers/plans_helper.rb"
+			],
+			[
+				"plne",
+				"app/views/plans/new.html.haml"
+			],
+			[
+				"plcrsp",
+				"spec/features/plans/plan_create_spec.rb"
+			],
+			[
+				"user.rb",
+				"app/models/user.rb"
+			],
+			[
+				"plan.rb",
+				"app/models/plan.rb"
+			],
+			[
+				"plan",
+				"app/controllers/plans_controller.rb"
+			],
+			[
+				"quart",
+				"app/services/quarter_validator.rb"
+			],
+			[
+				"shar",
+				"spec/models/shared/shared_examples_for_quarter_validator.rb"
+			],
+			[
+				"quar",
+				"app/services/quarter_validator.rb"
+			],
+			[
+				"course.rb",
+				"app/models/course.rb"
+			],
+			[
+				"crus",
+				"app/services/create_user_service.rb"
+			],
+			[
+				"crad",
+				"app/services/create_admin_service.rb"
+			],
+			[
+				"createadmin",
+				"app/services/create_admin_service.rb"
+			],
+			[
+				"ini",
+				"config/initializers/inflections.rb"
+			],
+			[
+				"envi",
+				"config/environment.rb"
+			],
+			[
+				"develop",
+				"config/environments/development.rb"
+			],
+			[
+				"user",
+				"app/models/user.rb"
+			],
+			[
+				"faus",
+				"spec/factories/users.rb"
+			],
+			[
+				"coco",
+				"app/controllers/courses_controller.rb"
+			],
+			[
+				"crea",
+				"app/services/create_course_service.rb"
+			],
+			[
+				"createcour",
+				"app/services/create_course_service.rb"
+			],
+			[
+				"seed",
+				"db/seeds.rb"
+			],
+			[
+				"planin",
+				"app/views/plans/index.html.haml"
+			],
+			[
+				"planshel",
+				"app/helpers/plans_helper.rb"
+			],
+			[
+				"css.scss",
+				"app/assets/stylesheets/forms.css.scss"
+			],
+			[
+				"custom",
+				"app/assets/stylesheets/custom.css.scss"
+			],
+			[
+				"fram",
+				"app/assets/stylesheets/framework_and_overrides.css.scss"
+			],
+			[
+				"courses",
+				"app/helpers/courses_helper.rb"
+			],
+			[
+				"helper",
+				"app/helpers/taken_courses_helper.rb"
+			],
+			[
+				"_moda",
 				"app/views/taken_courses/_modal_footer.html.erb"
 			],
 			[
-				"tacoco",
-				"app/controllers/taken_courses_controller.rb"
+				"mod",
+				"app/assets/stylesheets/modals.css.scss"
+			],
+			[
+				"shared",
+				"spec/models/shared/shared_examples_for_quarter_validator.rb"
+			],
+			[
+				"taken",
+				"app/models/taken_course.rb"
+			],
+			[
+				"tacoed",
+				"spec/features/taken_courses/taken_course_edit_spec.rb"
+			],
+			[
+				"_modal_foo",
+				"app/views/taken_courses/_modal_footer.html.erb"
 			],
 			[
 				"_co",
@@ -1081,10 +1383,6 @@
 			[
 				"ussho",
 				"app/views/users/show.html.haml"
-			],
-			[
-				"coin",
-				"app/views/courses/index.html.haml"
 			],
 			[
 				"_taken",
@@ -1099,10 +1397,6 @@
 				"app/views/users/_user.html.erb"
 			],
 			[
-				"_modal",
-				"app/views/taken_courses/modal_header.html.erb"
-			],
-			[
 				"new.js",
 				"app/views/taken_courses/new.js.erb"
 			],
@@ -1112,14 +1406,6 @@
 			],
 			[
 				"cus",
-				"app/assets/stylesheets/custom.css.scss"
-			],
-			[
-				"fram",
-				"app/assets/stylesheets/framework_and_overrides.css.scss"
-			],
-			[
-				"custom",
 				"app/assets/stylesheets/custom.css.scss"
 			],
 			[
@@ -1137,10 +1423,6 @@
 			[
 				"tacopo",
 				"app/policies/taken_course_policy.rb"
-			],
-			[
-				"taken",
-				"app/controllers/taken_courses_controller.rb"
 			],
 			[
 				"routes",
@@ -1183,20 +1465,8 @@
 				"app/views/courses/_course.html.haml"
 			],
 			[
-				"courses",
-				"app/helpers/courses_helper.rb"
-			],
-			[
-				"css.scss",
-				"app/assets/stylesheets/registrations.css.scss"
-			],
-			[
 				"reg",
 				"app/views/devise/registrations/edit.html.erb"
-			],
-			[
-				"user.rb",
-				"app/models/user.rb"
 			],
 			[
 				"frame",
@@ -1213,10 +1483,6 @@
 			[
 				"_",
 				"app/views/courses/_course.html.haml"
-			],
-			[
-				"tacosp",
-				"spec/models/taken_course_spec.rb"
 			],
 			[
 				"crcosp",
@@ -1275,10 +1541,6 @@
 				"spec/features/users/user_delete_spec.rb"
 			],
 			[
-				"gem",
-				"Gemfile"
-			],
-			[
 				"_cour",
 				"app/views/courses/_course.html.haml"
 			],
@@ -1315,20 +1577,8 @@
 				"app/views/courses/show.html.haml"
 			],
 			[
-				"coco",
-				"app/controllers/courses_controller.rb"
-			],
-			[
-				"cosp",
-				"spec/models/course_spec.rb"
-			],
-			[
 				"plan_spe",
 				"spec/models/plan_spec.rb"
-			],
-			[
-				"course.rb",
-				"app/models/course.rb"
 			],
 			[
 				"fapl",
@@ -1385,190 +1635,6 @@
 			[
 				"uni",
 				"config/unicorn.rb"
-			],
-			[
-				"plposp",
-				"spec/policies/plan_policy_spec.rb"
-			],
-			[
-				"plpo",
-				"app/policies/plan_policy.rb"
-			],
-			[
-				"sh",
-				"spec/models/shared/shared_examples_for_quarter_validator.rb"
-			],
-			[
-				"sh/",
-				"spec/models/shared/shared_examples_for_quarter_validator.rb"
-			],
-			[
-				"plsp",
-				"spec/models/plan_spec.rb"
-			],
-			[
-				"posp",
-				"spec/policies/taken_course_policy_spec.rb"
-			],
-			[
-				"plcoposp",
-				"spec/policies/planned_course_policy_spec.rb"
-			],
-			[
-				"plcopo",
-				"app/policies/planned_course_policy.rb"
-			],
-			[
-				"plcosp",
-				"spec/models/planned_course_spec.rb"
-			],
-			[
-				"quart",
-				"app/services/quarter_validator.rb"
-			],
-			[
-				"plco",
-				"app/models/planned_course.rb"
-			],
-			[
-				"plancss",
-				"app/assets/stylesheets/plans.css.scss"
-			],
-			[
-				"apcss",
-				"app/assets/stylesheets/application.css.scss"
-			],
-			[
-				"bootstrap",
-				"config/initializers/simple_form_bootstrap.rb"
-			],
-			[
-				"sen",
-				"app/views/devise/sessions/new.html.haml"
-			],
-			[
-				"user",
-				"app/models/user.rb"
-			],
-			[
-				"messages",
-				"app/views/layouts/_messages.html.haml"
-			],
-			[
-				"applica",
-				"app/views/layouts/application.html.haml"
-			],
-			[
-				"sene",
-				"app/views/devise/sessions/new.html.haml"
-			],
-			[
-				"helpe",
-				"spec/support/helpers/session_helpers.rb"
-			],
-			[
-				"spec/features/",
-				"spec/features/users/sign_in_spec.rb"
-			],
-			[
-				"plans/ind",
-				"app/views/plans/index.html.haml"
-			],
-			[
-				"pli",
-				"app/views/planned_courses/index.html.haml"
-			],
-			[
-				"usshsp",
-				"spec/features/users/user_show_spec.rb"
-			],
-			[
-				"seac",
-				"spec/features/plans/set_active_spec.rb"
-			],
-			[
-				"plans_dele",
-				"spec/features/plans/plans_delete_spec.rb"
-			],
-			[
-				"plan.rb",
-				"app/models/plan.rb"
-			],
-			[
-				"seta",
-				"spec/features/plans/set_active_spec.rb"
-			],
-			[
-				"pin",
-				"app/views/planned_courses/index.html.haml"
-			],
-			[
-				"factor",
-				"spec/factories/courses.rb"
-			],
-			[
-				"rspec",
-				"bin/rspec"
-			],
-			[
-				"spec_he",
-				"spec/spec_helper.rb"
-			],
-			[
-				"rail",
-				"spec/rails_helper.rb"
-			],
-			[
-				"planscon",
-				"app/controllers/plans_controller.rb"
-			],
-			[
-				"na",
-				"app/views/layouts/_navigation_links.html.erb"
-			],
-			[
-				"nac",
-				"spec/features/visitors/navigation_spec.rb"
-			],
-			[
-				"boot",
-				"config/initializers/simple_form_bootstrap.rb"
-			],
-			[
-				"boo",
-				"config/initializers/simple_form_bootstrap.rb"
-			],
-			[
-				"simpl",
-				"config/initializers/simple_form.rb"
-			],
-			[
-				"senew",
-				"app/views/devise/sessions/new.html.haml"
-			],
-			[
-				"_form",
-				"app/views/plans/_form.html.haml"
-			],
-			[
-				"plans/new",
-				"app/views/plans/new.html.haml"
-			],
-			[
-				"create_pl",
-				"spec/features/plans/create_plan_spec.rb"
-			],
-			[
-				"rails",
-				"spec/rails_helper.rb"
-			],
-			[
-				"cap",
-				"spec/support/capybara.rb"
-			],
-			[
-				"spec",
-				"spec/features/courses/course_edit_spec.rb"
 			]
 		],
 		"width": 0.0
@@ -1612,7 +1678,7 @@
 	"show_minimap": false,
 	"show_open_files": false,
 	"show_tabs": true,
-	"side_bar_visible": true,
+	"side_bar_visible": false,
 	"side_bar_width": 261.0,
 	"status_bar_visible": true
 }

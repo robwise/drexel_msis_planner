@@ -1,6 +1,7 @@
 module PlansHelper
   def form_button_text_for(object)
-    if object.class.find(object.id).nil?
+    plan = object[1] if object.class == Array
+    if plan.new_record?
       'Create'
     else
       'Update'

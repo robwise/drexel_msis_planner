@@ -1,6 +1,6 @@
-= form_for object, html: { role: 'form' } do |f|
+= form_for plan_decorator.form_model, html: { role: 'form' } do |f|
   = f.hidden_field :user_id, class: 'hidden'
   .form-group
     = f.label :name
     = f.text_field :name, autofocus: true, class: 'form-control'
-  = f.submit form_button_text_for(object), class: 'button right'
+  = f.submit plan_decorator.form_button_text, class: 'button right'

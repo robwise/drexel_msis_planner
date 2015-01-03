@@ -1,0 +1,6 @@
+%h3= quarter_section[:title].to_s
+%table.table
+  - quarter_section[:courses].each do |course|
+    %tr
+      %td= course.course.title
+      %td= course.grade

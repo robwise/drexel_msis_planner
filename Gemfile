@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
-ruby '2.1.2'
-gem 'rails', '4.1.5'
+ruby '2.1.5'
+gem 'rails', '~>4.2.0'
 gem 'dotenv-rails', :groups => [:development, :test]
 gem 'sass-rails', '~> 4.0.3'
 gem 'uglifier', '>= 1.3.0'
@@ -16,6 +16,7 @@ gem 'haml-rails'
 gem 'pg'
 gem 'pundit'
 gem 'simple_form'
+gem 'titleize', '~> 1.3'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_21]

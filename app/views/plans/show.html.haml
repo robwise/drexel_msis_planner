@@ -1,9 +1,12 @@
-- content_for :title, @plan.name
-- content_for :description, "User #{@plan.user.email}'s #{@plan.name} degree plan."
-%h2= "\"#{@plan.name}\""
-- @plan.user.taken_quarters.each do |quarter|
-  = render 'quarter', quarter: quarter, user: @plan.user
+- content_for :title, @plan_decorator.name
+- content_for :description, "User #{@plan_decorator.user.email}'s '#{@plan_decorator.name}' degree plan."
+%h2= "\"#{@plan_decorator.name}\""
+%tbody
+  - @plan_decorator.taken_quarter_sections.each do |quarter_section|
+    = render 'taken_quarter_section', quarter_section: quarter_section
+  - @plan_decorator.planned_quarter_sections.each do |quarter_section|
+    = render 'planned_quarter_section', quarter_section: quarter_section
 
-= link_to 'Edit', edit_plan_path(@plan)
+= link_to 'Edit Current Plan', edit_plan_path(@plan_decorator.id)
 \|
-= link_to 'Back', user_plans_path(@plan.user)
+= link_to 'All Plans', user_plans_path(@plan_decorator.user)

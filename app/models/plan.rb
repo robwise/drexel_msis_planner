@@ -17,20 +17,16 @@ class Plan < ActiveRecord::Base
 
   private
 
-    # Callbacks
+    # Validators
 
     def ensure_active_has_value
-      if active.nil?
-        self.active = false
-        !active # Callbacks require the method to return true
-      end
+      self.active = false if active.nil?
+      not active.nil?
     end
 
     def ensure_active_if_user_has_no_other_plans
-      if user_has_no_other_plans
-        self.active = true
-        active # Callbacks require the method to return true
-      end
+      self.active = true if user_has_no_other_plans
+      active == true || user_has_other_plans
     end
 
     def deactivate_users_other_plans
@@ -41,9 +37,7 @@ class Plan < ActiveRecord::Base
     # Helper methods
 
     def users_other_plans
-      unless user.nil?
-        user.plans(true).where('id != ?', id)
-      end
+      user.plans.where('id != ?', id) unless user.nil?
     end
 
     def user_has_other_plans

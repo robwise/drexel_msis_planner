@@ -4,12 +4,9 @@ class TakenCoursesController < ApplicationController
   after_action :verify_authorized
 
   def new
-    @taken_course = User.find(params[:user_id]).taken_courses.build(course_id: params[:course_id])
+    @taken_course = TakenCourse.new(user_id: params[:user_id],
+                                    course_id: params[:course_id])
     authorize @taken_course
-    respond_to do |format|
-      format.html
-      format.js
-    end
   end
 
   # POST /users/:user_id/taken_courses
@@ -17,9 +14,13 @@ class TakenCoursesController < ApplicationController
     @taken_course = TakenCourse.new(secure_params)
     authorize @taken_course
     if @taken_course.save
-      redirect_to courses_path, notice: 'Added course to your course history.'
+      respond_to do |format|
+        format.js
+      end
     else
-      redirect_to courses_path, alert: 'Error adding course to your history.'
+      respond_to do |format|
+        format.js { render "_modal_errors" }
+      end
     end
   end
 
@@ -34,10 +35,11 @@ class TakenCoursesController < ApplicationController
   def update
     authorize @taken_course
     if @taken_course.update(secure_params)
-      redirect_to user_path(current_user), :notice => "Course history updated."
+      redirect_to user_path(current_user),
+        notice: "Course history updated."
     else
-      redirect_to user_path(current_user), alert: @taken_course.errors.full_messages.join
-        # :alert => "Unable to update taken course."
+      redirect_to user_path(current_user),
+        alert: "Unable to update taken course."
     end
   end
 

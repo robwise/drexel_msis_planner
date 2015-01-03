@@ -1,6 +1,6 @@
 class PlansController < ApplicationController
   before_filter :authenticate_user!
-  before_action :set_plan, only: [:show, :edit, :update, :destroy]
+  before_action :set_plan, only: [:edit, :update, :destroy]
   after_action  :verify_authorized
 
   # GET /users/:user_id/plans
@@ -11,17 +11,23 @@ class PlansController < ApplicationController
 
   # GET /plans/1
   def show
+    plan = Plan.find(params[:id])
+    authorize plan
+    @plan_decorator = PlanDecorator.new(plan)
   end
 
   # GET users/:user_id/plans/new
   def new
-    @plan = Plan.new
-    @plan.user_id = params[:user_id]
-    authorize @plan
+    plan = Plan.new(user_id: params[:user_id])
+    authorize plan
+    @plan_decorator = PlanDecorator.new(plan)
   end
 
   # GET /plans/1/edit
   def edit
+    plan = Plan.find(params[:id])
+    authorize plan
+    @plan_decorator = PlanDecorator.new(plan)
   end
 
   # POST /users/:user_id/plans
