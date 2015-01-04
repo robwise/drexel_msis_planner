@@ -4,12 +4,14 @@
   'aria-labelledby' => "took-this-modal-Label", 'aria-hidden' => "true" }
 .row
   .col-md-12
-    %h3= @user.email
-    %h4 Degree Status:
+    %h2= @user.email
+    %h3 Degree Status:
     %ul
-      %li
-        = "Required Credits Earned: #{@user.required_credits_earned}"
-    %h4 Taken Courses:
+      %li= "Required Course Credits Earned: #{@user.required_credits_earned}/27"
+      %li= "Distribution Requirement Credits Earned: #{@user.distribution_credits_earned}/12"
+      %li= "Free Elective Credits Earned: #{@user.free_elective_credits_earned}/6"
+      %li= "TOTAL: #{@user.total_credits_earned}/45"
+    %h3 Taken Courses:
     %table.table
       %tbody.taken-courses
         = render @user.taken_courses

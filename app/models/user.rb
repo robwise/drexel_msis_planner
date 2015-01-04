@@ -55,6 +55,10 @@ class User < ActiveRecord::Base
     credits
   end
 
+  def total_credits_earned
+    self.taken_courses.size * 3
+  end
+
   private
     def set_default_role
       self.role ||= :user

@@ -14,6 +14,7 @@ describe User do
   it { should respond_to(:required_credits_earned) }
   it { should respond_to(:distribution_credits_earned) }
   it { should respond_to(:free_elective_credits_earned) }
+  it { should respond_to(:total_credits_earned) }
   it { should validate_uniqueness_of(:email) }
 
   context "with acceptable attributes" do
@@ -128,6 +129,25 @@ describe User do
     let!(:taken_course6) { create :taken_course, user: user, course: course6, quarter: 201415 }
     it "should respond with proper amount" do
       expect(user.free_elective_credits_earned).to eq 3
+    end
+  end
+
+  describe "#total_credits_earned" do
+    before { user.save }
+    let!(:course1) { create :course, degree_requirement: :required_course }
+    let!(:course2) { create :course, degree_requirement: :required_course }
+    let!(:course3) { create :course, degree_requirement: :required_course }
+    let!(:course4) { create :course, degree_requirement: :distribution_requirement }
+    let!(:course5) { create :course, degree_requirement: :distribution_requirement }
+    let!(:course6) { create :course, degree_requirement: :free_elective }
+    let!(:taken_course1) { create :taken_course, user: user, course: course1, quarter: 201415 }
+    let!(:taken_course2) { create :taken_course, user: user, course: course2, quarter: 201425 }
+    let!(:taken_course3) { create :taken_course, user: user, course: course3, quarter: 201415 }
+    let!(:taken_course4) { create :taken_course, user: user, course: course4, quarter: 201415 }
+    let!(:taken_course5) { create :taken_course, user: user, course: course5, quarter: 201415 }
+    let!(:taken_course6) { create :taken_course, user: user, course: course6, quarter: 201415 }
+    it "should respond with proper amount" do
+      expect(user.total_credits_earned).to eq 18
     end
   end
 
