@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
 
   def required_credits_earned
     credits = 0
-    self.taken_courses.each do |taken_course|
+    taken_courses.each do |taken_course|
       if (taken_course.course.degree_requirement == "required_course")
         credits += 3
       end
@@ -37,7 +37,7 @@ class User < ActiveRecord::Base
 
   def distribution_credits_earned
     credits = 0
-    self.taken_courses.each do |taken_course|
+    taken_courses.each do |taken_course|
       if (taken_course.course.degree_requirement == "distribution_requirement")
         credits += 3
       end
@@ -47,7 +47,7 @@ class User < ActiveRecord::Base
 
   def free_elective_credits_earned
     credits = 0
-    self.taken_courses.each do |taken_course|
+    taken_courses.each do |taken_course|
       if (taken_course.course.degree_requirement == "free_elective")
         credits += 3
       end
@@ -56,7 +56,7 @@ class User < ActiveRecord::Base
   end
 
   def total_credits_earned
-    self.taken_courses.size * 3
+    taken_courses.size * 3
   end
 
   private
