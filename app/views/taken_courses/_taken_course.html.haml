@@ -1,7 +1,6 @@
 %tr
   %td= render taken_course.course
   %td= link_to 'edit',
-    edit_taken_course_path(taken_course), remote: true, class: 'button-xs',
-    'data-toggle' =>  "modal", 'data-target' => '#took-this-modal'
+    edit_taken_course_path(taken_course), remote: true, class: 'button-xs'
   %td= link_to('remove', taken_course_path(taken_course),
     data: { confirm: 'Are you sure?' }, method: :delete, class: 'button-xs')

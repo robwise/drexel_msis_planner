@@ -7,6 +7,9 @@ class TakenCoursesController < ApplicationController
     @taken_course = TakenCourse.new(user_id: params[:user_id],
                                     course_id: params[:course_id])
     authorize @taken_course
+    respond_to do |format|
+      format.js { }
+    end
   end
 
   # POST /users/:user_id/taken_courses
@@ -14,13 +17,9 @@ class TakenCoursesController < ApplicationController
     @taken_course = TakenCourse.new(secure_params)
     authorize @taken_course
     if @taken_course.save
-      respond_to do |format|
-        format.js
-      end
+      redirect_to courses_path, notice: "Course added to taken courses"
     else
-      respond_to do |format|
-        format.js { render "_modal_errors" }
-      end
+      redirect_to courses_path, alert: "Course could not be added"
     end
   end
 

@@ -1,3 +1,7 @@
-<% modal_html = escape_javascript(render 'modal',
-                                  object: [@taken_course.user, @taken_course]) %>
-$("#took-this-modal").html("<%= escape_javascript(modal_html) %>");
+$('main').prepend('<%= escape_javascript render("new_modal") %>');
+var options = {
+    backdrop: "true",
+    keyboard: "true",
+    show: "true"
+};
+$('#took-this-modal').modal(options);
