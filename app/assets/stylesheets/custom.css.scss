@@ -6,10 +6,6 @@
 .navbar-brand {
   font-size: inherit;
   }
-.column {
-  @extend .col-md-6;
-  @extend .text-center;
-  }
 #error_explanation {
   @extend .alert;
   @extend .alert-danger;

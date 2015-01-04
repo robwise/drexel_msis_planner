@@ -1,16 +1,15 @@
 -content_for :title, @course.full_id
 -content_for :description, "A detailed view of #{@course.full_id}"
-.container
-  .row
-    .column
-      .breadcrumb
-        = link_to 'Courses', courses_path
-        &#47
-        = @course.full_id
-      %h1.course-full-id= @course.full_id
-      %h2.course-title= @course.title
-      .course-description= @course.description
-      .course-degree-requirement= @course.degree_requirement.humanize.titleize
-      - unless TakenCourse.already_taken?(current_user, @course)
-        .took-this
-          = link_to 'I Took This', new_user_taken_course_path(course_id: @course.id, user_id: current_user.id)
+.row
+  .col-md-12
+    .breadcrumb
+      = link_to 'Courses', courses_path
+      &#47
+      = @course.full_id
+    %h1.course-full-id= @course.full_id
+    %h2.course-title= @course.title
+    .course-description= @course.description
+    .course-degree-requirement= @course.degree_requirement.humanize.titleize
+    - unless TakenCourse.already_taken?(current_user, @course)
+      .took-this
+        = link_to 'I Took This', new_user_taken_course_path(course_id: @course.id, user_id: current_user.id)

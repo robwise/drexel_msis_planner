@@ -1,8 +1,7 @@
 -content_for :title, 'Edit Course'
 -content_for :description, 'Edit an existing course.'
-.container
-  .row
-    .column
-      .authform
-        %h3="Edit Course #{@course.full_id}"
-        =render 'courses/form'
+.row
+  .col-md-12
+    .authform
+      %h3="Edit Course #{@course.full_id}"
+      =render 'courses/form'

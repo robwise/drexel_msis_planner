@@ -1,15 +1,17 @@
-%p#notice= notice
+.row
+  .col-md-12
+      %p#notice= notice
 
-%p
-  %b Plan:
-  = @planned_course.plan_id
-%p
-  %b Course:
-  = @planned_course.course_id
-%p
-  %b Quarter:
-  = @planned_course.quarter
+      %p
+        %b Plan:
+        = @planned_course.plan_id
+      %p
+        %b Course:
+        = @planned_course.course_id
+      %p
+        %b Quarter:
+        = @planned_course.quarter
 
-= link_to 'Edit', edit_planned_course_path(@planned_course)
-\|
-= link_to 'Back', plan_planned_courses_path(@planned_course.plan)
+      = link_to 'Edit', edit_planned_course_path(@planned_course)
+      \|
+      = link_to 'Back', plan_planned_courses_path(@planned_course.plan)

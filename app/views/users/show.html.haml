@@ -2,8 +2,8 @@
 - content_for :description, "User details."
 .modal.fade#took-this-modal{ tabindex: "-1", role: "dialog",
   'aria-labelledby' => "took-this-modal-Label", 'aria-hidden' => "true" }
-.container
-  .row
+.row
+  .col-md-12
     %h3= @user.email
     %h4 Degree Status:
     %h4 Taken Courses:
