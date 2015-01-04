@@ -25,6 +25,36 @@ class User < ActiveRecord::Base
     TakenCourse.where(user_id: id, quarter: quarter)
   end
 
+  def required_credits_earned
+    credits = 0
+    self.taken_courses.each do |taken_course|
+      if (taken_course.course.degree_requirement == "required_course")
+        credits += 3
+      end
+    end
+    credits
+  end
+
+  def distribution_credits_earned
+    credits = 0
+    self.taken_courses.each do |taken_course|
+      if (taken_course.course.degree_requirement == "distribution_requirement")
+        credits += 3
+      end
+    end
+    credits
+  end
+
+  def free_elective_credits_earned
+    credits = 0
+    self.taken_courses.each do |taken_course|
+      if (taken_course.course.degree_requirement == "free_elective")
+        credits += 3
+      end
+    end
+    credits
+  end
+
   private
     def set_default_role
       self.role ||= :user
