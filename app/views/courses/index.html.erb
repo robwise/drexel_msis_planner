@@ -10,14 +10,8 @@
     </h1>
   </div>
   <div class="col-md-12">
-    <table class="table">
-      <tbody>
-        <% @courses.each do |course| %>
-          <tr class="course">
-            <%= render course %>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+    <% @courses.each do |course| %>
+        <%= render course %>
+    <% end %>
   </div>
 </div>

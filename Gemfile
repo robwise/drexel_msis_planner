@@ -49,4 +49,5 @@ group :test do
   gem 'selenium-webdriver'
   gem 'shoulda-matchers', require: false
   gem 'capybara-webkit'
+  gem 'growl'
 end
