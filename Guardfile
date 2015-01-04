@@ -1,6 +1,7 @@
 # More info at https://github.com/guard/guard#readme
 
 clearing :on
+notification :growl
 
 guard :bundler do
   watch('Gemfile')
@@ -12,6 +13,7 @@ guard 'rails' do
   watch('Gemfile.lock')
   watch(%r{^(config|lib)/.*})
   watch('.env')
+  watch('config/routes.rb')
 end
 
 
