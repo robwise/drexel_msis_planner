@@ -2,7 +2,9 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <%= form_for([@taken_course.user, @taken_course],
-        html: { class: 'modal-form', role: 'form' }) do |f| %>
+                   remote: true,
+                   disable_with: "Submitting...",
+                   html: { class: 'modal-form', role: 'form' }) do |f| %>
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">
             <span aria-hidden="true">

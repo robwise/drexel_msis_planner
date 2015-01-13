@@ -16,11 +16,11 @@ feature "Adding a course to user's course history", :js, speed: "slow" do
     expect(page).to have_success_message
     course_appears_under_users_taken_courses
   end
-  xscenario "when entering an invalid quarter code" do
+  scenario "when entering an invalid quarter code" do
     fill_taken_course_modal(quarter: -9999)
     expect(page).to have_quarter_error_message
   end
-  xscenario "without selecting a grade" do
+  scenario "without selecting a grade" do
     fill_taken_course_modal(201315, "NONE")
     expect(page).to have_grade_error_message
   end
