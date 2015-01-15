@@ -8,18 +8,23 @@ class TakenCoursesController < ApplicationController
                                     course_id: params[:course_id])
     authorize @taken_course
     respond_to do |format|
-      format.js { }
+      format.js {}
     end
   end
 
-  # POST /users/:user_id/taken_courses
   def create
     @taken_course = TakenCourse.new(secure_params)
     authorize @taken_course
-    if @taken_course.save
-      redirect_to courses_path, notice: "Course added to taken courses"
-    else
-      redirect_to courses_path, alert: "Course could not be added"
+    respond_to do |format|
+      if @taken_course.save
+        format.js do
+          flash[:notice] = "Course added to taken courses"
+          flash.keep(:notice) # Keep flash notice around for the redirect.
+          render js: "window.location = #{ courses_path.to_json }", status: 201
+        end
+      else
+        format.js {}
+      end
     end
   end
 
@@ -35,18 +40,18 @@ class TakenCoursesController < ApplicationController
     authorize @taken_course
     if @taken_course.update(secure_params)
       redirect_to user_path(current_user),
-        notice: "Course history updated."
+                  notice: "Course history updated."
     else
       redirect_to user_path(current_user),
-        alert: "Unable to update taken course."
+                  alert: "Unable to update taken course."
     end
   end
 
   def destroy
     authorize @taken_course
-    user_id =@taken_course.user_id
+    user_id = @taken_course.user_id
     @taken_course.destroy
-    redirect_to user_path(user_id), notice: 'Course removed.'
+    redirect_to user_path(user_id), notice: "Course removed."
   end
 
   private
