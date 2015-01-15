@@ -18,7 +18,7 @@ FactoryGirl.define do
       degree_requirement :free_elective
     end
     trait :distribution do
-      degree_requirement :distribution
+      degree_requirement :distribution_requirement
     end
   end
 end
