@@ -19,7 +19,8 @@ feature "Editing an existing taken course" do
     js_signin_user user
     visit root_path
     click_on "edit"
-    expect(page).to have_text("Edit when you took #{course.full_id}: #{course.title.titleize}")
+    expect(page).to have_text("Edit when you took #{course.full_id}:
+      #{course.title.titleize}")
   end
   scenario "updates successfully", :js, speed: "slow" do
     js_signin_user user
@@ -27,5 +28,15 @@ feature "Editing an existing taken course" do
     fill_in "Quarter", with: 201425
     click_on "Update"
     expect(page).to have_text("Course history updated")
+  end
+  scenario "closing a modal and reopening another", :js, speed: "slow" do
+    taken_course2 = create :taken_course, user: user
+    js_signin_user user
+    expect(page).to have_text taken_course2.course.full_id
+    within("##{taken_course2.course.short_id}") { click_on "edit" }
+    click_on "Close"
+    within("##{course.short_id}") { click_on "edit" }
+    expect(page).to have_text("Edit when you took #{course.full_id}:
+      #{course.title.titleize}")
   end
 end

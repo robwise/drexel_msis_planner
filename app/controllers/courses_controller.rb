@@ -19,9 +19,9 @@ class CoursesController < ApplicationController
     @course = Course.new(secure_params)
     authorize @course
     if @course.save
-      redirect_to @course, notice: 'Course sucessfully created.'
+      redirect_to @course, notice: "Course sucessfully created."
     else
-      redirect_to new_course_path, :alert => "Unable to create course."
+      redirect_to new_course_path, alert: "Unable to create course."
     end
   end
 
@@ -34,9 +34,9 @@ class CoursesController < ApplicationController
     @course = Course.find(params[:id])
     authorize @course
     if @course.update_attributes(secure_params)
-      redirect_to @course, notice: 'Course updated.'
+      redirect_to @course, notice: "Course updated."
     else
-      redirect_to users_path, alert: 'Error updating course.'
+      redirect_to users_path, alert: "Error updating course."
     end
   end
 
@@ -45,7 +45,7 @@ class CoursesController < ApplicationController
 
     authorize course
     if course.destroy
-      redirect_to courses_path, notice: 'Course successfully deleted.'
+      redirect_to courses_path, notice: "Course successfully deleted."
     else
       flash![:error] = "Error deleting course."
     end
@@ -53,12 +53,12 @@ class CoursesController < ApplicationController
 
   private
 
-    def secure_params
-      params.require(:course).permit(:id,
-                                     :department,
-                                     :level,
-                                     :title,
-                                     :description,
-                                     :degree_requirement)
-    end
+  def secure_params
+    params.require(:course).permit(:id,
+                                   :department,
+                                   :level,
+                                   :title,
+                                   :description,
+                                   :degree_requirement)
+  end
 end
