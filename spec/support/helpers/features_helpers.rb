@@ -55,9 +55,7 @@ module Features
     def fill_taken_course_modal(quarter = "201315", grade = "A+")
       fill_in "Quarter", with: quarter
       select grade, from: "Grade" unless grade == "NONE"
-      click_button "Save"
+      click_button "Add"
     end
-
   end
-
 end

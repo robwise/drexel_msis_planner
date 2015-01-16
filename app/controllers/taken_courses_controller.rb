@@ -4,47 +4,34 @@ class TakenCoursesController < ApplicationController
   after_action :verify_authorized
 
   def new
-    @taken_course = TakenCourse.new(user_id: params[:user_id],
-                                    course_id: params[:course_id])
+    @taken_course = TakenCourseDecorator.new(
+      TakenCourse.new(user_id: params[:user_id], course_id: params[:course_id])
+    )
     authorize @taken_course
-    respond_to do |format|
-      format.js {}
-    end
   end
 
   def create
-    @taken_course = TakenCourse.new(secure_params)
+    @taken_course = TakenCourseDecorator.new(TakenCourse.new(secure_params))
     authorize @taken_course
-    respond_to do |format|
-      if @taken_course.save
-        format.js do
-          flash[:notice] = "Course added to taken courses"
-          flash.keep(:notice) # Keep flash notice around for the redirect.
-          render js: "window.location = #{ courses_path.to_json }", status: 201
-        end
-      else
-        format.js {}
-      end
-    end
+    return unless @taken_course.save # Let create.js.erb handle errors
+
+    flash[:notice] = "Course added to taken courses"
+    flash.keep(:notice) # Keep flash notice around for the redirect.
+    render js: "window.location = #{ courses_path.to_json }", status: 201
   end
 
   def edit
     authorize @taken_course
-    respond_to do |format|
-      format.html
-      format.js
-    end
   end
 
   def update
     authorize @taken_course
-    if @taken_course.update(secure_params)
-      redirect_to user_path(current_user),
-                  notice: "Course history updated."
-    else
-      redirect_to user_path(current_user),
-                  alert: "Unable to update taken course."
-    end
+    return unless @taken_course.save # Let update.js.erb handle errors
+
+    flash[:notice] = "Course history updated"
+    flash.keep(:notice) # Keep flash notice around for the redirect.
+    render js: "window.location = #{ user_path(current_user).to_json }",
+           status: 200
   end
 
   def destroy
@@ -56,13 +43,12 @@ class TakenCoursesController < ApplicationController
 
   private
 
-    def secure_params
-      params.require(:taken_course).permit(:id, :user_id, :course_id, :grade,
-                                           :quarter)
-    end
+  def secure_params
+    params.require(:taken_course).permit(:id, :user_id, :course_id, :grade,
+                                         :quarter)
+  end
 
-    def set_taken_course
-      @taken_course = TakenCourse.find(params[:id])
-    end
-
+  def set_taken_course
+    @taken_course = TakenCourseDecorator.new(TakenCourse.find(params[:id]))
+  end
 end

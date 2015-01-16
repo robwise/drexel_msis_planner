@@ -1,9 +1,8 @@
-<div class="modal fade" id="took-this-modal" tabindex="-1" role="dialog" aria-labelledby="took-this-modal-label" aria-hidden="true">
+<div class="modal fade" id="taken-course-modal" tabindex="-1" role="dialog" aria-labelledby="modal-label" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      <%= form_for([@taken_course.user, @taken_course],
+      <%= form_for(@taken_course.form_model,
                    remote: true,
-                   disable_with: "Submitting...",
                    html: { class: 'modal-form', role: 'form' }) do |f| %>
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">
@@ -14,8 +13,8 @@
               Close
             </span>
           </button>
-          <h4 class="modal-title" id="took-this-modal-label">
-            <%= "Add #{@taken_course.course.full_id}: #{@taken_course.course.title.titleize} to Taken Courses" %>
+          <h4 class="modal-title" id="modal-label">
+            <%= @taken_course.modal_title %>
           </h4>
         </div>
         <div class="modal-body">
@@ -48,7 +47,11 @@
           <button type="button" class="modal-cancel-button" data-dismiss="modal">
             Cancel
           </button>
-          <%= f.submit 'Save', class: 'modal-accept-button', html: { type: 'button' } %>
+          <%= f.submit @taken_course.submit_text,
+                       class: 'modal-accept-button',
+                       disable_with: "Submitting",
+                       html: { type: 'button' }
+                       %>
         </div>
       <% end %>
     </div>

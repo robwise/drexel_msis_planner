@@ -20,23 +20,21 @@ describe TakenCourse do
   context "with acceptable attributes" do
     it { should be_valid }
   end
-  describe "quarter code validation" do
-    context "with valid codes" do
-      it "is valid" do
-        good_quarters = [201415, 201425, 201435, 201445, 199015]
-        good_quarters.each do |good_quarter|
-          subject.quarter = good_quarter
-          expect(subject).to be_valid
-        end
+  context "with valid quarter code" do
+    it "is valid" do
+      good_quarters = [201415, 201425, 201435, 201445, 199015]
+      good_quarters.each do |good_quarter|
+        subject.quarter = good_quarter
+        expect(subject).to be_valid
       end
     end
-    context "with invalid codes" do
-      it "is valid" do
-        bad_quarters = [190015, 201416, 20145, 201520, 201460, 2014, 201400]
-        bad_quarters.each do |bad_quarter|
-          subject.quarter = bad_quarter
-          expect(subject).not_to be_valid
-        end
+  end
+  context "with invalid quarter code" do
+    it "is not valid" do
+      bad_quarters = [190015, 201416, 20145, 201520, 201460, 2014, 201400]
+      bad_quarters.each do |bad_quarter|
+        subject.quarter = bad_quarter
+        expect(subject).not_to be_valid
       end
     end
   end

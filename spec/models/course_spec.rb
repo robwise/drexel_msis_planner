@@ -33,7 +33,7 @@ describe Course do
     before do
       create :course, department: course.department, level: course.level
     end
-    it "should not be valid" do
+    it "is not valid" do
       expect(subject).to be_invalid
     end
   end
@@ -44,14 +44,13 @@ describe Course do
 
   describe "#destroy" do
     before { course.save }
-    it "should also destroy associated taken_courses" do
+    it "destroys associated taken_courses" do
       create :taken_course, course: course
       expect { course.destroy }.to change(TakenCourse, :count).by(-1)
     end
-    it "should also destroy associated planned_courses" do
+    it "destroys associated planned_courses" do
       create :planned_course, course: course
       expect { course.destroy }.to change(PlannedCourse, :count).by(-1)
     end
   end
-
 end

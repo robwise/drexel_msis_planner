@@ -7,7 +7,7 @@
       remote: true,
       class: 'button-xs took-this',
       'data-toggle' => "modal",
-      'data-target' => '#took-this-modal'
+      'data-target' => '.modal'
   - if current_user.admin?
     = link_to 'edit', edit_course_path(course), class: 'button-xs'
     = link_to 'delete', course_path(course), method: :delete,
