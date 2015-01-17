@@ -1,0 +1,11 @@
+= content_for :description, 'Course Listings'
+= content_for :title, 'Courses'
+.row
+  .col-md-2
+    %h1
+      Courses
+      - if current_user.present? && current_user.admin?
+        = link_to '+', new_course_path
+  .col-md-12
+    - @courses.each do |course|
+      = render course
