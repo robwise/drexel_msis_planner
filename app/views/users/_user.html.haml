@@ -5,9 +5,9 @@
     = f.select(:role, User.roles.keys.map {|role| [role.titleize,role]})
     = f.submit 'Change Role', :class => 'button-xs'
 %td
-  - if current_user not user
-    = link_to "Delete user",
-      user_path(user),
-      :data => { :confirm => "Are you sure?" },
-      :method => :delete,
-      :class => 'button-xs'
+  - unless current_user == user
+    = link_to "Delete user",                    |
+      user_path(user),                          |
+      :data => { :confirm => "Are you sure?" }, |
+      :method => :delete,                       |
+      :class => 'button-xs'                     |
