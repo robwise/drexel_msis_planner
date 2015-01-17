@@ -2,6 +2,7 @@ class Course < ActiveRecord::Base
   enum degree_requirement: [:required_course,
                             :distribution_requirement,
                             :free_elective]
+
   validates :department, presence: true
   validates :level,
             presence: true,
@@ -11,7 +12,9 @@ class Course < ActiveRecord::Base
   validates :degree_requirement, presence: true
   validates :description, presence: true
   validates :title, presence: true, uniqueness: { case_sensitive: false }
+
   has_many :taken_courses, dependent: :destroy
+  has_many :users, through: :taken_courses
   has_many :planned_courses, dependent: :destroy
 
   def self.default_scope

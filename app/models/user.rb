@@ -4,8 +4,9 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
   enum role: [:user, :vip, :admin]
-  after_initialize :set_default_role, :if => :new_record?
+  after_initialize :set_default_role, if: :new_record?
   has_many :taken_courses, dependent: :destroy
+  has_many :courses, through: :taken_courses
   has_many :plans, -> { order "name ASC" }, inverse_of: :user, dependent: :destroy
 
   def active_plan
@@ -13,11 +14,11 @@ class User < ActiveRecord::Base
   end
 
   def has_taken?(course)
-    TakenCourse.where(course_id: course.id, user_id: id).exists?
+    courses.include?(course)
   end
 
   def taken_quarters
-    quarters = taken_courses.map { |e| e.quarter }
+    quarters = taken_courses.map(&:quarter)
     quarters.uniq.sort
   end
 
@@ -60,8 +61,8 @@ class User < ActiveRecord::Base
   end
 
   private
-    def set_default_role
-      self.role ||= :user
-    end
 
+  def set_default_role
+    self.role ||= :user
+  end
 end

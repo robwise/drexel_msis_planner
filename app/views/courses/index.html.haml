@@ -8,4 +8,4 @@
         = link_to '+', new_course_path
   .col-md-12
     - @courses.each do |course|
-      = render course
+      = render course, taken_course_ids: @taken_course_ids

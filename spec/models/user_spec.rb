@@ -6,6 +6,7 @@ describe User do
   it { should respond_to(:email) }
   it { should respond_to(:role) }
   it { should respond_to(:taken_courses) }
+  it { should respond_to(:courses) }
   it { should respond_to(:plans) }
   it { should respond_to(:active_plan) }
   it { should respond_to(:has_taken?) }

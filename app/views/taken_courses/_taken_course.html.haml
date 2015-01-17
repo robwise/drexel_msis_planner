@@ -1,6 +1,6 @@
 %tr{:id => "#{taken_course.course.short_id}"}
   %td
-    = render taken_course.course
+    = render taken_course.course, taken_course_ids: [taken_course.id]
   %td
     = link_to "edit",                             |
       edit_taken_course_path(taken_course),       |
