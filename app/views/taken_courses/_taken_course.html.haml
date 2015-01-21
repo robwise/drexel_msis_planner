@@ -5,11 +5,11 @@
     = link_to "edit",                             |
       edit_taken_course_path(taken_course),       |
       remote: true,                               |
-      html: { class: "button-xs",                 |
-      id: "edit-#{taken_course.course.short_id}"} |
+      class: "button-xs",                         |
+      id: "edit-#{taken_course.course.short_id}"  |
   %td
     = link_to "remove",                   |
       taken_course_path(taken_course),    |
       data: { confirm: "Are you sure?" }, |
       method: :delete,                    |
-      html: { class: "button-xs" }        |
+      class: "button-xs"                  |
