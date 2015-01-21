@@ -12,4 +12,9 @@ module CoursesHelper
   def short_name(course)
     course.department + course.level
   end
+
+  def show_new_taken_course_button?(course)
+    course_ids = current_user ? current_user.course_ids : []
+    !course_ids.include?(course.id)
+  end
 end

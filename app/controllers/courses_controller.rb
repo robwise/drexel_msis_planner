@@ -3,7 +3,6 @@ class CoursesController < ApplicationController
   after_action :verify_authorized, except: [:index, :show]
 
   def index
-    @taken_course_ids = current_user ? current_user.course_ids : []
     @courses = Course.all
   end
 
