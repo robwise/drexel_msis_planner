@@ -53,6 +53,11 @@ guard :rspec, cmd: 'spring rspec' do
     "spec/features/#{m[1]}"
   end
 
+  # Rerun feature specs when associated view helper is changed
+  watch(%r{^app/helpers/(.+)_helper\.rb$}) do |m|
+    "spec/features/#{m[1]}"
+  end
+
   # Rerun feature specs when associated controller is changed
   watch(%r{^app/controllers/(.+)_(controller)\.rb$})  do |m|
     "spec/features/#{m[1]}"
