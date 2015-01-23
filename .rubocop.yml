@@ -17,3 +17,6 @@ Style/Encoding:
 
 Style/Documentation:
     Enabled: false
+
+Style/NumericLiterals:
+    MinDigits: 6
