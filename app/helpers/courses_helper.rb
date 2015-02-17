@@ -17,4 +17,9 @@ module CoursesHelper
     course_ids = current_user ? current_user.course_ids : []
     !course_ids.include?(course.id)
   end
+
+  def show_new_course_button_if_admin
+    return unless current_user.present? && current_user.admin?
+    link_to "+", new_course_path
+  end
 end
