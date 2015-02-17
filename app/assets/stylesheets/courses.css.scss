@@ -1,0 +1,52 @@
+// import the CSS framework
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+.index-course-box {
+    @extend .thumbnail;
+    @extend .col-md-4;
+    height: $line-height-computed * 16;
+}
+
+.index-course-content {
+    @extend .caption;
+}
+
+.index-course-description {
+    margin-bottom: 15px;
+}
+
+.took-this {
+    @extend .button-primary;
+    margin: 10px;
+    position: absolute;
+    bottom: 0;
+}
+
+.taken {
+    @extend .button;
+    margin: 10px;
+    position: absolute;
+    bottom: 0;
+}
+
+.required-course {
+    @extend .label;
+    @extend .label-danger;
+    font-size: $font-size-small;
+    vertical-align: top;
+}
+
+.distribution-requirement {
+    @extend .label;
+    @extend .label-success;
+    font-size: $font-size-small;
+    vertical-align: top;
+}
+
+.free-elective {
+    @extend .label;
+    @extend .label-default;
+    font-size: $font-size-small;
+    vertical-align: top;
+}

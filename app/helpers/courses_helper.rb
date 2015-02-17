@@ -22,4 +22,14 @@ module CoursesHelper
     return unless current_user.present? && current_user.admin?
     link_to "+", new_course_path
   end
+
+  def truncated_description_for(course)
+    truncate(course.description, length: 300, separator: " ")
+  end
+
+  def degree_requirement_label_for(course)
+    "<span class=#{course.degree_requirement.sub(/_/, '-')}>
+      #{course.degree_requirement.humanize}
+    </span>".html_safe
+  end
 end

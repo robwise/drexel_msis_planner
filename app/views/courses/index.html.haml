@@ -1,13 +1,12 @@
 = content_for :description, 'Course Listings'
 = content_for :title, 'Courses'
 .row
-  %h1
-    Courses
-    =show_new_course_button_if_admin
+  .col-md-12
+    %h1
+      Courses
+      =show_new_course_button_if_admin
 .row
   - @courses.each_with_index do |course, index|
-    %div{ class: "col-md-4 index-course-#{ index + 1 }" }
+    %div{ class: "index-course-box clearfix" }
       = render course, taken_course_ids: @taken_course_ids
-    - if (index + 1) % 3 == 0
-      .clearfix
 
