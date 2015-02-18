@@ -1,0 +1,13 @@
+var modal_html = '<%= escape_javascript render("modal") %>';
+// var fc = $('main').first-child();
+// if (fc.has_class() == 'modal') {
+//     fc.html(modal_html);
+// } else {
+    $('main').prepend(modal_html);
+// }
+var options = {
+    backdrop: "true",
+    keyboard: "true",
+    show: "true"
+};
+$('.modal').modal(options);

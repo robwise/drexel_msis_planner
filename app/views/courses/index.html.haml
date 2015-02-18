@@ -1,0 +1,12 @@
+= content_for :description, 'Course Listings'
+= content_for :title, 'Courses'
+.row
+  .col-md-12
+    %h1
+      Courses
+      =show_new_course_button_if_admin
+.row
+  - @courses.each_with_index do |course, index|
+    %div{ class: "index-course-box clearfix" }
+      = render course, taken_course_ids: @taken_course_ids
+

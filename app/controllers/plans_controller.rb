@@ -35,10 +35,11 @@ class PlansController < ApplicationController
     @plan = Plan.new(plan_params)
     authorize @plan
     if @plan.save
-      redirect_to @plan, notice: 'Plan was successfully created.'
+      redirect_to @plan, notice: "Plan was successfully created."
     else
       redirect_to new_user_plan_path(@plan.user)
-      flash[:alert] = "Error creating plan. #{@plan.errors.full_messages.presence}"
+      flash[:alert] =
+        "Error creating plan. #{@plan.errors.full_messages.presence}"
     end
   end
 
@@ -47,10 +48,17 @@ class PlansController < ApplicationController
     user = @plan.user
     respond_to do |format|
       if @plan.update(plan_params)
-        format.html { render action: "index", params: { user: user }, notice: 'Plan was successfully updated.' }
-        format.js   { flash.now[:notice] = 'Plan was successfully updated.' }
+        format.html do
+          render action: "index",
+                 params: { user: user },
+                 notice: "Plan was successfully updated."
+        end
+        format.js { flash.now[:notice] = "Plan was successfully updated." }
       else
-        format.html { render action: "index", params: { user: user } ; flash[:alert] = 'Error updating plan.' }
+        format.html do
+          render action: "index", params: { user: user }
+          flash[:alert] = "Error updating plan."
+        end
       end
     end
   end
@@ -58,18 +66,21 @@ class PlansController < ApplicationController
   # DELETE /plans/1
   def destroy
     @plan.destroy
-    redirect_to user_plans_url(@plan.user), notice: 'Plan was successfully deleted.'
+    redirect_to user_plans_url(@plan.user),
+                notice: "Plan was successfully deleted."
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_plan
-      @plan = Plan.find(params[:id])
-      authorize @plan
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def plan_params
-      params.require(:plan).permit(:user_id, :name, :active)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_plan
+    @plan = Plan.find(params[:id])
+    authorize @plan
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list
+  # through.
+  def plan_params
+    params.require(:plan).permit(:user_id, :name, :active)
+  end
 end

@@ -3,52 +3,35 @@ feature "Adding a course to user's course history", :js, speed: "slow" do
   let!(:user)   { create(:user) }
 
   before do
-    @current_user = user
-    open_taken_course_modal
+    user
+    js_signin_user user
+    visit courses_path
   end
 
-  scenario "when opening the modal" do
-    expect(page).to have_text("Add #{course.full_id}: #{course.title.titleize} to Taken Courses")
+  scenario "is done via courses page" do
+    expect(page).to have_button("took this")
   end
 
-  scenario "with valid inputs" do
-    fill_taken_course_modal(201315, "A+")
-    expect(page).to have_success_message
-    course_appears_under_users_taken_courses
-  end
-  scenario "when entering an invalid quarter code" do
-    fill_taken_course_modal(quarter: -9999)
-    expect(page).to have_quarter_error_message
-  end
-  xscenario "without selecting a grade" do
-    fill_taken_course_modal(201315, "NONE")
-    expect(page).to have_grade_error_message
-  end
+  feature "via the modal" do
+    before { click_on "took this" }
 
-  private
-
-    def course_appears_under_users_taken_courses
-      visit user_path(@current_user)
+    scenario "displays properly" do
+      expect(page).to have_text("Add #{course.full_id}: #{course.title.titleize}
+        to Taken Courses")
+    end
+    scenario "with valid inputs" do
+      fill_taken_course_modal(201315, "A+")
+      expect(page).to have_content("Course added to taken courses")
+      visit user_path(user)
       expect(page).to have_content(course.title)
     end
-
-    def have_grade_error_message
-      have_content("Error: Grade can't be blank")
+    scenario "with an invalid quarter code" do
+      fill_taken_course_modal(quarter: -9999)
+      expect(page).to have_content("Error: Quarter is not a valid quarter code")
     end
-
-    def have_quarter_error_message
-      have_content("Error: Quarter is not a valid quarter code")
+    scenario "without selecting a grade" do
+      fill_taken_course_modal(201315, "NONE")
+      expect(page).to have_content("Error: Grade can't be blank")
     end
-
-    def have_success_message
-      have_content("Course added to taken courses")
-    end
-
-    def open_taken_course_modal
-      js_signin_user @current_user
-      visit courses_path
-      expect(page).to have_button("took this")
-      click_on "took this"
-    end
-
+  end
 end
