@@ -1,0 +1,12 @@
+#plans-table {
+  @extend .table-hover;
+}
+
+input.btn-xs {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+form.edit_plan {
+  height: $line-height-computed;
+}
