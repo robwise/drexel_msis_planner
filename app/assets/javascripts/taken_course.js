@@ -4,10 +4,10 @@
 // Remove the modal content when it is hidden
 var ready;
 ready = function() {
-    $('main').on('hidden.bs.modal', '.modal', function (e) {
+    $('main').on('hidden.bs.modal', '.modal', function () {
         $('.modal').remove();
     });
-    $('main').on('shown.bs.modal', '.modal', function (e) {
+    $('main').on('shown.bs.modal', '.modal', function () {
         $('#taken_course_quarter').focus();
     });
 };

@@ -40,7 +40,7 @@ feature "Editing an existing taken course" do
 
   scenario "closing a modal and reopening another", :js, speed: "slow" do
     course2 = create :course
-    taken_course2 = create :taken_course, course: course2, user: user
+    create :taken_course, course: course2, user: user
     js_signin_user user
     visit root_path
 
