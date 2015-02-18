@@ -16,6 +16,7 @@ gem "pg"
 gem "pundit"
 gem "simple_form"
 gem "titleize", "~> 1.3"
+gem "autoprefixer-rails"
 group :development do
   gem "spring"
   gem "better_errors"
