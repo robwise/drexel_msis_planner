@@ -1,6 +1,7 @@
 .index-course-box {
   @extend .thumbnail;
   @extend .col-md-4;
+  @extend .clearfix;
   height: $line-height-computed * 16;
 }
 

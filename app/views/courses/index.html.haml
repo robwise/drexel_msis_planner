@@ -7,6 +7,6 @@
       =show_new_course_button_if_admin
 .row
   - @courses.each_with_index do |course, index|
-    %div{ class: "index-course-box clearfix" }
+    %div{ class: "index-course-box" }
       = render course, taken_course_ids: @taken_course_ids
 

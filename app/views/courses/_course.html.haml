@@ -17,6 +17,6 @@
     remote: true,
     method: :get,
     class: 'took-this'
-- else
+- elsif current_user
   %button{ class: "taken", disabled: "disabled" }
     &nbsp;&nbsp;taken&nbsp;&nbsp;
