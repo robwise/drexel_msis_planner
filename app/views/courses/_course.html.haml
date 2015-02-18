@@ -3,7 +3,7 @@
     = link_to "#{course.department} #{course.level}", course
     = degree_requirement_label_for(course)
 
-  - if current_user.admin?
+  - if current_user.try(:admin?)
     = link_to 'edit', edit_course_path(course), class: 'button-xs'
     = link_to 'delete', course_path(course),
       method: :delete,

@@ -14,7 +14,8 @@ module CoursesHelper
   end
 
   def show_new_taken_course_button?(course)
-    course_ids = current_user ? current_user.course_ids : []
+    return if current_user.nil?
+    course_ids = current_user.course_ids
     !course_ids.include?(course.id)
   end
 
