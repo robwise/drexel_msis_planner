@@ -6,40 +6,49 @@
 .navbar-brand {
   font-size: inherit;
   }
+
 #error_explanation {
   @extend .alert;
   @extend .alert-danger;
 }
+
 #error_explanation h2 {
   font-size: 16px;
 }
+
 .button-block {
   @extend .btn;
   @extend .btn-default;
   @extend .btn-block;
 }
+
 .button-primary-block {
   @extend .btn;
   @extend .btn-primary;
   @extend .btn-block;
 }
+
 .button-primary {
   @extend .btn;
   @extend .btn-primary;
 }
+
 .button-xs {
   @extend .btn;
   @extend .btn-primary;
   @extend .btn-xs;
 }
+
 .button {
   @extend .btn;
   @extend .btn-default;
 }
+
 #cancel-user {
     @extend .well;
     max-width: 320px;
 }
+
 section {
     max-width: 320px;
     margin: 0 auto;

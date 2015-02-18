@@ -18,16 +18,16 @@
 
 .took-this {
   @extend .button-primary;
+  bottom: 0;
   margin: 10px;
   position: absolute;
-  bottom: 0;
 }
 
 .taken {
   @extend .button;
+  bottom: 0;
   margin: 10px;
   position: absolute;
-  bottom: 0;
 }
 
 .required-course {
