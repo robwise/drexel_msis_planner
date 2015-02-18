@@ -1,7 +1,7 @@
-$('main').prepend('<%= escape_javascript render("new_modal") %>');
+$('main').prepend('<%= escape_javascript render("modal") %>');
 var options = {
     backdrop: "true",
     keyboard: "true",
     show: "true"
 };
-$('#took-this-modal').modal(options);
+$('.modal').modal(options);

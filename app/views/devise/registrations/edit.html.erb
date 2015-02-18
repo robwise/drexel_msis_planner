@@ -1,9 +1,0 @@
-<%= render 'form' %>
-<section>
-  <h3>Cancel Account</h3>
-  <div id="cancel-user">
-    <p>Unhappy? We'll be sad to see you go.</p>
-      <%= button_to 'Cancel my account', destroy_user_path(resource), method: 'delete', class: 'button-primary-block', data: { confirm: 'Are you sure?', disable_with: 'loading...' } %>
-    </button>
-  </div>
-</section>

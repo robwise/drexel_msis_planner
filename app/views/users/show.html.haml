@@ -1,12 +1,15 @@
 - content_for :title, 'Profile'
 - content_for :description, "User details."
-.modal.fade#took-this-modal{ tabindex: "-1", role: "dialog",
-  'aria-labelledby' => "took-this-modal-Label", 'aria-hidden' => "true" }
 .row
   .col-md-12
-    %h3= @user.email
-    %h4 Degree Status:
-    %h4 Taken Courses:
+    %h2= @user.email
+    %h3 Degree Status:
+    %ul
+      %li= "Required Course Credits Earned: #{@user.required_credits_earned}/27"
+      %li= "Distribution Requirement Credits Earned: #{@user.distribution_credits_earned}/12"
+      %li= "Free Elective Credits Earned: #{@user.free_elective_credits_earned}/6"
+      %li= "TOTAL: #{@user.total_credits_earned}/45"
+    %h3 Taken Courses:
     %table.table
       %tbody.taken-courses
         = render @user.taken_courses

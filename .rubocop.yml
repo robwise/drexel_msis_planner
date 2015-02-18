@@ -1,0 +1,22 @@
+require: rubocop-rspec
+
+Style/Encoding:
+  Enabled: true
+
+Metrics/LineLength:
+  Max: 80
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+AllCops:
+  RunRailsCops: true
+
+Style/Encoding:
+    EnforcedStyle: when_needed
+
+Style/Documentation:
+    Enabled: false
+
+Style/NumericLiterals:
+    MinDigits: 6

@@ -33,7 +33,7 @@ class PlanDecorator
     qs_array
   end
 
-  def form_button_text
+  def submit_text
     if @plan.new_record?
       "Create"
     else
@@ -50,12 +50,12 @@ class PlanDecorator
   end
 
   private
-    def gather_unique_quarters_from(courses)
-      course_quarters = []
-      courses.each do |course|
-        course_quarters << course.quarter
-      end
-      course_quarters.uniq.sort
-    end
 
+  def gather_unique_quarters_from(courses)
+    course_quarters = []
+    courses.each do |course|
+      course_quarters << course.quarter
+    end
+    course_quarters.uniq.sort
+  end
 end
