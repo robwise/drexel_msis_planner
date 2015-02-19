@@ -15,6 +15,8 @@
  */
  @import "bootstrap-sprockets";
  @import "bootstrap";
+ @import "compass";
+ @import "compass/layout";
  @import "custom";
  @import "forms";
  @import "modals";

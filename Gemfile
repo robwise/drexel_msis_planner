@@ -1,7 +1,6 @@
 source "https://rubygems.org"
 ruby "2.1.5"
 gem "rails", "~>4.2.0"
-gem "dotenv-rails", groups: [:development, :test]
 gem "sass-rails", "~> 4.0.3"
 gem "uglifier", ">= 1.3.0"
 gem "coffee-rails", "~> 4.0.0"
@@ -17,6 +16,11 @@ gem "pundit"
 gem "simple_form"
 gem "titleize", "~> 1.3"
 gem "autoprefixer-rails"
+gem "compass-rails"
+group :production do
+  gem "unicorn"
+  gem "rails_12factor"
+end
 group :development do
   gem "spring"
   gem "better_errors"
@@ -34,13 +38,10 @@ group :development do
   gem "guard-livereload", require: false
 end
 group :development, :test do
+  gem "dotenv-rails"
   gem "factory_girl_rails"
   gem "rspec-rails"
   gem "spring-commands-rspec"
-end
-group :production do
-  gem "unicorn"
-  gem "rails_12factor"
 end
 group :test do
   gem "capybara"
