@@ -13,7 +13,7 @@ module CoursesHelper
     course.department + course.level
   end
 
-  def show_new_taken_course_button?(course)
+  def taken?(course)
     return if current_user.nil?
     course_ids = current_user.course_ids
     !course_ids.include?(course.id)
@@ -24,13 +24,11 @@ module CoursesHelper
     link_to "+", new_course_path
   end
 
-  def truncated_description_for(course)
-    truncate(course.description, length: 300, separator: " ")
-  end
+  # def truncated_description_for(course)
+  #   truncate(course.description, length: 300, separator: " ")
+  # end
 
-  def degree_requirement_label_for(course)
-    "<span class=#{course.degree_requirement.sub(/_/, '-')}>
-      #{course.degree_requirement.humanize}
-    </span>".html_safe
+  def degree_requirement_for(course)
+    "#{course.degree_requirement.humanize.downcase}"
   end
 end

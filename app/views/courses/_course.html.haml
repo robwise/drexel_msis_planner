@@ -1,22 +1,16 @@
-.index-course-content
-  %h2
-    = link_to "#{course.department} #{course.level}", course
-    = degree_requirement_label_for(course)
-
-  - if current_user.try(:admin?)
-    = link_to 'edit', edit_course_path(course), class: 'button-xs'
-    = link_to 'delete', course_path(course),
-      method: :delete,
-      class: 'button-xs',
-      data: { confirm: "Are you sure you want to delete course: #{course.title}?" }
-  %h3= course.title
-  %p.index-course-description= truncated_description_for(course)
-- if show_new_taken_course_button?(course)
-  = button_to "took this",
-    new_user_taken_course_path(user_id: current_user.id, course_id: course.id),
-    remote: true,
-    method: :get,
-    class: 'took-this'
-- elsif current_user
-  %button{ class: "taken", disabled: "disabled" }
-    &nbsp;&nbsp;taken&nbsp;&nbsp;
+%h2.list-group-item-heading
+  = "#{course.department} #{course.level}"
+  %span{ class: "#{degree_requirement_for(course).sub(/ /, '-') }" }
+    = degree_requirement_for(course)
+  = course.title
+.list-group-item-text
+  %p= course.description
+  - if taken?(course)
+    = button_to "taken",
+      new_user_taken_course_path(user_id: current_user.id, course_id: course.id),
+      remote: true,
+      method: :get,
+      class: 'new-taken-course-button'
+  - elsif current_user
+    %button.new-taken-course-button-disabled{ disabled: "disabled" }
+      taken

@@ -1,49 +1,26 @@
-.index-course-box {
-  @extend .thumbnail;
-  @extend .col-md-4;
-  @extend .clearfix;
-  height: $line-height-computed * 16;
-}
-
-.index-course-content {
-  @extend .caption;
-}
-
-.index-course-description {
-  margin-bottom: 15px;
-}
-
-.took-this {
+.new-taken-course-button {
   @extend .button-primary;
-  bottom: 0;
-  margin: 10px;
-  position: absolute;
 }
 
-.taken {
-  @extend .button;
-  bottom: 0;
-  margin: 10px;
-  position: absolute;
+.new-taken-course-button-disabled {
+  @extend .new-taken-course-button;
+  @extend btn-disabled;
+}
+
+.degree_requirement_badge {
+  @extend .badge;
+  float: right;
+  margin-left: 5px;
 }
 
 .required-course {
-  @extend .label;
-  @extend .label-danger;
-  font-size: $font-size-small;
-  vertical-align: top;
+  @extend .degree_requirement_badge;
 }
 
 .distribution-requirement {
-  @extend .label;
-  @extend .label-success;
-  font-size: $font-size-small;
-  vertical-align: top;
+  @extend .degree_requirement_badge;
 }
 
 .free-elective {
-  @extend .label;
-  @extend .label-default;
-  font-size: $font-size-small;
-  vertical-align: top;
+  @extend .degree_requirement_badge;
 }
