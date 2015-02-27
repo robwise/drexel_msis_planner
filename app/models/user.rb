@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   has_many :plans, -> { order "name ASC" }, inverse_of: :user, dependent: :destroy
 
   def active_plan
-    plans(true).where(active: true).take
+    plans.where(active: true).take
   end
 
   def has_taken?(course)

@@ -12,4 +12,4 @@
     %h3 Taken Courses:
     %table.table
       %tbody.taken-courses
-        = render @user.taken_courses
+        = render @user.taken_courses, taken_course_ids: @user.course_ids

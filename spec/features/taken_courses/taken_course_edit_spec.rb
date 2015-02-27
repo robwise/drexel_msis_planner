@@ -5,11 +5,12 @@ feature "Editing an existing taken course" do
     create :taken_course, course: course, user: user, quarter: "201415"
   end
 
-  scenario "the 'took this' link does not appear for existing course" do
+  scenario "the 'taken' link does not appear for existing course" do
     signin_user user
     visit courses_path
 
-    expect(page).not_to have_content("took this")
+    expect(page).to have_css(".new-taken-course-button-disabled")
+    expect(page).not_to have_css(".new-taken-course-button")
   end
 
   scenario "the edit for the course link appears on the user dashboard" do

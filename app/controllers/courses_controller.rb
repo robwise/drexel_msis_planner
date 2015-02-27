@@ -3,6 +3,7 @@ class CoursesController < ApplicationController
   after_action :verify_authorized, except: [:index, :show]
 
   def index
+    @taken_course_ids = current_user.try(:course_ids)
     @courses = Course.all
   end
 
@@ -22,6 +23,7 @@ class CoursesController < ApplicationController
       redirect_to @course, notice: "Course sucessfully created."
     else
       redirect_to new_course_path(@course)
+      # TODO: switch to using Ajax update of errors
       flash[:alert] =
         "Error creating course. #{@course.errors.full_messages.presence}"
     end
@@ -38,6 +40,7 @@ class CoursesController < ApplicationController
     if @course.update_attributes(secure_params)
       redirect_to @course, notice: "Course updated."
     else
+      # TODO: switch to using Ajax to display errors
       redirect_to courses_path, alert: "Error updating course."
     end
   end

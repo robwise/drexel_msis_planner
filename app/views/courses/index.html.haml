@@ -6,7 +6,7 @@
       Courses
       = show_new_course_button_if_admin
     %ul.list-group
-      - @courses.each_with_index do |course, index|
+      - @courses.each do |course|
         %li.list-group-item
           = render course, taken_course_ids: @taken_course_ids
 

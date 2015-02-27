@@ -17,12 +17,12 @@
         class: "button",
         data: { confirm: "Are you sure you want to delete course: #{course.title}?" }
   %p.course_description= course.description
-  - if taken?(course)
+  - if taken?(course, taken_course_ids)
     = button_to "taken",
       new_user_taken_course_path(user_id: current_user.id, course_id: course.id),
       remote: true,
       method: :get,
-      class: 'new-taken-course-button'
+      class: "new-taken-course-button"
   - elsif current_user
     %button.new-taken-course-button-disabled{ disabled: true }
       taken

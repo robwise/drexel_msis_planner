@@ -27,7 +27,7 @@ describe User do
     before { user.save }
 
     it "returns the user's active plan" do
-      expect(user.active_plan).to eq(plan)
+      expect(user.active_plan.id).to eq(plan.id)
     end
   end
 
