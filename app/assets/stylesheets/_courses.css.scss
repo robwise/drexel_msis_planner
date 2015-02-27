@@ -4,13 +4,13 @@
 
 .new-taken-course-button-disabled {
   @extend .new-taken-course-button;
-  @extend btn-disabled;
+  @extend .btn-disabled;
 }
 
 .degree_requirement_badge {
   @extend .badge;
   float: right;
-  margin-left: 5px;
+  margin-left: percentage(5px/1000px);
 }
 
 .required-course {
