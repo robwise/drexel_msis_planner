@@ -2,7 +2,8 @@
   .alert.alert-danger
     %button.close{"aria-hidden" => "true", "data-dismiss" => "alert", :type => "button"}
       \&#215;
-    %strong Error:
+    %strong
+      #{pluralize(object.errors.count, "error").titleize}:
     %ul
       - object.errors.full_messages.each do |msg|
         %li= msg

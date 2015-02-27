@@ -9,11 +9,11 @@ feature "Adding a course to user's course history", :js, speed: "slow" do
   end
 
   scenario "is done via courses page" do
-    expect(page).to have_button("took this")
+    expect(page).to have_button("taken")
   end
 
   feature "via the modal" do
-    before { click_on "took this" }
+    before { click_on "taken" }
 
     scenario "displays properly" do
       expect(page).to have_text("Add #{course.full_id}: #{course.title.titleize}
