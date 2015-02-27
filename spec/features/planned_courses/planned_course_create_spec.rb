@@ -1,4 +1,4 @@
-feature 'Adding a course to a plan' do
+feature "Adding a course to a plan" do
   let(:course) { create(:course) }
   let(:user) { create(:user) }
   let(:plan) { create(:plan, user: user) }
