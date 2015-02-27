@@ -24,11 +24,7 @@ module CoursesHelper
     link_to "+", new_course_path
   end
 
-  # def truncated_description_for(course)
-  #   truncate(course.description, length: 300, separator: " ")
-  # end
-
   def degree_requirement_for(course)
-    "#{course.degree_requirement.humanize.downcase}"
+    course.degree_requirement.humanize.downcase
   end
 end

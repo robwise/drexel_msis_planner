@@ -5,8 +5,8 @@
     %h1
       Courses
       = show_new_course_button_if_admin
-    .list-group
+    %ul.list-group
       - @courses.each_with_index do |course, index|
-        %a{ href: course_path(course.id), class: "list-group-item" }
+        %li.list-group-item
           = render course, taken_course_ids: @taken_course_ids
 

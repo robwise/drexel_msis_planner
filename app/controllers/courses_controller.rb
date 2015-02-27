@@ -21,7 +21,9 @@ class CoursesController < ApplicationController
     if @course.save
       redirect_to @course, notice: "Course sucessfully created."
     else
-      redirect_to new_course_path, alert: "Unable to create course."
+      redirect_to new_course_path(@course)
+      flash[:alert] =
+        "Error creating course. #{@course.errors.full_messages.presence}"
     end
   end
 
@@ -36,15 +38,15 @@ class CoursesController < ApplicationController
     if @course.update_attributes(secure_params)
       redirect_to @course, notice: "Course updated."
     else
-      redirect_to users_path, alert: "Error updating course."
+      redirect_to courses_path, alert: "Error updating course."
     end
   end
 
   def destroy
-    course = Course.find(params[:id])
+    @course = Course.find(params[:id])
 
-    authorize course
-    if course.destroy
+    authorize @course
+    if @course.destroy
       redirect_to courses_path, notice: "Course successfully deleted."
     else
       flash![:error] = "Error deleting course."

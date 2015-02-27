@@ -6,13 +6,13 @@ feature "Editing a course" do
   scenario "using valid attributes" do
     visit courses_path
     expect(page).to have_link("edit")
-    click_link 'edit'
-    expect(page).to have_title(full_title('Edit Course'))
+    click_on "edit"
+    expect(page).to have_title(full_title("Edit Course"))
     expect(page).to have_content(course.full_id)
-    course.department = 'ECON'
+    course.department = "ECON"
     fill_course_form(course)
     course_in_database = Course.find_by(id: course.id)
-    expect(course_in_database.department).to eq('ECON')
+    expect(course_in_database.department).to eq("ECON")
   end
 
   scenario "using invalid attributes" do
@@ -20,7 +20,7 @@ feature "Editing a course" do
     course.level = -99
     fill_course_form(course)
     course_in_database = Course.find_by(id: course.id)
-    expect(course_in_database.level).not_to eq -99
-    expect(page).to have_selector('.alert', 'Error updating course.')
+    expect(course_in_database.level).not_to eq(-99)
+    expect(page).to have_selector(".alert", "Error updating course.")
   end
 end

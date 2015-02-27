@@ -1,4 +1,4 @@
-feature 'Adding a course' do
+feature "Adding a course" do
   feature "admin" do
     let(:admin) { FactoryGirl.create(:user, :admin) }
     let(:course) { FactoryGirl.build(:course) }
@@ -8,10 +8,10 @@ feature 'Adding a course' do
     end
 
     scenario "the proper title" do
-      expect(page).to have_title('Add a Course')
+      expect(page).to have_title("Add a Course")
     end
     scenario "the proper heading" do
-      expect(page).to have_content('Add a Course')
+      expect(page).to have_content("Add a Course")
     end
     scenario "submits valid form" do
       expect { fill_course_form(course) }.to change(Course, :count).by(1)
@@ -20,11 +20,10 @@ feature 'Adding a course' do
       expect(current_path).to eq(course_path(course_in_database))
     end
     scenario "submits invalid form" do
-      course.department = ' '
+      course.department = " "
       expect { fill_course_form(course) }.not_to change(Course, :count)
     end
   end
-
 
 =begin
   scenario "non-admin tries to add course" do
