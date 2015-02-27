@@ -37,23 +37,4 @@ feature "Editing an existing taken course" do
     click_on "Update"
     expect(page).to have_text("Course history updated")
   end
-
-  scenario "closing a modal and reopening another", :js, speed: "slow" do
-    course2 = create :course
-    create :taken_course, course: course2, user: user
-    js_signin_user user
-    visit root_path
-
-    expect(page).to have_text(course.full_id)
-    expect(page).to have_text(course2.full_id)
-    find_by_id("edit-#{course.short_id}").click
-    expect(page).to have_text("Edit when you took #{course.full_id}:
-      #{course.title.titleize}")
-    click_on "Cancel"
-    # find_by_id("modal-close-button2").click
-    find_by_id("edit-#{course2.short_id}").click
-    # find_by_id("edit-#{course2.short_id}").click
-    expect(page).to have_text("Edit when you took #{course2.full_id}:
-      #{course2.title.titleize}")
-  end
 end
