@@ -11,12 +11,12 @@
     .course-description= @course.description
     .course-degree-requirement= @course.degree_requirement.humanize.titleize
     - if current_user.try(:admin?)
-      = button_to 'edit', edit_course_path(course), class: 'button-xs'
+      = button_to 'edit', edit_course_path(@course), class: 'button-xs'
       = button_to 'delete',
-        course_path(course),
+        course_path(@course),
         method: :delete,
         class: 'button-xs',
-        data: { confirm: "Are you sure you want to delete course: #{course.title}?" }
+        data: { confirm: "Are you sure you want to delete course: #{@course.title}?" }
     - unless TakenCourse.already_taken?(current_user, @course)
       .took-this
         = link_to 'I Took This', new_user_taken_course_path(course_id: @course.id, user_id: current_user.id)
