@@ -1,4 +1,4 @@
-feature "Adding a course" do
+feature "When adding a course" do
   feature "admin" do
     let(:admin) { FactoryGirl.create(:user, :admin) }
     let(:course) { FactoryGirl.build(:course) }
@@ -7,10 +7,10 @@ feature "Adding a course" do
       visit new_course_path
     end
 
-    scenario "the proper title" do
+    scenario "sees the proper title" do
       expect(page).to have_title("Add a Course")
     end
-    scenario "the proper heading" do
+    scenario "sees the proper heading" do
       expect(page).to have_content("Add a Course")
     end
     scenario "submits valid form" do
@@ -25,11 +25,16 @@ feature "Adding a course" do
     end
   end
 
-=begin
-  scenario "non-admin tries to add course" do
+  feature "non-admin" do
     let(:user) { FactoryGirl.create(:user) }
-    signin_user user
-    visit new_course_path
+    let(:course) { FactoryGirl.build(:course) }
+    before do
+      signin_user user
+      visit new_course_path
+    end
+    scenario "is unable to view the new course page" do
+      expect(page).not_to have_title("Add a Course")
+      expect(page).not_to have_content("Add a Course")
+    end
   end
-=end
 end
