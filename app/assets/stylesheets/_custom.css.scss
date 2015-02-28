@@ -6,14 +6,14 @@ img {
 
 main {
   background-color: #eee;
-  padding-bottom: 80px;
+  padding-bottom: percentage(80px/1000px);
   width: 100%;
-  margin-top: 51px; // accommodate the navbar
+  margin-top: 40px; // accommodate the navbar
 }
 
 section {
   @extend .row;
-  margin: 20px auto;
+  margin: percentage(20px/1000px) auto;
 }
 
 // override for the 'Home' navigation link
@@ -27,7 +27,7 @@ section {
 }
 
 #error_explanation h2 {
-  font-size: 16px;
+  font-size: ceil(($font-size-base * 16/14)); // ~16px
 }
 
 .button-block {
