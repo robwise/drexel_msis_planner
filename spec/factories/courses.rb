@@ -1,13 +1,15 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
 # include ActiveSupport
-require 'faker'
+require "faker"
 
 FactoryGirl.define do
   factory :course do
     department "INFO"
     sequence(:level) { |n| n + 400 }
-    title { [Faker::Hacker.ingverb, Faker::Hacker.adjective,
-           Faker::Hacker.noun.pluralize].join(' ') }
+    title do
+      [Faker::Hacker.ingverb, Faker::Hacker.adjective,
+       Faker::Hacker.noun.pluralize].join(" ")
+    end
     description Faker::Lorem.paragraph
     degree_requirement "free_elective"
 

@@ -4,6 +4,6 @@ FactoryGirl.define do
   factory :planned_course do
     plan
     course
-    quarter "#{(Time.now.year + 1).to_s + [15,25,35,45].sample.to_s }"
+    quarter "#{(Time.zone.now.year + 1).to_s + [15, 25, 35, 45].sample.to_s }"
   end
 end

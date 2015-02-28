@@ -13,6 +13,7 @@ class TakenCoursesController < ApplicationController
   def create
     @taken_course = TakenCourseDecorator.new(TakenCourse.new(secure_params))
     authorize @taken_course
+    # TODO: switch to using a render partial so I can pass a status
     return unless @taken_course.save # Let create.js.erb handle errors
 
     flash[:notice] = "Course added to taken courses"

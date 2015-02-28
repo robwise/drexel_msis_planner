@@ -3,14 +3,23 @@ class PlannedCoursesController < ApplicationController
   before_action :set_planned_course, only: [:show, :edit, :update, :destroy]
   after_action  :verify_authorized
 
+  # GET /plans/:plan_id/planned_courses/new
+  def new
+    @planned_course = PlannedCourse.new(plan_id: params[:plan_id],
+                                        course_id: params[:course_id])
+    authorize @planned_course
+  end
+
   # POST /plans/:plan_id/planned_courses
   def create
     @planned_course = PlannedCourse.new(planned_course_params)
     authorize @planned_course
     if @planned_course.save
-      redirect_to plan, notice: "#{@planned_course.name} added to plan."
+      render js: "window.location = #{ courses_path.to_json }", status: 201
+      flash[:notice] = "#{@planned_course.course.full_id} added to #{@planned_course.plan.name}."
+      flash.keep(:notice) # Keep flash notice around for the redirect.
     else
-      render :new, alert: "Error adding course to plan."
+      render partial: "shared/error_messages", object: @planned_course, status: :unprocessable_entity
     end
   end
 

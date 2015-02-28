@@ -10,6 +10,7 @@ describe Course do
   it { should respond_to(:degree_requirement) }
   it { should respond_to(:taken_courses) }
   it { should respond_to(:users) }
+  it { should respond_to(:plans) }
   it { should validate_presence_of(:department) }
   it { should validate_presence_of(:level) }
   it { should validate_presence_of(:title) }

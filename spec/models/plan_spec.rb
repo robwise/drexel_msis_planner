@@ -15,6 +15,7 @@ describe Plan do
   it { should respond_to(:created_at) }
   it { should respond_to(:updated_at) }
   it { should respond_to(:planned_courses) }
+  it { should respond_to(:courses) }
   it { should validate_presence_of(:user) }
   it { should validate_presence_of(:name) }
   it { should ensure_length_of(:name).is_at_least(1) }

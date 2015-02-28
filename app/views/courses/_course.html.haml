@@ -1,9 +1,7 @@
 %h2.list-group-item-heading
   = "#{course.department} #{course.level}"
-
   %span{ class: "#{degree_requirement_for(course).sub(/ /, '-') }" }
     = degree_requirement_for(course)
-
   = course.title
 .list-group-item-text
   %p
@@ -26,5 +24,14 @@
       remote: true,
       method: :get,
       class: "new-taken-course-button"
-
+    - if active_plan.nil? || planned_course_ids.include?(course.id)
+      %button.new-planned-course-button-disabled{ disabled: true }
+        planned
+    - else
+      = button_to "add to plan",
+        new_plan_planned_course_path(plan_id: active_plan.id, course_id: course.id),
+        remote: true,
+        method: :get,
+        class: "new-planned-course-button"
+  .clearfix
 

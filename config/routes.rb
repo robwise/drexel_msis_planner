@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     resources :users, only: [:index, :show, :update, :destroy] do
       resources :taken_courses, except: [:index, :show]
       resources :plans do
-        resources :planned_courses, only: [:create, :update, :destroy]
+        resources :planned_courses, only: [:new, :create, :update, :destroy]
       end
     end
   end

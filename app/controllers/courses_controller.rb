@@ -4,6 +4,7 @@ class CoursesController < ApplicationController
 
   def index
     @taken_course_ids = current_user.try(:course_ids)
+    @planned_course_ids = @active_plan.try(:course_ids)
     @courses = Course.all
   end
 

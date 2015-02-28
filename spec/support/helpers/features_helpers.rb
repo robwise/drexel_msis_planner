@@ -57,5 +57,13 @@ module Features
       select grade, from: "Grade" unless grade == "NONE"
       click_button "Add"
     end
+
+    def fill_planned_course_modal(quarter = nil)
+      # Use factory to supply a valid quarter value to use if nil
+      quarter ||= build(:planned_course).quarter
+
+      fill_in "Quarter", with: quarter
+      click_button "Submit"
+    end
   end
 end

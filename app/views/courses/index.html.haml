@@ -8,5 +8,8 @@
     %ul.list-group
       - @courses.each do |course|
         %li.list-group-item
-          = render course, taken_course_ids: @taken_course_ids
+          = render course,
+            taken_course_ids: @taken_course_ids,
+            planned_course_ids: @planned_course_ids,
+            active_plan: @active_plan
 

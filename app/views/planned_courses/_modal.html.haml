@@ -1,0 +1,28 @@
+#planned-course-modal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "modal-label", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog
+    .modal-content
+      = form_for([@planned_course.plan, @planned_course],   |
+        remote: true,                                       |
+        html: { class: "modal-form", role: "form" }) do |f| |
+        .modal-header
+          %button.close{"data-dismiss" => "modal", type: "button"}
+            %span{"aria-hidden" => "true"} &#215;
+            %span.sr-only Close
+          %h4#modal-label.modal-title
+            = "Add #{@planned_course.course.full_id} to #{@planned_course.plan.name}"
+        .modal-body
+          .authform
+            #planned-course-modal-errors.modal-errors
+              = render "shared/error_messages", object: @planned_course
+            = f.hidden_field :plan_id, class: "hidden"
+            = f.hidden_field :course_id, class: "hidden"
+            .form-group
+              = f.label :quarter, class: "control-label"
+              = f.text_field :quarter, autofocus: true, class: "form-control"
+        .modal-footer
+          %button.modal-cancel-button{"data-dismiss" => "modal", :type => "button"}
+            Cancel
+          = f.submit "Submit",                  |
+            class: "modal-accept-button",       |
+            disable_with: "Submitting",         |
+            html: { type: "button" }            |

@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   # Loads the user's active plan since it's required on all pages
-  after_action :load_users_active_plan
+  before_action :load_users_active_plan
 
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.

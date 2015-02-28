@@ -1,9 +1,10 @@
+%div{ id: "planned-course-form" }
 = simple_form_for(@planned_course) do |f|
   = f.error_notification
 
   .form-inputs
-    = f.input :plan_id
-    = f.input :course_id
+    = f.hidden :plan_id
+    = f.hidden :course_id
     = f.input :quarter
 
   .form-actions

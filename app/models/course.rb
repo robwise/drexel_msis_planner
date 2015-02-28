@@ -16,6 +16,7 @@ class Course < ActiveRecord::Base
   has_many :taken_courses, dependent: :destroy
   has_many :users, through: :taken_courses
   has_many :planned_courses, dependent: :destroy
+  has_many :plans, through: :planned_courses
 
   def self.default_scope
     all.order(department: :asc, level: :asc)
