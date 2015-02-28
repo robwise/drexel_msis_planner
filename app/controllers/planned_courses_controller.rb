@@ -17,7 +17,6 @@ class PlannedCoursesController < ApplicationController
     if @planned_course.save
       render js: "window.location = #{ courses_path.to_json }", status: 201
       flash[:notice] = "#{@planned_course.course.full_id} added to #{@planned_course.plan.name}."
-      flash.keep(:notice) # Keep flash notice around for the redirect.
     else
       render partial: "errors", status: :unprocessable_entity
     end
