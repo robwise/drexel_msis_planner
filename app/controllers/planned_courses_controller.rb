@@ -23,20 +23,10 @@ class PlannedCoursesController < ApplicationController
   end
 
   # PATCH/PUT /planned_courses/1
-  def update
-    if @planned_course.update(planned_course_params)
-      redirect_to @plan, notice: "Plan successfully updated."
-    else
-      redirect_to @plan, alert: "Error updating plan."
-    end
-  end
+  # TODO: implement patch/put action
 
   # DELETE /planned_courses/1
-  def destroy
-    if @planned_course.destroy
-      redirect_to planned_courses_url, notice: "Removed course from plan."
-    end
-  end
+  # TODO: implement delete action
 
   private
 

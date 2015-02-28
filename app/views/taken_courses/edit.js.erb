@@ -1,5 +1,4 @@
-var modal_html = '<%= escape_javascript render("modal") %>';
-$('main').prepend(modal_html);
+$('main').prepend('<%= escape_javascript render("modal") %>');
 var options = {
     backdrop: "true",
     keyboard: "true",

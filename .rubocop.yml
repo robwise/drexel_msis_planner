@@ -19,4 +19,4 @@ Style/Documentation:
     Enabled: false
 
 Style/NumericLiterals:
-    MinDigits: 6
+    MinDigits: 7

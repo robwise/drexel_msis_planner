@@ -13,12 +13,12 @@ class TakenCoursesController < ApplicationController
   def create
     @taken_course = TakenCourseDecorator.new(TakenCourse.new(secure_params))
     authorize @taken_course
-    # TODO: switch to using a render partial so I can pass a status
-    return unless @taken_course.save # Let create.js.erb handle errors
-
-    flash[:notice] = "Course added to taken courses"
-    flash.keep(:notice) # Keep flash notice around for the redirect.
-    render js: "window.location = #{ courses_path.to_json }", status: 201
+    if @taken_course.save
+      render js: "window.location = #{ courses_path.to_json }", status: 201
+      flash[:notice] = "Course added to taken courses."
+    else
+      render partial: "errors", status: :unprocessable_entity
+    end
   end
 
   def edit
@@ -27,12 +27,13 @@ class TakenCoursesController < ApplicationController
 
   def update
     authorize @taken_course
-    return unless @taken_course.save # Let update.js.erb handle errors
-
-    flash[:notice] = "Course history updated"
-    flash.keep(:notice) # Keep flash notice around for the redirect.
-    render js: "window.location = #{ user_path(current_user).to_json }",
-           status: 200
+    if @taken_course.save
+      render js: "window.location = #{ user_path(current_user).to_json }",
+             status: 200
+      flash[:notice] = "Course history updated"
+    else
+      render partial: "errors", status: :unprocessable_entity
+    end
   end
 
   def destroy

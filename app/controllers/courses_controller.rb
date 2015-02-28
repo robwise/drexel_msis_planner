@@ -41,7 +41,6 @@ class CoursesController < ApplicationController
     if @course.update_attributes(secure_params)
       redirect_to @course, notice: "Course updated."
     else
-      # TODO: switch to using Ajax to display errors
       redirect_to courses_path, alert: "Error updating course."
     end
   end
