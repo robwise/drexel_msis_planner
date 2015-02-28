@@ -13,6 +13,7 @@ describe PlannedCourse do
   it { should respond_to(:assigned?) }
   it { should validate_presence_of(:plan) }
   it { should validate_presence_of(:course) }
+  it { should validate_presence_of(:quarter) }
   it { should be_valid }
 
   describe "quarter code validation" do

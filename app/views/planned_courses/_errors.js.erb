@@ -1,0 +1,8 @@
+var el = $('.modal');
+
+<% if @planned_course.errors.any? %>
+
+  // Display errors on form
+  el.find('.modal-errors').html('<%= escape_javascript render("shared/error_messages", object: @planned_course) %>');
+
+<% end %>

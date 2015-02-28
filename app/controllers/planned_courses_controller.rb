@@ -19,7 +19,7 @@ class PlannedCoursesController < ApplicationController
       flash[:notice] = "#{@planned_course.course.full_id} added to #{@planned_course.plan.name}."
       flash.keep(:notice) # Keep flash notice around for the redirect.
     else
-      render partial: "shared/error_messages", object: @planned_course, status: :unprocessable_entity
+      render partial: "errors", status: :unprocessable_entity
     end
   end
 
