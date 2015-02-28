@@ -15,7 +15,7 @@ module CoursesHelper
 
   def taken?(course, taken_course_ids)
     return if current_user.nil?
-    !taken_course_ids.include?(course.id)
+    taken_course_ids.include?(course.id)
   end
 
   def show_new_course_button_if_admin
