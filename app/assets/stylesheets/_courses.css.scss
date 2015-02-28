@@ -3,19 +3,9 @@
   float: left;
 }
 
-.new-taken-course-button-disabled {
-  @extend .new-taken-course-button;
-  @extend .btn-disabled;
-}
-
 .new-planned-course-button {
   @extend .new-taken-course-button;
   margin-left: percentage(5px/1000px);
-}
-
-.new-planned-course-button-disabled {
-  @extend .new-planned-course-button;
-  @extend .btn-disabled;
 }
 
 .degree_requirement_badge {
