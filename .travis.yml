@@ -1,10 +1,7 @@
 language: ruby
 rvm:
-  - 2.2.0-rc1
-bundler_args:
-    --without production
-    --without development
-    --binstubs
+  - 2.2.0
+bundler_args: --without production --binstubs
 addons:
   postgresql: "9.3"
 before_script:
