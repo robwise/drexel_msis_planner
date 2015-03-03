@@ -1,0 +1,12 @@
+language: ruby
+rvm:
+  - "2.2.0"
+bundler_args: --without production --binstubs --without development
+addons:
+  postgresql: "9.3"
+  code_climate: ""
+before_script:
+  - psql -c 'create database travis_ci_test;' -U postgres
+  - psql -U postgres -c "create extension postgis"
+  - cp config/database.yml.travis config/database.yml
+script: xvfb-run -a bundle exec rake
