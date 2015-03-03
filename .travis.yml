@@ -4,8 +4,7 @@ rvm:
 bundler_args: --without production --binstubs --without development
 addons:
   postgresql: "9.3"
-  code_climate:
-    secure: "ePDGlscaxhgj525A4rtkBcJSbptdYviTZ1Ox2RHCYM9zfTbjgDIh8khBsMH4hOartvLb6AjQFirUXcmYTEzIFjMrwjwBbSHeBkUmgI4ab0d3eLS4JCi03qRXRHRyt/gEdf918D4K8phpPNsjE6kLoXQL14Z8jBJsAUBtv1x7RcY="
+  - code_climate
 before_script:
   - psql -c 'create database travis_ci_test;' -U postgres
   - psql -U postgres -c "create extension postgis"
