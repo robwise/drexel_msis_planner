@@ -1,0 +1,13 @@
+language: ruby
+rvm:
+  - 2.2.0-rc1
+bundler_args:
+    --without production
+    --without development
+    --binstubs
+addons:
+  postgresql: "9.3"
+before_script:
+  - psql -c 'create database travis_ci_test;' -U postgres
+  - psql -U postgres -c "create extension postgis"
+  - cp config/database.yml.travis config/database.yml

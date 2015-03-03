@@ -52,4 +52,5 @@ group :test do
   gem "shoulda-matchers", require: false
   gem "capybara-webkit"
   gem "growl"
+  gem "rake" # required for Travis-CI
 end
