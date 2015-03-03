@@ -1,3 +1,6 @@
+[![Code Climate](https://codeclimate.com/github/robwise/drexel_msis_planner/badges/gpa.svg)](https://codeclimate.com/github/robwise/drexel_msis_planner)
+[![Test Coverage](https://codeclimate.com/github/robwise/drexel_msis_planner/badges/coverage.svg)](https://codeclimate.com/github/robwise/drexel_msis_planner)
+
 # Drexel MSIS Planner
 This is my first Ruby on Rails project. I am attempting to learn more about Rails development and heard from many places that it's important to get your hands dirty early on and just start coding. I've already learned a lot doing it this way.
 
