@@ -21,7 +21,7 @@ Future features:
 ## Getting Started
 This application requires:
 
-- Ruby 2.2.0-rc1
+- Ruby 2.2
 - Rails 4.2
 
 Learn more about [Installing Rails](http://railsapps.github.io/installing-rails.html).
