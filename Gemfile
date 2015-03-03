@@ -53,4 +53,5 @@ group :test do
   gem "capybara-webkit"
   gem "growl"
   gem "rake" # required for Travis-CI
+  gem "codeclimate-test-reporter", require: nil
 end
