@@ -36,6 +36,8 @@ group :development do
   gem "rb-inotify", require: false
   gem "rack-livereload"
   gem "guard-livereload", require: false
+  gem "rubocop"
+  gem "rubocop-rspec"
 end
 group :development, :test do
   gem "dotenv-rails"
