@@ -78,4 +78,18 @@ describe TakenCourse do
       end
     end
   end
+  context "with existing taken courses from user and new course" do
+    let!(:existing_taken_course) { create :taken_course, user: user }
+    it { should be_valid }
+  end
+  context "with existing taken courses for course but different user" do
+    let!(:existing_taken_course) { create :taken_course, course: course }
+    it { should be_valid }
+  end
+  context "with existing taken course for same course and user" do
+    let!(:existing_taken_course) do
+      create :taken_course, user: user, course: course
+    end
+    it { should be_invalid }
+  end
 end
