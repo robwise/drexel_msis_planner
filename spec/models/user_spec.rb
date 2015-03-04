@@ -9,11 +9,10 @@ describe User do
   it { should respond_to(:courses) }
   it { should respond_to(:plans) }
   it { should respond_to(:active_plan) }
-  it { should respond_to(:has_taken?) }
-  it { should respond_to(:taken_quarters) }
-  it { should respond_to(:taken_courses_in) }
-  it { should respond_to(:required_credits_earned) }
-  it { should respond_to(:distribution_credits_earned) }
+  it { should respond_to(:enrolled_quarters) }
+  it { should respond_to(:taken_courses_in_quarter) }
+  it { should respond_to(:required_course_credits_earned) }
+  it { should respond_to(:distribution_requirement_credits_earned) }
   it { should respond_to(:free_elective_credits_earned) }
   it { should respond_to(:total_credits_earned) }
   it { should validate_uniqueness_of(:email) }
@@ -31,25 +30,7 @@ describe User do
     end
   end
 
-  describe "#has_taken?(course)" do
-    let(:course) { create :course }
-    let(:other_course) { create :course }
-    let(:taken_course) { create :taken_course, user: user, course: course }
-
-    before do
-      user.save
-      taken_course.save
-    end
-
-    it "is true for course that user has taken" do
-      expect(user.has_taken?(course)).to eq(true)
-    end
-    it "is false for course that user has not taken" do
-      expect(user.has_taken?(other_course)).to eq(false)
-    end
-  end
-
-  describe "#taken_quarters" do
+  describe "#enrolled_quarters" do
     before do
       user.save
       [201415, 201415, 201425].each do |q|
@@ -58,18 +39,19 @@ describe User do
     end
 
     it "returns the unique quarters in order" do
-      expect(user.taken_quarters).to eq([201415, 201425])
+      expect(user.enrolled_quarters).to eq([201415, 201425])
     end
   end
 
-  describe "#taken_courses_in(quarter)" do
+  describe "#taken_courses_in_quarter(quarter)" do
     before { user.save }
     let!(:taken_course1) { create :taken_course, user: user, quarter: 201415 }
     let!(:taken_course2) { create :taken_course, user: user, quarter: 201425 }
     let!(:taken_course3) { create :taken_course, user: user, quarter: 201415 }
 
     it "responds with the courses taken during that quarter" do
-      expect(user.taken_courses_in(201415)).to eq([taken_course1, taken_course3])
+      expect(user.taken_courses_in_quarter(201415))
+        .to eq([taken_course1, taken_course3])
     end
   end
 
@@ -82,10 +64,10 @@ describe User do
     end
 
     it "respond with proper amount of required credits" do
-      expect(user.required_credits_earned).to eq 9
+      expect(user.required_course_credits_earned).to eq 9
     end
     it "respond with proper amount of distribution credits" do
-      expect(user.distribution_credits_earned).to eq 3
+      expect(user.distribution_requirement_credits_earned).to eq 3
     end
     it "respond with proper amount of free elective credits" do
       expect(user.free_elective_credits_earned).to eq 6
