@@ -13,10 +13,10 @@ AllCops:
   RunRailsCops: true
 
 Style/Encoding:
-    EnforcedStyle: when_needed
+  EnforcedStyle: when_needed
 
 Style/Documentation:
-    Enabled: false
+  Enabled: false
 
 Style/NumericLiterals:
-    MinDigits: 7
+  MinDigits: 7
