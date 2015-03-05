@@ -13,12 +13,13 @@
  * disabled =require_tree .
  * disabled =require_self
  */
- @import "bootstrap-sprockets";
- @import "bootstrap";
- @import "compass";
- @import "compass/layout";
- @import "custom";
- @import "forms";
- @import "modals";
- @import "plans";
- @import "courses";
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "compass";
+@import "compass/layout";
+@import "custom";
+@import "navigation";
+@import "forms";
+@import "modals";
+@import "courses";
+@import "plans";

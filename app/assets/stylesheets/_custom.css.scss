@@ -1,33 +1,23 @@
+// General style overrides
+
 // make all images responsive by default
+// ? Rails_App_Composer put this here...
 img {
   @extend .img-responsive;
   margin: 0 auto;
 }
 
-main {
-  background-color: #eee;
-  padding-bottom: percentage(80px/1000px);
-  width: 100%;
-  margin-top: 40px; // accommodate the navbar
-}
-
 section {
-  @extend .row;
-  margin: percentage(20px/1000px) auto;
+  @extend row;
 }
 
-// override for the 'Home' navigation link
-.navbar-brand {
-  font-size: inherit;
-}
-
-#error_explanation {
+.error-messages {
   @extend .alert;
   @extend .alert-danger;
 }
 
-#error_explanation h2 {
-  font-size: ceil(($font-size-base * 16/14)); // ~16px
+.row {
+  @extend .row;
 }
 
 .button-block {
@@ -39,6 +29,12 @@ section {
 .button-primary-block {
   @extend .btn;
   @extend .btn-primary;
+  @extend .btn-block;
+}
+
+.button-danger-block {
+  @extend .btn;
+  @extend .btn-danger;
   @extend .btn-block;
 }
 
@@ -56,9 +52,4 @@ section {
 .button {
   @extend .btn;
   @extend .btn-default;
-}
-
-#cancel-user {
-  @extend .well;
-  max-width: 320px;
 }

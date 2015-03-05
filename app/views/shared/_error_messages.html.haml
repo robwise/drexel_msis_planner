@@ -1,6 +1,6 @@
 - if object.errors.any?
-  .alert.alert-danger
-    %button.close{"aria-hidden" => "true", "data-dismiss" => "alert", :type => "button"}
+  .error-messages
+    %button.close{"aria-hidden" => "true", "data-dismiss" => "alert", type: "button"}
       \&#215;
     %strong
       #{pluralize(object.errors.count, "error").titleize}:

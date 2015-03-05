@@ -1,0 +1,26 @@
+// Navigation Styles
+
+.navbar-home {
+  @extend .navbar-brand;
+  font-size: inherit;
+}
+
+nav {
+  @extend .navbar;
+  @extend .navbar-default;
+}
+
+.navbar-collapse-button {
+  @extend .navbar-toggle;
+  @extend .collapsed;
+}
+
+.navbar-collapsible-area {
+  @extend .collapse;
+  @extend .navbar-collapse;
+}
+
+.navbar-links {
+  @extend .nav;
+  @extend .navbar-nav;
+}
