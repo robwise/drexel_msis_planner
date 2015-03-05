@@ -1,4 +1,12 @@
 class Quarter
+  # Drexel is on a quarter system and refers to each quarter by its quarter
+  # code. The first four digits are the year in which the quarter appears, and
+  # the trailing two digits represent the season.
+  #
+  # Quarter codes are Drexel's existing concept, so despite the issues inherent
+  # with encoding values in this manner, it is best to use them for user
+  # familiarity.
+
   include Comparable
   @@valid_seasons = { fall: 15, winter: 25, spring: 35, summer: 45 }
   @@months = { fall: 9..12, winter: 1..3, spring: 4..6, summer: 6..8 }
@@ -9,11 +17,11 @@ class Quarter
   end
 
   def valid?
-    not (code.nil? || bad_season? || bad_year? || bad_length?)
+    !(code.nil? || bad_season? || bad_year? || bad_length?)
   end
 
-  def <=>(other_quarter)
-    code <=> other_quarter.code
+  def <=>(other)
+    code <=> other.code
   end
 
   def humanize
@@ -31,7 +39,7 @@ class Quarter
   def season=(new_season)
     season_symbol = new_season.downcase.to_sym
     unless @@valid_seasons.include?(season_symbol)
-      raise ArgumentError.new("Season: '#{season_symbol}' is not valid")
+      fail ArgumentError, "Season: '#{season_symbol}' is not valid", caller
     end
     @code = (year.to_s + @@valid_seasons[season_symbol].to_s).to_i
   end
@@ -49,29 +57,37 @@ class Quarter
     Date.new(year, month)
   end
 
+  def future?
+    to_date > Time.current
+  end
+
+  def past?
+    to_date < Time.current
+  end
+
   private
 
-    def bad_length?
-      code.to_s.length != 6
-    end
+  def bad_length?
+    code.to_s.length != 6
+  end
 
-    def bad_year?
-      (year > (Time.now.year + 10)) || year < 1980
-    end
+  def bad_year?
+    (year > (Time.now.year + 10)) || year < 1980
+  end
 
-    def bad_season?
-      not @@valid_seasons.values.include?(season_code)
-    end
+  def bad_season?
+    !@@valid_seasons.values.include?(season_code)
+  end
 
-    def self.get_date_from(object)
-      if object.class? == String
-       return Date.parse(date)
-      elsif object.class? == Date && object.valid_date?
-        return object
-      else
-        raise ArgumentError.new("'#{object}' is invalid. Must be a valid date
-                                string or object")
-      end
+  def self.get_date_from(object)
+    if object.class? == String
+      return Date.parse(date)
+    elsif object.class? == Date && object.valid_date?
+      return object
+    else
+      fail ArgumentError,
+           "'#{object}' is invalid. Must be a valid date string or object",
+           caller
     end
-
+  end
 end

@@ -51,8 +51,11 @@ describe TakenCourse do
 
   describe "#self.already_taken?" do
     before { taken_course.save }
-    it "finds the matching taken_course" do
-      expect(described_class.already_taken?(user, course)).to eq(true)
+    it "finds the matching taken_course using objects" do
+      expect(described_class.already_taken?(user: user, course: course)).to eq(true)
+    end
+    it "finds the matching taken_course using ids" do
+      expect(described_class.already_taken?(user: user.id, course: course.id)).to eq(true)
     end
   end
 

@@ -25,7 +25,7 @@ feature "Adding a course to a plan" do
         click_on("add to plan")
         expect(PlannedCourse.count).to eq(0)
         fill_planned_course_modal("")
-        expect(page).to have_content("1 Error: Quarter can't be blank")
+        expect(page).to have_content("Quarter can't be blank")
         expect(PlannedCourse.count).to eq(0)
       end
     end

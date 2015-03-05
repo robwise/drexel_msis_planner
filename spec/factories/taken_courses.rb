@@ -5,7 +5,7 @@ FactoryGirl.define do
     user
     course
     grade "A"
-    quarter 201415
+    quarter { (build :past_quarter).code }
 
     factory :required_taken_course do
       association :course, factory: :course, degree_requirement: :required_course
