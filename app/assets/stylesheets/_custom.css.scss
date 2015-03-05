@@ -53,3 +53,9 @@ section {
   @extend .btn;
   @extend .btn-default;
 }
+
+main {
+  h1:first-of-type {
+    @extend .page-header;
+  }
+}
