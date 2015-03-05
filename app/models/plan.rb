@@ -6,15 +6,25 @@ class Plan < ActiveRecord::Base
   before_validation :ensure_active_has_value
   before_validation :ensure_active_if_user_has_no_other_plans
   validates :user, presence: true
-  validates :name, presence: true,
-                   length: { minimum: 1, maximum: 35 },
-                   uniqueness: { scope: :user,
-                                 message: "a plan with that name already exists" }
+  validates :name,
+            presence: true,
+            length: { minimum: 1, maximum: 35 },
+            uniqueness: { scope: :user,
+                          message: "a plan with that name already exists" }
   validates :active, presence: true
   after_save :deactivate_users_other_plans, if: "active = true"
 
   def activate!
     update(active: true)
+  end
+
+  def degree_requirement_counts
+    requirements = courses.pluck(:degree_requirement)
+    counts = {}
+    Course.degree_requirements.each do |key, value|
+      counts[key.to_sym] = 3 * requirements.count(value)
+    end
+    counts
   end
 
   private

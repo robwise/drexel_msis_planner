@@ -3,7 +3,17 @@
 FactoryGirl.define do
   factory :planned_course do
     plan
-    course
+    association :course
     quarter "#{(Time.zone.now.year + 1).to_s + [15, 25, 35, 45].sample.to_s }"
+  end
+
+  trait :required do
+    association :course, :required
+  end
+  trait :distribution do
+    association :course, :distribution
+  end
+  trait :free_elective do
+    association :course, :free_elective
   end
 end

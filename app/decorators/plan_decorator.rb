@@ -25,7 +25,7 @@ class PlanDecorator
     qs_array = []
     quarters = gather_unique_quarters_from(courses)
     quarters.each do |quarter|
-      section_title = Quarter.new(quarter).humanize + " (#{quarter})"
+      section_title = " (#{quarter}) - " + Quarter.new(quarter).humanize
       qs = { title: section_title }
       qs[:courses] = courses.where(quarter: quarter)
       qs_array << qs

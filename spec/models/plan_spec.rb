@@ -16,6 +16,7 @@ describe Plan do
   it { should respond_to(:updated_at) }
   it { should respond_to(:planned_courses) }
   it { should respond_to(:courses) }
+  it { should respond_to(:degree_requirement_counts) }
   it { should validate_presence_of(:user) }
   it { should validate_presence_of(:name) }
   it { should ensure_length_of(:name).is_at_least(1) }
@@ -32,30 +33,34 @@ describe Plan do
   end
 
   describe "creation" do
-    it "should change user's number of plans by 1" do
+    it "changes user's number of plans by 1" do
       saving_plan_changes_users_plans_size(plan, 0, 1)
       expect(user.plans.first).to eq(plan)
     end
 
     context "when user already has another plan" do
       before { users_other_plan.save }
-      it "should change user's number of plans from 1 to 2" do
+      it "changes user's number of plans from 1 to 2" do
         saving_plan_changes_users_plans_size(plan, 1, 2)
       end
-      it "should change user's active plan to the new plan" do
-        expect { plan.save }.to change(user, :active_plan).from(users_other_plan).to(plan)
+      it "changes user's active plan to the new plan" do
+        expect { plan.save }.to change(user, :active_plan)
+        .from(users_other_plan).to(plan)
       end
-      it "should change the old plan's active attribute to false" do
-        expect { plan.save; users_other_plan.reload }.to change(users_other_plan, :active).from(true).to(false)
+      it "changes the old plan's active attribute to false" do
+        expect do
+          plan.save
+          users_other_plan.reload
+        end.to change(users_other_plan, :active).from(true).to(false)
       end
     end
 
     context "#active = true" do
       context "when user has no other plans" do
-        it "should set a new plan to active" do
-          expect{ plan.save }.to change(plan, :active).to(true)
+        it "sets a new plan to active" do
+          expect { plan.save }.to change(plan, :active).to(true)
         end
-        it "should make user#active_plan return it" do
+        it "makes user#active_plan return it" do
           expect { plan.save }.to change(user, :active_plan).from(nil).to(plan)
         end
       end
@@ -63,14 +68,17 @@ describe Plan do
       context "when user's other plan was active" do
         before { users_other_plan.save }
 
-        it "should become the user's new active plan" do
-          expect { plan.save }.to change(user, :active_plan).from(users_other_plan).to(plan)
+        it "becomes the user's new active plan" do
+          expect { plan.save }.to change(user, :active_plan)
+          .from(users_other_plan).to(plan)
         end
-        it "should set user's other plans to false" do
-          expect { plan.save; users_other_plan.reload }
-            .to change(users_other_plan, :active).from(true).to(false)
+        it "sets user's other plans to false" do
+          expect do
+            plan.save
+            users_other_plan.reload
+          end.to change(users_other_plan, :active).from(true).to(false)
         end
-        it "should change user's total plans count to two" do
+        it "changes user's total plans count to two" do
           saving_plan_changes_users_plans_size(plan, 1, 2)
         end
       end
@@ -84,18 +92,43 @@ describe Plan do
         users_other_plan.save
         plan.reload
       end
-      it "should make the plan active" do
-        expect { plan.activate! ; users_other_plan.reload; plan.reload}.to change(plan, :active).from(false).to(true)
+      it "makes the plan active" do
+        expect do
+          plan.activate!
+          users_other_plan.reload
+          plan.reload
+        end.to change(plan, :active).from(false).to(true)
       end
-      it "should make the other plan inactive" do
-        expect { plan.activate! ; users_other_plan.reload; plan.reload }.to change(users_other_plan, :active).from(true).to(false)
+      it "makes the other plan inactive" do
+        expect do
+          plan.activate!
+          users_other_plan.reload
+          plan.reload
+        end.to change(users_other_plan, :active).from(true).to(false)
+      end
+    end
+    describe "#degree_requirement_counts" do
+      before do
+        2.times { create :planned_course, :required, plan: plan }
+        3.times do
+          create :planned_course,
+                 :distribution,
+                 plan: plan
+        end
+        5.times { create :planned_course, :free_elective, plan: plan }
+      end
+      it "returns the correct amount of credits for each type" do
+        counts = plan.degree_requirement_counts
+        expect(counts[:required_course]).to eq(6)
+        expect(counts[:distribution_requirement]).to eq(9)
+        expect(counts[:free_elective]).to eq(15)
       end
     end
   end
 
-  def saving_plan_changes_users_plans_size(plan_to_save, before_size, after_size)
+  def saving_plan_changes_users_plans_size(plan, before_size, after_size)
     expect(user.plans(true).size).to eq(before_size)
-    plan_to_save.save
+    plan.save
     expect(user.plans(true).size).to eq(after_size)
   end
 end
