@@ -1,12 +1,48 @@
-#plans-table {
-  @extend .table-hover;
-}
-
 input.btn-xs {
   padding-top: 0;
   padding-bottom: 0;
 }
 
-form.edit_plan {
+.edit_plan {
   height: $line-height-computed;
+}
+
+.taken-quarter,
+.planned-quarter {
+  @extend .col-xs-12;
+  @extend .col-md-3;
+}
+
+.taken-quarter-content {
+  @extend .panel-group;
+}
+
+.taken-quarter-courses {
+  @extend .panel;
+  @extend .panel-default;
+}
+
+.taken-quarter-heading {
+  @extend .panel-heading;
+}
+
+.taken-quarter-course-short-description {
+  @extend .panel-title;
+}
+
+.taken-quarter-course-short-description-content {
+  @extend .collapsed;
+}
+
+.taken-quarter-course-details {
+  @extend .panel-collapse;
+  @extend .collapse;
+}
+
+.taken-quarter-course-long-description {
+  @extend .panel-body;
+}
+
+.taken-quarter-course-grade {
+  @extend .pull-right;
 }

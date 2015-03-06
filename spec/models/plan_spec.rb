@@ -1,10 +1,10 @@
 describe Plan do
   subject { plan }
 
-  let!(:user)             { create(:user) }
-  let (:plan)             { build(:plan, user: user) }
-  let (:users_other_plan) { build(:plan, user: user) }
-  let (:duplicate_plan)   { build(:plan, name: plan.name, user: user) }
+  let!(:user)            { create(:user) }
+  let(:plan)             { build(:plan, user: user) }
+  let(:users_other_plan) { build(:plan, user: user) }
+  let(:duplicate_plan)   { build(:plan, name: plan.name, user: user) }
 
   it { should belong_to(:user) }
   it { should have_many(:planned_courses).dependent(:destroy) }
@@ -45,7 +45,7 @@ describe Plan do
       end
       it "changes user's active plan to the new plan" do
         expect { plan.save }.to change(user, :active_plan)
-        .from(users_other_plan).to(plan)
+          .from(users_other_plan).to(plan)
       end
       it "changes the old plan's active attribute to false" do
         expect do
@@ -70,7 +70,7 @@ describe Plan do
 
         it "becomes the user's new active plan" do
           expect { plan.save }.to change(user, :active_plan)
-          .from(users_other_plan).to(plan)
+            .from(users_other_plan).to(plan)
         end
         it "sets user's other plans to false" do
           expect do

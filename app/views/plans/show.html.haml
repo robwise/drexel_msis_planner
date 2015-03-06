@@ -1,12 +1,30 @@
 - content_for :title, @plan_decorator.name
-- content_for :description, "User #{@plan_decorator.user.email}'s '#{@plan_decorator.name}' degree plan."
-%h2= "\"#{@plan_decorator.name}\""
-%tbody
-  - @plan_decorator.taken_quarter_sections.each do |quarter_section|
-    = render 'taken_quarter_section', quarter_section: quarter_section
-  - @plan_decorator.planned_quarter_sections.each do |quarter_section|
-    = render 'planned_quarter_section', quarter_section: quarter_section
-
+- content_for :description,
+  "User #{@plan_decorator.user.email}'s '#{@plan_decorator.name}' degree plan."
+%h1= "\"#{@plan_decorator.name}\""
 = link_to 'Edit Current Plan', edit_plan_path(@plan_decorator.id)
 \|
 = link_to 'All Plans', user_plans_path(@plan_decorator.user)
+%section
+  %h2 Summary
+  %ul
+    %li Plan completion date: XX/XX/XX or requirements not met
+    %li Required Course Credits: XX / XX
+    %li Distribution Requirement Credits: XX / XX
+    %li Free Elective Credits: XX / XX
+    %li Total Credits: XX / XX
+%section
+  %h2 Planned Course of Study
+  - index = 1
+  - @plan_decorator.taken_quarter_sections.each do |taken_quarter|
+    .taken-quarter
+      = render 'taken_quarter_section', taken_quarter: taken_quarter
+    - if index % 4 == 0
+      .row
+    - index = index + 1
+  - @plan_decorator.planned_quarter_sections.each do |planned_quarter|
+    .planned-quarter
+      = render 'planned_quarter_section', planned_quarter: planned_quarter
+    - if index % 4 == 0
+      .row
+    - index = index + 1

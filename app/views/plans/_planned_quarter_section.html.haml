@@ -1,6 +1,6 @@
-%h3= quarter_section[:title].to_s
-%table.table
-  - quarter_section[:courses].each do |planned_course|
+%h3= planned_quarter[:title].to_s
+%table
+  - planned_quarter[:courses].each do |planned_course|
     %tr
       %td= planned_course.course.title
-      %td= planned_course.quarter.presence
+      %td= planned_course.quarter
