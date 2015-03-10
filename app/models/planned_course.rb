@@ -10,6 +10,11 @@ class PlannedCourse < ActiveRecord::Base
     !quarter.nil?
   end
 
+  # TODO: implement
+  def plan_issue?
+    false
+  end
+
   private
 
   def valid_planned_quarter?
