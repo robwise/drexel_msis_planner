@@ -13,33 +13,40 @@ input.btn-xs {
   @extend .col-md-3;
 }
 
-.taken-quarter-content {
+.taken-quarter-content,
+.planned-quarter-content {
   @extend .panel-group;
 }
 
-.taken-quarter-courses {
+.taken-quarter-courses,
+.planned-quarter-courses {
   @extend .panel;
   @extend .panel-default;
 }
 
-.taken-quarter-heading {
+.taken-quarter-heading,
+.planned-quarter-heading {
   @extend .panel-heading;
 }
 
-.taken-quarter-course-short-description {
+.taken-quarter-course-short-description,
+.planned-quarter-course-short-description {
   @extend .panel-title;
 }
 
-.taken-quarter-course-short-description-content {
+.taken-quarter-course-short-description-content,
+.planned-quarter-course-short-description-content {
   @extend .collapsed;
 }
 
-.taken-quarter-course-details {
+.taken-quarter-course-details,
+.planned-quarter-course-details {
   @extend .panel-collapse;
   @extend .collapse;
 }
 
-.taken-quarter-course-long-description {
+.taken-quarter-course-long-description,
+.planned-quarter-course-long-description {
   @extend .panel-body;
 }
 
