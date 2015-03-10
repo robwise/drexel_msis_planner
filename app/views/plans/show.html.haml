@@ -8,11 +8,16 @@
 %section
   %h2 Summary
   %ul
-    %li Plan completion date: XX/XX/XX or requirements not met
-    %li Required Course Credits: XX / XX
-    %li Distribution Requirement Credits: XX / XX
-    %li Free Elective Credits: XX / XX
-    %li Total Credits: XX / XX
+    - #TODO: Implement plan completion quarter
+    %li Planned Completion: "QuarterX" or "requirements not met"
+    %li
+      = "Required Course Credits: #{@plan_decorator.required_course_credits} / 27"
+    %li
+      = "Distribution Requirement Credits: #{@plan_decorator.distribution_requirement_credits} / 12"
+    %li
+      = "Free Elective Credits: #{@plan_decorator.free_elective_credits} / 6"
+    %li
+      = "Total Credits: #{@plan_decorator.total_credits} / 45"
 %section
   %h2 Planned Course of Study
   - index = 1

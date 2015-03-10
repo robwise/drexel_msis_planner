@@ -55,6 +55,22 @@ class PlanDecorator
     end
   end
 
+  def required_course_credits
+    degree_requirement_counts[:required_course]
+  end
+
+  def distribution_requirement_credits
+    degree_requirement_counts[:distribution_requirement]
+  end
+
+  def free_elective_credits
+    degree_requirement_counts[:free_elective]
+  end
+
+  def total_credits
+    required_course_credits + distribution_requirement_credits + free_elective_credits
+  end
+
   private
 
   def gather_unique_quarters_from(courses)
