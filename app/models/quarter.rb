@@ -13,7 +13,7 @@ class Quarter
   attr_accessor :code
 
   def initialize(code)
-    @code = code
+    @code = code.to_s.to_i # will work for integer, symbol, or string arg
   end
 
   def valid?
@@ -65,6 +65,14 @@ class Quarter
     to_date < Time.current
   end
 
+  def next_quarter
+    if 45 == season_code
+      Quarter.new((year + 1) * 100 + 15)
+    else
+      Quarter.new(year * 100 + season_code + 10)
+    end
+  end
+
   private
 
   def bad_length?
@@ -72,11 +80,23 @@ class Quarter
   end
 
   def bad_year?
-    (year > (Time.now.year + 10)) || year < 1980
+    (year > (Time.current.year + 10)) || year < 1980
   end
 
   def bad_season?
     !@@valid_seasons.values.include?(season_code)
+  end
+
+  # Generates all quarters between first and last given quarters
+  def self.from(args)
+    current_quarter = args[:first].instance_of?(Quarter) ? args[:first] : Quarter.new(args[:first])
+    last = args[:last].instance_of?(Quarter) ? args[:last] : Quarter.new(args[:last])
+    quarters = []
+    while current_quarter <= last
+      quarters << current_quarter
+      current_quarter = current_quarter.next_quarter
+    end
+    quarters
   end
 
   def self.get_date_from(object)

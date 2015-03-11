@@ -14,20 +14,26 @@ class PlanDecorator
   end
 
   def taken_quarter_sections
-    generate_quarter_sections_for(@plan.user.taken_courses)
+    first = user.taken_courses.minimum(:quarter)
+    last = user.taken_courses.maximum(:quarter)
+    quarters = Quarter.from(first: first, last: last)
+    generate_quarter_sections_for(quarters, @plan.user.taken_courses)
   end
 
   def planned_quarter_sections
-    generate_quarter_sections_for(@plan.planned_courses)
+    first = Quarter.new(user.taken_courses.maximum(:quarter)).next_quarter.code
+    last = planned_courses.maximum(:quarter)
+    quarters = Quarter.from(first: first, last: last)
+    generate_quarter_sections_for(quarters, @plan.planned_courses)
   end
 
-  def generate_quarter_sections_for(courses)
+  def generate_quarter_sections_for(quarters, courses)
+    # courses = user.taken_courses + planned_courses
     qs_array = []
-    quarters = gather_unique_quarters_from(courses)
     quarters.each do |quarter|
-      section_title = " (#{quarter}) - " + Quarter.new(quarter).humanize
-      qs = { title: section_title }
-      qs[:courses] = courses.where(quarter: quarter)
+      section_title = "#{quarter.code}- " + quarter.humanize
+      qs = { title: section_title, code: quarter.code }
+      qs[:courses] = courses.where(quarter: quarter.code)
       qs_array << qs
     end
     qs_array
@@ -49,13 +55,26 @@ class PlanDecorator
     end
   end
 
+  def required_course_credits
+    degree_requirement_counts[:required_course]
+  end
+
+  def distribution_requirement_credits
+    degree_requirement_counts[:distribution_requirement]
+  end
+
+  def free_elective_credits
+    degree_requirement_counts[:free_elective]
+  end
+
+  def total_credits
+    required_course_credits + distribution_requirement_credits + free_elective_credits
+  end
+
   private
 
   def gather_unique_quarters_from(courses)
-    course_quarters = []
-    courses.each do |course|
-      course_quarters << course.quarter
-    end
-    course_quarters.uniq.sort
+    Quarter.from(first: courses.minimum(:quarter),
+                 last: courses.maximum(:quarter))
   end
 end

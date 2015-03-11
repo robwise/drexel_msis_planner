@@ -11,6 +11,7 @@ describe PlannedCourse do
   it { should respond_to(:plan_id) }
   it { should respond_to(:quarter) }
   it { should respond_to(:assigned?) }
+  it { should respond_to(:plan_issue?) }
   it { should validate_presence_of(:plan) }
   it { should validate_presence_of(:course) }
   it { should validate_presence_of(:quarter) }

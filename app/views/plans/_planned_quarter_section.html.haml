@@ -1,6 +1,10 @@
-%h3= quarter_section[:title].to_s
-%table.table
-  - quarter_section[:courses].each do |planned_course|
-    %tr
-      %td= planned_course.course.title
-      %td= planned_course.quarter.presence
+%h3.planned-quarter-title= planned_quarter[:title].to_s
+.planned-quarter-content{ "id" => "planned-quarter-#{ planned_quarter[:code] }", "role" => "tablist", "aria-multiselectable" => "true" }
+  .planned-quarter-courses
+    - planned_quarter[:courses].each do |planned_course|
+      .planned-quarter-heading{ "role" => "tab", "id" => "#{ planned_course.course.short_id }-heading" }
+        %h4.planned-quarter-course-short-description
+          %a.planned-quarter-course-short-description-content{ "data-toggle" => "collapse", "data-parent" => "#planned-quarter-#{ planned_quarter[:code] }", "href" => "#planned-quarter-#{ planned_course.course.short_id }-course-details", "aria-expanded" => "false", "aria-controls" => "planned-quarter-#{ planned_course.course.short_id }-course-details"}
+            %span.planned-quarter-course-title= planned_course.course.full_id
+      .planned-quarter-course-details{ "id" => "planned-quarter-#{ planned_course.course.short_id }-course-details", "role" => "tabpanel", "aria-labeledby" => "#{ planned_course.course.short_id }-heading" }
+        .planned-quarter-course-long-description= planned_course.course.description
