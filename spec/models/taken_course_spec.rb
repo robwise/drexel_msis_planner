@@ -1,6 +1,20 @@
+# == Schema Information
+#
+# Table name: taken_courses
+#
+#  course_id  :integer          not null
+#  created_at :datetime
+#  grade      :integer          not null
+#  id         :integer          not null, primary key
+#  quarter    :integer          not null
+#  updated_at :datetime
+#  user_id    :integer          not null
+#
+
 describe TakenCourse do
   let(:user) { create(:user) }
   let(:course) { create(:course) }
+  let(:other_course) { create(:course) }
 
   subject(:taken_course) do
     build(:taken_course, user_id: user.id, course_id: course.id)
@@ -52,10 +66,16 @@ describe TakenCourse do
   describe "#self.already_taken?" do
     before { taken_course.save }
     it "finds the matching taken_course using objects" do
-      expect(described_class.already_taken?(user: user, course: course)).to eq(true)
+      expect(described_class.already_taken?(user: user, course: course))
+        .to eq(true)
     end
     it "finds the matching taken_course using ids" do
-      expect(described_class.already_taken?(user: user.id, course: course.id)).to eq(true)
+      expect(described_class.already_taken?(user: user.id, course: course.id))
+        .to eq(true)
+    end
+    it "returns false if no match is found" do
+      expect(described_class.already_taken?(user: user, course: other_course))
+        .to eq(false)
     end
   end
 

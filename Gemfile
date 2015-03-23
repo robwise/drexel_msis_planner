@@ -14,9 +14,10 @@ gem "haml-rails"
 gem "pg"
 gem "pundit"
 gem "simple_form"
-gem "titleize", "~> 1.3"
+gem "titleize"
 gem "autoprefixer-rails"
 gem "compass-rails"
+gem "annotate", "~> 2.6.6"
 group :production do
   gem "unicorn"
   gem "rails_12factor"
@@ -44,6 +45,7 @@ group :development, :test do
   gem "factory_girl_rails"
   gem "rspec-rails"
   gem "spring-commands-rspec"
+  gem "byebug"
 end
 group :test do
   gem "capybara"

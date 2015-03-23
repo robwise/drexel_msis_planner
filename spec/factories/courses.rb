@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: courses
+#
+#  created_at         :datetime
+#  degree_requirement :integer          not null
+#  department         :string(255)      not null
+#  description        :text
+#  id                 :integer          not null, primary key
+#  level              :integer          not null
+#  title              :string(255)
+#  updated_at         :datetime
+#
+
 # Read about factories at https://github.com/thoughtbot/factory_girl
 # include ActiveSupport
 require "faker"
@@ -7,7 +21,8 @@ FactoryGirl.define do
     department "INFO"
     sequence(:level) { |n| n + 400 }
     title do
-      [Faker::Hacker.ingverb, Faker::Hacker.adjective,
+      [Faker::Hacker.ingverb,
+       Faker::Hacker.adjective,
        Faker::Hacker.noun.pluralize].join(" ")
     end
     description Faker::Lorem.paragraph

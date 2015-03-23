@@ -1,6 +1,6 @@
-feature 'Visiting a course show page' do
+feature "Visiting a course show page" do
   let(:course) { create(:course) }
-  let(:admin)  { create(:user, :admin)}
+  let(:admin)  { create(:user, :admin) }
   before do
     signin_user admin
     visit course_path(course)

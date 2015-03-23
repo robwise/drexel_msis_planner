@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: courses
+#
+#  created_at         :datetime
+#  degree_requirement :integer          not null
+#  department         :string(255)      not null
+#  description        :text
+#  id                 :integer          not null, primary key
+#  level              :integer          not null
+#  title              :string(255)
+#  updated_at         :datetime
+#
+
 describe Course do
   subject { course }
 
@@ -18,6 +32,7 @@ describe Course do
   it { should validate_presence_of(:degree_requirement) }
   it { should validate_numericality_of(:level).is_greater_than(0) }
   it { should validate_numericality_of(:level).is_less_than(2000) }
+  it { should have_one(:prerequisite) }
 
   describe "uniqeness validations" do
     before { course.save }

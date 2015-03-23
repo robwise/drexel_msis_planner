@@ -16,4 +16,5 @@ end
 
 if Rails.env.development?
   user = CreateUserService.new.call
+  puts "CREATED USER: #{user.email}"
 end

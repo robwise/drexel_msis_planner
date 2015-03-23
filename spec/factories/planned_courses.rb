@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: planned_courses
+#
+#  course_id  :integer          not null
+#  created_at :datetime
+#  id         :integer          not null, primary key
+#  plan_id    :integer          not null
+#  quarter    :integer          not null
+#  updated_at :datetime
+#
+
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
 FactoryGirl.define do

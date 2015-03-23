@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: plans
+#
+#  active     :boolean          not null
+#  created_at :datetime
+#  id         :integer          not null, primary key
+#  name       :string(255)      not null
+#  updated_at :datetime
+#  user_id    :integer          not null
+#
+
 class Plan < ActiveRecord::Base
   belongs_to :user, inverse_of: :plans
   has_many :planned_courses, dependent: :destroy
