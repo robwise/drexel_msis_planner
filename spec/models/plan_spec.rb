@@ -58,7 +58,7 @@ describe Plan do
       end
       it "changes user's active plan to the new plan" do
         expect { plan.save }.to change(user, :active_plan)
-        .from(users_other_plan).to(plan)
+          .from(users_other_plan).to(plan)
       end
       it "changes the old plan's active attribute to false" do
         expect do
@@ -83,7 +83,7 @@ describe Plan do
 
         it "becomes the user's new active plan" do
           expect { plan.save }.to change(user, :active_plan)
-          .from(users_other_plan).to(plan)
+            .from(users_other_plan).to(plan)
         end
         it "sets user's other plans to false" do
           expect do
@@ -125,8 +125,8 @@ describe Plan do
         2.times { create :planned_course, :required, plan: plan }
         3.times do
           create :planned_course,
-          :distribution,
-          plan: plan
+                 :distribution,
+                 plan: plan
         end
         5.times { create :planned_course, :free_elective, plan: plan }
       end
