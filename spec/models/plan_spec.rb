@@ -29,6 +29,7 @@ describe Plan do
   it { should respond_to(:planned_courses) }
   it { should respond_to(:courses) }
   it { should respond_to(:degree_requirement_counts) }
+  it { should respond_to(:taken_and_planned_courses) }
   it { should validate_presence_of(:user) }
   it { should validate_presence_of(:name) }
   it { should ensure_length_of(:name).is_at_least(1) }
@@ -57,7 +58,7 @@ describe Plan do
       end
       it "changes user's active plan to the new plan" do
         expect { plan.save }.to change(user, :active_plan)
-          .from(users_other_plan).to(plan)
+        .from(users_other_plan).to(plan)
       end
       it "changes the old plan's active attribute to false" do
         expect do
@@ -82,7 +83,7 @@ describe Plan do
 
         it "becomes the user's new active plan" do
           expect { plan.save }.to change(user, :active_plan)
-            .from(users_other_plan).to(plan)
+          .from(users_other_plan).to(plan)
         end
         it "sets user's other plans to false" do
           expect do
@@ -124,8 +125,8 @@ describe Plan do
         2.times { create :planned_course, :required, plan: plan }
         3.times do
           create :planned_course,
-                 :distribution,
-                 plan: plan
+          :distribution,
+          plan: plan
         end
         5.times { create :planned_course, :free_elective, plan: plan }
       end
@@ -134,6 +135,18 @@ describe Plan do
         expect(counts[:required_course]).to eq(6)
         expect(counts[:distribution_requirement]).to eq(9)
         expect(counts[:free_elective]).to eq(15)
+      end
+    end
+
+    context "when user has taken courses and plan has planned courses" do
+      let!(:planned_course) { create :planned_course, plan: plan }
+      let!(:taken_course) { create :taken_course, user: user }
+
+      describe "#taken_and_planned_courses" do
+        it "returns user's taken courses and plan's plannned courses" do
+          expect(subject.taken_and_planned_courses).to eq([taken_course,
+                                                           planned_course])
+        end
       end
     end
   end

@@ -39,6 +39,10 @@ class Plan < ActiveRecord::Base
     counts
   end
 
+  def taken_and_planned_courses
+    user.taken_courses.to_a.concat(planned_courses.to_a)
+  end
+
   private
 
   # Validators
