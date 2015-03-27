@@ -17,6 +17,11 @@ describe Plan do
   let(:plan)             { build(:plan, user: user) }
   let(:users_other_plan) { build(:plan, user: user) }
   let(:duplicate_plan)   { build(:plan, name: plan.name, user: user) }
+  let(:prerequisite) do
+    build :prerequisite, requiring_course: planned_course.course
+  end
+  let(:planned_course) { build :planned_course, plan: plan }
+  let(:taken_course) { build :taken_course, user: user }
 
   it { should belong_to(:user) }
   it { should have_many(:planned_courses).dependent(:destroy) }
@@ -30,6 +35,7 @@ describe Plan do
   it { should respond_to(:courses) }
   it { should respond_to(:degree_requirement_counts) }
   it { should respond_to(:taken_and_planned_courses) }
+  it { should respond_to(:requisite_issues) }
   it { should validate_presence_of(:user) }
   it { should validate_presence_of(:name) }
   it { should ensure_length_of(:name).is_at_least(1) }
@@ -41,7 +47,6 @@ describe Plan do
 
   describe "with taken name" do
     before { duplicate_plan.save }
-
     it { should be_invalid }
   end
 
@@ -80,7 +85,6 @@ describe Plan do
 
       context "when user's other plan was active" do
         before { users_other_plan.save }
-
         it "becomes the user's new active plan" do
           expect { plan.save }.to change(user, :active_plan)
             .from(users_other_plan).to(plan)
@@ -120,6 +124,7 @@ describe Plan do
         end.to change(users_other_plan, :active).from(true).to(false)
       end
     end
+
     describe "#degree_requirement_counts" do
       before do
         2.times { create :planned_course, :required, plan: plan }
@@ -139,17 +144,40 @@ describe Plan do
     end
 
     context "when user has taken courses and plan has planned courses" do
-      let!(:planned_course) { create :planned_course, plan: plan }
-      let!(:taken_course) { create :taken_course, user: user }
-
+      before do
+        planned_course.save
+        taken_course.save
+      end
       describe "#taken_and_planned_courses" do
         it "returns user's taken courses and plan's plannned courses" do
           expect(subject.taken_and_planned_courses).to eq([taken_course,
                                                            planned_course])
         end
       end
+
+      describe "#requisite_issues" do
+        before { prerequisite.save }
+        context "when a planned course has an unfilfilled Prerequisite" do
+          it "indicates the planned course has an unfilfilled Prerequisite" do
+            expect(plan.requisite_issues)
+              .to eq(["Prerequisite for #{planned_course.course.full_id}"\
+                      " not fulfilled"])
+          end
+        end
+        context "when a planned course has a fulfilled Prerequisite" do
+          before do
+            prerequisite.update(raw_text: "#{taken_course.course.full_id} "\
+                                "Minimum Grade: C")
+          end
+          it "does not indicate any issues" do
+            expect(plan.requisite_issues).to eq([])
+          end
+        end
+      end
     end
   end
+
+  private
 
   def saving_plan_changes_users_plans_size(plan, before_size, after_size)
     expect(user.plans(true).size).to eq(before_size)

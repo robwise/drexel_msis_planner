@@ -43,6 +43,18 @@ class Plan < ActiveRecord::Base
     user.taken_courses.to_a.concat(planned_courses.to_a)
   end
 
+  def requisite_issues
+    issues = []
+    planned_courses.each do |planned_course|
+      course = planned_course.course
+      prereq = course.prerequisite
+      unless prereq.nil? || prereq.fulfilled?(taken_and_planned_courses)
+        issues << "Prerequisite for #{course.full_id} not fulfilled"
+      end
+    end
+    issues
+  end
+
   private
 
   # Validators
