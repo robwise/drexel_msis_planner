@@ -66,6 +66,11 @@ guard :rspec, cmd: 'bundle exec spring rspec' do
   watch(%r{^app/policies/(.+)\.rb$}) do |m|
     "spec/policies/#{m[1]}_spec.rb"
   end
+
+  # Rerun service spec for associated service
+  watch(%r{^app/services/(.+)\.rb$}) do |m|
+    "spec/services/#{m[1]}_spec.rb"
+  end
 end
 
 guard 'livereload', notify: true do
