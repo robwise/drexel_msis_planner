@@ -29,23 +29,21 @@ describe PlannedCourse do
   it { should validate_presence_of(:quarter) }
   it { should be_valid }
 
-  describe "quarter code validation" do
-    context "with valid codes" do
-      it "should cause it to be valid" do
-        good_quarters = [201535, 201545, 201615, 202015]
-        good_quarters.each do |good_quarter|
-          subject.quarter = good_quarter
-          expect(subject).to be_valid
-        end
+  context "with valid codes" do
+    it "is valid" do
+      good_quarters = [201615, 202015]
+      good_quarters.each do |good_quarter|
+        subject.quarter = good_quarter
+        expect(subject).to be_valid
       end
     end
-    context "with invalid codes" do
-      it "should be cause it to be invalid" do
-        bad_quarters = [190015, 201416, 20145, 2014159, 201460, 2014, 201400]
-        bad_quarters.each do |bad_quarter|
-          subject.quarter = bad_quarter
-          expect(subject).not_to be_valid
-        end
+  end
+  context "with invalid codes" do
+    it "is invalid" do
+      bad_quarters = [190015, 201416, 20145, 2014159, 201460, 2014, 201400]
+      bad_quarters.each do |bad_quarter|
+        subject.quarter = bad_quarter
+        expect(subject).not_to be_valid
       end
     end
   end
