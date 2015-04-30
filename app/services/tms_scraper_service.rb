@@ -3,17 +3,17 @@ class TMSScraperService
 
   SCRAPER_URL = "https://nameless-tor-6040.herokuapp.com/course/"
 
-  def self.update_all_courses_with_scraped_data
+  def update_all_courses_with_scraped_data
     update_courses_with_scraped_data(Course.pluck(:level))
   end
 
-  def self.update_courses_with_scraped_data(course_levels)
+  def update_courses_with_scraped_data(course_levels)
     course_levels.each do |course_level|
       update_course_with_scraped_data(course_level)
     end
   end
 
-  def self.update_course_with_scraped_data(course_level)
+  def update_course_with_scraped_data(course_level)
     response = request_course_data_from_external_api(course_level)
     parsed_data = parse_response(response)
     return false if parsed_data.nil?
@@ -25,11 +25,11 @@ class TMSScraperService
 
   private
 
-  def self.request_course_data_from_external_api(course_level)
+  def request_course_data_from_external_api(course_level)
     HTTParty.get(SCRAPER_URL + course_level.to_s)
   end
 
-  def self.parse_response(response)
+  def parse_response(response)
     return nil unless response.response.code == "200"
 
     parsed_data = response.parsed_response
