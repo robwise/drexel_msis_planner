@@ -18,6 +18,7 @@ gem "titleize"
 gem "autoprefixer-rails"
 gem "compass-rails"
 gem "annotate", "~> 2.6.6"
+gem "httparty"
 group :production do
   gem "unicorn"
   gem "rails_12factor"
