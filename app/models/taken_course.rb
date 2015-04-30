@@ -24,8 +24,8 @@ class TakenCourse < ActiveRecord::Base
   belongs_to :user
   belongs_to :course
 
-  def self.already_taken?(user: user, course: course)
-    TakenCourse.find_by(user: user, course: course).present?
+  def self.already_taken?(args)
+    find_by(user: args[:user], course: args[:course]).present?
   end
 
   private
