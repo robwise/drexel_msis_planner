@@ -1,3 +1,5 @@
+# Calls the Drexel-TMS-Scraper external API to get latest course data and
+# then update this app's corresponding data
 class TMSScraperService
   require "httparty"
 
