@@ -1,15 +1,3 @@
-# == Schema Information
-#
-# Table name: planned_courses
-#
-#  course_id  :integer          not null
-#  created_at :datetime
-#  id         :integer          not null, primary key
-#  plan_id    :integer          not null
-#  quarter    :integer          not null
-#  updated_at :datetime
-#
-
 describe PlannedCourse do
   subject { planned_course }
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150323023149) do
+ActiveRecord::Schema.define(version: 20150501035048) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20150323023149) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "degree_requirement",             null: false
+    t.string   "prerequisite"
   end
 
   add_index "courses", ["department", "level"], name: "index_courses_on_department_and_level", using: :btree

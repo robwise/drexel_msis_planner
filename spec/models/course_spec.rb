@@ -1,17 +1,3 @@
-# == Schema Information
-#
-# Table name: courses
-#
-#  created_at         :datetime
-#  degree_requirement :integer          not null
-#  department         :string(255)      not null
-#  description        :text
-#  id                 :integer          not null, primary key
-#  level              :integer          not null
-#  title              :string(255)
-#  updated_at         :datetime
-#
-
 describe Course do
   subject { course }
 

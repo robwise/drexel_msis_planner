@@ -1,14 +1,3 @@
-# == Schema Information
-#
-# Table name: prerequisites
-#
-#  created_at          :datetime         not null
-#  id                  :integer          not null, primary key
-#  raw_text            :string           not null
-#  requiring_course_id :integer
-#  updated_at          :datetime         not null
-#
-
 # Prerequisite rules specify the courses that must be taken in a quarter prior
 # to taking the requiring course. These prerequisite rules can be complex
 # involving and/or logic and grouping via parentheses.

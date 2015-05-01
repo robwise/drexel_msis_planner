@@ -1,16 +1,3 @@
-# == Schema Information
-#
-# Table name: taken_courses
-#
-#  course_id  :integer          not null
-#  created_at :datetime
-#  grade      :integer          not null
-#  id         :integer          not null, primary key
-#  quarter    :integer          not null
-#  updated_at :datetime
-#  user_id    :integer          not null
-#
-
 describe TakenCourse do
   let(:user) { create(:user) }
   let(:course) { create(:course) }

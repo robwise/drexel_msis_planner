@@ -1,14 +1,3 @@
-# == Schema Information
-#
-# Table name: prerequisites
-#
-#  created_at          :datetime         not null
-#  id                  :integer          not null, primary key
-#  raw_text            :string           not null
-#  requiring_course_id :integer
-#  updated_at          :datetime         not null
-#
-
 describe Prerequisite do
   it { should belong_to(:requiring_course) }
   it { should respond_to(:raw_text) }

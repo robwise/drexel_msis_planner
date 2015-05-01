@@ -1,17 +1,3 @@
-# == Schema Information
-#
-# Table name: courses
-#
-#  created_at         :datetime
-#  degree_requirement :integer          not null
-#  department         :string(255)      not null
-#  description        :text
-#  id                 :integer          not null, primary key
-#  level              :integer          not null
-#  title              :string(255)
-#  updated_at         :datetime
-#
-
 class Course < ActiveRecord::Base
   enum degree_requirement: [:required_course,
                             :distribution_requirement,
@@ -31,7 +17,7 @@ class Course < ActiveRecord::Base
   has_many :users, through: :taken_courses
   has_many :planned_courses, dependent: :destroy
   has_many :plans, through: :planned_courses
-  has_one :prerequisite, dependent: :destroy, foreign_key: "requiring_course_id"
+  # has_one :prerequisite, dependent: :destroy, foreign_key: "requiring_course_id"
 
   # after_create proc { Prerequisite.create!(requiring_course: self, raw_text: "") }
 
