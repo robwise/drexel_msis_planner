@@ -7,9 +7,37 @@ class Quarter
   # with encoding values in this manner, it is best to use them for user
   # familiarity.
 
+  # Generates all quarters between first and last given quarters
+  def self.from(args)
+    current_quarter = args[:first].instance_of?(Quarter) ? args[:first] : Quarter.new(args[:first])
+    last = args[:last].instance_of?(Quarter) ? args[:last] : Quarter.new(args[:last])
+    quarters = []
+    while current_quarter <= last
+      quarters << current_quarter
+      current_quarter = current_quarter.next_quarter
+    end
+    quarters
+  end
+
+  def self.get_date_from(object)
+    if object.class? == String
+      return Date.parse(date)
+    elsif object.class? == Date && object.valid_date?
+      return object
+    else
+      fail ArgumentError,
+           "'#{object}' is invalid. Must be a valid date string or object",
+           caller
+    end
+  end
+
+  def self.current_quarter
+    self.new(Time.current.year * 100 + (Time.current.month / 4).ceil * 15)
+  end
+
   include Comparable
-  @@valid_seasons = { fall: 15, winter: 25, spring: 35, summer: 45 }
-  @@months = { fall: 9..12, winter: 1..3, spring: 4..6, summer: 6..8 }
+  VALID_SEASONS = { fall: 15, winter: 25, spring: 35, summer: 45 }
+  MONTHS = { fall: 9..12, winter: 1..3, spring: 4..6, summer: 6..8 }
   attr_accessor :code
 
   def initialize(code)
@@ -33,15 +61,15 @@ class Quarter
   end
 
   def season
-    @@valid_seasons.key(season_code)
+    VALID_SEASONS.key(season_code)
   end
 
   def season=(new_season)
     season_symbol = new_season.downcase.to_sym
-    unless @@valid_seasons.include?(season_symbol)
+    unless  VALID_SEASONS.include?(season_symbol)
       fail ArgumentError, "Season: '#{season_symbol}' is not valid", caller
     end
-    @code = (year.to_s + @@valid_seasons[season_symbol].to_s).to_i
+    @code = (year.to_s +  VALID_SEASONS[season_symbol].to_s).to_i
   end
 
   def year
@@ -53,7 +81,7 @@ class Quarter
   end
 
   def to_date
-    month = @@months[season].first
+    month = MONTHS[season].first
     Date.new(year, month)
   end
 
@@ -84,30 +112,6 @@ class Quarter
   end
 
   def bad_season?
-    !@@valid_seasons.values.include?(season_code)
-  end
-
-  # Generates all quarters between first and last given quarters
-  def self.from(args)
-    current_quarter = args[:first].instance_of?(Quarter) ? args[:first] : Quarter.new(args[:first])
-    last = args[:last].instance_of?(Quarter) ? args[:last] : Quarter.new(args[:last])
-    quarters = []
-    while current_quarter <= last
-      quarters << current_quarter
-      current_quarter = current_quarter.next_quarter
-    end
-    quarters
-  end
-
-  def self.get_date_from(object)
-    if object.class? == String
-      return Date.parse(date)
-    elsif object.class? == Date && object.valid_date?
-      return object
-    else
-      fail ArgumentError,
-           "'#{object}' is invalid. Must be a valid date string or object",
-           caller
-    end
+    !VALID_SEASONS.values.include?(season_code)
   end
 end

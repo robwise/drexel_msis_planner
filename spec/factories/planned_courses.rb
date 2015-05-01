@@ -16,4 +16,7 @@ FactoryGirl.define do
   trait :free_elective do
     association :course, :free_elective
   end
+  trait :with_prerequisite do
+    association :course, :with_prerequisite
+  end
 end

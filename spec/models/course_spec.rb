@@ -24,7 +24,7 @@ describe Course do
       .with([:required_course, :distribution_requirement, :free_elective])
   end
 
-  describe "uniqeness validations" do
+  describe "validating uniqueness" do
     before { course.save }
     # This needs to go down here because of the way the 'shoulda' uniqueness
     # matcher works.
@@ -36,7 +36,7 @@ describe Course do
     end
   end
 
-  context "when a course with the same department and level already exists" do
+  context "when another course with same department and level already exists" do
     before do
       create :course, department: course.department, level: course.level
     end
@@ -72,11 +72,15 @@ describe Course do
       expect(course_with_prereq.prerequisite).to eq(prerequisite_text)
       expect { course.save }.not_to change(course_with_prereq, :prerequisite)
     end
-  end
-
-  xdescribe "course creation" do
-    it "creates an associated prerequisite" do
-      expect { create :course }.to change(Prerequisite, :count).by(1)
+    it "strips whitespace" do
+      attrs = (attributes_for :course, :with_prerequisite)
+      prerequisite_text = attrs[:prerequisite]
+      prerequisite_text_with_whitespace = "   #{prerequisite_text}    "
+      subject.prerequisite = prerequisite_text_with_whitespace
+      expect { subject.save }
+        .to change(subject, :prerequisite)
+        .from(prerequisite_text_with_whitespace)
+        .to(prerequisite_text)
     end
   end
 end

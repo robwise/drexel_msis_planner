@@ -1,9 +1,11 @@
 describe TMSScraperService, type: :service do
-  let(:course) { create :course }
+  let(:course) { create :course, prerequisite: "BLAH 999 Minimum Grade: C" }
   let(:other_course) { create :course }
 
-  xdescribe "valid calls to web scraper", slow: :true, external_api: true do
-    it "return a 200 status code" do
+  describe "making a request to the web scraper API",
+           slow: :true,
+           external_api: true do
+    it "returns a 200 status code" do
       # 530 is always offered every quarter at Drexel, so this should always
       # return a 200 code if the external scraper API is working properly
       url = described_class::SCRAPER_URL + "530"
@@ -11,26 +13,24 @@ describe TMSScraperService, type: :service do
       expect(response.code).to eq(200)
     end
   end
-
   context "with stubbed api calls" do
     before do
       stub_tms_scraper_api_calls(course)
       stub_tms_scraper_api_calls(other_course)
     end
-
     describe "#update_course_with_scraped_data" do
-      it "changes the course description to its new value" do
+      it "changes the course's description to the new value" do
         expect { subject.update_course_with_scraped_data(course.level) }
           .to change { course.reload.description }
       end
-      it "changes the course's prerequisite if it already exists" do
-        course.prerequisite = create :prerequisite, requiring_course: course
-        expect { subject.update_course_with_scraped_data(course.level) }.to change { course.prerequisite.reload.raw_text }
+      it "changes the course's prerequisite to the new value" do
+        expect do
+          subject.update_course_with_scraped_data(course.level)
+        end.to change { course.reload.prerequisite }
       end
     end
-
     describe "#update_all_courses_with_scraped_data" do
-      it "updates the course descriptions" do
+      it "changes the course's descriptions" do
         old_description = course.description
         other_old_description = other_course.description
         subject.update_all_courses_with_scraped_data
@@ -40,4 +40,3 @@ describe TMSScraperService, type: :service do
     end
   end
 end
-

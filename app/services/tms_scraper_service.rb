@@ -23,11 +23,7 @@ class TMSScraperService
     course.update!(parsed_data[:course_data])
     prerequisite_text = parsed_data[:prerequisite]
     if !prerequisite_text.nil?
-      if course.prerequisite.nil?
-        Prerequisite.create!(requiring_course: course, raw_text: prerequisite_text)
-      else
-        course.prerequisite.update!(raw_text: prerequisite)
-      end
+      course.update!(prerequisite: prerequisite_text)
     end
     # course.prerequisite.update!(raw_text: parsed_data[:prerequisite])
     # course.corequisite.update!(raw_text: parsed_data[:corequisite])
