@@ -11,6 +11,7 @@ describe Course do
   it { should respond_to(:taken_courses) }
   it { should respond_to(:users) }
   it { should respond_to(:plans) }
+  it { should respond_to(:prerequisite) }
   it { should validate_presence_of(:department) }
   it { should validate_presence_of(:level) }
   it { should validate_presence_of(:title) }
@@ -18,7 +19,6 @@ describe Course do
   it { should validate_presence_of(:degree_requirement) }
   it { should validate_numericality_of(:level).is_greater_than(0) }
   it { should validate_numericality_of(:level).is_less_than(2000) }
-  it { should have_one(:prerequisite) }
   it do
     should define_enum_for(:degree_requirement)
       .with([:required_course, :distribution_requirement, :free_elective])
@@ -58,6 +58,19 @@ describe Course do
     it "destroys associated planned_courses" do
       create :planned_course, course: course
       expect { course.destroy }.to change(PlannedCourse, :count).by(-1)
+    end
+  end
+
+  describe "#prerequisite" do
+    it "returns a blank string if not defined" do
+      expect(subject.prerequisite).to eq("")
+    end
+    it "returns the actual text if defined" do
+      attrs = attributes_for :course, :with_prerequisite
+      prerequisite_text = attrs[:prerequisite]
+      course_with_prereq = described_class.new(attrs)
+      expect(course_with_prereq.prerequisite).to eq(prerequisite_text)
+      expect { course.save }.not_to change(course_with_prereq, :prerequisite)
     end
   end
 

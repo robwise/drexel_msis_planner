@@ -12,14 +12,15 @@ class Course < ActiveRecord::Base
   validates :degree_requirement, presence: true
   validates :description, presence: true
   validates :title, presence: true, uniqueness: { case_sensitive: false }
+  validates :prerequisite, exclusion: { in: [nil] }
 
   has_many :taken_courses, dependent: :destroy
   has_many :users, through: :taken_courses
   has_many :planned_courses, dependent: :destroy
   has_many :plans, through: :planned_courses
-  # has_one :prerequisite, dependent: :destroy, foreign_key: "requiring_course_id"
 
-  # after_create proc { Prerequisite.create!(requiring_course: self, raw_text: "") }
+  after_initialize proc { self.prerequisite ||= "" }
+  before_validation proc { self.prerequisite ||= "" }
 
   def self.default_scope
     all.order(department: :asc, level: :asc)

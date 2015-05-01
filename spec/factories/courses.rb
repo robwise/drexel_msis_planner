@@ -23,5 +23,8 @@ FactoryGirl.define do
     trait :distribution do
       degree_requirement :distribution_requirement
     end
+    trait :with_prerequisite do
+      prerequisite "INFO 001 Minimum Grade: C"
+    end
   end
 end
