@@ -21,6 +21,14 @@ class TMSScraperService
     return false if parsed_data.nil?
     course = Course.find_by(level: course_level)
     course.update!(parsed_data[:course_data])
+    prerequisite_text = parsed_data[:prerequisite]
+    if !prerequisite_text.nil?
+      if course.prerequisite.nil?
+        Prerequisite.create!(requiring_course: course, raw_text: prerequisite_text)
+      else
+        course.prerequisite.update!(raw_text: prerequisite)
+      end
+    end
     # course.prerequisite.update!(raw_text: parsed_data[:prerequisite])
     # course.corequisite.update!(raw_text: parsed_data[:corequisite])
   end

@@ -33,6 +33,8 @@ class Course < ActiveRecord::Base
   has_many :plans, through: :planned_courses
   has_one :prerequisite, dependent: :destroy, foreign_key: "requiring_course_id"
 
+  # after_create proc { Prerequisite.create!(requiring_course: self, raw_text: "") }
+
   def self.default_scope
     all.order(department: :asc, level: :asc)
   end

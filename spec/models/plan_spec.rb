@@ -158,7 +158,7 @@ describe Plan do
       describe "#requisite_issues" do
         before { prerequisite.save }
         context "when a planned course has an unfilfilled Prerequisite" do
-          it "indicates the planned course has an unfilfilled Prerequisite" do
+          it "is indicated as an issue" do
             expect(plan.requisite_issues)
               .to eq(["Prerequisite for #{planned_course.course.full_id}"\
                       " not fulfilled"])

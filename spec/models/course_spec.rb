@@ -33,6 +33,10 @@ describe Course do
   it { should validate_numericality_of(:level).is_greater_than(0) }
   it { should validate_numericality_of(:level).is_less_than(2000) }
   it { should have_one(:prerequisite) }
+  it do
+    should define_enum_for(:degree_requirement)
+      .with([:required_course, :distribution_requirement, :free_elective])
+  end
 
   describe "uniqeness validations" do
     before { course.save }
@@ -68,6 +72,12 @@ describe Course do
     it "destroys associated planned_courses" do
       create :planned_course, course: course
       expect { course.destroy }.to change(PlannedCourse, :count).by(-1)
+    end
+  end
+
+  xdescribe "course creation" do
+    it "creates an associated prerequisite" do
+      expect { create :course }.to change(Prerequisite, :count).by(1)
     end
   end
 end

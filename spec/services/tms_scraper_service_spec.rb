@@ -2,7 +2,7 @@ describe TMSScraperService, type: :service do
   let(:course) { create :course }
   let(:other_course) { create :course }
 
-  describe "valid calls to web scraper", slow: :true, external_api: true do
+  xdescribe "valid calls to web scraper", slow: :true, external_api: true do
     it "return a 200 status code" do
       # 530 is always offered every quarter at Drexel, so this should always
       # return a 200 code if the external scraper API is working properly
@@ -22,6 +22,10 @@ describe TMSScraperService, type: :service do
       it "changes the course description to its new value" do
         expect { subject.update_course_with_scraped_data(course.level) }
           .to change { course.reload.description }
+      end
+      it "changes the course's prerequisite if it already exists" do
+        course.prerequisite = create :prerequisite, requiring_course: course
+        expect { subject.update_course_with_scraped_data(course.level) }.to change { course.prerequisite.reload.raw_text }
       end
     end
 
