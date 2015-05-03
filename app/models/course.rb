@@ -13,6 +13,7 @@ class Course < ActiveRecord::Base
   validates :description, presence: true
   validates :title, presence: true, uniqueness: { case_sensitive: false }
   validates :prerequisite, exclusion: { in: [nil] }
+  validates :corequisite, exclusion: { in: [nil] }
 
   has_many :taken_courses, dependent: :destroy, inverse_of: :course
   has_many :users, through: :taken_courses
@@ -21,6 +22,8 @@ class Course < ActiveRecord::Base
 
   after_initialize :ensure_valid_prerequisite
   before_validation :ensure_valid_prerequisite
+  after_initialize :ensure_valid_corequisite
+  before_validation :ensure_valid_corequisite
 
   def self.default_scope
     all.order(department: :asc, level: :asc)
@@ -39,5 +42,10 @@ class Course < ActiveRecord::Base
   def ensure_valid_prerequisite
     self.prerequisite ||= ""
     self.prerequisite.strip!
+  end
+
+  def ensure_valid_corequisite
+    self.corequisite ||= ""
+    self.corequisite.strip!
   end
 end

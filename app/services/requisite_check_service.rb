@@ -16,7 +16,7 @@ class RequisiteCheckService
     @target_course = target_course
     initialize_course_arrays(course_history)
     @prerequisite_fulfilled = check_prerequisite
-    @corequisite_fulfilled = true # TODO: @corequisite_fulfilled = check_corequisite
+    @corequisite_fulfilled = check_corequisite
   end
 
   private

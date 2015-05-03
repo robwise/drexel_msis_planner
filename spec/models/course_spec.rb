@@ -12,6 +12,7 @@ describe Course do
   it { should respond_to(:users) }
   it { should respond_to(:plans) }
   it { should respond_to(:prerequisite) }
+  it { should respond_to(:corequisite) }
   it { should validate_presence_of(:department) }
   it { should validate_presence_of(:level) }
   it { should validate_presence_of(:title) }
@@ -81,6 +82,28 @@ describe Course do
         .to change(subject, :prerequisite)
         .from(prerequisite_text_with_whitespace)
         .to(prerequisite_text)
+    end
+  end
+  describe "#corequisite" do
+    it "returns a blank string if not defined" do
+      expect(subject.corequisite).to eq("")
+    end
+    it "returns the actual text if defined" do
+      attrs = attributes_for :course, :with_corequisite
+      corequisite_text = attrs[:corequisite]
+      course_with_coreq = described_class.new(attrs)
+      expect(course_with_coreq.corequisite).to eq(corequisite_text)
+      expect { course.save }.not_to change(course_with_coreq, :corequisite)
+    end
+    it "strips whitespace" do
+      attrs = (attributes_for :course, :with_corequisite)
+      corequisite_text = attrs[:corequisite]
+      corequisite_text_with_whitespace = "   #{corequisite_text}    "
+      subject.corequisite = corequisite_text_with_whitespace
+      expect { subject.save }
+        .to change(subject, :corequisite)
+        .from(corequisite_text_with_whitespace)
+        .to(corequisite_text)
     end
   end
 end
