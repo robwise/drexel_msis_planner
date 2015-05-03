@@ -1,8 +1,5 @@
 # More info at https://github.com/guard/guard#readme
 
-clearing :on
-notification :growl
-
 guard :bundler do
   watch('Gemfile')
   # Uncomment next line if your Gemfile contains the `gemspec' command.
