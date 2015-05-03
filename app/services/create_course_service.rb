@@ -13,9 +13,8 @@ class CreateCourseService
         course.degree_requirement = attributes[:degree_requirement]
       end
       puts "CREATED COURSE: #{ course.full_id }"
-      counter = counter + 1
+      counter += 1
     end
-    return counter
   end
 
   private
@@ -25,9 +24,10 @@ class CreateCourseService
       CSV::Converters[:blank_to_nil] = lambda do |field|
         field && field.empty? ? nil : field
       end
-      csv = CSV.new(body, headers: true, header_converters: :symbol,
-        converters: [:all, :blank_to_nil])
-      csv.to_a.map {|row| row.to_hash }
+      csv = CSV.new(body, headers: true,
+                          header_converters: :symbol,
+                          converters: [:all, :blank_to_nil])
+      csv.to_a.map(&:to_hash)
     end
 
     def degree_requirement_converter(old_value)
@@ -39,8 +39,8 @@ class CreateCourseService
       when "Free Electives"
         2
       else
-        raise ArgumentError.new("Couldn't find a match for CSV degree
-                                requirement value")
+        fail ArgumentError, "Couldn't find a match for CSV degree
+                             requirement value"
       end
     end
 
@@ -52,7 +52,6 @@ class CreateCourseService
       a[:description] = course_row[:description]
       deg_req = degree_requirement_converter(course_row[:degree_requirement])
       a[:degree_requirement] = deg_req
-      return a
+      a
     end
-
 end

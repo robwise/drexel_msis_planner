@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
 
   after_initialize :set_default_role, if: :new_record?
 
-  has_many :taken_courses, dependent: :destroy
+  has_many :taken_courses, dependent: :destroy, inverse_of: :user
   has_many :courses, through: :taken_courses
   has_many :plans,
            -> { order "name ASC" },

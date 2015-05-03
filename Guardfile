@@ -1,8 +1,5 @@
 # More info at https://github.com/guard/guard#readme
 
-clearing :on
-notification :growl
-
 guard :bundler do
   watch('Gemfile')
   # Uncomment next line if your Gemfile contains the `gemspec' command.
@@ -65,6 +62,11 @@ guard :rspec, cmd: 'bundle exec spring rspec' do
   # Rerun policy spec for associated policy
   watch(%r{^app/policies/(.+)\.rb$}) do |m|
     "spec/policies/#{m[1]}_spec.rb"
+  end
+
+  # Rerun service spec for associated service
+  watch(%r{^app/services/(.+)\.rb$}) do |m|
+    "spec/services/#{m[1]}_spec.rb"
   end
 end
 

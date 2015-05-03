@@ -1,4 +1,6 @@
 class PlannedCourse < ActiveRecord::Base
+  include DelegateToCourse
+
   validates :plan, presence: true
   validates :course, presence: true
   validates :quarter, presence: true
@@ -8,11 +10,6 @@ class PlannedCourse < ActiveRecord::Base
 
   def assigned?
     !quarter.nil?
-  end
-
-  # TODO: implement
-  def plan_issue?
-    false
   end
 
   private

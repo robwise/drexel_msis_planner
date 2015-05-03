@@ -12,11 +12,15 @@ class Course < ActiveRecord::Base
   validates :degree_requirement, presence: true
   validates :description, presence: true
   validates :title, presence: true, uniqueness: { case_sensitive: false }
+  validates :prerequisite, exclusion: { in: [nil] }
 
-  has_many :taken_courses, dependent: :destroy
+  has_many :taken_courses, dependent: :destroy, inverse_of: :course
   has_many :users, through: :taken_courses
-  has_many :planned_courses, dependent: :destroy
+  has_many :planned_courses, dependent: :destroy, inverse_of: :course
   has_many :plans, through: :planned_courses
+
+  after_initialize :ensure_valid_prerequisite
+  before_validation :ensure_valid_prerequisite
 
   def self.default_scope
     all.order(department: :asc, level: :asc)
@@ -28,5 +32,12 @@ class Course < ActiveRecord::Base
 
   def short_id
     "#{department}#{level}"
+  end
+
+  private
+
+  def ensure_valid_prerequisite
+    self.prerequisite ||= ""
+    self.prerequisite.strip!
   end
 end

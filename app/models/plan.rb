@@ -27,6 +27,25 @@ class Plan < ActiveRecord::Base
     counts
   end
 
+  def taken_and_planned_courses
+    user.taken_courses.to_a.concat(planned_courses.to_a)
+  end
+
+  def requisite_issues
+    issues = []
+    planned_courses.each do |planned_course|
+      requisite_check = RequisiteCheckService.new(taken_and_planned_courses,
+                                                  planned_course)
+      unless requisite_check.prerequisite_fulfilled
+        issues << "Prerequisite for #{planned_course.full_id} not fulfilled"
+      end
+      unless requisite_check.corequisite_fulfilled
+        issues << "Corequisite for #{planned_course.full_id} not fulfilled"
+      end
+    end
+    issues
+  end
+
   private
 
   # Validators

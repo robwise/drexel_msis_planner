@@ -1,6 +1,7 @@
 describe TakenCourse do
   let(:user) { create(:user) }
   let(:course) { create(:course) }
+  let(:other_course) { create(:course) }
 
   subject(:taken_course) do
     build(:taken_course, user_id: user.id, course_id: course.id)
@@ -16,26 +17,28 @@ describe TakenCourse do
   it { should validate_presence_of(:course_id) }
   it { should validate_presence_of(:grade) }
   it { should validate_presence_of(:quarter) }
+  it_behaves_like "a delegator to its associated course"
+  it_behaves_like "an object with a quarter"
 
   context "with acceptable attributes" do
     it { should be_valid }
   end
-  context "with valid quarter code" do
+  context "with a past quarter" do
+    before { subject.quarter = (build :past_quarter).code }
     it "is valid" do
-      good_quarters = [201415, 201425, 201435, 201445, 199015]
-      good_quarters.each do |good_quarter|
-        subject.quarter = good_quarter
-        expect(subject).to be_valid
-      end
+      expect(subject).to be_valid
     end
   end
-  context "with invalid quarter code" do
+  context "with current quarter" do
+    before { subject.quarter = (build :current_quarter).code }
     it "is not valid" do
-      bad_quarters = [190015, 201416, 20145, 201520, 201460, 2014, 201400]
-      bad_quarters.each do |bad_quarter|
-        subject.quarter = bad_quarter
-        expect(subject).not_to be_valid
-      end
+      expect(subject).not_to be_valid
+    end
+  end
+  context "with a future quarter" do
+    before { subject.quarter = (build :future_quarter).code }
+    it "is not valid" do
+      expect(subject).not_to be_valid
     end
   end
   describe "associations" do
@@ -52,10 +55,16 @@ describe TakenCourse do
   describe "#self.already_taken?" do
     before { taken_course.save }
     it "finds the matching taken_course using objects" do
-      expect(described_class.already_taken?(user: user, course: course)).to eq(true)
+      expect(described_class.already_taken?(user: user, course: course))
+        .to eq(true)
     end
     it "finds the matching taken_course using ids" do
-      expect(described_class.already_taken?(user: user.id, course: course.id)).to eq(true)
+      expect(described_class.already_taken?(user: user.id, course: course.id))
+        .to eq(true)
+    end
+    it "returns false if no match is found" do
+      expect(described_class.already_taken?(user: user, course: other_course))
+        .to eq(false)
     end
   end
 

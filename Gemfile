@@ -14,9 +14,10 @@ gem "haml-rails"
 gem "pg"
 gem "pundit"
 gem "simple_form"
-gem "titleize", "~> 1.3"
+gem "titleize"
 gem "autoprefixer-rails"
 gem "compass-rails"
+gem "httparty"
 group :production do
   gem "unicorn"
   gem "rails_12factor"
@@ -44,6 +45,7 @@ group :development, :test do
   gem "factory_girl_rails"
   gem "rspec-rails"
   gem "spring-commands-rspec"
+  gem "byebug"
 end
 group :test do
   gem "capybara"
@@ -53,7 +55,7 @@ group :test do
   gem "selenium-webdriver"
   gem "shoulda-matchers", require: false
   gem "capybara-webkit"
-  gem "growl"
+  gem "growl" # this may fail to build on non-Mac OS machines
   gem "rake" # required for Travis-CI
   gem "codeclimate-test-reporter", require: nil
 end

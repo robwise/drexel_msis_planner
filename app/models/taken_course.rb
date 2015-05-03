@@ -1,4 +1,6 @@
 class TakenCourse < ActiveRecord::Base
+  include DelegateToCourse
+
   enum grade: ["A+", "A", "A-", "B+", "B", "B-", "C+", "C", "C-", "D+", "D",
                "D-", "F", "Withdrew", "Incomplete", "In Progress", "Registered"]
   validates :user_id, presence: true
@@ -11,8 +13,8 @@ class TakenCourse < ActiveRecord::Base
   belongs_to :user
   belongs_to :course
 
-  def self.already_taken?(user: user, course: course)
-    TakenCourse.find_by(user: user, course: course).present?
+  def self.already_taken?(args)
+    find_by(user: args[:user], course: args[:course]).present?
   end
 
   private

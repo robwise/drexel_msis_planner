@@ -20,3 +20,6 @@ Style/Documentation:
 
 Style/NumericLiterals:
   MinDigits: 7
+
+Style/TrailingWhitespace:
+  Enabled: false

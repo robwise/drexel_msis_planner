@@ -136,4 +136,11 @@ describe Quarter do
       expect(described_class.from(first: first, last: last)).to eq expected
     end
   end
+  describe "self.current_quarter" do
+    it "returns the current quarter" do
+      code = Time.current.year * 100 + (Time.current.month / 4).ceil * 15
+      current_quarter = described_class.new(code)
+      expect(described_class.current_quarter).to eq(current_quarter)
+    end
+  end
 end

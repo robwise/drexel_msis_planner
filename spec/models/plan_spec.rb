@@ -4,7 +4,8 @@ describe Plan do
   let!(:user)            { create(:user) }
   let(:plan)             { build(:plan, user: user) }
   let(:users_other_plan) { build(:plan, user: user) }
-  let(:duplicate_plan)   { build(:plan, name: plan.name, user: user) }
+  let(:planned_course) { build :planned_course, :with_prerequisite, plan: plan }
+  let(:taken_course) { build :taken_course, user: user }
 
   it { should belong_to(:user) }
   it { should have_many(:planned_courses).dependent(:destroy) }
@@ -12,32 +13,28 @@ describe Plan do
   it { should respond_to(:name) }
   it { should respond_to(:active) }
   it { should respond_to(:activate!) }
-  it { should respond_to(:created_at) }
-  it { should respond_to(:updated_at) }
   it { should respond_to(:planned_courses) }
   it { should respond_to(:courses) }
   it { should respond_to(:degree_requirement_counts) }
+  it { should respond_to(:taken_and_planned_courses) }
+  it { should respond_to(:requisite_issues) }
   it { should validate_presence_of(:user) }
   it { should validate_presence_of(:name) }
   it { should ensure_length_of(:name).is_at_least(1) }
   it { should ensure_length_of(:name).is_at_most(35) }
 
-  describe "with valid attributes" do
+  context "with valid attributes" do
     it { should be_valid }
   end
-
-  describe "with taken name" do
-    before { duplicate_plan.save }
-
+  context "with taken name" do
+    before { create(:plan, name: plan.name, user: user) }
     it { should be_invalid }
   end
-
-  describe "creation" do
+  context "being created" do
     it "changes user's number of plans by 1" do
       saving_plan_changes_users_plans_size(plan, 0, 1)
       expect(user.plans.first).to eq(plan)
     end
-
     context "when user already has another plan" do
       before { users_other_plan.save }
       it "changes user's number of plans from 1 to 2" do
@@ -54,37 +51,31 @@ describe Plan do
         end.to change(users_other_plan, :active).from(true).to(false)
       end
     end
-
-    context "#active = true" do
-      context "when user has no other plans" do
-        it "sets a new plan to active" do
-          expect { plan.save }.to change(plan, :active).to(true)
-        end
-        it "makes user#active_plan return it" do
-          expect { plan.save }.to change(user, :active_plan).from(nil).to(plan)
-        end
+    context "when user has no other plans" do
+      it "is set to active" do
+        expect { plan.save }.to change(plan, :active).to(true)
       end
-
-      context "when user's other plan was active" do
-        before { users_other_plan.save }
-
-        it "becomes the user's new active plan" do
-          expect { plan.save }.to change(user, :active_plan)
-            .from(users_other_plan).to(plan)
-        end
-        it "sets user's other plans to false" do
-          expect do
-            plan.save
-            users_other_plan.reload
-          end.to change(users_other_plan, :active).from(true).to(false)
-        end
-        it "changes user's total plans count to two" do
-          saving_plan_changes_users_plans_size(plan, 1, 2)
-        end
+      it "becomes user's active plan instead of nil" do
+        expect { plan.save }.to change(user, :active_plan).from(nil).to(plan)
+      end
+    end
+    context "when user's other plan was active" do
+      before { users_other_plan.save }
+      it "becomes user's new active plan" do
+        expect { plan.save }.to change(user, :active_plan)
+          .from(users_other_plan).to(plan)
+      end
+      it "sets user's other plans to false" do
+        expect do
+          plan.save
+          users_other_plan.reload
+        end.to change(users_other_plan, :active).from(true).to(false)
+      end
+      it "changes user's total plans count to two" do
+        saving_plan_changes_users_plans_size(plan, 1, 2)
       end
     end
   end
-
   describe "#activate!" do
     context "when other plan was active" do
       before do
@@ -92,14 +83,14 @@ describe Plan do
         users_other_plan.save
         plan.reload
       end
-      it "makes the plan active" do
+      it "changes its :active value from false to true" do
         expect do
           plan.activate!
           users_other_plan.reload
           plan.reload
         end.to change(plan, :active).from(false).to(true)
       end
-      it "makes the other plan inactive" do
+      it "changes the other plan's value from true to false" do
         expect do
           plan.activate!
           users_other_plan.reload
@@ -107,24 +98,55 @@ describe Plan do
         end.to change(users_other_plan, :active).from(true).to(false)
       end
     end
-    describe "#degree_requirement_counts" do
-      before do
-        2.times { create :planned_course, :required, plan: plan }
-        3.times do
-          create :planned_course,
-                 :distribution,
-                 plan: plan
-        end
-        5.times { create :planned_course, :free_elective, plan: plan }
+  end
+  describe "#degree_requirement_counts" do
+    before do
+      2.times { create :planned_course, :required, plan: plan }
+      3.times do
+        create :planned_course,
+               :distribution,
+               plan: plan
       end
-      it "returns the correct amount of credits for each type" do
-        counts = plan.degree_requirement_counts
-        expect(counts[:required_course]).to eq(6)
-        expect(counts[:distribution_requirement]).to eq(9)
-        expect(counts[:free_elective]).to eq(15)
+      5.times { create :planned_course, :free_elective, plan: plan }
+    end
+    it "returns the correct amount of credits for each type" do
+      counts = plan.degree_requirement_counts
+      expect(counts[:required_course]).to eq(6)
+      expect(counts[:distribution_requirement]).to eq(9)
+      expect(counts[:free_elective]).to eq(15)
+    end
+  end
+  context "when user has taken courses and plan has planned courses" do
+    before do
+      planned_course.save
+      taken_course.save
+    end
+    describe "#taken_and_planned_courses" do
+      it "returns user's taken courses and plan's plannned courses" do
+        expect(subject.taken_and_planned_courses).to eq([taken_course,
+                                                         planned_course])
+      end
+    end
+    describe "#requisite_issues" do
+      context "when a planned course has an unfilfilled Prerequisite" do
+        it "is indicated as an issue" do
+          expect(plan.requisite_issues)
+            .to include("Prerequisite for #{planned_course.full_id}"\
+                        " not fulfilled")
+        end
+      end
+      context "when a planned course has a fulfilled Prerequisite" do
+        before do
+          planned_course.course.update(prerequisite: requisite_for(taken_course))
+        end
+        it "does not indicate any issues" do
+          expect(plan.requisite_issues).to eq([])
+        end
       end
     end
   end
+
+  private
 
   def saving_plan_changes_users_plans_size(plan, before_size, after_size)
     expect(user.plans(true).size).to eq(before_size)
