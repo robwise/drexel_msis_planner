@@ -9,10 +9,10 @@ class Quarter
 
   # Generates all quarters between first and last given quarters
   def self.from(args)
-    current_quarter = args[:first].instance_of?(Quarter) ? args[:first] : Quarter.new(args[:first])
-    last = args[:last].instance_of?(Quarter) ? args[:last] : Quarter.new(args[:last])
+    current_quarter = Quarter.new(args[:first])
+    last_quarter = Quarter.new(args[:last])
     quarters = []
-    while current_quarter <= last
+    while current_quarter <= last_quarter
       quarters << current_quarter
       current_quarter = current_quarter.next_quarter
     end
@@ -32,7 +32,7 @@ class Quarter
   end
 
   def self.current_quarter
-    self.new(Time.current.year * 100 + (Time.current.month / 4).ceil * 15)
+    new(Time.current.year * 100 + (Time.current.month / 4).ceil * 15)
   end
 
   include Comparable
@@ -66,10 +66,10 @@ class Quarter
 
   def season=(new_season)
     season_symbol = new_season.downcase.to_sym
-    unless  VALID_SEASONS.include?(season_symbol)
+    unless VALID_SEASONS.include?(season_symbol)
       fail ArgumentError, "Season: '#{season_symbol}' is not valid", caller
     end
-    @code = (year.to_s +  VALID_SEASONS[season_symbol].to_s).to_i
+    @code = (year.to_s + VALID_SEASONS[season_symbol].to_s).to_i
   end
 
   def year
@@ -99,6 +99,10 @@ class Quarter
     else
       Quarter.new(year * 100 + season_code + 10)
     end
+  end
+
+  def to_s
+    @code.to_s
   end
 
   private
