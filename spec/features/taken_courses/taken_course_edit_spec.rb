@@ -12,7 +12,7 @@ feature "Editing an existing taken course" do
     expect(page).to have_button("taken", disabled: true)
   end
 
-  scenario "the edit for the course link appears on the user dashboard" do
+  scenario "the edit link for the course appears on the user dashboard" do
     signin_user user
     visit root_path
 

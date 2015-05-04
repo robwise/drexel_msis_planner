@@ -22,7 +22,7 @@ feature "Adding a course to user's course history", :js, speed: "slow" do
     scenario "with valid inputs" do
       fill_taken_course_modal(201315, "A+")
       expect(page).to have_content("Course added to taken courses")
-      visit user_path(user)
+      visit root_path
       expect(page).to have_content(course.title)
     end
     scenario "with an invalid quarter code" do

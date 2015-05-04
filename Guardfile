@@ -1,32 +1,32 @@
 # More info at https://github.com/guard/guard#readme
 
 guard :bundler do
-  watch('Gemfile')
-  # Uncomment next line if your Gemfile contains the `gemspec' command.
+  watch("Gemfile")
+  # Uncomment next line if your Gemfile contains the `gemspec" command.
   # watch(/^.+\.gemspec/)
 end
 
-guard 'rails' do
-  watch('Gemfile.lock')
+guard "rails" do
+  watch("Gemfile.lock")
   watch(%r{^(config|lib)/.*})
-  watch('.env')
-  watch('config/routes.rb')
+  watch(".env")
+  watch("config/routes.rb")
 end
 
 # Note: The cmd option is now required due to the increasing number of ways
 #       rspec may be run, below are examples of the most common uses.
-#  * bundler: 'bundle exec rspec'
-#  * bundler binstubs: 'bin/rspec'
-#  * spring: 'bin/rsspec' (This will use spring if running and you have
+#  * bundler: "bundle exec rspec"
+#  * bundler binstubs: "bin/rspec"
+#  * spring: "bin/rsspec" (This will use spring if running and you have
 #                          installed the spring binstubs per the docs)
-#  * zeus: 'zeus rspec' (requires the server to be started separetly)
-#  * 'just' rspec: 'rspec'
-guard :rspec, cmd: 'bundle exec spring rspec' do
+#  * zeus: "zeus rspec" (requires the server to be started separetly)
+#  * "just" rspec: "rspec"
+guard :rspec, cmd: "spring rspec" do
   # Rerun all tests
-  watch('spec/spec_helper.rb')                        { "spec" }
-  watch('spec/rails_helper.rb')                       { "spec" }
-  watch('config/routes.rb')                           { "spec" }
-  watch('app/controllers/application_controller.rb')  { "spec" }
+  watch("spec/spec_helper.rb")                        { "spec" }
+  watch("spec/rails_helper.rb")                       { "spec" }
+  watch("config/routes.rb")                           { "spec" }
+  watch("app/controllers/application_controller.rb")  { "spec" }
 
   # Rerun all tests if file directly in support folder was changed
   watch(%r{^spec/support/(\w+)\.rb$})                 { "spec" }
@@ -70,11 +70,13 @@ guard :rspec, cmd: 'bundle exec spring rspec' do
   end
 end
 
-guard 'livereload', notify: true do
+guard "livereload", notify: true do
   watch(%r{app/views/.+\.(erb|haml|slim)})
   watch(%r{app/helpers/.+\.rb})
   watch(%r{public/.+\.(css|js|html)})
   watch(%r{config/locales/.+\.yml})
   # Rails Assets Pipeline
-  watch(%r{(app|vendor)(/assets/\w+/(.+\.(css|js|html))).*}) { |m| "/assets/#{m[3]}" }
+  watch(%r{(app|vendor)(/assets/\w+/(.+\.(css|js|html))).*}) do |m|
+    "/assets/#{m[3]}"
+  end
 end

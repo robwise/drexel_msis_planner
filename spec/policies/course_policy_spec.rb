@@ -1,9 +1,8 @@
 describe CoursePolicy do
-  subject { CoursePolicy }
+  subject { described_class }
 
   let(:visitor) { nil }
   let(:user) { FactoryGirl.build_stubbed :user }
-  # let(:course) { FactoryGirl.build_stubbed :course }
   let(:admin) { FactoryGirl.build_stubbed :user, :admin }
 
   permissions :index? do
@@ -62,5 +61,4 @@ describe CoursePolicy do
       expect(subject).not_to permit(user, visitor)
     end
   end
-
 end

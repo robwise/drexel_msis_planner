@@ -1,0 +1,14 @@
+= content_for :description, "{ @user.name }'s Course Planning Dashboard"
+.row
+  %h1
+    = "#{ @user.email }'s Degree Status"
+    %h2 Degree Status:
+    %ul
+      %li= "Required Course Credits Earned: #{@user.required_course_credits_earned}/27"
+      %li= "Distribution Requirement Credits Earned: #{@user.distribution_requirement_credits_earned}/12"
+      %li= "Free Elective Credits Earned: #{@user.free_elective_credits_earned}/6"
+      %li= "TOTAL: #{@user.total_credits_earned}/45"
+    %h2 Taken Courses:
+    %table.table
+      %tbody.taken-courses
+        = render @user.taken_courses, taken_course_ids: @user.course_ids
