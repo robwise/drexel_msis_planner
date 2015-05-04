@@ -15,6 +15,7 @@ class CreateCourseService
       puts "CREATED COURSE: #{ course.full_id }"
       counter += 1
     end
+    return counter
   end
 
   private
