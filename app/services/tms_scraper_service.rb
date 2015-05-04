@@ -22,20 +22,24 @@ class TMSScraperService
     use_data_to_update_course_attributes(course_level, parsed_data)
 
     rescue TMSScraperException => e
-      Rails.logger.error(e.message + "\n" + e.backtrace.inspect)
+      Rails.logger.error("#{ e.message }.\n#{ e.backtrace.inspect }")
     rescue ActiveRecord::RecordInvalid => e
-      errors = ""
-      e.record.errors.full_messages.each do |message|
-        errors << (message.to_s + "\n")
-      end
-      Rails.logger.error("TMS Scraper Service: encountered #{e.message}.\n" +
-        errors + e.backtrace.inspect)
+      log_record_invalid_errors(e)
     rescue ActiveRecord::RecordNotFound => e
-      Rails.logger.error("TMS Scraper Service: encountered #{e.message}.\n" +
-                         e.backtrace.inspect)
+      Rails.logger.error("TMS Scraper Service: encountered #{e.message}.\n"\
+                         "#{ e.backtrace.inspect }")
   end
 
   private
+
+  def log_record_invalid_errors(e)
+    errors_string = ""
+    e.record.errors.full_messages.each do |message|
+      errors_string << (message.to_s + "\n")
+    end
+    Rails.logger.error("TMS Scraper Service: encountered #{e.message}.\n"\
+      "#{ errors_string } #{ e.backtrace.inspect }")
+  end
 
   def get_course_level_from_argument(argument)
     argument.respond_to?(:level) ? argument.level : argument
