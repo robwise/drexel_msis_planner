@@ -101,6 +101,11 @@ class Quarter
     end
   end
 
+  def next_quarter!
+    @code = next_quarter.code
+    self
+  end
+
   def to_s
     @code.to_s
   end
