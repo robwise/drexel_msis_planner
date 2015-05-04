@@ -25,10 +25,20 @@ FactoryGirl.define do
       degree_requirement :distribution_requirement
     end
     trait :with_prerequisite do
-      prerequisite "INFO 001 Minimum Grade: C"
+      prerequisite do
+        "#{ (build(:course)).full_id } Minimum Grade: C"
+      end
     end
     trait :with_unfulfillable_prerequisite do
       prerequisite "BLAH 999 Minimum Grade: C"
+    end
+    trait :with_corequisite do
+      corequisite do
+        "#{ (build(:course)).full_id } Minimum Grade: C"
+      end
+    end
+    trait :with_unfulfillable_corequisite do
+      corequisite "BLAH 999 Minimum Grade: C"
     end
   end
 end

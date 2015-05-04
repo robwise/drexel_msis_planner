@@ -7,12 +7,7 @@ describe RequisiteCheckService, type: :service do
   let(:single_course_history) { [taken_course] }
   let(:planned_course) { build :planned_course }
 
-  describe "@prerequisite_fulfilled" do
-    subject do
-      described_class.new(course_history, planned_course).prerequisite_fulfilled
-    end
-    before { change_prereq_to requisite_for(taken_course) }
-
+  shared_examples_for "a requisite" do
     context "when course exists in history" do
       let(:course_history) { passing_history }
       it { is_expected.to eq true }
@@ -23,7 +18,7 @@ describe RequisiteCheckService, type: :service do
     end
     context "when requisite has an 'and' term" do
       before do
-        change_prereq_to "#{requisite_for(taken_course)} "\
+        change_requisite requisite_type, "#{requisite_for(taken_course)} "\
             "and #{requisite_for(other_taken_course)}"
       end
       context "when both requisite courses exist in history" do
@@ -37,7 +32,7 @@ describe RequisiteCheckService, type: :service do
     end
     context "when requisite has 'or' term" do
       before do
-        change_prereq_to "#{requisite_for(taken_course)} "\
+        change_requisite requisite_type, "#{requisite_for(taken_course)} "\
             "or #{requisite_for(not_taken_course)}"
       end
       context "when only one course exists in history" do
@@ -47,7 +42,7 @@ describe RequisiteCheckService, type: :service do
     end
     context "when requisite has parentheses to group an 'or' statement" do
       before do
-        change_prereq_to "#{requisite_for(taken_course)} "\
+        change_requisite requisite_type, "#{requisite_for(taken_course)} "\
             "and (BLAH 999 Minimum Grade: C or "\
                 "#{requisite_for(other_taken_course)})"
       end
@@ -57,15 +52,47 @@ describe RequisiteCheckService, type: :service do
       end
     end
     context "when requisite is blank" do
-      before { change_prereq_to "" }
+      before { change_requisite requisite_type, "" }
       let(:course_history) { empty_history }
+      it { is_expected.to eq true }
+    end
+  end
+
+  describe "@prerequisite_fulfilled" do
+    let(:requisite_type) { :prerequisite }
+
+    subject do
+      described_class.new(course_history, planned_course).prerequisite_fulfilled
+    end
+    before { change_requisite requisite_type, requisite_for(taken_course) }
+    it_should_behave_like "a requisite"
+    context "when requisite course is being taken during concurrently" do
+      let(:course_history) { single_course_history }
+      before { taken_course.quarter = planned_course.quarter }
+      it { is_expected.to eq false }
+    end
+  end
+
+  describe "@corequisite_fulfilled" do
+    let(:requisite_type) { :corequisite }
+    subject do
+      described_class.new(course_history, planned_course).corequisite_fulfilled
+    end
+    before { change_requisite requisite_type, requisite_for(taken_course) }
+    it_should_behave_like "a requisite"
+    context "when requisite course is being taken during concurrently" do
+      let(:course_history) { single_course_history }
+      before { taken_course.quarter = planned_course.quarter }
       it { is_expected.to eq true }
     end
   end
 
   private
 
-  def change_prereq_to(prerequisite)
-    planned_course.course.prerequisite = prerequisite
+  # Sends the appropriate method to change the prerequisite or corequisite in
+  # question. Allows using shared_examples as long as the let(:requisite_type)
+  # is defined accordingly
+  def change_requisite(requisite_type, requisite_text)
+    planned_course.course.send((requisite_type.to_s + "=").to_s, requisite_text)
   end
 end
