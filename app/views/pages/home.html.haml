@@ -1,0 +1,6 @@
+%section
+  .col-xs-12
+  - if @user.nil?
+    = render partial: "visitor_welcome"
+  - else
+    = render partial: "user_dashboard", locals: { user: @user }
