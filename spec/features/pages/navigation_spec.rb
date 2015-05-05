@@ -15,7 +15,7 @@ feature "View Navigation links", :devise do
     end
     scenario "sees proper links" do
       page_has_the_ubiquitous_links
-      page_has_the_signed_in_links
+      page_has_the_signed_in_links(user)
     end
   end
 
@@ -27,7 +27,7 @@ feature "View Navigation links", :devise do
     end
     scenario "sees proper links" do
       page_has_the_ubiquitous_links
-      page_has_the_signed_in_links
+      page_has_the_signed_in_links(admin)
       page_has_the_admin_only_links
     end
   end
@@ -42,10 +42,10 @@ feature "View Navigation links", :devise do
     expect(page).to have_content "Courses"
   end
 
-  def page_has_the_signed_in_links
+  def page_has_the_signed_in_links(signed_in_user)
     expect(page).to have_content "Planning"
     expect(page).to have_content "Sign out"
-    expect(page).to have_content "Edit account"
+    expect(page).to have_content "#{ signed_in_user.name }"
   end
 
   def page_has_the_admin_only_links
