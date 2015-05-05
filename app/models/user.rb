@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   enum role: [:user, :vip, :admin]
 
   after_initialize :set_default_role, if: :new_record?
+  validates :name, presence: true
 
   has_many :taken_courses, dependent: :destroy, inverse_of: :user
   has_many :courses, through: :taken_courses
