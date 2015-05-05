@@ -32,4 +32,4 @@ I doubt anyone will really be interested in helping me with this—that's okay, 
 - __Rails Apps:__ This application was generated with the [rails_apps_composer](https://github.com/RailsApps/rails_apps_composer) gem provided by the [RailsApps Project](http://railsapps.github.io/).
 
 ## License
-See [LICENSE.MD](LICENSE.MD)
+See [LICENSE](LICENSE)
