@@ -1,7 +1,7 @@
 = content_for :description, "{ @user.name }'s Course Planning Dashboard"
 .row
   %h1
-    = "#{ @user.email }'s Degree Status"
+    = "#{ @user.name }'s Degree Status"
     %h2 Degree Status:
     %ul
       %li= "Required Course Credits Earned: #{@user.required_course_credits_earned}/27"
