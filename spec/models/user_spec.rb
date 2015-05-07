@@ -4,6 +4,7 @@ describe User do
   let(:user) { build :user }
 
   it { should respond_to(:email) }
+  it { should respond_to(:name) }
   it { should respond_to(:role) }
   it { should respond_to(:taken_courses) }
   it { should respond_to(:courses) }
@@ -16,6 +17,7 @@ describe User do
   it { should respond_to(:free_elective_credits_earned) }
   it { should respond_to(:total_credits_earned) }
   it { should validate_uniqueness_of(:email) }
+  it { should validate_presence_of(:name) }
 
   context "with acceptable attributes" do
     it { should be_valid }

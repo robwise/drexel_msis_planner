@@ -11,7 +11,7 @@ feature "Home page" do
     before { signin_user user }
     scenario "user sees dashboard" do
       visit root_path
-      expect(page).to have_content "#{ user.email }'s Degree Status"
+      expect(page).to have_content "#{ user.name }'s Degree Status"
     end
   end
 end

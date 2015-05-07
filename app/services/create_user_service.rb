@@ -17,6 +17,7 @@ class CreateUserService
 
   def create_user
     @user = User.find_or_create_by!(email: "fake_user1@example.com") do |user|
+      user.name = "fake_user1"
       user.password = "please123"
       user.password_confirmation = "please123"
       user.confirm!
