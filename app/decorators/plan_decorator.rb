@@ -38,7 +38,8 @@ class PlanDecorator
   end
 
   def pretty_duration
-    "#{ statistics.duration_in_quarters } Quarters (#{ statistics.duration_in_years } years)"
+    "#{ statistics.duration_in_quarters } Quarters "\
+      "(#{ statistics.duration_in_years } years)"
   end
 
   def submit_text

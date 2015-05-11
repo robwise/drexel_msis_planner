@@ -46,7 +46,7 @@ class Quarter
   attr_accessor :code
 
   def initialize(arg)
-    arg = arg.code if code.kind_of?(Quarter) # will work if passed a qtr
+    arg = arg.code if code.is_a?(Quarter) # will work if passed a qtr
     @code = arg.to_s.to_i # will work for integer, symbol, or string arg
   end
 
@@ -119,14 +119,22 @@ class Quarter
   end
 
   # Returns the number of quarters from the quarter to the given operand
-  def -(operand)
-    qtr_operand = Quarter.new(operand)
-    season_difference = ((@code % 100 - 5) / 10) - ((qtr_operand.code % 100 - 5) / 10)
-    year_difference = (@code / 100 - qtr_operand.code / 100)
-    year_difference * 4 + season_difference
+  def -(other)
+    other_quarter = Quarter.new(other)
+    seasons = season_difference(@code, other_quarter.code)
+    years = year_difference(@code, other_quarter.code)
+    years * 4 + seasons
   end
 
   private
+
+  def season_difference(code_a, code_b)
+    ((code_a % 100 - 5) / 10) - ((code_b % 100 - 5) / 10)
+  end
+
+  def year_difference(code_a, code_b)
+    (code_a / 100 - code_b / 100)
+  end
 
   def bad_length?
     code.to_s.length != 6
