@@ -4,21 +4,22 @@
   padding-right: 5px;
 }
 
-.navbar-nav > li.gravatar {
+.navbar-nav > .gravatar {
   margin-right: -5px;
-  .round {
-    display:block;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    overflow: hidden;
-    padding:0;
 
-    img {
-      height: 40px;
-      width: 40px;
-      padding: 0;
-    }
+  .round {
+    border-radius: 50%;
+    display: block;
+    height: 40px;
+    overflow: hidden;
+    padding: 0;
+    width: 40px;
+  }
+
+  img {
+    height: 40px;
+    padding: 0;
+    width: 40px;
   }
 
   a {
