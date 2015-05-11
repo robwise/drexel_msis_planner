@@ -50,6 +50,7 @@ class PlanDecorator
     @plan.new_record? ? [@plan.user, @plan] : @plan
   end
 
+  # TODO: move this logic into PlanStatisticsService
   # Takes a symbol or String argument (:required_course, :free_elective,
   # :distribution_course, or :total_credits)
   def progress_bar_for(progress_type)

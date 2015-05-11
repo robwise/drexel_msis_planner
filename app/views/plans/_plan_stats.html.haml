@@ -7,29 +7,32 @@
       %span.sr-only click to collapse Plan Stats Section
   #plan-stats.collapse.in
     %ul.col-xs-12.col-md-5.col-md-offset-1.list-unstyled
-      %li
+      %li#required-courses-count
         = "Required Courses"
         .progress
           = @plan.progress_bar_for(:required_course)
-      %li
+      %li#distribution-courses-count
         = "Distribution Courses"
         .progress
           = @plan.progress_bar_for(:distribution_requirement)
-      %li
+      %li#free-elective-courses-count
         = "Free Elective Courses"
         .progress
           = @plan.progress_bar_for(:free_elective)
-      %li
+      %li#total-credits
         = "Total Credits"
         .progress
           = @plan.progress_bar_for(:total_credits)
 
     %ul.col-xs-12.col-md-5.col-md-offset-1.list-unstyled
-      %li= "Degree Duration #{ @plan.pretty_duration }"
-      %li= "Planned Completion #{ @plan.pretty_planned_completion }"
-      %li= "Quarters Remaining #{ @plan.statistics.quarters_remaining }"
-      %li
+      %li#degree-duration
+        = "Degree Duration #{ @plan.pretty_duration }"
+      %li#planned-completion
+        = "Planned Completion #{ @plan.pretty_planned_completion }"
+      %li#quarters-remaining
+        = "Quarters Remaining #{ @plan.statistics.quarters_remaining }"
+      %li#problems
         - #TODO: Implement this
-        = "Problems: 4"
+        = "Problems: 0"
         %span.glyphicon.glyphicon-question-sign
         %span.sr-only problems tooltip
