@@ -1,14 +1,14 @@
-%nav
+%nav.navbar.navbar-default
   .container
     .navbar-header
-      %button.navbar-collapse-button{"data-target" => "#navbar-collapsible-area", "data-toggle" => "collapse", type: "button"}
+      %button.navbar-toggle.collapsed{"data-target" => "#navbar-collapsible-area", "data-toggle" => "collapse", type: "button"}
         %span.sr-only Toggle navigation
         %span.icon-bar
         %span.icon-bar
         %span.icon-bar
-      = link_to "Home", root_path, class: "navbar-home"
-    .navbar-collapsible-area#navbar-collapsible-area
-      %ul.navbar-links
-        = render "layouts/navigation_links"
-      %ul.navbar-links.navbar-right
+      %span.navbar-brand Drexel MSIS Planner
+    .collapse.navbar-collapse#navbar-collapsible-area
+      %ul.nav.navbar-nav
+        = render "layouts/navigation_links_left"
+      %ul.nav.navbar-nav.navbar-right
         = render "layouts/navigation_links_right"

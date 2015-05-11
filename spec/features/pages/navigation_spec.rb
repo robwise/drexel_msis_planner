@@ -33,22 +33,22 @@ feature "View Navigation links", :devise do
   end
 
   def page_has_the_signed_out_links
-    expect(page).to have_content "Sign in"
-    expect(page).to have_content "Sign up"
+    expect(page).to have_link "sign in"
+    expect(page).to have_link "sign up"
   end
 
   def page_has_the_ubiquitous_links
-    expect(page).to have_content "Home"
-    expect(page).to have_content "Courses"
+    expect(page).to have_content "Drexel MSIS Planner"
+    expect(page).to have_link "Courses"
   end
 
   def page_has_the_signed_in_links(signed_in_user)
-    expect(page).to have_content "Planning"
-    expect(page).to have_content "Sign out"
-    expect(page).to have_content "#{ signed_in_user.name }"
+    expect(page).to have_link "Planner"
+    expect(page).to have_link "sign out"
+    expect(page).to have_link "#{ signed_in_user.name }"
   end
 
   def page_has_the_admin_only_links
-    expect(page).to have_content "Users"
+    expect(page).to have_link "Users"
   end
 end

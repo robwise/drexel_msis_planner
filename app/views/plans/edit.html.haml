@@ -2,7 +2,7 @@
 - content_for :description, 'Form for editing a plan.'
 %h1 Editing plan
 
-= render 'form', plan_decorator: @plan_decorator
-= link_to 'Show', plan_path(@plan_decorator.id)
+= render 'form', plan_decorator: @plan
+= link_to 'Show', plan_path(@plan.id)
 \|
-= link_to 'Back', user_plans_path(@plan_decorator.user)
+= link_to 'Back', user_plans_path(@plan.user)

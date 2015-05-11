@@ -6,14 +6,15 @@ FactoryGirl.define do
   factory :course do
     department "INFO"
     sequence(:level) { |n| n + 400 }
-    title do
-      [Faker::Hacker.ingverb,
-       Faker::Hacker.adjective,
-       Faker::Hacker.noun.pluralize].join(" ")
+    sequence(:title) do |n|
+      [Faker::Hacker.ingverb, Faker::Hacker.adjective,
+       Faker::Hacker.noun.pluralize, n].join(" ")
     end
-    # Not using Faker in a block will keep giving the same description
+    # Warning: not using Faker in a block will keep giving the same description
     description { Faker::Lorem.paragraph }
     degree_requirement "free_elective"
+    prerequisite ""
+    corequisite ""
 
     trait :required do
       degree_requirement :required_course

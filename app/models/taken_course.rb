@@ -10,8 +10,8 @@ class TakenCourse < ActiveRecord::Base
   validate :valid_taken_quarter?
   validates :user, uniqueness: { scope: :course }
 
-  belongs_to :user
-  belongs_to :course
+  belongs_to :user, inverse_of: :taken_courses
+  belongs_to :course, inverse_of: :taken_courses
 
   def self.already_taken?(args)
     find_by(user: args[:user], course: args[:course]).present?

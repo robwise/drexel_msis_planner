@@ -7,14 +7,17 @@ FactoryGirl.define do
     grade "A"
     quarter { (build :past_quarter).code }
 
-    factory :required_taken_course do
-      association :course, factory: :course, degree_requirement: :required_course
+    trait :required do
+      association :course, :required
     end
-    factory :distribution_taken_course do
-      association :course, factory: :course, degree_requirement: :distribution_requirement
+    trait :distribution do
+      association :course, :distribution
     end
-    factory :free_elective_taken_course do
-      association :course, factory: :course, degree_requirement: :free_elective
+    trait :free_elective do
+      association :course, :free_elective
+    end
+    trait :with_prerequisite do
+      association :course, :with_prerequisite
     end
   end
 end

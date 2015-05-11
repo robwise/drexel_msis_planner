@@ -5,11 +5,23 @@ class PlannedCourse < ActiveRecord::Base
   validates :course, presence: true
   validates :quarter, presence: true
   validate :valid_planned_quarter?
-  belongs_to :plan
-  belongs_to :course
+  belongs_to :plan, inverse_of: :planned_courses
+  belongs_to :course, inverse_of: :planned_courses
 
   def assigned?
     !quarter.nil?
+  end
+
+  def requisite_issues(plan)
+    requisite_check = RequisiteCheckService.new(plan, self)
+    issues = []
+    unless requisite_check.corequisite_fulfilled
+      issues << "#{corequisite} not fulfilled"
+    end
+    unless requisite_check.prerequisite_fulfilled
+      issues << "#{prerequisite} not fulfilled"
+    end
+    issues
   end
 
   private

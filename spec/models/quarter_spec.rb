@@ -16,13 +16,22 @@ describe Quarter do
   it { should respond_to(:future?) }
   it { should respond_to(:past?) }
 
-  describe "valid examples" do
+  context "when initialized with a valid code" do
+    let(:good_codes) do
+      [201515, 201525, 201535, 201545, 198115, 199025, 202415]
+    end
     it "is valid" do
-      good_codes = [201515, 201525, 201535, 201545, 198115, 199025, 202415]
       good_codes.each do |good_code|
-        subject.code = good_code
-        expect(subject).to be_valid
+        quarter = described_class.new(good_code)
+        expect(quarter).to be_valid
       end
+    end
+  end
+  context "when initialized with another quarter" do
+    let(:argument) { described_class.new(201515) }
+    it "is vaild" do
+      quarter = described_class.new(argument)
+      expect(quarter).to be_valid
     end
   end
   describe "invalid examples" do
@@ -141,6 +150,21 @@ describe Quarter do
       code = Time.current.year * 100 + (Time.current.month / 4).ceil * 15
       current_quarter = described_class.new(code)
       expect(described_class.current_quarter).to eq(current_quarter)
+    end
+  end
+  describe "self.num_quarters_between" do
+    context "with a start of 201515 and finish of 201525" do
+      let(:start) { 201425 }
+      let(:finish) { 201615 }
+      it "returns 7" do
+        expect(described_class.num_quarters_between(start, finish)).to eq 7
+      end
+    end
+  end
+  describe "-" do
+    subject(:subject) { described_class.new(201615) }
+    it "returns the number of quarters between it and the operand" do
+      expect(subject - 201525).to eq 3
     end
   end
 end

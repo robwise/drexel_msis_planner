@@ -13,7 +13,8 @@ feature "Adding a course to a plan" do
       scenario "valid planned course" do
         click_on("add to plan")
         expect(page).to have_css("#planned-course-modal")
-        expect(find(:css, ".modal-title").text).to eq("Add #{course.full_id} to #{plan.name}")
+        expect(find(:css, ".modal-title").text)
+          .to eq("Add #{course.full_id} to #{plan.name}")
         expect(PlannedCourse.count).to eq(0)
         fill_planned_course_modal(201615)
         expect(page).to have_content("#{course.full_id} added to #{plan.name}")

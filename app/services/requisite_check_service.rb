@@ -58,14 +58,15 @@ class RequisiteCheckService
   # corresponding to that course's existence in the given course history so that
   # we may call 'eval' on the returned string
   def get_evaluatable_statement(courses, requisite)
-    until requisite.match(COURSE_REGEX).nil?
-      requisite.sub!(COURSE_REGEX) do |course_string|
+    statement = String.new(requisite)
+    until statement.match(COURSE_REGEX).nil?
+      statement.sub!(COURSE_REGEX) do |course_string|
         department = DEPARTMENT_REGEX.match(course_string)[1]
         level = LEVEL_REGEX.match(course_string)[1]
         requisite_course_taken?(courses, department, level).to_s
       end
     end
-    requisite
+    statement
   end
 
   # Determines whether a course with the given department and level exists in

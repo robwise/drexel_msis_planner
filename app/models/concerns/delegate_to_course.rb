@@ -3,5 +3,5 @@ module DelegateToCourse
   require "forwardable"
   extend Forwardable
   def_delegators :course, :full_id, :level, :department, :title, :description,
-                 :prerequisite, :corequisite
+                 :prerequisite, :corequisite, :degree_requirement
 end

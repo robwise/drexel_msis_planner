@@ -1,6 +1,7 @@
 class Plan < ActiveRecord::Base
   belongs_to :user, inverse_of: :plans
-  has_many :planned_courses, dependent: :destroy
+  has_many :planned_courses, dependent: :destroy, inverse_of: :plan
+  has_many :taken_courses, through: :user
   has_many :courses, through: :planned_courses
 
   before_validation :ensure_active_has_value
@@ -18,32 +19,13 @@ class Plan < ActiveRecord::Base
     update(active: true)
   end
 
-  def degree_requirement_counts
-    requirements = courses.pluck(:degree_requirement)
-    counts = {}
-    Course.degree_requirements.each do |key, value|
-      counts[key.to_sym] = 3 * requirements.count(value)
-    end
-    counts
-  end
-
   def taken_and_planned_courses
-    user.taken_courses.to_a.concat(planned_courses.to_a)
+    taken_courses.to_a + planned_courses.to_a
   end
 
-  def requisite_issues
-    issues = []
-    planned_courses.each do |planned_course|
-      requisite_check = RequisiteCheckService.new(taken_and_planned_courses,
-                                                  planned_course)
-      unless requisite_check.prerequisite_fulfilled
-        issues << "Prerequisite for #{planned_course.full_id} not fulfilled"
-      end
-      unless requisite_check.corequisite_fulfilled
-        issues << "Corequisite for #{planned_course.full_id} not fulfilled"
-      end
-    end
-    issues
+  def statistics(reload = false)
+    @statistics = PlanStatisticsService.new(self) if reload || @statistics.nil?
+    @statistics
   end
 
   private
