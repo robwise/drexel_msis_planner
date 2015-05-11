@@ -7,17 +7,13 @@ img {
   margin: 0 auto;
 }
 
-section {
-  @extend row;
-}
+// section {
+//   @extend row;
+// }
 
 .error-messages {
   @extend .alert;
   @extend .alert-danger;
-}
-
-.row {
-  @extend .row;
 }
 
 .button-block {
@@ -54,8 +50,3 @@ section {
   @extend .btn-default;
 }
 
-main {
-  h1:first-of-type {
-    @extend .page-header;
-  }
-}

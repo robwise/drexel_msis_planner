@@ -1,7 +1,9 @@
 describe PlannedCourse do
-  subject { planned_course }
+  let(:course) { create :course }
+  let(:user) { create :user }
+  let(:plan) { create :plan, user: user }
 
-  let!(:planned_course) { create :planned_course }
+  subject(:subject) { build :planned_course, course: course, plan: plan }
 
   it { should respond_to(:created_at) }
   it { should respond_to(:updated_at) }
@@ -15,12 +17,64 @@ describe PlannedCourse do
   it { should validate_presence_of(:course) }
   it { should validate_presence_of(:quarter) }
   it { should be_valid }
+
   it_behaves_like "a delegator to its associated course"
 
   context "with a valid quarter" do
     it "is valid" do
-      subject.quarter = (build :future_quarter).code
       expect(subject).to be_valid
+    end
+    context "with an unfulfilled prerequisite" do
+      let(:course) { create :course, :with_unfulfillable_prerequisite }
+      specify "#requisite_issues returns the appropriate message" do
+        requisite_issues = subject.requisite_issues(plan)
+        expect(requisite_issues).to be_kind_of(Array)
+        expected_prerequisite_message = "#{ course.prerequisite } not fulfilled"
+        expect(requisite_issues).to eq [expected_prerequisite_message]
+      end
+    end
+    context "with a fulfilled prerequisite" do
+      let(:taken_course) { create :taken_course, user: user }
+      let(:course) { create :course, prerequisite: requisite_for(taken_course) }
+      specify "#requisite_issues returns the appropriate message" do
+        requisite_issues = subject.requisite_issues(plan)
+        expect(requisite_issues).to be_kind_of(Array)
+        expect(requisite_issues).to be_empty
+      end
+    end
+    context "with an unfulfilled corequisite" do
+      let(:course) { create :course, :with_unfulfillable_corequisite }
+      specify "#requisite_issues returns the appropriate message" do
+        requisite_issues = subject.requisite_issues(plan)
+        expect(requisite_issues).to be_kind_of(Array)
+        expected_corequisite_message = "#{ course.corequisite } not fulfilled"
+        expect(requisite_issues).to eq [expected_corequisite_message]
+      end
+    end
+    context "with a fulfilled corequisite" do
+      let(:taken_course) { create :taken_course, user: user }
+      let(:course) { create :course, corequisite: requisite_for(taken_course) }
+      specify "#requisite_issues returns the appropriate message" do
+        requisite_issues = subject.requisite_issues(plan)
+        expect(requisite_issues).to be_kind_of(Array)
+        expect(requisite_issues).to be_empty
+      end
+    end
+    context "with unfulfilled prerequisite and corequisite" do
+      let(:course) do
+        create :course,
+               :with_unfulfillable_corequisite,
+               :with_unfulfillable_prerequisite
+      end
+      specify "#requisite_issues returns the appropriate message" do
+        requisite_issues = subject.requisite_issues(plan)
+        expect(requisite_issues).to be_kind_of(Array)
+        expected_corequisite_message = "#{ course.corequisite } not fulfilled"
+        expected_prerequisite_message = "#{ course.prerequisite } not fulfilled"
+        expect(requisite_issues.size).to eq 2
+        expect(requisite_issues).to include(expected_prerequisite_message)
+        expect(requisite_issues).to include(expected_corequisite_message)
+      end
     end
   end
   context "with an invalid quarter" do

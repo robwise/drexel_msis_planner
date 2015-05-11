@@ -1,23 +1,23 @@
 describe Plan do
-  subject { plan }
-
   let!(:user)            { create(:user) }
   let(:plan)             { build(:plan, user: user) }
   let(:users_other_plan) { build(:plan, user: user) }
   let(:planned_course) { build :planned_course, :with_prerequisite, plan: plan }
   let(:taken_course) { build :taken_course, user: user }
 
+  subject(:subject) { plan }
+
   it { should belong_to(:user) }
   it { should have_many(:planned_courses).dependent(:destroy) }
+  it { should have_many(:taken_courses) }
   it { should respond_to(:user) }
   it { should respond_to(:name) }
   it { should respond_to(:active) }
   it { should respond_to(:activate!) }
   it { should respond_to(:planned_courses) }
   it { should respond_to(:courses) }
-  it { should respond_to(:degree_requirement_counts) }
   it { should respond_to(:taken_and_planned_courses) }
-  it { should respond_to(:requisite_issues) }
+  it { should respond_to(:statistics) }
   it { should validate_presence_of(:user) }
   it { should validate_presence_of(:name) }
   it { should ensure_length_of(:name).is_at_least(1) }
@@ -99,50 +99,9 @@ describe Plan do
       end
     end
   end
-  describe "#degree_requirement_counts" do
-    before do
-      2.times { create :planned_course, :required, plan: plan }
-      3.times do
-        create :planned_course,
-               :distribution,
-               plan: plan
-      end
-      5.times { create :planned_course, :free_elective, plan: plan }
-    end
-    it "returns the correct amount of credits for each type" do
-      counts = plan.degree_requirement_counts
-      expect(counts[:required_course]).to eq(6)
-      expect(counts[:distribution_requirement]).to eq(9)
-      expect(counts[:free_elective]).to eq(15)
-    end
-  end
-  context "when user has taken courses and plan has planned courses" do
-    before do
-      planned_course.save
-      taken_course.save
-    end
-    describe "#taken_and_planned_courses" do
-      it "returns user's taken courses and plan's plannned courses" do
-        expect(subject.taken_and_planned_courses).to eq([taken_course,
-                                                         planned_course])
-      end
-    end
-    describe "#requisite_issues" do
-      context "when a planned course has an unfilfilled Prerequisite" do
-        it "is indicated as an issue" do
-          expect(plan.requisite_issues)
-            .to include("Prerequisite for #{planned_course.full_id}"\
-                        " not fulfilled")
-        end
-      end
-      context "when a planned course has a fulfilled Prerequisite" do
-        before do
-          planned_course.course.update(prerequisite: requisite_for(taken_course))
-        end
-        it "does not indicate any issues" do
-          expect(plan.requisite_issues).to eq([])
-        end
-      end
+  describe "#statistics" do
+    it "returns a PlanStatisticsService instance" do
+      expect(subject.statistics).to be_a(PlanStatisticsService)
     end
   end
 

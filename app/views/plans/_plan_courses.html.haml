@@ -1,0 +1,33 @@
+%section
+  %h2.col-xs-12
+    %span.glyphicon.glyphicon-calendar
+    Planned Courses
+    -# = collapse_button(classes: "pull-right", href: "#plan-courses-section", sr_text: "click to collapse the Planned Courses section")
+    %a.toggle-section.pull-right{ type: "button", "data-toggle" => "collapse", href: "#plan-courses-section", "aria-expanded" => "false", "aria-controls" => "plan-courses-section" }
+      %span.glyphicon.glyphicon-collapse-down
+      %span.sr-only collapse Planned Courses Section
+  #plan-courses-section.collapse.in
+    .checkbox.col-xs-12.col-md-3.col-md-offset-9
+      %label#show-taken-courses-label
+        %input#show-taken-courses{ type: "checkbox", value: "show-taken", checked: "checked" }
+        show taken courses
+    #plan-taken-courses
+      - @plan.taken_quarter_sections.each do |taken_quarter_section|
+        %h3.col-xs-12= taken_quarter_section[:title]
+        - taken_quarter_section[:courses].each do |taken_course|
+          .col-xs-12.col-md-4.plan-taken-course
+            %h4= taken_course.full_id
+            %h5= taken_course.title
+            %p.plan-course-description{ lang: "en" }= taken_course.description
+    - @plan.planned_quarter_sections.each do |planned_quarter_section|
+      %h3.col-xs-12= planned_quarter_section[:title]
+      - planned_quarter_section[:courses].each do |planned_course|
+        .col-xs-12.col-md-4.plan-planned-course
+          %h4=planned_course.full_id
+          %h5= planned_course.title
+          %p.plan-course-description{  lang: "en" }= planned_course.description
+          - if true # TODO: planned_course.any_problems?
+            %p.problems-found
+              %span.glyphicon.glyphicon-warning-sign
+              %span.sr-only Warning!
+              Problems Found

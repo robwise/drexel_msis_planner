@@ -1,55 +1,31 @@
-input.btn-xs {
-  padding-top: 0;
-  padding-bottom: 0;
+h2 > .glyphicon-stats, .glyphicon-calendar {
+  height: 40px;
+  width: 40px;
+  border-radius: 10px;
+  border: 2px solid $text-color;
 }
 
-.edit_plan {
-  height: $line-height-computed;
+h2 > .glyphicon-stats {
+  padding: 2px;
 }
 
-.taken-quarter,
-.planned-quarter {
-  @extend .col-xs-12;
-  @extend .col-md-3;
+h2 > .glyphicon-calendar {
+  padding-top: 2px;
+  padding-left: 5px;
 }
 
-.taken-quarter-content,
-.planned-quarter-content {
-  @extend .panel-group;
+.plan-course-description {
+  text-align: justify;
+  hyphens: auto;
 }
 
-.taken-quarter-courses,
-.planned-quarter-courses {
-  @extend .panel;
-  @extend .panel-default;
+.problems-found {
+  text-align: center;
+  text-justify: distribute;
+  background-color: $brand-danger;
+  padding: $line-height-computed 0;
 }
 
-.taken-quarter-heading,
-.planned-quarter-heading {
-  @extend .panel-heading;
-}
-
-.taken-quarter-course-short-description,
-.planned-quarter-course-short-description {
-  @extend .panel-title;
-}
-
-.taken-quarter-course-short-description-content,
-.planned-quarter-course-short-description-content {
-  @extend .collapsed;
-}
-
-.taken-quarter-course-details,
-.planned-quarter-course-details {
-  @extend .panel-collapse;
-  @extend .collapse;
-}
-
-.taken-quarter-course-long-description,
-.planned-quarter-course-long-description {
-  @extend .panel-body;
-}
-
-.taken-quarter-course-grade {
-  @extend .pull-right;
+.toggle-section {
+  appearance: none;
 }

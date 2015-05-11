@@ -29,6 +29,11 @@ class Course < ActiveRecord::Base
     all.order(department: :asc, level: :asc)
   end
 
+  REQUIRED_COURSE_COURSES_TO_GRADUATE = 9
+  DISTRIBUTION_REQUIREMENT_COURSES_TO_GRADUATE = 4
+  FREE_ELECTIVE_COURSES_TO_GRADUATE = 2
+  TOTAL_CREDITS_TO_GRADUATE = 45
+
   def full_id
     "#{department} #{level}"
   end
@@ -41,11 +46,11 @@ class Course < ActiveRecord::Base
 
   def ensure_valid_prerequisite
     self.prerequisite ||= ""
-    self.prerequisite.strip!
+    self.prerequisite = prerequisite.strip
   end
 
   def ensure_valid_corequisite
     self.corequisite ||= ""
-    self.corequisite.strip!
+    self.corequisite = corequisite.strip
   end
 end

@@ -35,13 +35,19 @@ class Quarter
     new(Time.current.year * 100 + (Time.current.month / 4).ceil * 15)
   end
 
+  # Takes two quarters and finds the number of quarters between them
+  def self.num_quarters_between(first, last)
+    Quarter.new(last) - first
+  end
+
   include Comparable
   VALID_SEASONS = { fall: 15, winter: 25, spring: 35, summer: 45 }
   MONTHS = { fall: 9..12, winter: 1..3, spring: 4..6, summer: 6..8 }
   attr_accessor :code
 
-  def initialize(code)
-    @code = code.to_s.to_i # will work for integer, symbol, or string arg
+  def initialize(arg)
+    arg = arg.code if code.kind_of?(Quarter) # will work if passed a qtr
+    @code = arg.to_s.to_i # will work for integer, symbol, or string arg
   end
 
   def valid?
@@ -80,8 +86,10 @@ class Quarter
     @code = (new_year.to_s + season.to_s).to_i
   end
 
-  def to_date
-    month = MONTHS[season].first
+  # Pass an optional argument of true to get ending month's date
+  # (defaults to false)
+  def to_date(last_month = false)
+    month = last_month ? MONTHS[season].last : MONTHS[season].first
     Date.new(year, month)
   end
 
@@ -108,6 +116,14 @@ class Quarter
 
   def to_s
     @code.to_s
+  end
+
+  # Returns the number of quarters from the quarter to the given operand
+  def -(operand)
+    qtr_operand = Quarter.new(operand)
+    season_difference = ((@code % 100 - 5) / 10) - ((qtr_operand.code % 100 - 5) / 10)
+    year_difference = (@code / 100 - qtr_operand.code / 100)
+    year_difference * 4 + season_difference
   end
 
   private

@@ -1,5 +1,5 @@
 %h2.list-group-item-heading
-  = "#{course.department} #{course.level}"
+  = content_tag(:small, "#{course.department} #{course.level}")
   %span{ class: "#{degree_requirement_for(course).sub(/ /, '-') }" }
     = degree_requirement_for(course)
   = course.title

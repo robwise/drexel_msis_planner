@@ -1,26 +1,27 @@
 // Navigation Styles
 
-.navbar-home {
-  @extend .navbar-brand;
-  font-size: inherit;
+.navbar-right > li > a {
+  padding-right: 5px;
 }
 
-nav {
-  @extend .navbar;
-  @extend .navbar-default;
-}
+.navbar-nav > li.gravatar {
+  margin-right: -5px;
+  .round {
+    display:block;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    padding:0;
 
-.navbar-collapse-button {
-  @extend .navbar-toggle;
-  @extend .collapsed;
-}
+    img {
+      height: 40px;
+      width: 40px;
+      padding: 0;
+    }
+  }
 
-.navbar-collapsible-area {
-  @extend .collapse;
-  @extend .navbar-collapse;
-}
-
-.navbar-links {
-  @extend .nav;
-  @extend .navbar-nav;
+  a {
+    padding: 5px 0;
+  }
 }

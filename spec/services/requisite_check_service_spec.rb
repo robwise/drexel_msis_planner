@@ -7,7 +7,27 @@ describe RequisiteCheckService, type: :service do
   let(:single_course_history) { [taken_course] }
   let(:planned_course) { build :planned_course }
 
-  shared_examples_for "a requisite" do
+  context "when the target course has a non-blank requisites" do
+    let(:required_course) { create :course }
+    let(:requiring_course) do
+      create :course,
+             prerequisite: requisite_for(required_course),
+             corequisite: requisite_for(required_course)
+    end
+    let(:planned_course) { create :planned_course, course: requiring_course }
+    describe "#initialize" do
+      it "does not change its prerequisite" do
+        expect { described_class.new(empty_history, planned_course) }
+          .not_to change(planned_course.reload, :prerequisite)
+      end
+      it "does not change its corequisite" do
+        expect { described_class.new(empty_history, planned_course) }
+          .not_to change(planned_course.reload, :corequisite)
+      end
+    end
+  end
+
+  shared_examples_for "requisite_fulfilled" do
     context "when course exists in history" do
       let(:course_history) { passing_history }
       it { is_expected.to eq true }
@@ -65,7 +85,7 @@ describe RequisiteCheckService, type: :service do
       described_class.new(course_history, planned_course).prerequisite_fulfilled
     end
     before { change_requisite requisite_type, requisite_for(taken_course) }
-    it_should_behave_like "a requisite"
+    it_should_behave_like "requisite_fulfilled"
     context "when requisite course is being taken during concurrently" do
       let(:course_history) { single_course_history }
       before { taken_course.quarter = planned_course.quarter }
@@ -79,7 +99,7 @@ describe RequisiteCheckService, type: :service do
       described_class.new(course_history, planned_course).corequisite_fulfilled
     end
     before { change_requisite requisite_type, requisite_for(taken_course) }
-    it_should_behave_like "a requisite"
+    it_should_behave_like "requisite_fulfilled"
     context "when requisite course is being taken during concurrently" do
       let(:course_history) { single_course_history }
       before { taken_course.quarter = planned_course.quarter }
@@ -93,6 +113,6 @@ describe RequisiteCheckService, type: :service do
   # question. Allows using shared_examples as long as the let(:requisite_type)
   # is defined accordingly
   def change_requisite(requisite_type, requisite_text)
-    planned_course.course.send((requisite_type.to_s + "=").to_s, requisite_text)
+    planned_course.course.send(requisite_type.to_s + "=", requisite_text)
   end
 end

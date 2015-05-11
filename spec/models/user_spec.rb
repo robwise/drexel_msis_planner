@@ -60,9 +60,9 @@ describe User do
   describe "credits earned methods" do
     before do
       user.save
-      3.times { create :required_taken_course, user: user }
-      2.times { create :free_elective_taken_course, user: user }
-      create :distribution_taken_course, user: user
+      3.times { create :taken_course, :required, user: user }
+      2.times { create :taken_course, :free_elective, user: user }
+      create :taken_course, :distribution, user: user
     end
 
     it "respond with proper amount of required credits" do

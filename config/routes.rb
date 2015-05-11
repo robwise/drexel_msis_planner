@@ -12,4 +12,5 @@ Rails.application.routes.draw do
     end
   end
   match "users/:id" => "users#destroy", via: :delete, as: :destroy_user
+  # delete "destroy_user_session", controller: "devise/sessions", action: :destroy
 end
