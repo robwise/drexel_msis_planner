@@ -58,4 +58,9 @@ Rails.application.configure do
   # Add Rack::LiveReload to the bottom of the middleware stack with the default
   # options.
   config.middleware.use Rack::LiveReload
+
+  # Added in accordance with SimpleCov's recommendations for Spring
+  # compatiability
+  config.serve_static_files = false
+  config.eager_load = false
 end

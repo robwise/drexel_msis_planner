@@ -43,4 +43,9 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  # Added in accordance with SimpleCov's recommendations for Spring
+  # compatiability
+  config.serve_static_files = false
+  config.eager_load = false
 end

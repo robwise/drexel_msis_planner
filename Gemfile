@@ -58,4 +58,5 @@ group :test do
   gem "growl" # this may fail to build on non-Mac OS machines
   gem "rake" # required for Travis-CI
   gem "codeclimate-test-reporter", require: nil
+  gem "simplecov", require: false
 end
