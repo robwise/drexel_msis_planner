@@ -12,12 +12,14 @@ class PlanStatisticsService
     1 + Quarter.num_quarters_between(first_quarter, last_quarter)
   end
 
+  # first quarter of the entire planned degree
   def first_quarter
     return first_taken_quarter if any_taken_courses?
     return first_planned_quarter if any_planned_courses?
     nil
   end
 
+  # last quarter of the entire planned degree
   def last_quarter
     return last_planned_quarter if any_planned_courses?
     return last_taken_quarter if any_taken_courses?
@@ -48,78 +50,59 @@ class PlanStatisticsService
   end
 
   def first_planned_quarter
-    min = @planned_courses_ary.min { |a, b| a.quarter <=> b.quarter }
-    return nil if min.nil?
-    Quarter.new(min.quarter)
+    find_min_or_max_in_courses(:min, @planned_courses_ary)
   end
 
   def last_planned_quarter
-    max = @planned_courses_ary.max { |a, b| a.quarter <=> b.quarter }
-    return nil if max.nil?
-    Quarter.new(max.quarter)
+    find_min_or_max_in_courses(:max, @planned_courses_ary)
   end
 
   def first_taken_quarter
-    min = @taken_courses_ary.min { |a, b| a.quarter <=> b.quarter }
-    return nil if min.nil?
-    Quarter.new(min.quarter)
+    find_min_or_max_in_courses(:min, @taken_courses_ary)
   end
 
   def last_taken_quarter
-    max = @taken_courses_ary.max { |a, b| a.quarter <=> b.quarter }
-    return nil if max.nil?
-    Quarter.new(max.quarter)
+    find_min_or_max_in_courses(:max, @taken_courses_ary)
   end
 
   def free_elective_count
-    counter = 0
-    taken_and_planned_courses.each do |course|
-      counter += 1 if course.degree_requirement == "free_elective"
-    end
-    counter
+    degree_requirement_count_in_courses("free_elective",
+                                        taken_and_planned_courses)
   end
 
   def free_elective_count_pretty
-    "#{ free_elective_count }/"\
-      "#{Course::FREE_ELECTIVE_COURSES_TO_GRADUATE}"
+    get_pretty_output_for(free_elective_count, "free_elective_courses")
   end
 
   def free_elective_credits
-    free_elective_count * 3
+    credits_for("free_elective")
   end
 
   def distribution_requirement_count
-    counter = 0
-    taken_and_planned_courses.each do |course|
-      counter += 1 if course.degree_requirement == "distribution_requirement"
-    end
-    counter
+    degree_requirement_count_in_courses("distribution_requirement",
+                                        taken_and_planned_courses)
   end
 
   def distribution_requirement_count_pretty
-    "#{ distribution_requirement_count }/"\
-      "#{Course::DISTRIBUTION_REQUIREMENT_COURSES_TO_GRADUATE}"
+    get_pretty_output_for(distribution_requirement_count,
+                          "distribution_requirement_courses")
   end
 
   def distribution_requirement_credits
-    distribution_requirement_count * 3
+    credits_for("distribution_requirement")
   end
 
   def required_course_count
-    counter = 0
-    taken_and_planned_courses.each do |course|
-      counter += 1 if course.degree_requirement == "required_course"
-    end
-    counter
+    degree_requirement_count_in_courses("required_course",
+                                        taken_and_planned_courses)
   end
 
   def required_course_count_pretty
-    "#{ required_course_count }/"\
-      "#{Course::REQUIRED_COURSE_COURSES_TO_GRADUATE}"
+    get_pretty_output_for(required_course_count, "required_course_courses")
   end
 
   def required_course_credits
-    required_course_count * 3
+    credits_for("required_course")
   end
 
   def total_credits
@@ -128,10 +111,37 @@ class PlanStatisticsService
   end
 
   def total_credits_pretty
-    "#{ total_credits }/#{ Course::TOTAL_CREDITS_TO_GRADUATE }"
+    get_pretty_output_for(total_credits, "total_credits")
   end
 
   def taken_and_planned_courses
     @taken_courses_ary + @planned_courses_ary
+  end
+
+  private
+
+  def find_min_or_max_in_courses(min_or_max, course_ary)
+    result = course_ary.send(min_or_max) { |a, b| a.quarter <=> b.quarter }
+    return nil if result.nil?
+    Quarter.new(result.quarter)
+  end
+
+  def degree_requirement_count_in_courses(degree_requirement, courses_ary)
+    counter = 0
+    courses_ary.each do |course|
+      counter += 1 if course.degree_requirement == degree_requirement.to_s
+    end
+    counter
+  end
+
+  def credits_for(degree_type)
+    send(degree_type + "_count") * 3
+  end
+
+  # required_course_courses, distribution_course_courses, free_elective_courses
+  # total_credits
+  def get_pretty_output_for(numerator, denominator_type)
+    "#{ numerator }/"\
+      "#{ Course.const_get(denominator_type.upcase + '_TO_GRADUATE') }"
   end
 end
