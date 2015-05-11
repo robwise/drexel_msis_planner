@@ -386,6 +386,7 @@ DEPENDENCIES
   selenium-webdriver
   shoulda-matchers
   simple_form
+  simplecov
   skylight
   spring
   spring-commands-rspec
