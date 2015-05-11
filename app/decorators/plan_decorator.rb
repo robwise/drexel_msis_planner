@@ -64,10 +64,13 @@ class PlanDecorator
     build_progress_bar(numerator, denominator)
   end
 
+  def get_problems_for(planned_course)
+    planned_course.requisite_issues(@plan)
+  end
+
   private
 
   def generate_quarter_sections_for(quarters, courses)
-    # courses = user.taken_courses + planned_courses
     sections = []
     quarters.each do |quarter|
       section_title = "#{ quarter.humanize } (#{ quarter.code })"

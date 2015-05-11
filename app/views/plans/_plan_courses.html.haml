@@ -23,11 +23,14 @@
       %h3.col-xs-12= planned_quarter_section[:title]
       - planned_quarter_section[:courses].each do |planned_course|
         .col-xs-12.col-md-4.plan-planned-course
-          %h4=planned_course.full_id
+          %h4= planned_course.full_id
           %h5= planned_course.title
           %p.plan-course-description{  lang: "en" }= planned_course.description
-          - if true # TODO: planned_course.any_problems?
-            %p.problems-found
+          - # TODO: planned_course.any_problems?
+          - problems = @plan.get_problems_for(planned_course)
+          - unless problems.size == 0
+            .problems-found
               %span.glyphicon.glyphicon-warning-sign
               %span.sr-only Warning!
-              Problems Found
+              - problems.each do |problem|
+                = content_tag(:p, problem)
