@@ -17,7 +17,9 @@ describe Quarter do
   it { should respond_to(:past?) }
 
   context "when initialized with a valid code" do
-    let(:good_codes) { [201515, 201525, 201535, 201545, 198115, 199025, 202415] }
+    let(:good_codes) do
+      [201515, 201525, 201535, 201545, 198115, 199025, 202415]
+    end
     it "is valid" do
       good_codes.each do |good_code|
         quarter = described_class.new(good_code)
@@ -26,7 +28,7 @@ describe Quarter do
     end
   end
   context "when initialized with another quarter" do
-    let(:argument) { Quarter.new(201515) }
+    let(:argument) { described_class.new(201515) }
     it "is vaild" do
       quarter = described_class.new(argument)
       expect(quarter).to be_valid
