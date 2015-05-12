@@ -19,4 +19,10 @@ FactoryGirl.define do
   trait :with_prerequisite do
     association :course, :with_prerequisite
   end
+  trait :with_corequisite do
+    association :course, :with_corequisite
+  end
+  trait :with_co_and_prerequisites do
+    association :course, :with_corequisite, :with_prerequisite
+  end
 end

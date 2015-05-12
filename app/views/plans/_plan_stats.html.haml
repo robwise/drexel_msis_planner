@@ -1,11 +1,11 @@
-%section
+%section#plan-stats
   %h2.col-xs-12
     %span.glyphicon.glyphicon-stats
     Plan Stats
-    %a.toggle-section.pull-right{ type: "button", "data-toggle" => "collapse", href: "#plan-stats", "aria-expanded" => "false", "aria-controls" => "plan-stats" }
+    %a.toggle-section.pull-right{ type: "button", "data-toggle" => "collapse", href: "#plan-stats-content", "aria-expanded" => "false", "aria-controls" => "plan-stats-content" }
       %span.glyphicon.glyphicon-collapse-down
       %span.sr-only click to collapse Plan Stats Section
-  #plan-stats.collapse.in
+  #plan-stats-content.collapse.in
     %ul.col-xs-12.col-md-5.col-md-offset-1.list-unstyled
       %li#required-courses-count
         = "Required Courses"
@@ -26,13 +26,12 @@
 
     %ul.col-xs-12.col-md-5.col-md-offset-1.list-unstyled
       %li#degree-duration
-        = "Degree Duration #{ @plan.pretty_duration }"
+        = "Degree Duration #{ @plan.statistics.duration_pretty }"
       %li#planned-completion
         = "Planned Completion #{ @plan.pretty_planned_completion }"
       %li#quarters-remaining
         = "Quarters Remaining #{ @plan.statistics.quarters_remaining }"
       %li#problems
-        - #TODO: Implement this
-        = "Problems: 0"
+        = "Problems: #{ @plan.pretty_problems_count }"
         %span.glyphicon.glyphicon-question-sign
         %span.sr-only problems tooltip

@@ -1,11 +1,8 @@
 class PlanDecorator
   include ActionView::Helpers::TagHelper
-  attr_reader :plan
 
   def initialize(plan)
     @plan = plan
-    @planned_courses_array = plan.planned_courses.to_a
-    @taken_courses_array = plan.taken_courses.to_a
   end
 
   def method_missing(method_name, *args, &block)
@@ -31,15 +28,13 @@ class PlanDecorator
   end
 
   def pretty_planned_completion
-    # TODO: add logic if the degree is completed to show that
     planned_completion = statistics.planned_completion_date
-    return "No Courses Planned" if planned_completion.nil?
-    statistics.planned_completion_date.to_datetime.strftime("%B %Y")
+    return planned_completion unless planned_completion.is_a?(Date)
+    planned_completion.to_datetime.strftime("%B %Y")
   end
 
-  def pretty_duration
-    "#{ statistics.duration_in_quarters } Quarters "\
-      "(#{ statistics.duration_in_years } years)"
+  def pretty_problems_count
+    statistics.problems_count
   end
 
   def submit_text
@@ -50,18 +45,11 @@ class PlanDecorator
     @plan.new_record? ? [@plan.user, @plan] : @plan
   end
 
-  # TODO: move this logic into PlanStatisticsService
   # Takes a symbol or String argument (:required_course, :free_elective,
   # :distribution_course, or :total_credits)
   def progress_bar_for(progress_type)
-    progress_type = progress_type.to_s
-    if progress_type == "total_credits"
-      numerator = @plan.statistics.total_credits
-      denominator = Course::TOTAL_CREDITS_TO_GRADUATE
-    else
-      numerator = @plan.statistics.send("#{progress_type}_count")
-      denominator = eval "Course::#{progress_type.upcase}_COURSES_TO_GRADUATE"
-    end
+    numerator = statistics.send(progress_type.to_s + "_count")
+    denominator = statistics.send(progress_type.to_s + "_count_needed")
     build_progress_bar(numerator, denominator)
   end
 

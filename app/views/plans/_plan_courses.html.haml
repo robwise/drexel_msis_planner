@@ -1,12 +1,11 @@
-%section
+%section#plan-courses
   %h2.col-xs-12
     %span.glyphicon.glyphicon-calendar
     Planned Courses
-    -# = collapse_button(classes: "pull-right", href: "#plan-courses-section", sr_text: "click to collapse the Planned Courses section")
-    %a.toggle-section.pull-right{ type: "button", "data-toggle" => "collapse", href: "#plan-courses-section", "aria-expanded" => "false", "aria-controls" => "plan-courses-section" }
+    %a.toggle-section.pull-right{ type: "button", "data-toggle" => "collapse", href: "#plan-courses-content", "aria-expanded" => "false", "aria-controls" => "plan-courses-content" }
       %span.glyphicon.glyphicon-collapse-down
       %span.sr-only collapse Planned Courses Section
-  #plan-courses-section.collapse.in
+  #plan-courses-content.collapse.in
     .checkbox.col-xs-12.col-md-3.col-md-offset-9
       %label#show-taken-courses-label
         %input#show-taken-courses{ type: "checkbox", value: "show-taken", checked: "checked" }
@@ -25,8 +24,7 @@
         .col-xs-12.col-md-4.plan-planned-course
           %h4= planned_course.full_id
           %h5= planned_course.title
-          %p.plan-course-description{  lang: "en" }= planned_course.description
-          - # TODO: planned_course.any_problems?
+          %p.plan-course-description= planned_course.description
           - problems = @plan.get_problems_for(planned_course)
           - unless problems.size == 0
             .problems-found
