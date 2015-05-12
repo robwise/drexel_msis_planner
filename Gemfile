@@ -59,4 +59,5 @@ group :test do
   gem "rake" # required for Travis-CI
   gem "codeclimate-test-reporter", require: nil
   gem "simplecov", require: false
+  gem "fuubar"
 end

@@ -109,6 +109,9 @@ GEM
       i18n (~> 0.5)
     ffi (1.9.6)
     formatador (0.2.5)
+    fuubar (2.0.0)
+      rspec (~> 3.0)
+      ruby-progressbar (~> 1.4)
     globalid (0.3.0)
       activesupport (>= 4.1.0)
     growl (1.0.3)
@@ -356,6 +359,7 @@ DEPENDENCIES
   dotenv-rails
   factory_girl_rails
   faker
+  fuubar
   growl
   guard-bundler
   guard-livereload
