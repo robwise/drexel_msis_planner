@@ -80,5 +80,32 @@ FactoryGirl.define do
                     user: evaluator.user)
       end
     end
+    trait :completed do
+      transient do
+        last_quarter { Quarter.current.previous_quarter.code }
+      end
+
+      after(:create) do |plan, evaluator|
+        create_list(:taken_course,
+                    8,
+                    :required,
+                    quarter: (build :past_quarter).code,
+                    user: evaluator.user)
+        create_list(:taken_course,
+                    4,
+                    :distribution,
+                    quarter: (build :past_quarter).code,
+                    user: evaluator.user)
+        create_list(:taken_course,
+                    2,
+                    :free_elective,
+                    quarter: (build :past_quarter).code,
+                    user: evaluator.user)
+        create :taken_course,
+               :required,
+               quarter: evaluator.last_quarter,
+               user: evaluator.user
+      end
+    end
   end
 end
