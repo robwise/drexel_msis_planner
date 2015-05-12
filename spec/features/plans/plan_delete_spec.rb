@@ -1,16 +1,9 @@
 feature "Delete Plan", :js do
   let!(:plan) { create(:plan, user: user) }
   let(:user)  { create(:user) }
-  let(:admin) { create(:user, :admin) }
-  let(:other_user) { create(:user) }
 
   scenario "as a user" do
     js_signin_user(user)
-    visit user_plans_path(user)
-    successful_deletion
-  end
-  scenario "as an admin" do
-    js_signin_user(admin)
     visit user_plans_path(user)
     successful_deletion
   end

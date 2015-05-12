@@ -28,10 +28,10 @@
       %li#degree-duration
         = "Degree Duration #{ @plan.statistics.duration_pretty }"
       %li#planned-completion
-        = "Planned Completion #{ @plan.pretty_planned_completion }"
+        = "Planned Completion #{ @plan.statistics.planned_completion_date_pretty }"
       %li#quarters-remaining
         = "Quarters Remaining #{ @plan.statistics.quarters_remaining }"
       %li#problems
-        = "Problems: #{ @plan.pretty_problems_count }"
+        = "Problems: #{ @plan.statistics.problems_count }"
         %span.glyphicon.glyphicon-question-sign
         %span.sr-only problems tooltip

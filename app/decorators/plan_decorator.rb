@@ -27,16 +27,6 @@ class PlanDecorator
     generate_quarter_sections_for(quarters, planned_courses)
   end
 
-  def pretty_planned_completion
-    planned_completion = statistics.planned_completion_date
-    return planned_completion unless planned_completion.is_a?(Date)
-    planned_completion.to_datetime.strftime("%B %Y")
-  end
-
-  def pretty_problems_count
-    statistics.problems_count
-  end
-
   def submit_text
     @plan.new_record? ? "Create" : "Update"
   end
@@ -54,7 +44,7 @@ class PlanDecorator
   end
 
   def get_problems_for(planned_course)
-    planned_course.requisite_issues(@plan)
+    planned_course.requisite_issues(statistics.taken_and_planned_courses)
   end
 
   private
@@ -64,10 +54,18 @@ class PlanDecorator
     quarters.each do |quarter|
       section_title = "#{ quarter.humanize } (#{ quarter.code })"
       section = { title: section_title, quarter: quarter.code }
-      section[:courses] = courses.where(quarter: quarter.code)
+      section[:courses] = find_courses_by_quarter_code(quarter.code, courses)
       sections << section
     end
     sections
+  end
+
+  def find_courses_by_quarter_code(code, courses)
+    matching_courses = []
+    courses.each do |course|
+      matching_courses << course if course.quarter == code
+    end
+    matching_courses
   end
 
   def build_progress_bar(numerator, denominator)

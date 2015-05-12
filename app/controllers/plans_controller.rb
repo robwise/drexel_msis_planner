@@ -11,8 +11,8 @@ class PlansController < ApplicationController
 
   # GET /plans/1
   def show
-    plan = Plan.includes(taken_courses: [:course],
-                         planned_courses: [:course]).find(params[:id])
+    plan = Plan.includes({ taken_courses: [:course],
+                         planned_courses: [:course] }).find(params[:id])
     authorize plan
     @plan = PlanDecorator.new(plan)
   end
