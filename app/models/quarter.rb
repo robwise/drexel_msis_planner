@@ -109,8 +109,21 @@ class Quarter
     end
   end
 
+  def previous_quarter
+    if 15 == season_code
+      Quarter.new((year - 1) * 100 + 45)
+    else
+      Quarter.new(year * 100 + season_code - 10)
+    end
+  end
+
   def next_quarter!
     @code = next_quarter.code
+    self
+  end
+
+  def previous_quarter!
+    @code = previous_quarter.code
     self
   end
 
