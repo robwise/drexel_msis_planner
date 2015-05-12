@@ -239,5 +239,10 @@ describe PlanStatisticsService, type: :service do
           .to eq completion_quarter.to_date(true)
       end
     end
+    describe "#quarters_remaining" do
+      it "returns 0" do
+        expect(subject.quarters_remaining).to eq 0
+      end
+    end
   end
 end
