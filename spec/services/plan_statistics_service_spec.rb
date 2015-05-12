@@ -12,10 +12,16 @@ describe PlanStatisticsService, type: :service do
     it { should respond_to(:last_taken_quarter) }
     it { should respond_to(:duration_in_quarters) }
     it { should respond_to(:duration_in_years) }
-    it { should respond_to(:distribution_requirement_count) }
     it { should respond_to(:required_course_count) }
+    it { should respond_to(:required_course_count_needed) }
+    it { should respond_to(:distribution_requirement_count) }
+    it { should respond_to(:distribution_requirement_count_needed) }
     it { should respond_to(:free_elective_count) }
+    it { should respond_to(:free_elective_count_needed) }
+    it { should respond_to(:total_credits) }
+    it { should respond_to(:total_credits_needed) }
     it { should respond_to(:taken_and_planned_courses) }
+    it { should respond_to(:degree_completed?) }
   end
 
   context "with multiple planned and taken courses of all types" do
@@ -130,6 +136,11 @@ describe PlanStatisticsService, type: :service do
         expect(subject.planned_completion_date).to eq expected_date
       end
     end
+    describe "#degree_completed?" do
+      it "is false" do
+        expect(subject.degree_completed?).to eq false
+      end
+    end
     describe "#duration_in_quarters" do
       it "returns the proper code" do
         expect(subject.duration_in_quarters).to eq 15
@@ -204,6 +215,28 @@ describe PlanStatisticsService, type: :service do
     describe "#planned_completion_date" do
       it "returns nil" do
         expect(subject.planned_completion_date).to be_nil
+      end
+    end
+    describe "#degree_completed?" do
+      it "is false" do
+        expect(subject.degree_completed?).to eq false
+      end
+    end
+  end
+  context "with a completed degree" do
+    let(:completion_quarter) { Quarter.current_quarter.previous_quarter! }
+    let(:plan) do
+      create :plan, :completed, last_quarter: completion_quarter.code
+    end
+    describe "#degree_completed?" do
+      it "is true" do
+        expect(subject.degree_completed?).to eq true
+      end
+    end
+    describe "#planned_completion_date" do
+      it "returns the date of the last month of the last taken quarter" do
+        expect(subject.planned_completion_date)
+          .to eq completion_quarter.to_date(true)
       end
     end
   end

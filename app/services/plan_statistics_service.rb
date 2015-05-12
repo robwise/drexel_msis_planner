@@ -1,3 +1,4 @@
+require "pry"
 class PlanStatisticsService
   attr_reader :taken_courses_ary, :planned_courses_ary
 
@@ -44,7 +45,15 @@ class PlanStatisticsService
     Quarter.num_quarters_between(first_planned_quarter, last_planned_quarter)
   end
 
+  def degree_completed?
+    # binding.pry
+    required_course_count >= required_course_count_needed &&
+      distribution_requirement_count >= distribution_requirement_count_needed &&
+      free_elective_count >= free_elective_count_needed
+  end
+
   def planned_completion_date
+    return last_taken_quarter.to_date(true) if degree_completed?
     return nil if last_planned_quarter.nil?
     last_planned_quarter.to_date(true)
   end
@@ -71,7 +80,7 @@ class PlanStatisticsService
   end
 
   def free_elective_count_pretty
-    get_pretty_output_for(free_elective_count, "free_elective_courses")
+    get_pretty_output_for(:free_elective_count)
   end
 
   def free_elective_credits
@@ -84,8 +93,7 @@ class PlanStatisticsService
   end
 
   def distribution_requirement_count_pretty
-    get_pretty_output_for(distribution_requirement_count,
-                          "distribution_requirement_courses")
+    get_pretty_output_for(:distribution_requirement_count)
   end
 
   def distribution_requirement_credits
@@ -98,7 +106,7 @@ class PlanStatisticsService
   end
 
   def required_course_count_pretty
-    get_pretty_output_for(required_course_count, "required_course_courses")
+    get_pretty_output_for(:required_course_count)
   end
 
   def required_course_credits
@@ -111,11 +119,27 @@ class PlanStatisticsService
   end
 
   def total_credits_pretty
-    get_pretty_output_for(total_credits, "total_credits")
+    get_pretty_output_for(:total_credits)
   end
 
   def taken_and_planned_courses
     @taken_courses_ary + @planned_courses_ary
+  end
+
+  def required_course_count_needed
+    Course::REQUIRED_COURSE_COURSES_TO_GRADUATE
+  end
+
+  def distribution_requirement_count_needed
+    Course::DISTRIBUTION_REQUIREMENT_COURSES_TO_GRADUATE
+  end
+
+  def free_elective_count_needed
+    Course::FREE_ELECTIVE_COURSES_TO_GRADUATE
+  end
+
+  def total_credits_needed
+    Course::TOTAL_CREDITS_TO_GRADUATE
   end
 
   private
@@ -138,10 +162,9 @@ class PlanStatisticsService
     send(degree_type + "_count") * 3
   end
 
-  # required_course_courses, distribution_course_courses, free_elective_courses
+  # required_course_count, distribution_requirement_count, free_elective_count
   # total_credits
-  def get_pretty_output_for(numerator, denominator_type)
-    "#{ numerator }/"\
-      "#{ Course.const_get(denominator_type.upcase + '_TO_GRADUATE') }"
+  def get_pretty_output_for(statistic_type)
+    "#{ send(statistic_type) }/#{ send(statistic_type.to_s + '_needed') }"
   end
 end
