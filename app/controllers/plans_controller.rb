@@ -1,20 +1,13 @@
 class PlansController < ApplicationController
   before_filter :authenticate_user!
   before_action :set_plan, only: [:edit, :update, :destroy]
+  before_action :authorize_plan, only: [:edit, :update, :destroy]
   after_action :verify_authorized
 
   # GET /users/:user_id/plans
   def index
     @user = User.includes(:plans).find(params[:user_id])
     authorize @user.plans
-  end
-
-  # GET /plans/1
-  def show
-    plan = Plan.includes({ taken_courses: [:course],
-                         planned_courses: [:course] }).find(params[:id])
-    authorize plan
-    @plan = PlanDecorator.new(plan)
   end
 
   # GET users/:user_id/plans/new
@@ -76,6 +69,9 @@ class PlansController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_plan
     @plan = Plan.find(params[:id])
+  end
+
+  def authorize_plan
     authorize @plan
   end
 
