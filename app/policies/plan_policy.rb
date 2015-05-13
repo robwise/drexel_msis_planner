@@ -2,16 +2,12 @@ class PlanPolicy
   attr_reader :current_user, :plan
 
   def initialize(current_user, model)
-    raise Pundit::NotAuthorizedError, "must be logged in" unless current_user
+    fail Pundit::NotAuthorizedError, "must be logged in" unless current_user
     @current_user = current_user
     @plan = model
   end
 
   def index?
-    true
-  end
-
-  def show?
     @plan.user == @current_user || @current_user.admin?
   end
 
@@ -34,5 +30,4 @@ class PlanPolicy
   def destroy?
     @plan.user == @current_user || @current_user.admin?
   end
-
 end
