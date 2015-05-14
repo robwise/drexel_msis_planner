@@ -11,7 +11,7 @@ describe UserPolicy do
       expect(subject).not_to permit(current_user)
     end
     it "allows access for an admin" do
-      expect(subject).to permit(admin)
+      expect(subject).to permit(admin, other_user)
     end
   end
 
@@ -23,7 +23,7 @@ describe UserPolicy do
       expect(subject).to permit(current_user, current_user)
     end
     it "allows an admin to see any profile" do
-      expect(subject).to permit(admin)
+      expect(subject).to permit(admin, other_user)
     end
   end
 
@@ -32,7 +32,7 @@ describe UserPolicy do
       expect(subject).not_to permit(current_user)
     end
     it "allows an admin to make updates" do
-      expect(subject).to permit(admin)
+      expect(subject).to permit(admin, other_user)
     end
   end
 
@@ -51,6 +51,18 @@ describe UserPolicy do
   permissions :home? do
     it "allows access for everyone" do
       expect(subject).to permit(visitor)
+    end
+  end
+
+  permissions :plans_index? do
+    it "prevents current user from seeing other users' plans index" do
+      expect(subject).not_to permit(current_user, other_user)
+    end
+    it "allows current user to see their own plans index" do
+      expect(subject).to permit(current_user, current_user)
+    end
+    it "allows an admin to see any user's plans index" do
+      expect(subject).to permit(admin, other_user)
     end
   end
 end

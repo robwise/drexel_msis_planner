@@ -1,11 +1,8 @@
 class PlanDecorator
   include ActionView::Helpers::TagHelper
-  attr_reader :plan
 
   def initialize(plan)
     @plan = plan
-    @planned_courses_array = plan.planned_courses.to_a
-    @taken_courses_array = plan.taken_courses.to_a
   end
 
   def method_missing(method_name, *args, &block)
@@ -30,18 +27,6 @@ class PlanDecorator
     generate_quarter_sections_for(quarters, planned_courses)
   end
 
-  def pretty_planned_completion
-    # TODO: add logic if the degree is completed to show that
-    planned_completion = statistics.planned_completion_date
-    return "No Courses Planned" if planned_completion.nil?
-    statistics.planned_completion_date.to_datetime.strftime("%B %Y")
-  end
-
-  def pretty_duration
-    "#{ statistics.duration_in_quarters } Quarters "\
-      "(#{ statistics.duration_in_years } years)"
-  end
-
   def submit_text
     @plan.new_record? ? "Create" : "Update"
   end
@@ -53,29 +38,34 @@ class PlanDecorator
   # Takes a symbol or String argument (:required_course, :free_elective,
   # :distribution_course, or :total_credits)
   def progress_bar_for(progress_type)
-    progress_type = progress_type.to_s
-    if progress_type == "total_credits"
-      numerator = @plan.statistics.total_credits
-      denominator = Course::TOTAL_CREDITS_TO_GRADUATE
-    else
-      numerator = @plan.statistics.send("#{progress_type}_count")
-      denominator = eval "Course::#{progress_type.upcase}_COURSES_TO_GRADUATE"
-    end
+    numerator = statistics.send(progress_type.to_s + "_count")
+    denominator = statistics.send(progress_type.to_s + "_count_needed")
     build_progress_bar(numerator, denominator)
+  end
+
+  def get_problems_for(planned_course)
+    planned_course.requisite_issues(statistics.taken_and_planned_courses)
   end
 
   private
 
   def generate_quarter_sections_for(quarters, courses)
-    # courses = user.taken_courses + planned_courses
     sections = []
     quarters.each do |quarter|
       section_title = "#{ quarter.humanize } (#{ quarter.code })"
       section = { title: section_title, quarter: quarter.code }
-      section[:courses] = courses.where(quarter: quarter.code)
+      section[:courses] = find_courses_by_quarter_code(quarter.code, courses)
       sections << section
     end
     sections
+  end
+
+  def find_courses_by_quarter_code(code, courses)
+    matching_courses = []
+    courses.each do |course|
+      matching_courses << course if course.quarter == code
+    end
+    matching_courses
   end
 
   def build_progress_bar(numerator, denominator)

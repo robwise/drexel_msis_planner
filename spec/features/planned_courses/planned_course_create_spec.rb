@@ -1,16 +1,16 @@
 feature "Adding a course to a plan" do
-  feature "as a user" do
+  context "as a user" do
     let!(:course) { create(:course) }
     let!(:user) { create(:user) }
     let!(:plan) { create(:plan, user: user) }
 
-    feature "with valid course to add", :js, speed: "slow" do
+    context "with valid course to add", :js, speed: "slow" do
       before do
         js_signin_user user
         visit courses_path
       end
 
-      scenario "valid planned course" do
+      scenario "can add the course to a plan successfully" do
         click_on("add to plan")
         expect(page).to have_css("#planned-course-modal")
         expect(find(:css, ".modal-title").text)
@@ -22,7 +22,7 @@ feature "Adding a course to a plan" do
         expect(page).not_to have_button("add to plan")
       end
 
-      scenario "bad input" do
+      scenario "gets an error when using bad input" do
         click_on("add to plan")
         expect(PlannedCourse.count).to eq(0)
         fill_planned_course_modal("")
@@ -31,16 +31,16 @@ feature "Adding a course to a plan" do
       end
     end
 
-    feature "without valid course to add" do
+    context "without a valid course to add" do
       before { signin_user user }
 
-      scenario "already taken course" do
-        create(:taken_course, course: course, user: user)
+      scenario "the page does not have add buttons for already taken courses" do
+        create :taken_course, course: course, user: user
         visit courses_path
         expect(page).not_to have_button("add to plan")
       end
 
-      scenario "already planned course" do
+      scenario "the page does not have add buttons for already planned courses" do
         create(:planned_course, course: course, plan: plan)
         visit courses_path
         expect(page).not_to have_button("add to plan")
@@ -48,8 +48,10 @@ feature "Adding a course to a plan" do
     end
   end
 
-  scenario "as a visitor" do
-    visit courses_path
-    expect(page).not_to have_button("add to plan")
+  context "as a visitor" do
+    before { visit courses_path }
+    scenario "the page does not have button for adding to plan" do
+      expect(page).not_to have_button("add to plan")
+    end
   end
 end

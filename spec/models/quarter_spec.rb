@@ -15,6 +15,10 @@ describe Quarter do
   it { should respond_to(:to_date) }
   it { should respond_to(:future?) }
   it { should respond_to(:past?) }
+  it { should respond_to(:next_quarter) }
+  it { should respond_to(:next_quarter!) }
+  it { should respond_to(:previous_quarter) }
+  it { should respond_to(:previous_quarter!) }
 
   context "when initialized with a valid code" do
     let(:good_codes) do
@@ -123,12 +127,17 @@ describe Quarter do
   end
   describe "#next_quarter" do
     it "returns the next quarter" do
-      quarter = build :quarter, quarter: 201515
-      next_quarter = build :quarter, quarter: 201525
-      expect(quarter.next_quarter).to eq next_quarter
+      quarter = build :quarter, quarter: 201545
+      expect(quarter.next_quarter.code).to eq 201615
     end
   end
-  describe "self.from" do
+  describe "#previous_quarter" do
+    it "returns the next quarter" do
+      quarter = build :quarter, quarter: 201515
+      expect(quarter.previous_quarter.code).to eq 201445
+    end
+  end
+  describe ".from" do
     let!(:first) { build :quarter, quarter: 201345 }
     let!(:last) { build :quarter, quarter: 201515 }
     it "returns all dates between first and last quarter (inclusive)" do
@@ -139,20 +148,20 @@ describe Quarter do
                   described_class.new(201445),
                   described_class.new(201515)]
       actual = described_class.from(first: first, last: last)
-      for i in 0..expected.length
+      (0..expected.length).each do |i|
         expect(actual[i]).to eq expected[i]
       end
       expect(described_class.from(first: first, last: last)).to eq expected
     end
   end
-  describe "self.current_quarter" do
+  describe ".current_quarter" do
     it "returns the current quarter" do
       code = Time.current.year * 100 + (Time.current.month / 4).ceil * 15
       current_quarter = described_class.new(code)
       expect(described_class.current_quarter).to eq(current_quarter)
     end
   end
-  describe "self.num_quarters_between" do
+  describe ".num_quarters_between" do
     context "with a start of 201515 and finish of 201525" do
       let(:start) { 201425 }
       let(:finish) { 201615 }
@@ -161,7 +170,7 @@ describe Quarter do
       end
     end
   end
-  describe "-" do
+  describe "#-" do
     subject(:subject) { described_class.new(201615) }
     it "returns the number of quarters between it and the operand" do
       expect(subject - 201525).to eq 3

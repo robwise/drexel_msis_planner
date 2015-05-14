@@ -6,10 +6,26 @@ class PlanStatisticsService
     @planned_courses_ary = plan.planned_courses.to_a
   end
 
-  # duration for the entire planned degree
+  # duration for the entire planned degree, assuming it meets requirements
   def duration_in_quarters
-    return 0 if first_quarter.nil?
-    1 + Quarter.num_quarters_between(first_quarter, last_quarter)
+    return_block_or_error_message do
+      1 + Quarter.num_quarters_between(first_quarter, last_quarter)
+    end
+  end
+
+  # years (1.0, 1.25, 1.5, 1.75, 2.0, etc.)
+  def duration_in_years
+    return_block_or_error_message do
+      duration_in_quarters.to_f / 4
+    end
+  end
+
+  def duration_pretty
+    return "Degree Completed" if degree_completed?
+    return_block_or_error_message do
+      "#{ statistics.duration_in_quarters } Quarters "\
+        "(#{ statistics.duration_in_years } years)"
+    end
   end
 
   # first quarter of the entire planned degree
@@ -34,19 +50,31 @@ class PlanStatisticsService
     !planned_courses_ary.empty?
   end
 
-  # years (1.0, 1.25, 1.5, 1.75, 2.0, etc.) from first course's quarter to last
-  def duration_in_years
-    duration_in_quarters.to_f / 4
-  end
-
   # how many quarters until last planned quarter
   def quarters_remaining
-    Quarter.num_quarters_between(first_planned_quarter, last_planned_quarter)
+    return "Degree Completed" if degree_completed?
+    return_block_or_error_message do
+      Quarter.num_quarters_between(first_planned_quarter, last_planned_quarter)
+    end
+  end
+
+  def degree_completed?
+    required_course_count >= required_course_count_needed &&
+      distribution_requirement_count >= distribution_requirement_count_needed &&
+      free_elective_count >= free_elective_count_needed
   end
 
   def planned_completion_date
-    return nil if last_planned_quarter.nil?
-    last_planned_quarter.to_date(true)
+    return_block_or_error_message do
+      return last_taken_quarter.to_date(true) if degree_completed?
+      last_planned_quarter.to_date(true)
+    end
+  end
+
+  def planned_completion_date_pretty
+    return_block_or_error_message do
+      planned_completion_date.to_datetime.strftime("%B %Y")
+    end
   end
 
   def first_planned_quarter
@@ -71,7 +99,7 @@ class PlanStatisticsService
   end
 
   def free_elective_count_pretty
-    get_pretty_output_for(free_elective_count, "free_elective_courses")
+    get_pretty_output_for(:free_elective_count)
   end
 
   def free_elective_credits
@@ -84,8 +112,7 @@ class PlanStatisticsService
   end
 
   def distribution_requirement_count_pretty
-    get_pretty_output_for(distribution_requirement_count,
-                          "distribution_requirement_courses")
+    get_pretty_output_for(:distribution_requirement_count)
   end
 
   def distribution_requirement_credits
@@ -98,24 +125,49 @@ class PlanStatisticsService
   end
 
   def required_course_count_pretty
-    get_pretty_output_for(required_course_count, "required_course_courses")
+    get_pretty_output_for(:required_course_count)
   end
 
   def required_course_credits
     credits_for("required_course")
   end
 
-  def total_credits
+  def total_credits_count
     required_course_credits + distribution_requirement_credits +
       free_elective_credits
   end
 
-  def total_credits_pretty
-    get_pretty_output_for(total_credits, "total_credits")
+  def total_credits_count_pretty
+    get_pretty_output_for(:total_credits_count)
   end
 
   def taken_and_planned_courses
     @taken_courses_ary + @planned_courses_ary
+  end
+
+  def required_course_count_needed
+    Course::REQUIRED_COURSE_COURSES_TO_GRADUATE
+  end
+
+  def distribution_requirement_count_needed
+    Course::DISTRIBUTION_REQUIREMENT_COURSES_TO_GRADUATE
+  end
+
+  def free_elective_count_needed
+    Course::FREE_ELECTIVE_COURSES_TO_GRADUATE
+  end
+
+  def total_credits_count_needed
+    Course::TOTAL_CREDITS_TO_GRADUATE
+  end
+
+  def problems_count
+    counter = 0
+    @planned_courses_ary.each do |planned_course|
+      problems_ary = planned_course.requisite_issues(taken_and_planned_courses)
+      counter += 1 if problems_ary.size != 0
+    end
+    counter
   end
 
   private
@@ -138,10 +190,15 @@ class PlanStatisticsService
     send(degree_type + "_count") * 3
   end
 
-  # required_course_courses, distribution_course_courses, free_elective_courses
-  # total_credits
-  def get_pretty_output_for(numerator, denominator_type)
-    "#{ numerator }/"\
-      "#{ Course.const_get(denominator_type.upcase + '_TO_GRADUATE') }"
+  # required_course_count, distribution_requirement_count, free_elective_count
+  # total_credits_count
+  def get_pretty_output_for(statistic_type)
+    "#{ send(statistic_type) }/#{ send(statistic_type.to_s + '_needed') }"
+  end
+
+  def return_block_or_error_message(&block)
+    return "No Courses Planned" if first_planned_quarter.nil? && !degree_completed?
+    return "Requirements Not Met" unless degree_completed?
+    block.call
   end
 end

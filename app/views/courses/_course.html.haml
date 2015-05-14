@@ -15,23 +15,24 @@
         class: "button",
         data: { confirm: "Are you sure you want to delete course: #{course.title}?" }
   %p.course_description= course.description
-  - if taken?(course, taken_course_ids)
-    %button.new-taken-course-button{ disabled: true }
-      taken
-  - elsif current_user
-    = button_to "taken",
-      new_user_taken_course_path(user_id: current_user.id, course_id: course.id),
-      remote: true,
-      method: :get,
-      class: "new-taken-course-button"
-    - if active_plan.nil? || planned_course_ids.include?(course.id)
-      %button.new-planned-course-button{ disabled: true }
-        planned
+  - if user_signed_in?
+    - if enable_taken_button?(current_user, active_plan, course)
+      = button_to "taken",
+        new_user_taken_course_path(user_id: current_user.id, course_id: course.id),
+        remote: true,
+        method: :get,
+        class: "new-taken-course-button"
     - else
+      %button.new-taken-course-button{ disabled: true }
+        taken
+    - if enable_add_to_plan_button?(active_plan, course)
       = button_to "add to plan",
         new_plan_planned_course_path(plan_id: active_plan.id, course_id: course.id),
         remote: true,
         method: :get,
         class: "new-planned-course-button"
-  .clearfix
+    - else
+      %button.new-planned-course-button{ disabled: true }
+        planned
+.clearfix
 

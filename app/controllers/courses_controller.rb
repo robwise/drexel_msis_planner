@@ -3,8 +3,11 @@ class CoursesController < ApplicationController
   after_action :verify_authorized, except: [:index, :show]
 
   def index
-    @taken_course_ids = current_user.try(:course_ids)
-    @planned_course_ids = @active_plan.try(:course_ids)
+    if user_signed_in?
+      @active_plan = Plan
+                     .includes(taken_courses: [:course]) # needed for taken course btns
+                     .find_by(user: current_user, active: true)
+    end
     @courses = Course.all
   end
 

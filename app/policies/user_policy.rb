@@ -26,6 +26,10 @@ class UserPolicy
     true
   end
 
+  def plans_index?
+    @current_user.admin? || @current_user == @user
+  end
+
   private
 
   def admin_deleting_himself?

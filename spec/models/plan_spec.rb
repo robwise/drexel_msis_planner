@@ -1,6 +1,6 @@
 describe Plan do
-  let!(:user)            { create(:user) }
-  let(:plan)             { build(:plan, user: user) }
+  let!(:user) { create(:user) }
+  let(:plan) { build(:plan, user: user) }
   let(:users_other_plan) { build(:plan, user: user) }
   let(:planned_course) { build :planned_course, :with_prerequisite, plan: plan }
   let(:taken_course) { build :taken_course, user: user }
@@ -18,6 +18,8 @@ describe Plan do
   it { should respond_to(:courses) }
   it { should respond_to(:taken_and_planned_courses) }
   it { should respond_to(:statistics) }
+  it { should respond_to(:taken_courses_course_ids) }
+  it { should respond_to(:planned_courses_course_ids) }
   it { should validate_presence_of(:user) }
   it { should validate_presence_of(:name) }
   it { should ensure_length_of(:name).is_at_least(1) }
@@ -102,6 +104,24 @@ describe Plan do
   describe "#statistics" do
     it "returns a PlanStatisticsService instance" do
       expect(subject.statistics).to be_a(PlanStatisticsService)
+    end
+  end
+  describe "#taken_courses_course_ids" do
+    before do
+      taken_course.save
+      plan.save
+    end
+    it "returns each of the plan's user's taken course's course ID" do
+      expect(subject.taken_courses_course_ids).to eq [taken_course.course_id]
+    end
+  end
+  describe "#planned_courses_course_ids" do
+    before do
+      plan.save
+      planned_course.save
+    end
+    it "returns each planned course's course ID" do
+      expect(subject.planned_courses_course_ids).to eq [planned_course.course_id]
     end
   end
 

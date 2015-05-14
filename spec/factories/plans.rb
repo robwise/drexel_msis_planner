@@ -80,5 +80,38 @@ FactoryGirl.define do
                     user: evaluator.user)
       end
     end
+    trait :completed do
+      transient do
+        # Often we need to test a completed degree for its last quarter, which
+        # is the quarter in which the last courses needed to complete the
+        # degree were taken. This allows for specifying the last quarter from
+        # the test. All other courses will be taken in a previous quarter.
+        #
+        # Note: can take either a 6-digit quarter code or a Quarter object
+        last_quarter { Quarter.current_quarter.previous_quarter }
+      end
+
+      after(:create) do |plan, evaluator|
+        create_list(:taken_course,
+                    8,
+                    :required,
+                    quarter: Quarter.new(evaluator.last_quarter).previous_quarter.code,
+                    user: evaluator.user)
+        create_list(:taken_course,
+                    4,
+                    :distribution,
+                    quarter: Quarter.new(evaluator.last_quarter).previous_quarter.code,
+                    user: evaluator.user)
+        create_list(:taken_course,
+                    2,
+                    :free_elective,
+                    quarter: Quarter.new(evaluator.last_quarter).previous_quarter.code,
+                    user: evaluator.user)
+        create :taken_course,
+               :required,
+               quarter: Quarter.new(evaluator.last_quarter).code,
+               user: evaluator.user
+      end
+    end
   end
 end

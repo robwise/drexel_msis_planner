@@ -8,7 +8,7 @@ feature "Deleting a taken course" do
   scenario "deleting an existing taken_course" do
     signin_user user
     visit root_path
-    expect(page).to have_content(taken_course.course.title)
+    expect(page).to have_content(taken_course.course.full_id)
     expect(page).to have_link("remove")
     expect { click_on("remove") }.to change(TakenCourse, :count).by(-1)
   end

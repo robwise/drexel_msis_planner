@@ -28,6 +28,14 @@ class Plan < ActiveRecord::Base
     @statistics
   end
 
+  def taken_courses_course_ids
+    taken_courses.pluck(:course_id)
+  end
+
+  def planned_courses_course_ids
+    planned_courses.pluck(:course_id)
+  end
+
   private
 
   # Validators
