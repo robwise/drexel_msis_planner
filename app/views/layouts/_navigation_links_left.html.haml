@@ -1,8 +1,5 @@
 - if user_signed_in?
-  - if @active_plan
-    %li= link_to "Planner", plan_path(@active_plan)
-  - else
-    %li= link_to "Planner", user_plans_path(current_user)
+  %li= link_to "Planner", planner_path
 %li= link_to "Courses", courses_path
 %li= link_to "Degree Status", root_path
 - if user_signed_in? && current_user.admin?

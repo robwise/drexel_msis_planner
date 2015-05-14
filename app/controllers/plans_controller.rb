@@ -1,13 +1,13 @@
 class PlansController < ApplicationController
   before_filter :authenticate_user!
-  before_action :set_plan, only: [:edit, :update, :destroy]
-  before_action :authorize_plan, only: [:edit, :update, :destroy]
+
+  before_action :set_and_authorize_plan, only: [:edit, :update, :destroy]
   after_action :verify_authorized
 
   # GET /users/:user_id/plans
   def index
-    @user = User.includes(:plans).find(params[:user_id])
-    authorize @user.plans
+    @user = User.find(params[:user_id])
+    authorize @user, :plans_index?
   end
 
   # GET users/:user_id/plans/new
@@ -29,11 +29,12 @@ class PlansController < ApplicationController
     @plan = Plan.new(plan_params)
     authorize @plan
     if @plan.save
-      redirect_to @plan, notice: "Plan was successfully created."
+      redirect_to user_plans_path(user_id: params[:user_id]),
+                  notice: "Plan was successfully created."
     else
-      redirect_to new_user_plan_path(@plan.user)
-      flash[:alert] =
-        "Error creating plan. #{@plan.errors.full_messages.presence}"
+      redirect_to new_user_plan_path(@plan.user),
+                  alert: "Error creating plan. "\
+                         "#{@plan.errors.full_messages.presence}"
     end
   end
 
@@ -67,11 +68,8 @@ class PlansController < ApplicationController
   private
 
   # Use callbacks to share common setup or constraints between actions.
-  def set_plan
+  def set_and_authorize_plan
     @plan = Plan.find(params[:id])
-  end
-
-  def authorize_plan
     authorize @plan
   end
 

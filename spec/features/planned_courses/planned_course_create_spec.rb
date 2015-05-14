@@ -34,7 +34,7 @@ feature "Adding a course to a plan" do
     context "without a valid course to add" do
       before { signin_user user }
 
-      scenario "the page does not have add buttons for taken courses" do
+      scenario "the page does not have add buttons for already taken courses" do
         create :taken_course, course: course, user: user
         visit courses_path
         expect(page).not_to have_button("add to plan")

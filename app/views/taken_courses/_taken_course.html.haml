@@ -1,12 +1,14 @@
-%tr{id: "#{taken_course.course.short_id}"}
+%tr{ id: "#{taken_course.short_id}" }
   %td
-    = render taken_course.course, taken_course_ids: taken_course_ids
+    = taken_course.quarter
+  %td
+    = taken_course.full_id
   %td
     = link_to "edit",                             |
       edit_taken_course_path(taken_course),       |
       remote: true,                               |
       class: "button-xs",                         |
-      id: "edit-#{taken_course.course.short_id}"  |
+      id: "edit-#{taken_course.short_id}"  |
   %td
     = link_to "remove",                   |
       taken_course_path(taken_course),    |

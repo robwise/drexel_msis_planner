@@ -7,5 +7,7 @@ feature "Visiting course index page" do
     expect(page).to have_content(course.title)
     expect(page).not_to have_content("taken")
     expect(page).not_to have_content("took this")
+    expect(page).not_to have_content("add to plan")
+    expect(page).not_to have_content("planned")
   end
 end

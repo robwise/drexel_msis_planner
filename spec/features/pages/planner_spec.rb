@@ -1,4 +1,4 @@
-feature "Visiting the plan page" do
+feature "Visiting the planner page" do
   let(:user) { create :user }
   let(:plan) { create :plan, user: user }
 
@@ -15,7 +15,8 @@ feature "Visiting the plan page" do
     create :taken_course, :distribution, user: user
     create :taken_course, :free_elective, user: user
     signin_user(user)
-    visit plan_path(plan)
+    click_link "Planner"
+
     expect(page).to have_title(full_title(plan.name))
     expect(page).to have_css("h1", "#{ plan.name }")
     expect(page).to have_content(taken_course.full_id)
@@ -35,8 +36,9 @@ feature "Visiting the plan page" do
     expect(page.find("#quarters-remaining")).to have_content("Requirements Not Met")
   end
   scenario "as a user without taken and planned courses" do
+    plan.save
     signin_user(user)
-    visit plan_path(plan)
+    click_link "Planner"
 
     expect(page).to have_title(full_title(plan.name))
     expect(page).to have_css("h1", "#{ plan.name }")
@@ -59,7 +61,7 @@ feature "Visiting the plan page" do
     last_quarter = Quarter.current_quarter.previous_quarter
     plan = create :plan, :completed, last_quarter: last_quarter, user: user
     signin_user(user)
-    visit plan_path(plan)
+    click_link "Planner"
 
     expect(page).to have_title(full_title(plan.name))
     expect(page).to have_css("h1", "#{ plan.name }")
@@ -80,5 +82,14 @@ feature "Visiting the plan page" do
 
     expect(page.find("#quarters-remaining")).to have_content("Degree Completed")
     expect(page.find("#problems")).to have_content("0")
+  end
+  scenario "as a user without an active plan" do
+    signin_user user
+    click_link "Planner"
+    expect(page).to have_title(full_title("New Plan"))
+  end
+  scenario "as a visitor" do
+    visit planner_path
+    expect(page).to have_content("You need to sign in or sign up before continuing.")
   end
 end

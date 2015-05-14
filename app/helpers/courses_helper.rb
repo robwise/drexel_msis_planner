@@ -13,9 +13,15 @@ module CoursesHelper
     course.department + course.level
   end
 
-  def taken?(course, taken_course_ids)
-    return if current_user.nil?
-    taken_course_ids.include?(course.id)
+  def enable_taken_button?(user, active_plan, course)
+    !course_taken?(user, course) && (active_plan.nil? || !course_planned?(active_plan, course))
+  end
+
+  def enable_add_to_plan_button?(active_plan, course)
+    user_signed_in? &&
+      !active_plan.nil? &&
+      !course_planned?(active_plan, course) &&
+      !course_taken?(current_user, course)
   end
 
   def show_new_course_button_if_admin
@@ -25,5 +31,15 @@ module CoursesHelper
 
   def degree_requirement_for(course)
     course.degree_requirement.humanize.downcase
+  end
+
+  private
+
+  def course_planned?(plan, course)
+    plan.planned_courses_course_ids.include?(course.id)
+  end
+
+  def course_taken?(user, course)
+    user.course_ids.include?(course.id)
   end
 end

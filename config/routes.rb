@@ -12,5 +12,5 @@ Rails.application.routes.draw do
     end
   end
   match "users/:id" => "users#destroy", via: :delete, as: :destroy_user
-  match "pages/planner", via: :get, controller: :pages, action: :planner, as: :planner_page
+  match "/planner", via: :get, controller: :pages, action: :planner, as: :planner
 end
