@@ -1,7 +1,7 @@
 class PlannedCoursesController < ApplicationController
   before_filter :authenticate_user!
-  before_action :set_planned_course, only: [:show, :edit, :update, :destroy]
-  after_action  :verify_authorized
+  before_action :set_and_authorize_planned_course, only: [:show, :edit, :update, :destroy]
+  after_action :verify_authorized
 
   # GET /plans/:plan_id/planned_courses/new
   def new
@@ -26,12 +26,18 @@ class PlannedCoursesController < ApplicationController
   # TODO: implement patch/put action
 
   # DELETE /planned_courses/1
-  # TODO: implement delete action
+  def destroy
+    if @planned_course.delete
+      redirect_to :back
+    else
+      flash.now![:alert] = "Error deleting user."
+    end
+  end
 
   private
 
   # Use callbacks to share common setup or constraints between actions.
-  def set_planned_course
+  def set_and_authorize_planned_course
     @planned_course = PlannedCourse.find(params[:id])
     authorize @planned_course
   end
