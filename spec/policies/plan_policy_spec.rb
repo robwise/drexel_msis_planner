@@ -1,4 +1,3 @@
-require "pry"
 describe PlanPolicy do
   subject { described_class }
 
