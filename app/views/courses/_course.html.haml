@@ -15,28 +15,10 @@
         class: "button",
         data: { confirm: "Are you sure you want to delete course: #{course.title}?" }
   %p.course_description= course.description
+  %p.course_corequisite= "Corequisites: #{course.corequisite}"
+  %p.course_prerequisite= "Prerequisites: #{course.prerequisite}"
   - if user_signed_in? # i.e., don't show these buttons to visitors
     = taken_course_button(current_user, active_plan, course)
     = planned_course_button(current_user, active_plan, course)
-    -# - if show_enabled_taken_button?(current_user, active_plan, course)
-    -#   = button_to "taken",
-    -#     new_user_taken_course_path(user_id: current_user.id, course_id: course.id),
-    -#     remote: true,
-    -#     method: :get,
-    -#     class: "btn btn-primary taken-course-button"
-    -# - else
-    -#   %button.btn.btn-default.taken-course-button{ disabled: true }
-    -#     taken
-    -# - if show_add_to_plan_button?(active_plan, course)
-    -#   = button_to "add to plan",
-    -#     new_plan_planned_course_path(plan_id: active_plan.id, course_id: course.id),
-    -#     remote: true,
-    -#     method: :get,
-    -#     class: "btn btn-primary planned-course-button"
-    -# - elsif show_planned_button?(active_plan, course)
-    -#   = button_to "planned", path_to_planned_course(active_plan, course), method: :delete, class: "btn btn-default"
-    -# - else
-    -#   %button.btn.btn-default.planned-course-button{ disabled: true }
-    -#     planned
 .clearfix
 
