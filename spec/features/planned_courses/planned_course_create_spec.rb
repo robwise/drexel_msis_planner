@@ -20,14 +20,13 @@ feature "Adding a course to a plan" do
         expect(page).to have_content("#{course.full_id} added to #{plan.name}")
         expect(PlannedCourse.count).to eq(1)
         expect(page).not_to have_button("add to plan")
+        expect(page).to have_button("planned")
       end
 
       scenario "gets an error when using bad input" do
         click_on("add to plan")
-        expect(PlannedCourse.count).to eq(0)
-        fill_planned_course_modal("")
+        expect { fill_planned_course_modal("") }.not_to change(PlannedCourse, :count).from(0)
         expect(page).to have_content("Quarter can't be blank")
-        expect(PlannedCourse.count).to eq(0)
       end
     end
 
@@ -38,12 +37,14 @@ feature "Adding a course to a plan" do
         create :taken_course, course: course, user: user
         visit courses_path
         expect(page).not_to have_button("add to plan")
+        expect(page).to have_button("add to plan", disabled: true)
       end
 
       scenario "the page does not have add buttons for already planned courses" do
         create(:planned_course, course: course, plan: plan)
         visit courses_path
         expect(page).not_to have_button("add to plan")
+        expect(page).to have_button("planned")
       end
     end
   end

@@ -38,9 +38,11 @@ class TakenCoursesController < ApplicationController
 
   def destroy
     authorize @taken_course
-    user_id = @taken_course.user_id
-    @taken_course.destroy
-    redirect_to user_path(user_id), notice: "Course removed."
+    if @taken_course.destroy
+      redirect_to :back
+    else
+      redirect_to :back, alert: "Error removing taken course."
+    end
   end
 
   private
