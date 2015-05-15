@@ -16,6 +16,7 @@ describe User do
   it { should respond_to(:distribution_requirement_credits_earned) }
   it { should respond_to(:free_elective_credits_earned) }
   it { should respond_to(:total_credits_earned) }
+  it { should respond_to(:course_taken?) }
   it { should validate_uniqueness_of(:email) }
   it { should validate_presence_of(:name) }
 
@@ -93,6 +94,19 @@ describe User do
     it "also destroys the user's taken courses" do
       create :taken_course, user: user
       expect { user.destroy }.to change(TakenCourse, :count).by(-1)
+    end
+  end
+
+  describe "course_taken?(course)" do
+    let(:taken_course) { create :taken_course, user: user }
+    before { user.save }
+    it "checks whether a given Course id was taken by the user" do
+      course_id = taken_course.course_id
+      expect(subject.course_taken?(course_id)).to eq true
+    end
+    it "checks whether a given Course instance was taken by the user" do
+      course = taken_course.course
+      expect(subject.course_taken?(course)).to eq true
     end
   end
 end
