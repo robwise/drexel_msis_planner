@@ -14,15 +14,22 @@ class PlanDecorator
   end
 
   def taken_quarter_sections
-    first = Quarter.new(statistics.first_taken_quarter)
-    last = Quarter.new(statistics.last_taken_quarter)
+    return [] unless statistics.any_taken_courses?
+    first = statistics.first_taken_quarter
+    last = statistics.last_taken_quarter
     quarters = Quarter.from(first: first, last: last)
     generate_quarter_sections_for(quarters, taken_courses)
   end
 
   def planned_quarter_sections
-    first = Quarter.new(statistics.last_taken_quarter).next_quarter.code
-    last = Quarter.new(statistics.last_planned_quarter)
+    return [] unless statistics.any_planned_courses?
+    last_taken_quarter = statistics.last_taken_quarter
+    if last_taken_quarter.nil?
+      first = statistics.first_planned_quarter
+    else
+      first = last_taken_quarter.next_quarter
+    end
+    last = statistics.last_planned_quarter
     quarters = Quarter.from(first: first, last: last)
     generate_quarter_sections_for(quarters, planned_courses)
   end

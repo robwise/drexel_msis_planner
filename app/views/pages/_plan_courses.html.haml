@@ -22,13 +22,18 @@
       %h3.col-xs-12= planned_quarter_section[:title]
       - planned_quarter_section[:courses].each do |planned_course|
         .col-xs-12.col-md-4.plan-planned-course
-          %h4= planned_course.full_id
-          %h5= planned_course.title
-          %p.plan-course-description= planned_course.description
-          - problems = @plan.get_problems_for(planned_course)
-          - unless problems.size == 0
-            .problems-found
-              %span.glyphicon.glyphicon-warning-sign
-              %span.sr-only Warning!
-              - problems.each do |problem|
-                = content_tag(:p, problem)
+          .row
+            .col-xs-9
+              %h4= planned_course.full_id
+              %h5= planned_course.title
+            .col-xs-3
+              = button_to "unplan", planned_course_path(planned_course), method: :delete, class: "btn btn-default"
+            .col-xs-12
+              %p.plan-course-description= planned_course.description
+              - problems = @plan.get_problems_for(planned_course)
+              - unless problems.size == 0
+                .problems-found
+                  %span.glyphicon.glyphicon-warning-sign
+                  %span.sr-only Warning!
+                  - problems.each do |problem|
+                    = content_tag(:p, problem)

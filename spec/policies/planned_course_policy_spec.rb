@@ -12,7 +12,7 @@ describe PlannedCoursePolicy do
   let(:other_users_planned_course)   { FactoryGirl.build :planned_course,
                                                    plan: other_users_plan }
 
-  shared_examples_for "all permission policies" do
+  shared_examples_for "a typical planned_course policy" do
     it "raises error if not signed in" do
       expect { described_class.new(visitor, PlannedCourse).create? }
         .to raise_error(Pundit::NotAuthorizedError)
@@ -26,18 +26,18 @@ describe PlannedCoursePolicy do
   end
 
   permissions :new? do
-    it_should_behave_like "all permission policies"
+    it_should_behave_like "a typical planned_course policy"
   end
 
   permissions :create? do
-    it_should_behave_like "all permission policies"
+    it_should_behave_like "a typical planned_course policy"
   end
 
   permissions :update? do
-    it_should_behave_like "all permission policies"
+    it_should_behave_like "a typical planned_course policy"
   end
 
   permissions :destroy? do
-    it_should_behave_like "all permission policies"
+    it_should_behave_like "a typical planned_course policy"
   end
 end
