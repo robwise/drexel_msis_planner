@@ -1,10 +1,8 @@
-.new-taken-course-button {
-  @extend .button-primary;
+.taken-course-button {
   float: left;
 }
 
-.new-planned-course-button {
-  @extend .new-taken-course-button;
+.planned-course-button {
   margin-left: percentage(5px/1000px);
 }
 
