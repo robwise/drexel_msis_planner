@@ -14,6 +14,7 @@ class PlanDecorator
   end
 
   def taken_quarter_sections
+    return [] unless statistics.any_taken_courses?
     first = statistics.first_taken_quarter
     last = statistics.last_taken_quarter
     quarters = Quarter.from(first: first, last: last)
@@ -21,6 +22,7 @@ class PlanDecorator
   end
 
   def planned_quarter_sections
+    return [] unless statistics.any_planned_courses?
     last_taken_quarter = statistics.last_taken_quarter
     if last_taken_quarter.nil?
       first = statistics.first_planned_quarter
