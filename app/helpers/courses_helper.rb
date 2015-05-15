@@ -39,7 +39,7 @@ module CoursesHelper
   end
 
   def path_to_planned_course(plan, course)
-    match = plan.planned_courses.find do |planned_course|
+    match = plan.planned_courses.detect do |planned_course|
       planned_course.course_id = course.id
     end
     planned_course_path(match)
