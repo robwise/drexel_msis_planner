@@ -92,4 +92,21 @@ feature "Visiting the planner page" do
     visit planner_path
     expect(page).to have_content("You need to sign in or sign up before continuing.")
   end
+  scenario "as a user with a planned course and no taken courses" do
+    planned_course = create :planned_course, plan: plan
+    signin_user user
+    visit planner_path
+    expect(page).to have_title(full_title(plan.name))
+    expect(page).to have_css("h1", "#{ plan.name }")
+    expect(page).to have_content(planned_course.full_id)
+  end
+  scenario "as a user with a taken course and no planned courses" do
+    taken_course = create :taken_course, user: user
+    plan.save
+    signin_user user
+    visit planner_path
+    expect(page).to have_title(full_title(plan.name))
+    expect(page).to have_css("h1", "#{ plan.name }")
+    expect(page).to have_content(taken_course.full_id)
+  end
 end
