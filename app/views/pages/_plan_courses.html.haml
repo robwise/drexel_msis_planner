@@ -23,10 +23,10 @@
       - planned_quarter_section[:courses].each do |planned_course|
         .col-xs-12.col-md-4.plan-planned-course
           .row
-            .col-xs-12.col-md-9
+            .col-xs-9
               %h4= planned_course.full_id
               %h5= planned_course.title
-            .col-xs-12.col-md-3
+            .col-xs-3
               = button_to "unplan", planned_course_path(planned_course), method: :delete, class: "btn btn-default"
             .col-xs-12
               %p.plan-course-description= planned_course.description
