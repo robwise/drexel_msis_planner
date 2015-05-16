@@ -1,6 +1,11 @@
+ruby:
+  config_file: .rubocop.yml
+javascript:
+  config_file: .jshintrc
+coffeescript:
+  config_file: coffeelint.json
+scss:
+  config_file: .scss-lint.yml
 Style/LineLength:
-  Description: 'Limit lines to 80 characters.'
-  Max: 80
-
-CoffeeScript:
-  Enabled: true
+  Description: 'Limit lines to 85 characters.'
+  Max: 85
