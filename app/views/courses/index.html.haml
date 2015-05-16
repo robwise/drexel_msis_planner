@@ -7,5 +7,5 @@
       = show_new_course_button_if_admin
     %ul.list-group
       - @courses.each do |course|
-        %li.list-group-item
+        %li.list-group-item{ class: "#{course_available_class(current_user, @active_plan, course)}" }
           = render course, active_plan: @active_plan

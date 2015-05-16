@@ -40,6 +40,14 @@ class User < ActiveRecord::Base
     taken_courses.size * 3
   end
 
+  # takes either a Course instance or just a Course id
+  def course_taken?(course)
+    course_id = course.is_a?(Course) ? course.id : course
+    taken_courses.any? do |taken_course|
+      taken_course.course_id == course_id
+    end
+  end
+
   private
 
   def set_default_role

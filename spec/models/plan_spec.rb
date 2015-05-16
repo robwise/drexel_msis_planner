@@ -20,6 +20,7 @@ describe Plan do
   it { should respond_to(:statistics) }
   it { should respond_to(:taken_courses_course_ids) }
   it { should respond_to(:planned_courses_course_ids) }
+  it { should respond_to(:course_planned?) }
   it { should validate_presence_of(:user) }
   it { should validate_presence_of(:name) }
   it { should ensure_length_of(:name).is_at_least(1) }
@@ -122,6 +123,21 @@ describe Plan do
     end
     it "returns each planned course's course ID" do
       expect(subject.planned_courses_course_ids).to eq [planned_course.course_id]
+    end
+  end
+  describe "#course_planned?(course)" do
+    before do
+      user.save
+      plan.save
+      planned_course.save
+    end
+    it "checks whether a given Course id is planned" do
+      course_id = planned_course.course_id
+      expect(subject.course_planned?(course_id)).to eq true
+    end
+    it "checks whether a given Course instance is planned" do
+      course = planned_course.course
+      expect(subject.course_planned?(course)).to eq true
     end
   end
 

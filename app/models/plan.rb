@@ -36,6 +36,14 @@ class Plan < ActiveRecord::Base
     planned_courses.pluck(:course_id)
   end
 
+  # takes either a Course instance or just a Course id
+  def course_planned?(course)
+    course_id = course.is_a?(Course) ? course.id : course
+    planned_courses.any? do |planned_course|
+      planned_course.course_id == course_id
+    end
+  end
+
   private
 
   # Validators

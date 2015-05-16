@@ -7,11 +7,11 @@
     = link_to "edit",                             |
       edit_taken_course_path(taken_course),       |
       remote: true,                               |
-      class: "button-xs",                         |
+      class: "btn btn-xs",                         |
       id: "edit-#{taken_course.short_id}"  |
   %td
     = link_to "remove",                   |
       taken_course_path(taken_course),    |
       data: { confirm: "Are you sure?" }, |
       method: :delete,                    |
-      class: "button-xs"                  |
+      class: "btn btn-xs"                  |
