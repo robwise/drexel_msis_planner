@@ -23,8 +23,8 @@ class PlanStatisticsService
   def duration_pretty
     return "Degree Completed" if degree_completed?
     return_block_or_error_message do
-      "#{ statistics.duration_in_quarters } Quarters "\
-        "(#{ statistics.duration_in_years } years)"
+      "#{ duration_in_quarters } Quarters "\
+        "(#{ duration_in_years } years)"
     end
   end
 

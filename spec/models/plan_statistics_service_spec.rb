@@ -1,4 +1,4 @@
-describe PlanStatisticsService, type: :service do
+describe PlanStatisticsService, type: :model do
   let(:user) { create :user }
   subject(:subject) { described_class.new(plan) }
 
