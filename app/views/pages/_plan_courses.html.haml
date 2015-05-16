@@ -15,9 +15,15 @@
         %h3.col-xs-12= taken_quarter_section[:title]
         - taken_quarter_section[:courses].each do |taken_course|
           .col-xs-12.col-md-4.plan-taken-course
-            %h4= taken_course.full_id
-            %h5= taken_course.title
-            %p.plan-course-description{ lang: "en" }= taken_course.description
+            .row
+              .col-xs-9
+                %h4= taken_course.full_id
+                %h5= taken_course.title
+              .col-xs-3
+                = button_to "taken", taken_course_path(taken_course), method: :delete, class: "btn btn-default"
+            .row
+              .col-xs-12
+                %p.plan-course-description{ lang: "en" }= taken_course.description
     - @plan.planned_quarter_sections.each do |planned_quarter_section|
       %h3.col-xs-12= planned_quarter_section[:title]
       - planned_quarter_section[:courses].each do |planned_course|
@@ -28,6 +34,7 @@
               %h5= planned_course.title
             .col-xs-3
               = button_to "unplan", planned_course_path(planned_course), method: :delete, class: "btn btn-default"
+          .row
             .col-xs-12
               %p.plan-course-description= planned_course.description
               - problems = @plan.get_problems_for(planned_course)

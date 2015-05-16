@@ -6,7 +6,7 @@ feature "Deleting a planned course" do
   context "as a user" do
     before { signin_user user }
 
-    xscenario "signed in user deletes planned course from planner page" do
+    scenario "signed in user deletes planned course from planner page" do
       visit planner_path
       expect(page).to have_button("unplan")
       expect { click_button "unplan" }.to change(PlannedCourse, :count).by(-1)
