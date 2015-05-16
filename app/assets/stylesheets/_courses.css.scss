@@ -6,6 +6,10 @@
   margin-left: percentage(5px/1000px);
 }
 
+.unavailable-course {
+    background-color: $gray-lighter;
+}
+
 .degree_requirement_badge {
   @extend .badge;
   float: right;
