@@ -52,7 +52,6 @@ group :test do
   gem "database_cleaner"
   gem "faker"
   gem "launchy"
-  gem "selenium-webdriver"
   gem "shoulda-matchers", require: false
   gem "capybara-webkit", "~> 1.3.1"
   gem "growl" # this may fail to build on non-Mac OS machines
