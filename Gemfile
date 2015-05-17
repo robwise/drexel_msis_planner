@@ -54,7 +54,7 @@ group :test do
   gem "launchy"
   gem "selenium-webdriver"
   gem "shoulda-matchers", require: false
-  gem "capybara-webkit"
+  gem "capybara-webkit", "~> 1.3.1"
   gem "growl" # this may fail to build on non-Mac OS machines
   gem "rake" # required for Travis-CI
   gem "codeclimate-test-reporter", require: nil
