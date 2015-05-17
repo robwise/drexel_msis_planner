@@ -17,6 +17,7 @@ describe User do
   it { should respond_to(:free_elective_credits_earned) }
   it { should respond_to(:total_credits_earned) }
   it { should respond_to(:course_taken?) }
+  it { should respond_to(:degree_statistics) }
   it { should validate_uniqueness_of(:email) }
   it { should validate_presence_of(:name) }
 
@@ -107,6 +108,22 @@ describe User do
     it "checks whether a given Course instance was taken by the user" do
       course = taken_course.course
       expect(subject.course_taken?(course)).to eq true
+    end
+  end
+
+  describe "#degree_statistics" do
+    before { user.save }
+    context "returns the user's degree statistics" do
+      let(:taken_course) { create :taken_course, user: user }
+      it "returns the user's degree statistics" do
+        expect(subject.degree_statistics).to be_a(UsersDegreeStatistics)
+      end
+    end
+    context "with no taken courses" do
+      let(:taken_course) { create :taken_course, user: user }
+      it "returns the user's degree statistics" do
+        expect(subject.degree_statistics).to be_a(UsersDegreeStatistics)
+      end
     end
   end
 end
