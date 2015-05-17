@@ -104,7 +104,7 @@ describe Plan do
   end
   describe "#statistics" do
     it "returns a PlanStatisticsService instance" do
-      expect(subject.statistics).to be_a(PlanStatisticsService)
+      expect(subject.statistics).to be_a(PlanStatistics)
     end
   end
   describe "#taken_courses_course_ids" do

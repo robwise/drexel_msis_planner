@@ -1,4 +1,4 @@
-class PlanStatisticsService < UsersDegreeStatistics # UsersPlanStatistics
+class PlanStatistics < UsersDegreeStatistics
   def initialize(plan)
     super(plan.user)
     @planned_courses_ary = plan.planned_courses.to_a
