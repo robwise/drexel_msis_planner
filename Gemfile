@@ -18,7 +18,6 @@ gem "titleize"
 gem "autoprefixer-rails"
 gem "httparty"
 gem "skylight"
-gem "newrelic_rpm"
 group :production do
   gem "unicorn"
   gem "rails_12factor"
@@ -62,3 +61,4 @@ group :test do
   gem "simplecov", require: false
   gem "fuubar"
 end
+gem "newrelic_rpm"
