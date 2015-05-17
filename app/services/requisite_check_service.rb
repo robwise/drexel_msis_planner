@@ -3,9 +3,9 @@
 # instance of Plan or an array of objects that respond to :level and :quarter)
 # fulfills the requisite.
 class RequisiteCheckService
-  COURSE_REGEX = /([A-Z]{2,4} \d\d\d Minimum Grade: C)/
-  LEVEL_REGEX = /[A-Z]{2,4} (\d\d\d) Minimum Grade: C/
-  DEPARTMENT_REGEX = /([A-Z]{2,4}) \d\d\d Minimum Grade: C/
+  COURSE_REGEX = /([A-Z]{2,4} \d+ Minimum Grade: C)/
+  LEVEL_REGEX = /[A-Z]{2,4} (\d+) Minimum Grade: C/
+  DEPARTMENT_REGEX = /([A-Z]{2,4}) \d+ Minimum Grade: C/
 
   attr_reader :prerequisite_fulfilled, :corequisite_fulfilled
 
