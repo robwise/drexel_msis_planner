@@ -48,6 +48,11 @@ class User < ActiveRecord::Base
     end
   end
 
+  def degree_statistics(reload = false)
+    @statistics = UsersDegreeStatistics.new(self) if reload || @statistics.nil?
+    @statistics
+  end
+
   private
 
   def set_default_role

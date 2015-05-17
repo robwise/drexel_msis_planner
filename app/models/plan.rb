@@ -24,7 +24,7 @@ class Plan < ActiveRecord::Base
   end
 
   def statistics(reload = false)
-    @statistics = PlanStatisticsService.new(self) if reload || @statistics.nil?
+    @statistics = PlanStatistics.new(self) if reload || @statistics.nil?
     @statistics
   end
 

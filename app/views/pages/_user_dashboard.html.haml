@@ -4,10 +4,10 @@
     = "#{ @user.name }'s Degree Status"
     %h2 Degree Status:
     %ul
-      %li= "Required Course Credits Earned: #{@user.required_course_credits_earned}/27"
-      %li= "Distribution Requirement Credits Earned: #{@user.distribution_requirement_credits_earned}/12"
-      %li= "Free Elective Credits Earned: #{@user.free_elective_credits_earned}/6"
-      %li= "TOTAL: #{@user.total_credits_earned}/45"
+      %li= "Required Courses: #{@user.degree_statistics.required_course_count_pretty}"
+      %li= "Distribution Requirement Courses: #{@user.degree_statistics.distribution_requirement_count_pretty}"
+      %li= "Free Elective Courses: #{@user.degree_statistics.free_elective_count_pretty}"
+      %li= "TOTAL: #{@user.degree_statistics.total_credits_count_pretty}"
     %h2 Taken Courses:
     %table.table
       %tbody.taken-courses

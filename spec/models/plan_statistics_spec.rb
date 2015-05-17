@@ -1,4 +1,4 @@
-describe PlanStatisticsService, type: :service do
+describe PlanStatistics, type: :model do
   let(:user) { create :user }
   subject(:subject) { described_class.new(plan) }
 
@@ -20,7 +20,7 @@ describe PlanStatisticsService, type: :service do
     it { should respond_to(:free_elective_count_needed) }
     it { should respond_to(:total_credits_count) }
     it { should respond_to(:total_credits_count_needed) }
-    it { should respond_to(:taken_and_planned_courses) }
+    it { should respond_to(:all_courses_ary) }
     it { should respond_to(:degree_completed?) }
     it { should respond_to(:problems_count) }
   end
@@ -34,9 +34,9 @@ describe PlanStatisticsService, type: :service do
              taken_required_count: 3,
              taken_free_elective_count: 1
     end
-    describe "#taken_and_planned_courses" do
+    describe "#all_courses_ary" do
       it "returns an array consisting of both taken and planned courses" do
-        return_value = subject.taken_and_planned_courses
+        return_value = subject.all_courses_ary
         expect(return_value).to be_kind_of(Array)
         expect(return_value.size).to eq 12
       end
@@ -234,7 +234,7 @@ describe PlanStatisticsService, type: :service do
     end
     describe "#taken_and_planned_courses" do
       it "returns an array consisting of both taken and planned courses" do
-        return_value = subject.taken_and_planned_courses
+        return_value = subject.all_courses_ary
         expect(return_value).to be_kind_of(Array)
         expect(return_value.size).to eq 15
       end

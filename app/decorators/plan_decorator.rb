@@ -51,7 +51,7 @@ class PlanDecorator
   end
 
   def get_problems_for(planned_course)
-    planned_course.requisite_issues(statistics.taken_and_planned_courses)
+    planned_course.requisite_issues(statistics.all_courses_ary)
   end
 
   private
