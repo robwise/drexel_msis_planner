@@ -23,8 +23,8 @@ describe Plan do
   it { should respond_to(:course_planned?) }
   it { should validate_presence_of(:user) }
   it { should validate_presence_of(:name) }
-  it { should ensure_length_of(:name).is_at_least(1) }
-  it { should ensure_length_of(:name).is_at_most(35) }
+  it { should validate_length_of(:name).is_at_least(1) }
+  it { should validate_length_of(:name).is_at_most(35) }
 
   context "with valid attributes" do
     it { should be_valid }
