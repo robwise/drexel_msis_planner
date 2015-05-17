@@ -1,7 +1,8 @@
 - if user_signed_in?
   %li= link_to "Planner", planner_path
 %li= link_to "Courses", courses_path
-%li= link_to "Degree Status", root_path
+- if user_signed_in?
+  %li= link_to "Degree Status", root_path
 - if user_signed_in? && current_user.admin?
   %li= link_to "Users", users_path
 

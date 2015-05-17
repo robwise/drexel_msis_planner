@@ -4,6 +4,9 @@ feature "View Navigation links", :devise do
     scenario "sees proper links" do
       page_has_the_ubiquitous_links
       page_has_the_signed_out_links
+      expect(page).not_to have_link "Planner"
+      expect(page).not_to have_link "Degree Status"
+      expect(page).not_to have_link "sign out"
     end
   end
 
@@ -16,6 +19,8 @@ feature "View Navigation links", :devise do
     scenario "sees proper links" do
       page_has_the_ubiquitous_links
       page_has_the_signed_in_links(user)
+      expect(page).not_to have_link "sign in"
+      expect(page).not_to have_link "sign up"
     end
   end
 
@@ -29,6 +34,8 @@ feature "View Navigation links", :devise do
       page_has_the_ubiquitous_links
       page_has_the_signed_in_links(admin)
       page_has_the_admin_only_links
+      expect(page).not_to have_link "sign in"
+      expect(page).not_to have_link "sign up"
     end
   end
 
@@ -44,6 +51,7 @@ feature "View Navigation links", :devise do
 
   def page_has_the_signed_in_links(signed_in_user)
     expect(page).to have_link "Planner"
+    expect(page).to have_link "Degree Status"
     expect(page).to have_link "sign out"
     expect(page).to have_link "#{ signed_in_user.name }"
   end
