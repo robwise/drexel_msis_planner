@@ -21,7 +21,9 @@ class PlanPolicy
   attr_reader :current_user, :plan
 
   def initialize(current_user, model)
-    fail Pundit::NotAuthorizedError, "must be logged in" unless current_user
+    # TODO: reimplement belwo when pundit is fixed
+    # fail Pundit::NotAuthorizedError, "user not logged in" if current_user.nil?
+    fail Pundit::NotAuthorizedError if current_user.nil?
     @current_user = current_user
     @plan = model
   end

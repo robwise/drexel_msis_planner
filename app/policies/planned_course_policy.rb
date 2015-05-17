@@ -2,8 +2,10 @@ class PlannedCoursePolicy
   attr_reader :current_user, :planned_course
 
   def initialize(current_user, model)
-    fail Pundit::NotAuthorizedError, "must be logged in" unless current_user
-    @current_user =  current_user
+    # TODO: reimplement belwo when pundit is fixed
+    #fail Pundit::NotAuthorizedError, "user must be signed in" unless current_user
+    fail Pundit::NotAuthorizedError unless current_user
+    @current_user = current_user
     @planned_course = model
   end
 
