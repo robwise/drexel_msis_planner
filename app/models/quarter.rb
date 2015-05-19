@@ -48,10 +48,7 @@ class Quarter
   def initialize(arg)
     arg = arg.code if code.is_a?(Quarter) # will work if passed a qtr
     @code = arg.to_s.to_i # will work for integer, symbol, or string arg
-  end
-
-  def valid?
-    !(code.nil? || bad_season? || bad_year? || bad_length?)
+    fail ArgumentError, "#{@code} is not a valid code" if !valid?
   end
 
   def <=>(other)
@@ -70,20 +67,8 @@ class Quarter
     VALID_SEASONS.key(season_code)
   end
 
-  def season=(new_season)
-    season_symbol = new_season.downcase.to_sym
-    unless VALID_SEASONS.include?(season_symbol)
-      fail ArgumentError, "Season: '#{season_symbol}' is not valid", caller
-    end
-    @code = (year.to_s + VALID_SEASONS[season_symbol].to_s).to_i
-  end
-
   def year
     code / 100
-  end
-
-  def year=(new_year)
-    @code = (new_year.to_s + season.to_s).to_i
   end
 
   # Pass an optional argument of true to get ending month's date
@@ -117,16 +102,6 @@ class Quarter
     end
   end
 
-  def next_quarter!
-    @code = next_quarter.code
-    self
-  end
-
-  def previous_quarter!
-    @code = previous_quarter.code
-    self
-  end
-
   def to_s
     @code.to_s
   end
@@ -134,19 +109,27 @@ class Quarter
   # Returns the number of quarters from the quarter to the given operand
   def -(other)
     other_quarter = Quarter.new(other)
-    seasons = season_difference(@code, other_quarter.code)
-    years = year_difference(@code, other_quarter.code)
+    seasons = season_difference(other_quarter)
+    years = year_difference(other_quarter)
     years * 4 + seasons
+  end
+
+  def quarter_rank
+    season_code / 10
   end
 
   private
 
-  def season_difference(code_a, code_b)
-    ((code_a % 100 - 5) / 10) - ((code_b % 100 - 5) / 10)
+  def valid?
+    !(code.nil? || bad_season? || bad_year? || bad_length?)
   end
 
-  def year_difference(code_a, code_b)
-    (code_a / 100 - code_b / 100)
+  def season_difference(other_quarter)
+    quarter_rank - other_quarter.quarter_rank
+  end
+
+  def year_difference(other_quarter)
+    year - other_quarter.year
   end
 
   def bad_length?

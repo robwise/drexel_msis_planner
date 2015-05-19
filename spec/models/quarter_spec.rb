@@ -1,11 +1,10 @@
 describe Quarter do
   subject { quarter }
 
-  let(:quarter)        { build :quarter }
-  let(:past_quarter)   { build :past_quarter }
+  let(:quarter) { build :quarter }
+  let(:past_quarter) { build :past_quarter }
   let(:future_quarter) { build :future_quarter }
 
-  it { should respond_to(:valid?) }
   it { should respond_to(:code) }
   it { should respond_to(:between?) }
   it { should respond_to(:humanize) }
@@ -16,9 +15,9 @@ describe Quarter do
   it { should respond_to(:future?) }
   it { should respond_to(:past?) }
   it { should respond_to(:next_quarter) }
-  it { should respond_to(:next_quarter!) }
   it { should respond_to(:previous_quarter) }
-  it { should respond_to(:previous_quarter!) }
+  it { should respond_to(:-) }
+  it { should respond_to(:quarter_rank) }
 
   context "when initialized with a valid code" do
     let(:good_codes) do
@@ -26,24 +25,21 @@ describe Quarter do
     end
     it "is valid" do
       good_codes.each do |good_code|
-        quarter = described_class.new(good_code)
-        expect(quarter).to be_valid
+        expect { described_class.new(good_code) }.not_to raise_exception
       end
     end
   end
   context "when initialized with another quarter" do
     let(:argument) { described_class.new(201515) }
     it "is vaild" do
-      quarter = described_class.new(argument)
-      expect(quarter).to be_valid
+      expect { described_class.new(argument) }.not_to raise_exception
     end
   end
   describe "invalid examples" do
-    it "is invalid" do
+    it "raise an exception" do
       bad_codes = [190015, 201416, 20145, 2014159, 201460, 2014, 201400]
       bad_codes.each do |bad_code|
-        subject.code = bad_code
-        expect(subject).not_to be_valid
+        expect { described_class.new(bad_code) }.to raise_exception
       end
     end
   end
@@ -72,20 +68,6 @@ describe Quarter do
   describe "#season" do
     it "return the season" do
       expect(quarter.season).to eq(:fall)
-    end
-  end
-  describe "#season=(new_season)" do
-    context "with a valid season" do
-      it "properly update the quarter code" do
-        quarter.season = "fall"
-        expect(quarter.season).to eq(:fall)
-      end
-    end
-    context "with an invalid season" do
-      it "raise an ArgumentError" do
-        expect { quarter.season = "nonsense" }
-          .to raise_error(ArgumentError, "Season: 'nonsense' is not valid")
-      end
     end
   end
   describe "#season_code" do
@@ -132,7 +114,7 @@ describe Quarter do
     end
   end
   describe "#previous_quarter" do
-    it "returns the next quarter" do
+    it "returns the previous quarter" do
       quarter = build :quarter, quarter: 201515
       expect(quarter.previous_quarter.code).to eq 201445
     end
@@ -151,7 +133,6 @@ describe Quarter do
       (0..expected.length).each do |i|
         expect(actual[i]).to eq expected[i]
       end
-      expect(described_class.from(first: first, last: last)).to eq expected
     end
   end
   describe ".current_quarter" do
@@ -174,6 +155,24 @@ describe Quarter do
     subject(:subject) { described_class.new(201615) }
     it "returns the number of quarters between it and the operand" do
       expect(subject - 201525).to eq 3
+    end
+  end
+  describe "#quarter_rank" do
+    it "is 1 for a quarter ending in 15" do
+      quarter = described_class.new(201615)
+      expect(quarter.quarter_rank).to eq 1
+    end
+    it "is 2 for a quarter ending in 15" do
+      quarter = described_class.new(201625)
+      expect(quarter.quarter_rank).to eq 2
+    end
+    it "is 3 for a quarter ending in 15" do
+      quarter = described_class.new(201635)
+      expect(quarter.quarter_rank).to eq 3
+    end
+    it "is 4 for a quarter ending in 15" do
+      quarter = described_class.new(201645)
+      expect(quarter.quarter_rank).to eq 4
     end
   end
 end

@@ -201,6 +201,8 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
+    pry-rails (0.3.4)
+      pry (>= 0.9.10)
     pundit (1.0.0)
       activesupport (>= 3.0.0)
     quiet_assets (1.1.0)
@@ -372,6 +374,7 @@ DEPENDENCIES
   launchy
   newrelic_rpm
   pg
+  pry-rails
   pundit
   quiet_assets
   rack-livereload
