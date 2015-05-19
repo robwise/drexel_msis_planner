@@ -12,10 +12,6 @@ describe User do
   it { should respond_to(:active_plan) }
   it { should respond_to(:enrolled_quarters) }
   it { should respond_to(:taken_courses_in_quarter) }
-  it { should respond_to(:required_course_credits_earned) }
-  it { should respond_to(:distribution_requirement_credits_earned) }
-  it { should respond_to(:free_elective_credits_earned) }
-  it { should respond_to(:total_credits_earned) }
   it { should respond_to(:course_taken?) }
   it { should respond_to(:degree_statistics) }
   it { should validate_uniqueness_of(:email) }
@@ -56,28 +52,6 @@ describe User do
     it "responds with the courses taken during that quarter" do
       expect(user.taken_courses_in_quarter(201415))
         .to eq([taken_course1, taken_course3])
-    end
-  end
-
-  describe "credits earned methods" do
-    before do
-      user.save
-      3.times { create :taken_course, :required, user: user }
-      2.times { create :taken_course, :free_elective, user: user }
-      create :taken_course, :distribution, user: user
-    end
-
-    it "respond with proper amount of required credits" do
-      expect(user.required_course_credits_earned).to eq 9
-    end
-    it "respond with proper amount of distribution credits" do
-      expect(user.distribution_requirement_credits_earned).to eq 3
-    end
-    it "respond with proper amount of free elective credits" do
-      expect(user.free_elective_credits_earned).to eq 6
-    end
-    it "respond with proper amount of total credits earned" do
-      expect(user.total_credits_earned).to eq 18
     end
   end
 
