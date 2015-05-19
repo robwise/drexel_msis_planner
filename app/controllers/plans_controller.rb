@@ -44,15 +44,13 @@ class PlansController < ApplicationController
     respond_to do |format|
       if @plan.update(plan_params)
         format.html do
-          render action: "index",
-                 params: { user: user },
-                 notice: "Plan was successfully updated."
+          redirect_to user_plans_path(user),
+                      notice: "Plan was successfully updated."
         end
         format.js { flash.now[:notice] = "Plan was successfully updated." }
       else
         format.html do
-          render action: "index", params: { user: user }
-          flash[:alert] = "Error updating plan."
+          redirect_to user_plans_path(user), alert: "Error updating plan."
         end
       end
     end

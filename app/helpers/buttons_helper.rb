@@ -28,7 +28,8 @@ module ButtonsHelper
 
   def enabled_add_to_taken_button(user, course)
     button_to "add to taken",
-              new_user_taken_course_path(user_id: user.id, course_id: course.id),
+              new_user_taken_course_path(user_id: user.id,
+                                         course_id: course.id),
               remote: true,
               method: :get,
               class: "btn btn-primary courses-taken-course-button"
@@ -50,7 +51,8 @@ module ButtonsHelper
 
   def enabled_add_to_plan_button(plan, course)
     button_to "add to plan",
-              new_plan_planned_course_path(plan_id: plan.id, course_id: course.id),
+              new_plan_planned_course_path(plan_id: plan.id,
+                                           course_id: course.id),
               remote: true,
               method: :get,
               class: "btn btn-primary courses-planned-course-button"

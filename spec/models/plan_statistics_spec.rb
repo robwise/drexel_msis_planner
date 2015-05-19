@@ -23,6 +23,8 @@ describe PlanStatistics, type: :model do
     it { should respond_to(:all_courses_ary) }
     it { should respond_to(:degree_completed?) }
     it { should respond_to(:problems_count) }
+    it { should respond_to(:last_quarter) }
+    it { should respond_to(:first_quarter) }
   end
   context "with multiple planned and taken courses of all types" do
     let(:plan) do
