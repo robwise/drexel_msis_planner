@@ -16,13 +16,6 @@ class User < ActiveRecord::Base
            inverse_of: :user,
            dependent: :destroy
 
-  Course.degree_requirements.keys.each do |requirement|
-    define_method "#{ requirement }_credits_earned" do
-      courses.where(degree_requirement: Course.degree_requirements[requirement])
-        .count * 3
-    end
-  end
-
   def active_plan
     plans.where(active: true).take
   end
