@@ -28,10 +28,10 @@ class PlannedCourse < ActiveRecord::Base
 
   def valid_planned_quarter?
     quarter_object = Quarter.new(quarter)
-    if !quarter_object.valid?
-      errors.add(:quarter, "is not a valid quarter code")
-    elsif quarter_object.past?
+    if quarter_object.past?
       errors.add(:quarter, "cannot be in the past.")
     end
+    rescue ArgumentError
+      errors.add(:quarter, "is not a valid quarter code")
   end
 end

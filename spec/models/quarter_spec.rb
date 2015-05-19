@@ -1,11 +1,10 @@
 describe Quarter do
   subject { quarter }
 
-  let(:quarter)        { build :quarter }
-  let(:past_quarter)   { build :past_quarter }
+  let(:quarter) { build :quarter }
+  let(:past_quarter) { build :past_quarter }
   let(:future_quarter) { build :future_quarter }
 
-  it { should respond_to(:valid?) }
   it { should respond_to(:code) }
   it { should respond_to(:between?) }
   it { should respond_to(:humanize) }
@@ -26,24 +25,21 @@ describe Quarter do
     end
     it "is valid" do
       good_codes.each do |good_code|
-        quarter = described_class.new(good_code)
-        expect(quarter).to be_valid
+        expect { described_class.new(good_code) }.not_to raise_exception
       end
     end
   end
   context "when initialized with another quarter" do
     let(:argument) { described_class.new(201515) }
     it "is vaild" do
-      quarter = described_class.new(argument)
-      expect(quarter).to be_valid
+      expect { described_class.new(argument) }.not_to raise_exception
     end
   end
   describe "invalid examples" do
-    it "is invalid" do
+    it "raise an exception" do
       bad_codes = [190015, 201416, 20145, 2014159, 201460, 2014, 201400]
       bad_codes.each do |bad_code|
-        subject.code = bad_code
-        expect(subject).not_to be_valid
+        expect { described_class.new(bad_code) }.to raise_exception
       end
     end
   end
@@ -118,7 +114,7 @@ describe Quarter do
     end
   end
   describe "#previous_quarter" do
-    it "returns the next quarter" do
+    it "returns the previous quarter" do
       quarter = build :quarter, quarter: 201515
       expect(quarter.previous_quarter.code).to eq 201445
     end
@@ -137,7 +133,6 @@ describe Quarter do
       (0..expected.length).each do |i|
         expect(actual[i]).to eq expected[i]
       end
-      expect(described_class.from(first: first, last: last)).to eq expected
     end
   end
   describe ".current_quarter" do

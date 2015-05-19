@@ -48,6 +48,7 @@ class Quarter
   def initialize(arg)
     arg = arg.code if code.is_a?(Quarter) # will work if passed a qtr
     @code = arg.to_s.to_i # will work for integer, symbol, or string arg
+    fail ArgumentError, "#{@code} is not a valid code" if !valid?
   end
 
   def <=>(other)
@@ -113,15 +114,15 @@ class Quarter
     years * 4 + seasons
   end
 
-  def valid?
-    !(code.nil? || bad_season? || bad_year? || bad_length?)
-  end
-
   def quarter_rank
-    (season_code - 5) / 10
+    season_code / 10
   end
 
   private
+
+  def valid?
+    !(code.nil? || bad_season? || bad_year? || bad_length?)
+  end
 
   def season_difference(other_quarter)
     quarter_rank - other_quarter.quarter_rank
