@@ -5,7 +5,8 @@ class CoursesController < ApplicationController
   def index
     if user_signed_in?
       @active_plan = Plan
-                     .includes(taken_courses: [:course]) # needed for taken course btns
+                     .includes(planned_courses: [:course],
+                               taken_courses: [:course])
                      .find_by(user: current_user, active: true)
     end
     @courses = Course.all
