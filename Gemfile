@@ -39,6 +39,7 @@ group :development do
   gem "guard-livereload", require: false
   gem "rubocop"
   gem "rubocop-rspec"
+  gem "pry-rails"
 end
 group :development, :test do
   gem "dotenv-rails"
