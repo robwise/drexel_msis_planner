@@ -1,6 +1,6 @@
-feature "User edit", :js do
+feature "User edit" do
   let(:user) { create :user }
-  before { js_signin_user user }
+  before { signin_user user }
 
   scenario "user changes email address" do
     visit edit_user_registration_path(user)
