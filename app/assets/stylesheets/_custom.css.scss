@@ -48,12 +48,11 @@ img {
   @extend .btn-default;
 }
 
-span.glyphicon-collapse-down {
+.glyphicon-collapse-down {
   color: $gray-light;
   text-decoration: none;
-}
-
-.glyphicon-collapse-down:hover,
-.glyphicon-collapse-down:active {
-  color: $gray;
+  &:hover,
+  &:active {
+    color: $gray;
+  }
 }
