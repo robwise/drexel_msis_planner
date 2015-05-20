@@ -18,9 +18,10 @@ h2 > .glyphicon-stats {
   height: 40px;
 }
 
-.progress-stat-label, .plan-stat-label {
-  text-align: right;
+.progress-stat-label,
+.plan-stat-label {
   font-weight: bold;
+  text-align: right;
 }
 
 .problems-found {
@@ -49,12 +50,12 @@ h2 > .glyphicon-calendar {
 }
 
 .plan-course {
-  border: 1px solid #ccc;
+  border: 1px solid $shadow-color;
   border-radius: 10px;
-  padding: 15px;
-  margin: 10px;
   box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.5);
   flex: 1 100%; // Display courses vertically
+  margin: 10px;
+  padding: 15px;
 
   // Display courses side-by-side on sm and larger devices (as defined by BS)
   @media all and (min-width: $screen-sm-min) {
@@ -62,7 +63,8 @@ h2 > .glyphicon-calendar {
   }
 }
 
-.add-to-taken, .unplan {
+.add-to-taken,
+.unplan {
   float: right;
   margin-right: 5px;
 }

@@ -1,5 +1,7 @@
 // General style overrides
 
+$shadow-color: #ccc;
+
 // make all images responsive by default
 // ? Rails_App_Composer put this here...
 img {
@@ -47,10 +49,11 @@ img {
 }
 
 span.glyphicon-collapse-down {
-  text-decoration: none;
   color: $gray-light;
+  text-decoration: none;
 }
 
-span.glyphicon-collapse-down:hover, span.glyphicon-collapse-down:active {
+.glyphicon-collapse-down:hover,
+.glyphicon-collapse-down:active {
   color: $gray;
 }
