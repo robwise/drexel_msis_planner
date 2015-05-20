@@ -6,32 +6,41 @@
       %span.glyphicon.glyphicon-collapse-down
       %span.sr-only click to collapse Plan Stats Section
   #plan-stats-content.collapse.in
-    %ul.col-xs-12.col-md-5.col-md-offset-1.list-unstyled
-      %li#required-courses-count
-        = "Required Courses"
-        .progress
-          = @plan.progress_bar_for(:required_course)
-      %li#distribution-courses-count
-        = "Distribution Courses"
-        .progress
-          = @plan.progress_bar_for(:distribution_requirement)
-      %li#free-elective-courses-count
-        = "Free Elective Courses"
-        .progress
-          = @plan.progress_bar_for(:free_elective)
-      %li#total-credits
-        = "Total Credits"
-        .progress
-          = @plan.progress_bar_for(:total_credits)
+    .col-xs-12.col-md-6
+      .row.progress-row#required-courses-count
+        .progress-stat-label.col-xs-4= "Required Courses"
+        .col-xs-8
+          .progress
+            = @plan.progress_bar_for(:required_course)
+      .row.progress-row#distribution-courses-count
+        .progress-stat-label.col-xs-4= "Distribution Courses"
+        .col-xs-8
+          .progress
+            = @plan.progress_bar_for(:distribution_requirement)
+      .row.progress-row#free-elective-courses-count
+        .progress-stat-label.col-xs-4= "Free Elective Courses"
+        .col-xs-8
+          .progress
+            = @plan.progress_bar_for(:free_elective)
+      .row.progress-row#total-credits
+        .progress-stat-label.col-xs-4= "Total Credits"
+        .col-xs-8
+          .progress
+            = @plan.progress_bar_for(:total_credits)
 
-    %ul.col-xs-12.col-md-5.col-md-offset-1.list-unstyled
-      %li#degree-duration
-        = "Degree Duration #{ @plan.statistics.duration_pretty }"
-      %li#planned-completion
-        = "Planned Completion #{ @plan.statistics.planned_completion_date_pretty }"
-      %li#quarters-remaining
-        = "Quarters Remaining #{ @plan.statistics.quarters_remaining }"
-      %li#problems
-        = "Problems: #{ @plan.statistics.problems_count }"
-        %span.glyphicon.glyphicon-question-sign
-        %span.sr-only problems tooltip
+    .col-xs-12.col-md-6
+      .row.plan-stat-row#degree-duration
+        .plan-stat-label.col-xs-4= "Degree Duration"
+        .col-xs-8= "#{ @plan.statistics.duration_pretty }"
+      .row.plan-stat-row#planned-completion
+        .plan-stat-label.col-xs-4= "Planned Completion"
+        .col-xs-8= "#{ @plan.statistics.planned_completion_date_pretty }"
+      .row.plan-stat-row#quarters-remaining
+        .plan-stat-label.col-xs-4= "Quarters Remaining"
+        .col-xs-8= "#{ @plan.statistics.quarters_remaining }"
+      .row.plan-stat-row#problems
+        .plan-stat-label.col-xs-4= "Problems"
+        .col-xs-8
+          = "#{ @plan.statistics.problems_count }"
+          %span.glyphicon.glyphicon-question-sign
+          %span.sr-only problems tooltip

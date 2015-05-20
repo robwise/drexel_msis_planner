@@ -7,10 +7,6 @@ img {
   margin: 0 auto;
 }
 
-// section {
-//   @extend row;
-// }
-
 .error-messages {
   @extend .alert;
   @extend .alert-danger;
@@ -50,3 +46,11 @@ img {
   @extend .btn-default;
 }
 
+span.glyphicon-collapse-down {
+  text-decoration: none;
+  color: $gray-light;
+}
+
+span.glyphicon-collapse-down:hover, span.glyphicon-collapse-down:active {
+  color: $gray;
+}
