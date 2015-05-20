@@ -1,15 +1,13 @@
 // General style overrides
 
+$shadow-color: #ccc;
+
 // make all images responsive by default
 // ? Rails_App_Composer put this here...
 img {
   @extend .img-responsive;
   margin: 0 auto;
 }
-
-// section {
-//   @extend row;
-// }
 
 .error-messages {
   @extend .alert;
@@ -50,3 +48,12 @@ img {
   @extend .btn-default;
 }
 
+.glyphicon-collapse-down {
+  color: $gray-light;
+  text-decoration: none;
+
+  &:hover,
+  &:active {
+    color: $gray;
+  }
+}

@@ -10,14 +10,18 @@ h2 > .glyphicon-stats {
   padding: 2px;
 }
 
-h2 > .glyphicon-calendar {
-  padding-left: 5px;
-  padding-top: 2px;
+.progress-bar {
+  width: 100%;
 }
 
-.plan-course-description {
-  hyphens: auto;
-  text-align: justify;
+.plan-stat-row {
+  height: 40px;
+}
+
+.progress-stat-label,
+.plan-stat-label {
+  font-weight: bold;
+  text-align: right;
 }
 
 .problems-found {
@@ -30,3 +34,42 @@ h2 > .glyphicon-calendar {
 .toggle-section {
   appearance: none;
 }
+
+h2 > .glyphicon-calendar {
+  padding-left: 5px;
+  padding-top: 2px;
+}
+
+.quarter-courses {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.plan-taken-course {
+  background-color: $gray-lighter;
+}
+
+.plan-course {
+  border: 1px solid $shadow-color;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.5);
+  flex: 1 100%; // Display courses vertically
+  margin: 10px;
+  padding: 15px;
+
+  // Display courses side-by-side on sm and larger devices (as defined by BS)
+  @media all and (min-width: $screen-sm-min) {
+    flex: 1;
+  }
+}
+
+.add-to-taken,
+.unplan {
+  float: right;
+  margin-right: 5px;
+}
+
+.add-planned-course-area {
+  text-align: center;
+}
+
