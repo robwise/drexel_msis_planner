@@ -1,8 +1,14 @@
 - content_for :title, 'Edit Plan'
-- content_for :description, 'Form for editing a plan.'
-%h1 Editing plan
+- content_for :description, 'Edit a plan.'
 
-= render 'form', plan_decorator: @plan
-= link_to 'Show', plan_path(@plan.id)
-\|
-= link_to 'Back', user_plans_path(@plan.user)
+%section
+  .col-xs-12
+    %p= link_to 'Back to My Plans', user_plans_path(@plan.user)
+
+    = form_for @plan.form_model, html: { role: 'form' } do |f|
+      %h1.form-title= "Edit Plan '#{@plan.name}'"
+      = f.hidden_field :user_id, class: 'hidden'
+      .form-group
+        = f.label :name
+        = f.text_field :name, autofocus: true, class: 'form-control input-lg'
+      = f.submit @plan.submit_text, class: 'btn btn-primary pull-right'
