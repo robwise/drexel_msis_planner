@@ -1,28 +1,65 @@
 // Navigation Styles
 
-.navbar-right > li > a {
-  padding-right: 5px;
+$gravatar-height: 40px;
+$gravatar-width: 40px;
+$navbar-font-family: $headings-font-family;
+$navbar-brand-font-weight: $headings-font-weight;
+$navbar-link-font-weight: $navbar-brand-font-weight;
+
+.navbar {
+  border-width: 0 0 2px;
+
+  a,
+  .navbar-brand {
+    font-family: $navbar-font-family;
+    font-weight: $navbar-link-font-weight;
+  }
 }
 
-.navbar-nav > .gravatar {
+.navbar-brand a {
+  color: $navbar-default-link-color;
+
+  &:hover,
+  &:active,
+  &:focus {
+    color: $navbar-default-link-hover-color;
+    text-decoration: none;
+  }
+}
+
+.gravatar {
   margin-right: -5px;
 
-  .round {
-    border-radius: 50%;
-    display: block;
-    height: 40px;
-    overflow: hidden;
-    padding: 0;
-    width: 40px;
-  }
-
-  img {
-    height: 40px;
-    padding: 0;
-    width: 40px;
-  }
-
-  a {
+  .gravatar-link {
     padding: 5px 0;
   }
+}
+
+.gravatar-img-container {
+  border: 2px solid $white;
+  border-radius: 5px;
+  display: block;
+  height: $gravatar-height;
+  overflow: hidden;
+  padding: 0;
+  width: $gravatar-width;
+
+  &:hover {
+    border-color: $navbar-default-link-hover-color;
+  }
+}
+
+.gravatar-img {
+  height: $gravatar-height;
+  padding: 0;
+  width: $gravatar-width;
+}
+
+.user-link {
+  margin-right: -15px;
+}
+
+.glyphicon-log-out {
+  position: relative;
+  top: 2px;
 }

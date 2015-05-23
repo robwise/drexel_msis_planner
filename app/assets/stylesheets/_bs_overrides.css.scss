@@ -1,0 +1,44 @@
+// Overrides the default Bootstrap settings. Must be imported after
+// _colors.css.scss and before the bootstrap imports.
+// To see a list of all customizable variables, visit:
+//   http://getbootstrap.com/customize/#less-variables
+
+// colors
+$brand-primary: $drexel-blue;
+
+// scaffolding
+$text-color: $dark-brown;
+$link-color: $bs-default-primary; // this is the text, not the background
+$link-hover-decoration: none;
+
+// typography
+$font-family-sans-serif: $lato;
+$font-size-base: 16px;
+$headings-font-family: $open-sans;
+$headings-font-weight: $open-sans-weight;
+
+// navbar
+$navbar-border-radius: 0;
+$navbar-default-bg: $brand-primary;
+$navbar-default-border: $white;
+$navbar-default-link-color: $white; // this is the text, not the background
+$navbar-default-link-hover-color: $drexel-yellow; // see above
+
+// button
+$btn-primary-color: $white; // this is the text, not the background
+.btn-primary {
+  &:hover,
+  &:active,
+  &:focus {
+    background-color: $brand-primary !important;
+    color: $drexel-yellow !important;
+  }
+}
+
+// listgroups
+$list-group-active-bg: $drexel-yellow; // this is the text, not the background
+$list-group-active-text-color: $text-color;
+
+// badges
+$badge-color: $dark-brown; // this is the text, not the background
+$badge-bg: $drexel-yellow;

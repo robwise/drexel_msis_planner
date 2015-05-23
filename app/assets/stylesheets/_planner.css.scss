@@ -1,0 +1,118 @@
+.quarter {
+  margin: 0 0 40px;
+}
+
+.plan-section {
+  margin: 20px 0;
+}
+
+h2 > .glyphicon-stats,
+.glyphicon-calendar {
+  border: 2px solid $text-color;
+  border-radius: 10px;
+  font-size: 30px; // override default size to keep rounded borders working
+  height: 40px;
+  width: 40px;
+}
+
+h2 > .glyphicon-stats {
+  padding: 2px;
+}
+
+.progress-bar {
+  color: $white; // this is the color of the number text
+  font-weight: bold;
+  width: 100%;
+}
+
+.progress-row,
+.plan-stat-row {
+  &:first-of-type {
+    margin-top: 20px;
+  }
+
+  &:last-of-type {
+    margin-bottom: 30px;
+  }
+}
+
+.plan-stat-row {
+  height: 40px;
+}
+
+.progress-stat-label,
+.plan-stat-label {
+  font-weight: bold;
+  text-align: right;
+}
+
+.problems-found {
+  background-color: $brand-danger;
+  padding: $line-height-computed 0;
+  text-align: center;
+  text-justify: distribute;
+}
+
+.toggle-section {
+  appearance: none;
+}
+
+h2 > .glyphicon-calendar {
+  padding-left: 5px;
+  padding-top: 2px;
+}
+
+.quarter-courses {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.plan-taken-course {
+  @include diagnol-bars;
+
+  &:empty {
+    background-color: $gray-lighter;
+    background-image: none;
+  }
+}
+
+.plan-course {
+  border: 1px solid $gray-lighter;
+  padding: 0 15px;
+
+  @media all and (max-width: $screen-xs-max) {
+    flex: 1 100%; // display courses vertically
+    margin: 0 0 -2px; // prevent double border
+
+    &:last-of-type {
+      margin: 0; // last course doesn't need double border fix
+    }
+  }
+
+  @media all and (min-width: $screen-sm-min) {
+    flex: 1; // display courses side-by-side
+    margin: 0 -2px; // prevent double border
+
+    &:first-of-type {
+      margin-left: 0; // first course doesn't need double border fix on left
+    }
+
+    &:last-of-type {
+      margin-right: 0; // last course doesn't need double border fix on right
+    }
+  }
+}
+
+.quarter:first-child > *:first-child {
+  margin-top: 0;
+}
+
+.add-to-taken,
+.unplan {
+  float: right;
+  margin-right: 5px;
+}
+
+.add-planned-course-area {
+  text-align: center;
+}

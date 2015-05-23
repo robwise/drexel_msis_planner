@@ -1,0 +1,21 @@
+// Defines color variables for reuse
+$bs-default-primary: darken(#428bca, 6.5%);
+$dark-brown: #211f13;
+$light-yellow: #ffe938;
+$dark-yellow: #ffe317;
+$dark-blue: #1d00b2;
+$light-blue: #3d17ff;
+$desaturated-yellow: #fffdf0;
+$shadow-color: #ccc;
+$white : #fff;
+
+// Drexel "identity" colors: http://drexel.edu/identity/web/colors/
+$drexel-blue: #07294d;
+$drexel-yellow: #ffc600;
+$desaturated-drexel-yellow: lighten(desaturate($drexel-yellow, 30%), 45%);
+
+$drexel-accent-blue: #006298;
+$drexel-accent-light-blue: #6cace4;
+$drexel-accent-red: #971b2f;
+$drexel-accent-light-red: #d14124;
+

@@ -1,4 +1,5 @@
-%section#plan-stats
+%hr/
+%section.plan-section#plan-stats
   %h2.col-xs-12
     %span.glyphicon.glyphicon-stats
     Plan Stats
@@ -42,5 +43,3 @@
         .plan-stat-label.col-xs-4= "Problems"
         .col-xs-8
           = "#{ @plan.statistics.problems_count }"
-          %span.glyphicon.glyphicon-question-sign
-          %span.sr-only problems tooltip
