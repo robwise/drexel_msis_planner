@@ -1,11 +1,9 @@
 - content_for :title, 'Plans'
 - content_for :description, "A list of the user's degree plans."
-.container
-  .row
-    %h3 Your Plans
-    .column
-      %table.table#plans-table
-        = render @user.plans
-
-      %br
-      = link_to 'New Plan', new_user_plan_path(@user)
+.col-xs-12.col-md-8.col-md-offset-2
+  %h1 My Plans
+  %ul.list-group
+    = render @user.plans
+.col-xs-4.col-xs-offset-4
+  %a.btn.btn-primary.center-block{ href: new_user_plan_path(@user) }
+    = glyphicon("plus") + " New Plan"

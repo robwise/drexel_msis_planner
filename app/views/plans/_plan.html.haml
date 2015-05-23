@@ -1,13 +1,9 @@
-%tr{ class: "plan", id: "#{plan.name}" }
-  %td= link_to plan.name, plan
-  %td= link_to 'edit', edit_plan_path(plan)
-  %td
-    = link_to 'delete', plan, method: :delete,
-      data: { confirm: 'Are you sure?' }
-  %td.active-status
+%li{ id: "#{plan.name}", class: "list-group-item#{' active' if plan.active}" }
+  .list-group-item-text.plan
+    %h4.plan-name= plan.name
+    = link_to 'delete', plan, method: :delete, data: { confirm: 'Are you sure?' }, class: "plan-delete btn btn-default"
+    = link_to 'edit', edit_plan_path(plan),  class: "plan-edit btn btn-default"
     - if plan.active
       (Active Plan)
     - else
-      = form_for(plan, remote: true) do |f|
-        = f.hidden_field :active, value: true
-        = f.submit 'set active', class: 'button-xs'
+      = button_to "set active", plan_path(plan.id, plan: { active: true }), method: :put, form_class: "plan-set-active button_to", class: "btn btn-primary"
