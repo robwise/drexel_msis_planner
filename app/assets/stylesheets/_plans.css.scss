@@ -1,3 +1,17 @@
+.plan-name,
+.plan-edit,
+.plan-delete,
+.plan-set-active {
+  display: inline-block;
+}
+
+.plan-edit,
+.plan-delete,
+.plan-set-active {
+  float: right;
+  margin-right: 5px;
+}
+
 h2 > .glyphicon-stats,
 .glyphicon-calendar {
   border: 2px solid $text-color;

@@ -58,13 +58,13 @@ feature "Editing a Plan" do
   private
 
   def active?(plan)
-    active_status_for(plan) == "(Active Plan)"
+    page.within("##{plan.name}") do
+      has_content?("(Active Plan)")
+    end
   end
 
   def active_status_for(plan)
-    page.within("##{plan.name}") do
-      find(".active-status").text
-    end
+
   end
 
   def activate_button_for?(plan)

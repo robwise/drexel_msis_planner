@@ -10,6 +10,13 @@ module GlyphiconHelper
     content_tag(:a, glyphicon_span + "/n" + sr_content_span, options, false)
   end
 
+  # Simplifies using Bootstrap Glyphicons. To use 'glyphicon-plus', simply pass
+  # an argument of 'plus' or :plus
+  def glyphicon(name)
+    empty_span = content_tag(:span)
+    content_tag(:div, empty_span, class: "glyphicon glyphicon-#{name.to_s}")
+  end
+
   private
 
   def build_glyphicon_span(args)
