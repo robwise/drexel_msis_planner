@@ -1,29 +1,39 @@
+.courses-section h2 {
+  font-size: floor($font-size-base * 1.4);
+  margin-top: 10px;
+}
+
+.unavailable-course {
+  @include diagnol-bars;
+
+  .panel-body {
+    @include diagnol-bars;
+  }
+}
+
+.degree-requirement {
+  float: right;
+  margin-left: percentage(5px/1000px);
+}
+
+.course-description {
+  line-height: $font-size-base * 1.5;
+  padding: 10px 20px;
+}
+
+.course-requisite {
+  margin: 10px 50px 20px;
+
+  h3 {
+    font-size: $font-size-base;
+  }
+}
+
 .courses-taken-course-button {
   float: left;
 }
 
 .courses-planned-course-button {
+  margin-bottom: 10px;
   margin-left: percentage(5px/1000px);
-}
-
-.unavailable-course {
-  background-color: $gray-lighter;
-}
-
-.degree_requirement_badge {
-  @extend .badge;
-  float: right;
-  margin-left: percentage(5px/1000px);
-}
-
-.required-course {
-  @extend .degree_requirement_badge;
-}
-
-.distribution-requirement {
-  @extend .degree_requirement_badge;
-}
-
-.free-elective {
-  @extend .degree_requirement_badge;
 }

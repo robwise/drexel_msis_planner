@@ -1,9 +1,9 @@
 - if user_signed_in?
   %li.gravatar
-    %a{ href: edit_user_registration_path }
-      .round
-        %img{ src: gravatar_url_for(current_user) }
-  %li= link_to current_user.name, edit_user_registration_path
+    %a.gravatar-link{ href: edit_user_registration_path }
+      .gravatar-img-container
+        %img.gravatar-img{ src: gravatar_url_for(current_user) }
+  %li= link_to current_user.name, edit_user_registration_path, class: "user-link"
   %li
     =link_to raw("sign out <span class='glyphicon glyphicon-log-out'></span>"), destroy_user_session_path, method: :delete
 - else

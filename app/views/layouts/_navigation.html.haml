@@ -6,7 +6,11 @@
         %span.icon-bar
         %span.icon-bar
         %span.icon-bar
-      %span.navbar-brand Drexel MSIS Planner
+      %span.navbar-brand
+        - if user_signed_in?
+          = link_to "Drexel MSIS Planner", planner_path
+        - else
+          = link_to "Drexel MSIS Planner", root_path
     .collapse.navbar-collapse#navbar-collapsible-area
       %ul.nav.navbar-nav
         = render "layouts/navigation_links_left"

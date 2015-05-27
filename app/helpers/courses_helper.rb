@@ -19,7 +19,8 @@ module CoursesHelper
   end
 
   def degree_requirement_for(course)
-    course.degree_requirement.humanize.downcase
+    requirement_name = course.degree_requirement.humanize.downcase
+    requirement_name.sub(/ /, '-')
   end
 
   def course_available_class(user, plan, course)
