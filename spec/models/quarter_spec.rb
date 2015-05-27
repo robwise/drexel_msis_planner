@@ -82,9 +82,29 @@ describe Quarter do
     end
   end
   describe "#to_date" do
-    let(:quarter) { build :quarter, quarter: 201415 }
-    it "return a date within the season and year of the quarter" do
-      expect(quarter.to_date).to eq(Date.new(2014, 9))
+    context "with a code of 201415" do
+      let(:quarter) { build :quarter, quarter: 201415 }
+      it "returns a date equivalent to 09/2014" do
+        expect(quarter.to_date).to eq(Date.new(2014, 9))
+      end
+    end
+    context "with a code of 201425" do
+      let(:quarter) { build :quarter, quarter: 201425 }
+      it "returns a date equivalent to 01/2015" do
+        expect(quarter.to_date).to eq(Date.new(2015, 1))
+      end
+    end
+    context "with a code of 20135" do
+      let(:quarter) { build :quarter, quarter: 201435 }
+      it "returns a date equivalent to 04/2015" do
+        expect(quarter.to_date).to eq(Date.new(2015, 4))
+      end
+    end
+    context "with a code of 201445" do
+      let(:quarter) { build :quarter, quarter: 201445 }
+      it "returns a date equivalent to 06/2015" do
+        expect(quarter.to_date).to eq(Date.new(2015, 6))
+      end
     end
   end
   describe "#past?" do

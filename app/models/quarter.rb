@@ -72,10 +72,11 @@ class Quarter
   end
 
   # Pass an optional argument of true to get ending month's date
-  # (defaults to false)
+  # (default is false)
   def to_date(last_month = false)
-    month = last_month ? MONTHS[season].last : MONTHS[season].first
-    Date.new(year, month)
+    date_month = last_month ? MONTHS[season].last : MONTHS[season].first
+    date_year = season_code == 15 ? year : year + 1
+    Date.new(date_year, date_month)
   end
 
   def future?
