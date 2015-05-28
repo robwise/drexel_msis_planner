@@ -85,11 +85,11 @@ class Quarter
   end
 
   def future?
-    to_date > Time.current
+    to_date(true).month > Time.current.month
   end
 
   def past?
-    to_date < Time.current
+    to_date(true).month < Time.current.month
   end
 
   def next_quarter

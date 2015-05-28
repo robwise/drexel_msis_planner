@@ -119,6 +119,10 @@ describe Quarter do
       quarter = build :past_quarter
       expect(quarter.past?).to be true
     end
+    it "returns false if quarter is current quarter" do
+      quarter = build :current_quarter
+      expect(quarter.past?).to be false
+    end
   end
   describe "#future?" do
     it "returns false if quarter is in past" do
@@ -128,6 +132,10 @@ describe Quarter do
     it "returns true if quarter is in future" do
       quarter = build :future_quarter
       expect(quarter.future?).to be true
+    end
+    it "returns false if quarter is current quarter" do
+      quarter = build :current_quarter
+      expect(quarter.future?).to be false
     end
   end
   describe "#next_quarter" do
