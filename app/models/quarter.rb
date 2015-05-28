@@ -81,15 +81,19 @@ class Quarter
   def to_date(last_month = false)
     date_month = last_month ? MONTHS[season].last : MONTHS[season].first
     date_year = season_code == 15 ? year : year + 1
-    Date.new(date_year, date_month)
+    if last_month
+      Date.new(date_year, date_month).end_of_month
+    else
+      Date.new(date_year, date_month)
+    end
   end
 
   def future?
-    to_date(true).month > Time.current.month
+    to_date > Time.current
   end
 
   def past?
-    to_date(true).month < Time.current.month
+    to_date(true) < Time.current
   end
 
   def next_quarter

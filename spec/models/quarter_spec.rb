@@ -87,26 +87,52 @@ describe Quarter do
   describe "#to_date" do
     context "with a code of 201415" do
       let(:quarter) { build :quarter, quarter: 201415 }
-      it "returns a date equivalent to 09/2014" do
+      it "returns a date equivalent to start of 09/2014" do
         expect(quarter.to_date).to eq(Date.new(2014, 9))
       end
     end
     context "with a code of 201425" do
       let(:quarter) { build :quarter, quarter: 201425 }
-      it "returns a date equivalent to 01/2015" do
+      it "returns a date equivalent to start of 01/2015" do
         expect(quarter.to_date).to eq(Date.new(2015, 1))
       end
     end
     context "with a code of 20135" do
       let(:quarter) { build :quarter, quarter: 201435 }
-      it "returns a date equivalent to 04/2015" do
+      it "returns a date equivalent to start of 04/2015" do
         expect(quarter.to_date).to eq(Date.new(2015, 4))
       end
     end
     context "with a code of 201445" do
       let(:quarter) { build :quarter, quarter: 201445 }
-      it "returns a date equivalent to 06/2015" do
+      it "returns a date equivalent to start of 06/2015" do
         expect(quarter.to_date).to eq(Date.new(2015, 6))
+      end
+    end
+  end
+  describe "#to_date(true)" do
+    context "with a code of 201415" do
+      let(:quarter) { build :quarter, quarter: 201415 }
+      it "returns a date equivalent to end of 09/31/2014" do
+        expect(quarter.to_date(true)).to eq(Date.new(2014, 12).end_of_month)
+      end
+    end
+    context "with a code of 201425" do
+      let(:quarter) { build :quarter, quarter: 201425 }
+      it "returns a date equivalent to end of 01/2015" do
+        expect(quarter.to_date(true)).to eq(Date.new(2015, 3).end_of_month)
+      end
+    end
+    context "with a code of 20135" do
+      let(:quarter) { build :quarter, quarter: 201435 }
+      it "returns a date equivalent to end of 04/2015" do
+        expect(quarter.to_date(true)).to eq(Date.new(2015, 5).end_of_month)
+      end
+    end
+    context "with a code of 201445" do
+      let(:quarter) { build :quarter, quarter: 201445 }
+      it "returns a date equivalent to end of 06/2015" do
+        expect(quarter.to_date(true)).to eq(Date.new(2015, 8).end_of_month)
       end
     end
   end
@@ -116,8 +142,11 @@ describe Quarter do
       expect(quarter.past?).to be false
     end
     it "returns true if quarter is in past" do
-      quarter = build :past_quarter
-      expect(quarter.past?).to be true
+      past_quarter_codes = [201415, 201315, 201425, 201325, 201335, 201345]
+      past_quarter_codes.each do |past_quarter_code|
+        quarter = Quarter.new(past_quarter_code)
+        expect(quarter.past?).to be true
+      end
     end
     it "returns false if quarter is current quarter" do
       quarter = build :current_quarter
