@@ -44,29 +44,32 @@ describe Quarter do
     end
   end
   describe "comparing" do
-    context "to a quarter with the same code" do
-      it "is equal" do
-        expect(quarter).to eq(described_class.new(quarter.code))
+    context "the current quarter" do
+      let(:quarter) { build :current_quarter }
+      context "to a quarter with the same code" do
+        it "is equal" do
+          expect(quarter).to eq(described_class.new(quarter.code))
+        end
       end
-    end
-    context "to a quarter with an earlier code" do
-      it "is greater" do
-        expect(quarter).to be > past_quarter
+      context "to a quarter with an earlier code" do
+        it "is greater" do
+          expect(quarter).to be > past_quarter
+        end
       end
-    end
-    context "to a quarter with a later code" do
-      it "is lesser" do
-        expect(quarter).to be < future_quarter
+      context "to a quarter with a later code" do
+        it "is lesser" do
+          expect(quarter).to be < future_quarter
+        end
       end
-    end
-    context "is between two quarters with large and small codes" do
-      it "#between is true" do
-        expect(quarter.between?(past_quarter, future_quarter)).to eq(true)
+      context "to a past quarter and a future quarter" do
+        it "#between is true" do
+          expect(quarter.between?(past_quarter, future_quarter)).to eq(true)
+        end
       end
     end
   end
   describe "#season" do
-    it "return the season" do
+    it "returns the season" do
       expect(quarter.season).to eq(:fall)
     end
   end
@@ -134,9 +137,17 @@ describe Quarter do
     end
   end
   describe "#previous_quarter" do
-    it "returns the previous quarter" do
-      quarter = build :quarter, quarter: 201515
-      expect(quarter.previous_quarter.code).to eq 201445
+    context "with a quarter code of 201515" do
+      let(:quarter) { build :quarter, quarter: 201515 }
+      it "returns a quarter with a code of 201445" do
+        expect(quarter.previous_quarter.code).to eq 201445
+      end
+    end
+    context "with a quarter code of 201525" do
+      let(:quarter) { build :quarter, quarter: 201525 }
+      it "returns a quarter with a code of 201515" do
+        expect(quarter.previous_quarter.code).to eq 201515
+      end
     end
   end
   describe ".from" do
@@ -157,7 +168,23 @@ describe Quarter do
   end
   describe ".current_quarter" do
     it "returns the current quarter" do
-      code = Time.current.year * 100 + (Time.current.month / 4).ceil * 15
+      current_month = Time.current.month
+      current_year = Time.current.year
+      if current_month >= 9
+        code_year = current_year
+        code_season = 15
+      else
+        code_year = current_year - 1
+        case current_month
+        when 1..3
+          code_season = 25
+        when 4..5
+          code_season = 35
+        when 6..8
+          code_season = 45
+        end
+      end
+      code = code_year * 100 + code_season
       current_quarter = described_class.new(code)
       expect(described_class.current_quarter).to eq(current_quarter)
     end

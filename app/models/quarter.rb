@@ -32,7 +32,12 @@ class Quarter
   end
 
   def self.current_quarter
-    new(Time.current.year * 100 + (Time.current.month / 4).ceil * 15)
+    Time.current.month
+    season_hash = Quarter::MONTHS.select { |season, month_range| month_range.include?(Time.current.month) }
+    season = season_hash.keys.first
+    season_code = VALID_SEASONS[season]
+    year_code = season.to_s == "fall" ? Time.current.year : Time.current.year - 1
+    new(year_code * 100 + season_code)
   end
 
   # Takes two quarters and finds the number of quarters between them
@@ -42,7 +47,7 @@ class Quarter
 
   include Comparable
   VALID_SEASONS = { fall: 15, winter: 25, spring: 35, summer: 45 }
-  MONTHS = { fall: 9..12, winter: 1..3, spring: 4..6, summer: 6..8 }
+  MONTHS = { fall: 9..12, winter: 1..3, spring: 4..5, summer: 6..8 }
   attr_accessor :code
 
   def initialize(arg)
