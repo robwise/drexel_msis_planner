@@ -274,7 +274,7 @@ describe Quarter do
       end
     end
   end
-  describe '#year_code' do
+  describe "#year_code" do
     context "with a code of 201415" do
       let(:quarter) { described_class.new(201415) }
       it "returns 2014" do

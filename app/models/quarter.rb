@@ -33,10 +33,16 @@ class Quarter
 
   def self.current_quarter
     Time.current.month
-    season_hash = Quarter::MONTHS.select { |season, month_range| month_range.include?(Time.current.month) }
+    season_hash = Quarter::MONTHS.select do |_season, month_range|
+      month_range.include?(Time.current.month)
+    end
     season = season_hash.keys.first
     season_code = VALID_SEASONS[season]
-    year_code = season.to_s == "fall" ? Time.current.year : Time.current.year - 1
+    if season.to_s == "fall"
+      year_code = Time.current.year
+    else
+      year_code = Time.current.year - 1
+    end
     new(year_code * 100 + season_code)
   end
 
