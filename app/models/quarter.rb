@@ -32,7 +32,18 @@ class Quarter
   end
 
   def self.current_quarter
-    new(Time.current.year * 100 + (Time.current.month / 4).ceil * 15)
+    Time.current.month
+    season_hash = Quarter::MONTHS.select do |_season, month_range|
+      month_range.include?(Time.current.month)
+    end
+    season = season_hash.keys.first
+    season_code = VALID_SEASONS[season]
+    if season.to_s == "fall"
+      year_code = Time.current.year
+    else
+      year_code = Time.current.year - 1
+    end
+    new(year_code * 100 + season_code)
   end
 
   # Takes two quarters and finds the number of quarters between them
@@ -42,7 +53,7 @@ class Quarter
 
   include Comparable
   VALID_SEASONS = { fall: 15, winter: 25, spring: 35, summer: 45 }
-  MONTHS = { fall: 9..12, winter: 1..3, spring: 4..6, summer: 6..8 }
+  MONTHS = { fall: 9..12, winter: 1..3, spring: 4..5, summer: 6..8 }
   attr_accessor :code
 
   def initialize(arg)
@@ -67,15 +78,24 @@ class Quarter
     VALID_SEASONS.key(season_code)
   end
 
-  def year
+  def year_code
     code / 100
   end
 
+  def year
+    to_date.year
+  end
+
   # Pass an optional argument of true to get ending month's date
-  # (defaults to false)
+  # (default is false)
   def to_date(last_month = false)
-    month = last_month ? MONTHS[season].last : MONTHS[season].first
-    Date.new(year, month)
+    date_month = last_month ? MONTHS[season].last : MONTHS[season].first
+    date_year = season_code == 15 ? year_code : year_code + 1
+    if last_month
+      Date.new(date_year, date_month).end_of_month
+    else
+      Date.new(date_year, date_month)
+    end
   end
 
   def future?
@@ -83,22 +103,22 @@ class Quarter
   end
 
   def past?
-    to_date < Time.current
+    to_date(true) < Time.current
   end
 
   def next_quarter
     if 45 == season_code
-      Quarter.new((year + 1) * 100 + 15)
+      Quarter.new((year_code + 1) * 100 + 15)
     else
-      Quarter.new(year * 100 + season_code + 10)
+      Quarter.new(year_code * 100 + season_code + 10)
     end
   end
 
   def previous_quarter
     if 15 == season_code
-      Quarter.new((year - 1) * 100 + 45)
+      Quarter.new((year_code - 1) * 100 + 45)
     else
-      Quarter.new(year * 100 + season_code - 10)
+      Quarter.new(year_code * 100 + season_code - 10)
     end
   end
 
@@ -129,7 +149,7 @@ class Quarter
   end
 
   def year_difference(other_quarter)
-    year - other_quarter.year
+    year_code - other_quarter.year_code
   end
 
   def bad_length?

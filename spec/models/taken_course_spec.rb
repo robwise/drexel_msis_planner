@@ -73,8 +73,8 @@ describe TakenCourse do
       taken_course.quarter = 201415
       taken_course.save
     end
-    context "with new quarter of '201815'" do
-      it "returns '201815' as its quarter" do
+    context "with new quarter of '201425'" do
+      it "returns '201425' as its quarter" do
         expect do
           taken_course.update(quarter: 201425)
           taken_course.reload

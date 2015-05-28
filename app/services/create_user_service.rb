@@ -42,18 +42,19 @@ class CreateUserService
   end
 
   def create_planned_courses
-    quarter = Quarter.current_quarter.next_quarter!
-    planned_courses_for(quarter.next_quarter!)
-    planned_courses_for(quarter.next_quarter!)
-    planned_courses_for(quarter.next_quarter!)
+    quarter = Quarter.current_quarter
+    3.times do
+      quarter = quarter.next_quarter
+      planned_courses_for(quarter)
+    end
     puts "CREATED 9 PLANNED COURSES FOR USER: #{@user.email}"
   end
 
   def planned_courses_for(quarter)
     3.times do
       PlannedCourse.find_or_create_by!(plan: @user.active_plan,
-                                       course: @courses.pop) do |plan|
-        plan.quarter = quarter.to_s
+                                       course: @courses.pop) do |planned_course|
+        planned_course.quarter = quarter.to_s
       end
     end
   end
@@ -61,9 +62,9 @@ class CreateUserService
   def taken_courses_for(quarter)
     3.times do
       TakenCourse.find_or_create_by!(user: @user,
-                                     course: @courses.shift) do |plan|
-        plan.quarter = quarter.to_s
-        plan.grade = TakenCourse.grades.collect.to_a.sample[1]
+                                     course: @courses.shift) do |taken_course|
+        taken_course.quarter = quarter.to_s
+        taken_course.grade = TakenCourse.grades.collect.to_a.sample[1]
       end
     end
   end
