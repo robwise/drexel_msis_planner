@@ -269,7 +269,10 @@ describe PlanStatistics, type: :model do
     end
     describe "#planned_completion_date_pretty" do
       it "contains the correct month and year" do
-        expect(subject.planned_completion_date_pretty).to eq "August 2014"
+        pretty_month = completion_quarter.to_date(true).strftime('%B')
+        pretty_year = completion_quarter.to_date(true).strftime('%Y')
+        expected = "#{ pretty_month } #{ pretty_year }"
+        expect(subject.planned_completion_date_pretty).to eq expected
       end
     end
     describe "#quarters_remaining" do
