@@ -11,6 +11,7 @@ describe Quarter do
   it { should respond_to(:season) }
   it { should respond_to(:season_code) }
   it { should respond_to(:year) }
+  it { should respond_to(:year_code) }
   it { should respond_to(:to_date) }
   it { should respond_to(:future?) }
   it { should respond_to(:past?) }
@@ -227,7 +228,7 @@ describe Quarter do
     end
   end
   describe ".num_quarters_between" do
-    context "with a start of 201515 and finish of 201525" do
+    context "with a start of 201425 and finish of 201615" do
       let(:start) { 201425 }
       let(:finish) { 201615 }
       it "returns 7" do
@@ -257,6 +258,34 @@ describe Quarter do
     it "is 4 for a quarter ending in 15" do
       quarter = described_class.new(201645)
       expect(quarter.quarter_rank).to eq 4
+    end
+  end
+  describe "#year" do
+    context "with a code of 201415" do
+      let(:quarter) { described_class.new(201415) }
+      it "returns 2014" do
+        expect(quarter.year).to eq 2014
+      end
+    end
+    context "with a code of 201425" do
+      let(:quarter) { described_class.new(201425) }
+      it "returns 2015" do
+        expect(quarter.year).to eq 2015
+      end
+    end
+  end
+  describe '#year_code' do
+    context "with a code of 201415" do
+      let(:quarter) { described_class.new(201415) }
+      it "returns 2014" do
+        expect(quarter.year_code).to eq 2014
+      end
+    end
+    context "with a code of 201425" do
+      let(:quarter) { described_class.new(201425) }
+      it "returns 2014" do
+        expect(quarter.year_code).to eq 2014
+      end
     end
   end
 end

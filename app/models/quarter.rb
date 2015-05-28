@@ -72,15 +72,19 @@ class Quarter
     VALID_SEASONS.key(season_code)
   end
 
-  def year
+  def year_code
     code / 100
+  end
+
+  def year
+    to_date.year
   end
 
   # Pass an optional argument of true to get ending month's date
   # (default is false)
   def to_date(last_month = false)
     date_month = last_month ? MONTHS[season].last : MONTHS[season].first
-    date_year = season_code == 15 ? year : year + 1
+    date_year = season_code == 15 ? year_code : year_code + 1
     if last_month
       Date.new(date_year, date_month).end_of_month
     else
@@ -98,17 +102,17 @@ class Quarter
 
   def next_quarter
     if 45 == season_code
-      Quarter.new((year + 1) * 100 + 15)
+      Quarter.new((year_code + 1) * 100 + 15)
     else
-      Quarter.new(year * 100 + season_code + 10)
+      Quarter.new(year_code * 100 + season_code + 10)
     end
   end
 
   def previous_quarter
     if 15 == season_code
-      Quarter.new((year - 1) * 100 + 45)
+      Quarter.new((year_code - 1) * 100 + 45)
     else
-      Quarter.new(year * 100 + season_code - 10)
+      Quarter.new(year_code * 100 + season_code - 10)
     end
   end
 
@@ -139,7 +143,7 @@ class Quarter
   end
 
   def year_difference(other_quarter)
-    year - other_quarter.year
+    year_code - other_quarter.year_code
   end
 
   def bad_length?
