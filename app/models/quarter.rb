@@ -157,7 +157,7 @@ class Quarter
   end
 
   def bad_year?
-    (year > (Time.current.year + 10)) || year < 1980
+    (year > (Time.current.year + 20)) || year < 1980
   end
 
   def bad_season?

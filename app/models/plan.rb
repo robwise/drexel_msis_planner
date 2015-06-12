@@ -44,6 +44,10 @@ class Plan < ActiveRecord::Base
     end
   end
 
+  def num_planned_courses_in(quarter)
+    planned_courses.where(quarter: quarter).count
+  end
+
   private
 
   # Validators
