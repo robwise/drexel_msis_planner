@@ -40,6 +40,7 @@ group :development do
   gem "rubocop"
   gem "rubocop-rspec"
   gem "pry-rails"
+  gem "brakeman", require: false
 end
 group :development, :test do
   gem "dotenv-rails"
