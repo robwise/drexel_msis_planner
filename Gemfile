@@ -41,6 +41,7 @@ group :development do
   gem "rubocop-rspec"
   gem "pry-rails"
   gem "brakeman", require: false
+  gem "bullet"
 end
 group :development, :test do
   gem "dotenv-rails"
@@ -48,6 +49,7 @@ group :development, :test do
   gem "rspec-rails"
   gem "spring-commands-rspec"
   gem "byebug"
+  gem "ruby_gntp"
 end
 group :test do
   gem "capybara"
