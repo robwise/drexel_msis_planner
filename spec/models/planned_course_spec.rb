@@ -92,4 +92,15 @@ describe PlannedCourse do
       expect(subject).not_to be_valid
     end
   end
+  context "with 3 prior existing planned courses for same quarter" do
+    before do
+      create_list :planned_course,
+                  3,
+                  plan: plan,
+                  quarter: subject.quarter
+    end
+    it "is invalid" do
+      expect(subject).not_to be_valid
+    end
+  end
 end

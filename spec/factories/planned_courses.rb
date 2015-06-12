@@ -4,7 +4,16 @@ FactoryGirl.define do
   factory :planned_course do
     plan
     association :course
-    quarter "#{(Time.zone.now.year + 1).to_s + [15, 25, 35, 45].sample.to_s }"
+
+    # all of this nonsense is necessary because we can only have a max of 3
+    # planned courses for any given quarter
+    sequence(:quarter) do |n|
+      candidate_quarter = build :future_quarter
+      (n / 3).times do
+        candidate_quarter = candidate_quarter.next_quarter
+      end
+      candidate_quarter.to_s
+    end
   end
 
   trait :required do

@@ -31,6 +31,9 @@ class PlannedCourse < ActiveRecord::Base
     if quarter_object.past?
       errors.add(:quarter, "cannot be in the past.")
     end
+    if plan && plan.num_planned_courses_in(quarter) >= 3
+      errors.add(:quarter, "already 3 courses planned for this quarter")
+    end
     rescue ArgumentError
       errors.add(:quarter, "is not a valid quarter code")
   end

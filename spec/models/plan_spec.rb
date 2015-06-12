@@ -21,6 +21,7 @@ describe Plan do
   it { should respond_to(:taken_courses_course_ids) }
   it { should respond_to(:planned_courses_course_ids) }
   it { should respond_to(:course_planned?) }
+  it { should respond_to(:num_planned_courses_in) }
   it { should validate_presence_of(:user) }
   it { should validate_presence_of(:name) }
   it { should validate_length_of(:name).is_at_least(1) }
@@ -138,6 +139,27 @@ describe Plan do
     it "checks whether a given Course instance is planned" do
       course = planned_course.course
       expect(subject.course_planned?(course)).to eq true
+    end
+  end
+  describe "#num_planned_courses_in" do
+    context "with 1 course in a quarter" do
+      before do
+        planned_course.save
+      end
+      it "returns 1 when passed that course's quarter" do
+        expect(subject.num_planned_courses_in(planned_course.quarter)).to eq(1)
+      end
+    end
+    context "with 2 courses in a quarter" do
+      before do
+        planned_course.save
+        create :planned_course,
+               quarter: planned_course.quarter,
+               plan: planned_course.plan
+      end
+      it "returns 2 when passed that course's quarter" do
+        expect(subject.num_planned_courses_in(planned_course.quarter)).to eq(2)
+      end
     end
   end
 
