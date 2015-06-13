@@ -108,17 +108,17 @@ class Quarter
 
   def next_quarter
     if 45 == season_code
-      Quarter.new((year_code + 1) * 100 + 15)
+      build_new_quarter(year_code + 1, 15)
     else
-      Quarter.new(year_code * 100 + season_code + 10)
+      build_new_quarter(year_code, season_code + 10)
     end
   end
 
   def previous_quarter
     if 15 == season_code
-      Quarter.new((year_code - 1) * 100 + 45)
+      build_new_quarter(year_code - 1, 45)
     else
-      Quarter.new(year_code * 100 + season_code - 10)
+      build_new_quarter(year_code, season_code - 10)
     end
   end
 
@@ -162,5 +162,9 @@ class Quarter
 
   def bad_season?
     !VALID_SEASONS.values.include?(season_code)
+  end
+
+  def build_new_quarter(year, season_code)
+    Quarter.new(year * 100 + season_code)
   end
 end
