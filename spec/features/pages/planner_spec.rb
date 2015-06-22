@@ -87,6 +87,8 @@ feature "Visiting the planner page" do
     signin_user user
     click_link "Planner"
     expect(page).to have_title(full_title("New Plan"))
+    expect(page).to have_content("Create a new plan to begin!")
+    expect(page).not_to have_content("Back to All Courses")
   end
   scenario "as a visitor" do
     visit planner_path
