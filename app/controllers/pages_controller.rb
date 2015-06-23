@@ -9,16 +9,19 @@ class PagesController < ApplicationController
 
   def planner # shows the active plan if set, otherwise shows new
     authenticate_user!
-    # I couldn't get this to not load user a second time, so might as well
-    # just include it anyway
     plan = Plan
            .includes(:user, taken_courses: [:course], planned_courses: [:course])
            .find_by(user_id: current_user.id, active: true)
     if plan.nil?
-      redirect_to new_user_plan_path(user_id: current_user.id)
+      redirect_to new_user_plan_path(user_id: current_user.id),
+                  notice: "Create a plan to begin!"
     else
       authorize plan
       @plan = PlanDecorator.new(plan)
+      if @plan.taken_and_planned_courses.size == 0
+        flash[:notice] = "You have no courses in your plan. Visit the courses
+                          page and add some!"
+      end
       render "pages/planner"
     end
   end

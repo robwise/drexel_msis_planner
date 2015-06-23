@@ -56,6 +56,9 @@ feature "Visiting the planner page" do
     expect(page.find("#planned-completion")).to have_content("No Courses Planned")
     expect(page.find("#quarters-remaining")).to have_content("No Courses Planned")
     expect(page.find("#problems")).to have_content("0")
+
+    expect(page).to have_content("You have no courses in your plan.
+                                 Visit the courses page and add some!")
   end
   scenario "as a user with completed degree" do
     last_quarter = Quarter.current_quarter.previous_quarter
@@ -87,7 +90,7 @@ feature "Visiting the planner page" do
     signin_user user
     click_link "Planner"
     expect(page).to have_title(full_title("New Plan"))
-    expect(page).to have_content("Create a new plan to begin!")
+    expect(page).to have_content("Create a plan to begin!")
     expect(page).not_to have_content("Back to All Courses")
   end
   scenario "as a visitor" do
