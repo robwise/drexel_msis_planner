@@ -1,8 +1,5 @@
 = form_for @plan.form_model, html: { role: 'form' } do |f|
-  - if @current_user.plans.size == 0
-    %h3.form-title Create a new plan to begin!
-  - else
-    = link_to 'Back to All Plans', user_plans_path(current_user)
+  %h3.form-title New Plan
   = f.hidden_field :user_id, class: 'hidden'
   .form-group
     = f.label :name
