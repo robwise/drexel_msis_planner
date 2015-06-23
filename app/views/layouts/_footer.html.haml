@@ -1,0 +1,8 @@
+.container
+  %ul
+    = raw "&copy; #{Time.current.year} #{link_to 'Rob Wise', 'https://twitter.com/RobAWise'} |"
+    - if user_signed_in?
+      %li= link_to "Planner", planner_path
+    - else
+      %li= link_to "Drexel MSIS Planner", root_path
+    = render(partial: "layouts/navigation_links_left")

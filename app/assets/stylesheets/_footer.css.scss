@@ -1,0 +1,47 @@
+$footer-height: 60px;
+
+// All of the below positioning nonsense is to make the footer stay at the
+// bottom even if there is not enough content to fill the page.
+// see: http://stackoverflow.com/questions/21324395/bootstrap-3-flush-footer-to-bottom-not-fixed
+html {
+  min-height: 100%;
+  position: relative;
+}
+
+body {
+  margin-bottom: $footer-height;
+}
+
+footer {
+  background-color: $gray-lighter;
+  bottom: 0;
+  color: $gray;
+  height: $footer-height;
+  padding-top: 20px;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+
+  a {
+    color: $gray;
+  }
+
+  a:active,
+  a:hover,
+  a:focus {
+    color: lighten($gray, 40%);
+  }
+
+  li {
+    display: inline;
+    list-style: none;
+  }
+
+  li::after {
+    content: " |";
+  }
+
+  li:last-of-type::after {
+    content: "";
+  }
+}

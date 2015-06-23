@@ -1,12 +1,10 @@
+// These need to be in order
 @import "fonts";
 @import "colors";
 @import "bs_overrides";
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "custom";
-@import "navigation";
-@import "forms";
-@import "modals";
-@import "courses";
-@import "plans";
-@import "planner";
+
+// This imports everything else
+@import "*";
