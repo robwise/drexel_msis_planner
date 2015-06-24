@@ -19,8 +19,8 @@ class PagesController < ApplicationController
       authorize plan
       @plan = PlanDecorator.new(plan)
       if @plan.taken_and_planned_courses.size == 0
-        flash[:notice] = "You have no courses in your plan. Visit the courses
-                          page and add some!"
+        flash.now.notice = "You have no courses in your plan. Visit the courses
+                           page and add some!"
       end
       render "pages/planner"
     end
