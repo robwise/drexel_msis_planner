@@ -1,4 +1,5 @@
 - content_for :title, 'New Plan'
 - content_for :description, 'Form for creating a new plan.'
 .col-xs-12
+  .clearfix= link_to 'Show All Plans', user_plans_path(current_user)
   = render 'form', plan_decorator: @plan
