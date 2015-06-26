@@ -339,6 +339,46 @@ CREATE UNIQUE INDEX unique_schema_migrations ON schema_migrations USING btree (v
 
 
 --
+-- Name: planned_courses_course_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY planned_courses
+    ADD CONSTRAINT planned_courses_course_id_fk FOREIGN KEY (course_id) REFERENCES courses(id);
+
+
+--
+-- Name: planned_courses_plan_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY planned_courses
+    ADD CONSTRAINT planned_courses_plan_id_fk FOREIGN KEY (plan_id) REFERENCES plans(id);
+
+
+--
+-- Name: plans_user_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY plans
+    ADD CONSTRAINT plans_user_id_fk FOREIGN KEY (user_id) REFERENCES users(id);
+
+
+--
+-- Name: taken_courses_course_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY taken_courses
+    ADD CONSTRAINT taken_courses_course_id_fk FOREIGN KEY (course_id) REFERENCES courses(id);
+
+
+--
+-- Name: taken_courses_user_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY taken_courses
+    ADD CONSTRAINT taken_courses_user_id_fk FOREIGN KEY (user_id) REFERENCES users(id);
+
+
+--
 -- PostgreSQL database dump complete
 --
 
@@ -381,4 +421,6 @@ INSERT INTO schema_migrations (version) VALUES ('20150501035048');
 INSERT INTO schema_migrations (version) VALUES ('20150501044455');
 
 INSERT INTO schema_migrations (version) VALUES ('20150503060631');
+
+INSERT INTO schema_migrations (version) VALUES ('20150626055636');
 

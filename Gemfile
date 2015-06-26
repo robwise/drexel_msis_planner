@@ -42,6 +42,7 @@ group :development do
   gem "pry-rails"
   gem "brakeman", require: false
   gem "bullet"
+  gem "immigrant"
 end
 group :development, :test do
   gem "dotenv-rails"
