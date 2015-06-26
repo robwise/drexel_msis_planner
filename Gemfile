@@ -19,7 +19,7 @@ gem "autoprefixer-rails"
 gem "httparty"
 gem "skylight"
 group :production do
-  gem "unicorn"
+  gem "puma"
   gem "rails_12factor"
 end
 group :development do
