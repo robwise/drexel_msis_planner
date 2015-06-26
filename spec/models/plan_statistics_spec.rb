@@ -1,6 +1,6 @@
 describe PlanStatistics, type: :model do
   let(:user) { create :user }
-  subject(:subject) { described_class.new(plan) }
+  subject(:subject) { described_class.new(plan) } # must define plan in context
 
   context "with a generic plan" do
     let(:plan) { build_stubbed :plan }
@@ -287,8 +287,8 @@ describe PlanStatistics, type: :model do
     end
   end
   context "with two planned courses with unfulfilled prerequisites" do
-    let(:plan) { build_stubbed :plan, user: user }
-    let(:course) { build_stubbed :course, :with_unfulfillable_prerequisite }
+    let(:plan) { create :plan, user: user }
+    let(:course) { create :course, :with_unfulfillable_prerequisite }
     let!(:planned_courses) do
       create_pair :planned_course, :with_prerequisite, plan: plan
     end
@@ -299,7 +299,7 @@ describe PlanStatistics, type: :model do
     end
   end
   context "with two planned courses with both requisites unfulfilled" do
-    let(:plan) { build_stubbed :plan, user: user }
+    let(:plan) { create :plan, user: user }
     let!(:planned_courses) do
       create_pair :planned_course, :with_co_and_prerequisites, plan: plan
     end
